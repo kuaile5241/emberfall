@@ -1,0 +1,29 @@
+[
+  {
+    "file": "skill-fire.wav",
+    "seconds": 1.6,
+    "sample_rate": 24000,
+    "channels": 2,
+    "peak_dbfs": -2.16,
+    "rms_dbfs": -19.67,
+    "bytes": 153644
+  },
+  {
+    "file": "skill-lightning.wav",
+    "seconds": 1.3,
+    "sample_rate": 24000,
+    "channels": 2,
+    "peak_dbfs": -2.38,
+    "rms_dbfs": -22.16,
+    "bytes": 124844
+  },
+  {
+    "file": "skill-water.wav",
+    "seconds": 1.8,
+    "sample_rate": 24000,
+    "channels": 2,
+    "peak_dbfs": -2.97,
+    "rms_dbfs": -17.94,
+    "bytes": 172844
+  }
+]

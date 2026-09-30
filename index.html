@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111718"><title>余烬地牢 · 钟下墓城</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23d78b45' d='M32 2 50 36 32 62 14 36z'/%3E%3C/svg%3E"></head>
+<body>
+  <canvas id="world" aria-label="3D 地牢游戏"></canvas>
+  <div class="vignette"></div>
+  <div id="damage-flash"></div>
+  <div id="loading"><div class="loading-ring" aria-hidden="true"></div><p>正在加载</p><span id="load-progress">读取游戏资源</span></div>
+  <main id="menu" class="hidden" aria-label="守夜人营地"></main>
+  <div id="hud" class="hidden">
+    <div class="top-right"><span id="timer">00:00</span><button id="sound" class="utility-button" aria-label="切换声音"></button><button id="pause" class="utility-button" aria-label="暂停"></button></div>
+    <div id="bossbar" class="hidden"><strong>丧钟守卫</strong><div><i></i></div></div>
+    <div class="map-surround"><canvas id="minimap" width="230" height="212" aria-label="完整地下城地图"></canvas></div>
+    <div id="battle-impact" aria-hidden="true"></div><div id="multikill" role="status"></div><div id="expedition-tracker"></div>
+    <div id="toast" role="status"></div><div id="interaction-hint" class="hidden"></div><div id="floaters"></div>
+    <div class="bottom-hud">
+      <div class="vital"><div id="buffs" class="buffs" aria-label="当前增益"></div><div class="level-seal" id="level" title="等级">1</div><div class="health-wrap"><div class="vital-label"><span id="shield-value" class="shield-value" title="护盾">0</span><span id="hp-text"></span></div><div class="health"><i id="hp-bar"></i></div><div class="xp"><i id="xp-bar"></i></div></div></div>
+      <div class="skills" aria-label="战斗技能">
+        <button class="skill skill-attack" id="attack-button" aria-label="斩击，左键或 J"><span class="skill-art" data-skill-art="attack"></span><span class="cooldown"></span><span class="cooldown-number"></span><span class="skill-name">斩击</span><kbd>左键 / J</kbd></button>
+        <button class="skill skill-dash" id="dash-button" aria-label="闪避，空格"><span class="skill-art" data-skill-art="dash"></span><span class="cooldown"></span><span class="cooldown-number"></span><span class="skill-name">闪避</span><kbd>SPACE</kbd></button>
+        <button class="skill skill-burst" id="burst-button" aria-label="焰爆，右键或 K"><span class="skill-art" data-skill-art="burst"></span><span class="cooldown"></span><span class="cooldown-number"></span><span class="skill-name">焰爆</span><kbd>右键 / K</kbd></button>
+        <button class="skill skill-heal" id="heal-button" aria-label="治疗药水，Q"><span class="skill-art" data-skill-art="heal"></span><span class="cooldown"></span><span class="cooldown-number"></span><span class="potion-count" id="potions">3</span><span class="skill-name">药水</span><kbd>Q</kbd></button>
+      </div>
+      <div class="build-summary"><button id="build-open" aria-label="装备与构筑，B"><span class="build-art"></span><kbd>B</kbd></button><div><button id="weapon-cycle" class="weapon-cycle" aria-label="循环元素武器，Tab"><span id="weapon">余烬长剑</span><span class="element-pips" aria-hidden="true"><i data-element="fire"></i><i data-element="lightning"></i><i data-element="water"></i></span><kbd>TAB</kbd></button><strong id="kills">0 击杀</strong></div></div>
+    </div>
+  </div>
+  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><section id="overlay-content"></section></div>
+  <script type="module" src="/src/main.js"></script>
+</body></html>

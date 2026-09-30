@@ -1,0 +1,21 @@
+Poly Haven asset license notice
+Verified: 2026-09-30 (Asia/Shanghai)
+
+The texture assets in this directory are published by Poly Haven under
+Creative Commons CC0 1.0 Universal. The official asset license permits
+commercial use and redistribution; attribution is appreciated but optional.
+
+Official asset license: https://polyhaven.com/license
+CC0 dedication: https://creativecommons.org/publicdomain/zero/1.0/
+
+Included assets and creators:
+- Monastery Stone Floor — Amal Kumar
+  https://polyhaven.com/a/monastery_stone_floor
+- Stone Wall — Charlotte Baglioni (photography), Dario Barresi (processing)
+  https://polyhaven.com/a/stone_wall
+- Rocks Ground 05 — Rob Tuytel
+  https://polyhaven.com/a/rocks_ground_05
+
+Only CC0 asset textures were downloaded. This notice does not grant rights
+to Poly Haven logos, site text, user renders, or other site content.
+Hashes, resolutions and download URLs: ../manifest-v2.json

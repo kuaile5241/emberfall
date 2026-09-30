@@ -1,0 +1,78 @@
+{
+  "weapon_library": {
+    "objects": 32,
+    "collections": [
+      "Ember Blade",
+      "Storm Lance",
+      "Tidebound Staff"
+    ],
+    "materials": [
+      "Bound charcoal leather",
+      "Brushed moon silver",
+      "Living ember",
+      "Old pale bronze",
+      "Stillwater crystal",
+      "Stormglass",
+      "Tempered dusk steel"
+    ]
+  },
+  "mage": {
+    "height_idle": 2.6866810132050887,
+    "animation_count": 76,
+    "bones": [
+      "root",
+      "hips",
+      "spine",
+      "chest",
+      "upperarm.l",
+      "lowerarm.l",
+      "wrist.l",
+      "hand.l",
+      "handslot.l",
+      "upperarm.r",
+      "lowerarm.r",
+      "wrist.r",
+      "hand.r",
+      "handslot.r",
+      "head",
+      "upperleg.l",
+      "lowerleg.l",
+      "foot.l",
+      "toes.l",
+      "upperleg.r",
+      "lowerleg.r",
+      "foot.r",
+      "toes.r",
+      "kneeIK.l",
+      "control-toe-roll.l",
+      "control-heel-roll.l",
+      "control-foot-roll.l",
+      "heelIK.l",
+      "IK-foot.l",
+      "IK-toe.l",
+      "kneeIK.r",
+      "control-toe-roll.r",
+      "control-heel-roll.r",
+      "control-foot-roll.r",
+      "heelIK.r",
+      "IK-foot.r",
+      "IK-toe.r",
+      "elbowIK.l",
+      "handIK.l",
+      "elbowIK.r",
+      "handIK.r"
+    ],
+    "visible_meshes": [
+      "Mage_ArmLeft",
+      "Mage_ArmRight",
+      "Mage_Body",
+      "Mage_Head",
+      "Mage_LegLeft",
+      "Mage_LegRight",
+      "Mage_Hat",
+      "Mage_Cape"
+    ],
+    "forward_gltf": "+Z",
+    "up_gltf": "+Y"
+  }
+}

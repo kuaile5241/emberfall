@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+blender/*.blend1
+__pycache__/
+*.py[cod]
+artifacts/v0.1-backup/
+artifacts/v0.2-backup/
+artifacts/v0.3-backup/
+artifacts/reward-input-fix/before-*

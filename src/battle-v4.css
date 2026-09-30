@@ -1,0 +1,25 @@
+#battle-impact { position:absolute; inset:0; pointer-events:none; opacity:0; mix-blend-mode:screen; background:radial-gradient(ellipse at 50% 50%,#ffd99644 0,transparent 43%,#df5b1855 100%); }
+#battle-impact[data-element="water"] { background:radial-gradient(ellipse at center,#dcffff44,transparent 45%,#409bd955); }
+#battle-impact[data-element="lightning"] { background:radial-gradient(ellipse at center,#f7fcff77,transparent 44%,#6496c655); }
+#multikill { --kill-color:#f3b872; position:absolute; left:50%; top:15%; display:flex; flex-direction:column; align-items:center; transform:translate(-50%,15px) scale(.88); opacity:0; pointer-events:none; color:var(--kill-color); text-shadow:0 3px 15px #000,0 0 28px #ce762a55; transition:opacity .25s,transform .3s cubic-bezier(.17,.8,.3,1.3); }
+#multikill[data-element="lightning"] { --kill-color:#d5eaff; }
+#multikill[data-element="water"] { --kill-color:#9be4ee; }
+#multikill.visible { opacity:1; transform:translate(-50%,0) scale(1); animation:kill-land .3s ease-out; }
+.kill-flourish { font-family:Georgia,'Songti SC',serif; font-size:16px; letter-spacing:.45em; padding-left:.45em; }
+#multikill strong { font-family:Georgia,serif; font-size:62px; line-height:1.08; font-weight:400; }
+#multikill strong small { font-family:'Songti SC',serif; font-size:20px; margin-left:8px; }
+.kill-reward { font-size:10px; letter-spacing:1px; margin-top:7px; color:#e8ded0; }
+#expedition-tracker { position:absolute; top:279px; right:32px; display:flex; flex-direction:column; text-align:right; gap:6px; color:#c4bdac; text-shadow:0 2px 5px #000; pointer-events:none; }
+#expedition-tracker>span { font-family:'Songti SC',serif; font-size:14px; letter-spacing:.18em; color:#dbceb3; }
+#expedition-tracker strong { font-size:10px; font-weight:400; letter-spacing:.08em; }
+#expedition-tracker small { margin-top:4px; color:#8ed2c9; font-size:10px; }
+.floater.skill-damage { font-size:22px; font-weight:700; color:#ffdca1; text-shadow:0 2px 2px #251207,0 0 9px #ba602d; }
+.floater.skill-damage[data-element="water"] { color:#c4f9ff; text-shadow:0 2px 2px #073341,0 0 9px #58aabb; }
+.floater.skill-damage[data-element="lightning"] { color:#ebf4ff; text-shadow:0 2px 2px #1b2849,0 0 9px #97b6f2; }
+.floater.critical { color:#fff1aa; font-weight:800; }
+.settlement-reward { color:#bcb198; font-size:13px; margin:25px 0; }.settlement-reward strong { color:#efd497; font-size:22px; margin:0 5px; font-family:Georgia,serif; font-weight:400; }
+@keyframes kill-land { from { transform:translate(-50%,12px) scale(1.35); filter:brightness(1.7); } to { transform:translate(-50%,0) scale(1); filter:brightness(1); } }
+@media(max-width:800px){#expedition-tracker{right:20px;top:246px}#multikill{top:12%}#multikill strong{font-size:48px}}
+@media(prefers-reduced-motion:reduce){#multikill.visible{animation:none}#multikill{transition:opacity .15s}#battle-impact{display:none}}
+
+#expedition-tracker .tracked-quest{color:#dcc293;margin-top:10px}

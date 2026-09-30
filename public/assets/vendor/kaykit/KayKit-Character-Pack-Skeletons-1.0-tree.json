@@ -1,0 +1,597 @@
+{
+  "sha": "15b62b9bad122f72926c10fb14d622c73819fa54",
+  "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/15b62b9bad122f72926c10fb14d622c73819fa54",
+  "tree": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "150b41e31d24d88ea227e2e7dba06e681766d34d",
+      "size": 840,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/150b41e31d24d88ea227e2e7dba06e681766d34d"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68462ed9a0ae3e81134e94afa6fa03b9d65b63dd",
+      "size": 35,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/68462ed9a0ae3e81134e94afa6fa03b9d65b63dd"
+    },
+    {
+      "path": "LICENSE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5de5a1e35003680bd6b97b4c247eed71d51a9fb7",
+      "size": 914,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/5de5a1e35003680bd6b97b4c247eed71d51a9fb7"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "080866cea35306cd9c8680e60a38c50ac0baa782",
+      "size": 2502,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/080866cea35306cd9c8680e60a38c50ac0baa782"
+    },
+    {
+      "path": "addons",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5b7e41e11916763fee58da0a3c10dd446f920228",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/5b7e41e11916763fee58da0a3c10dd446f920228"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5f60901f6f372c622663135abd5daa884504cfaa",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/5f60901f6f372c622663135abd5daa884504cfaa"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fb5dd57226d31d53a03dcba7753e0762da3464f9",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/fb5dd57226d31d53a03dcba7753e0762da3464f9"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "02b393ff5e5a0c5582f14c1253ebde6967e60c25",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/02b393ff5e5a0c5582f14c1253ebde6967e60c25"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Arrow.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "049c50766213890ea955c3168083bc30b9a5cc79",
+      "size": 20524,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/049c50766213890ea955c3168083bc30b9a5cc79"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Arrow_Broken.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "110c645e0629c33ef0cb73c58c394a4a999c25ff",
+      "size": 21052,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/110c645e0629c33ef0cb73c58c394a4a999c25ff"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Arrow_Broken_Half.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3206ce0f464376186f45e4719cdc09e4be3da920",
+      "size": 20444,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/3206ce0f464376186f45e4719cdc09e4be3da920"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Arrow_Half.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a83fa7ea096b82f0686339c1f01c40dbcfdcac2",
+      "size": 20028,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/9a83fa7ea096b82f0686339c1f01c40dbcfdcac2"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Axe.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd8d467bfb30ce68d59a5b7cdeabe5e313aa836a",
+      "size": 37324,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/cd8d467bfb30ce68d59a5b7cdeabe5e313aa836a"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Blade.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1920b6c1900866925bbea14bc9bb5bd960518386",
+      "size": 34508,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/1920b6c1900866925bbea14bc9bb5bd960518386"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Crossbow.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47fa57d235196c679e50837c608f6418cf0fc72f",
+      "size": 39548,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/47fa57d235196c679e50837c608f6418cf0fc72f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Quiver.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ff4d688e19153025cf96b0aeebce2d1d1470e5d",
+      "size": 31292,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/1ff4d688e19153025cf96b0aeebce2d1d1470e5d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Shield_Large_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56cf5ac1f4f0a340e0ea28c002ee30430498c573",
+      "size": 43916,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/56cf5ac1f4f0a340e0ea28c002ee30430498c573"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Shield_Large_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8b8dabe7b334db79d6d8ed508c1c12e365c8d9c",
+      "size": 30204,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/b8b8dabe7b334db79d6d8ed508c1c12e365c8d9c"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Shield_Small_A.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60d71ec74f9e121924d3567d8cb5312ce936f71e",
+      "size": 35004,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/60d71ec74f9e121924d3567d8cb5312ce936f71e"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Shield_Small_B.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "764c5df72826489384eb02e0b710fafe4ce39aab",
+      "size": 39036,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/764c5df72826489384eb02e0b710fafe4ce39aab"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/Skeleton_Staff.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c7f74650a79073a9065e36e817b5c67abfb870f",
+      "size": 77836,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/6c7f74650a79073a9065e36e817b5c67abfb870f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/fbx/skeleton_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00bf24bd5fd17937e08fd90f819a7bc69de432b8",
+      "size": 17037,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/00bf24bd5fd17937e08fd90f819a7bc69de432b8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "66e33fa8b4e08e9e85761e57cc00625a3f161983",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/66e33fa8b4e08e9e85761e57cc00625a3f161983"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8471c29b58ec3b21241d6edb0f20240501fd7914",
+      "size": 2648,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/8471c29b58ec3b21241d6edb0f20240501fd7914"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "715b688872ed0ca7273fde0b933f19d5a8b58d3d",
+      "size": 3043,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/715b688872ed0ca7273fde0b933f19d5a8b58d3d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow_Broken.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43327d97aa2a9565755aac154154794b08ce1af9",
+      "size": 3536,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/43327d97aa2a9565755aac154154794b08ce1af9"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow_Broken.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0f4781789d5e6904a48e32691d8616065b824ca",
+      "size": 3061,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/f0f4781789d5e6904a48e32691d8616065b824ca"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow_Broken_Half.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3668baea36c06606cb7bd796f28231d87518645",
+      "size": 2820,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/e3668baea36c06606cb7bd796f28231d87518645"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow_Broken_Half.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54b2ca76eb88f9ef6df7e5cbfc3bb59255be1f33",
+      "size": 3069,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/54b2ca76eb88f9ef6df7e5cbfc3bb59255be1f33"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow_Half.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1a9ad4e6be20f5b95a4730cc4e4fd7adfbceb87",
+      "size": 2288,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/a1a9ad4e6be20f5b95a4730cc4e4fd7adfbceb87"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Arrow_Half.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aac5e7add6bd5758d314dd8dcf4fae5961a3064d",
+      "size": 3051,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/aac5e7add6bd5758d314dd8dcf4fae5961a3064d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Axe.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "609e545071b90bfff0472719ae5229e0d206be68",
+      "size": 25348,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/609e545071b90bfff0472719ae5229e0d206be68"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Axe.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79d77edd260b727980571b4b2836f942e0b31d3d",
+      "size": 3045,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/79d77edd260b727980571b4b2836f942e0b31d3d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Blade.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fa74bb4ecca0d474d8f992d10cbd7e55f18106",
+      "size": 20056,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/98fa74bb4ecca0d474d8f992d10cbd7e55f18106"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Blade.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ebd36b31663c00936b6270c15b6af751b5be091",
+      "size": 3047,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/4ebd36b31663c00936b6270c15b6af751b5be091"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Crossbow.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6820e64878016c9564cee6962db4e35277cd7c2a",
+      "size": 28624,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/6820e64878016c9564cee6962db4e35277cd7c2a"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Crossbow.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11b414738856ae5611437373fcb4369ae6b90dca",
+      "size": 3052,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/11b414738856ae5611437373fcb4369ae6b90dca"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Quiver.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2783a64cf699fa6f51fd622e1ee5a875ae554fc",
+      "size": 18620,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/b2783a64cf699fa6f51fd622e1ee5a875ae554fc"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Quiver.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55069d42cbab011c0950a38a22a8e468960d0fed",
+      "size": 3051,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/55069d42cbab011c0950a38a22a8e468960d0fed"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_A.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83b1db6d9fbfea6ddeaffef189f01b4272247fd8",
+      "size": 33292,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/83b1db6d9fbfea6ddeaffef189f01b4272247fd8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_A.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "933c7dafe964bf6732dedbcbae703826d10dde42",
+      "size": 3071,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/933c7dafe964bf6732dedbcbae703826d10dde42"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_B.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84314927d716e317ba1b8a8dff41f203599d16d4",
+      "size": 18820,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/84314927d716e317ba1b8a8dff41f203599d16d4"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_B.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0131a29a8a59ec8af25ba2f1a1b7f891ef6d6904",
+      "size": 3068,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/0131a29a8a59ec8af25ba2f1a1b7f891ef6d6904"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Small_A.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2caef5d7294f1a1024c23c7482c8360bafeba665",
+      "size": 21688,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/2caef5d7294f1a1024c23c7482c8360bafeba665"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Small_A.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9fd9e757faacd046f8e6801c86b38b91e3a826df",
+      "size": 3069,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/9fd9e757faacd046f8e6801c86b38b91e3a826df"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Small_B.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98fef166af9ec7424ef50110279b0ef4ebd53492",
+      "size": 28636,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/98fef166af9ec7424ef50110279b0ef4ebd53492"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Small_B.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c1e7e7200857a908048dd7bde299e766d51f709",
+      "size": 3069,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/7c1e7e7200857a908048dd7bde299e766d51f709"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Staff.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fc8906eb543a7e056e712993326a678456d4397",
+      "size": 69244,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/5fc8906eb543a7e056e712993326a678456d4397"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Staff.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0cff560383244e2ebbc4a593c0afb890082a514",
+      "size": 3057,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/d0cff560383244e2ebbc4a593c0afb890082a514"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Assets/gltf/skeleton_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00bf24bd5fd17937e08fd90f819a7bc69de432b8",
+      "size": 17037,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/00bf24bd5fd17937e08fd90f819a7bc69de432b8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "000ba8a21b82cc19a17a74e4431afb9c92834fa2",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/000ba8a21b82cc19a17a74e4431afb9c92834fa2"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/fbx",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "60c116a6d5dffd6000ded45e8e891b67eefc0e75",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/60c116a6d5dffd6000ded45e8e891b67eefc0e75"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/fbx/Skeleton_Mage.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a22509ce0375b24c0e757c06b46fc339ee656a1",
+      "size": 22295116,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/6a22509ce0375b24c0e757c06b46fc339ee656a1"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/fbx/Skeleton_Minion.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b150d5669c5ed34387157a12224196f673224760",
+      "size": 21911932,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/b150d5669c5ed34387157a12224196f673224760"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/fbx/Skeleton_Rogue.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "894756a1f8368ea3de4cc1f7fd4eb472567ffb0e",
+      "size": 22790796,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/894756a1f8368ea3de4cc1f7fd4eb472567ffb0e"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/fbx/Skeleton_Warrior.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50d4da8df0aa0e468ddb2ab6e57b4d92e33db1cc",
+      "size": 22402076,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/50d4da8df0aa0e468ddb2ab6e57b4d92e33db1cc"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/fbx/skeleton_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00bf24bd5fd17937e08fd90f819a7bc69de432b8",
+      "size": 17037,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/00bf24bd5fd17937e08fd90f819a7bc69de432b8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/gltf",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "494d6ecde0ee76ff6732b96d84f53bd154e99ed7",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/494d6ecde0ee76ff6732b96d84f53bd154e99ed7"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Mage.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f85aea26b4f33b88080d6eb57d25d1ae5d84d14",
+      "size": 4761048,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/5f85aea26b4f33b88080d6eb57d25d1ae5d84d14"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Minion.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b7e7ee4f1c8dd6dd99ddad27824ef1dc52ff12d",
+      "size": 4814296,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/3b7e7ee4f1c8dd6dd99ddad27824ef1dc52ff12d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Rogue.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "182403932e4d4e00aa4182f2ac882ac27326dd19",
+      "size": 4827024,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/182403932e4d4e00aa4182f2ac882ac27326dd19"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Warrior.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "769e85c9e4cee8d1bd0952ddb3e9d26293144581",
+      "size": 4863620,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/769e85c9e4cee8d1bd0952ddb3e9d26293144581"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Characters/gltf/skeleton_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00bf24bd5fd17937e08fd90f819a7bc69de432b8",
+      "size": 17037,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/00bf24bd5fd17937e08fd90f819a7bc69de432b8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/LICENSE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5de5a1e35003680bd6b97b4c247eed71d51a9fb7",
+      "size": 914,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/5de5a1e35003680bd6b97b4c247eed71d51a9fb7"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/More KayKit Assets.url",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "480e65b483ffecaa07a398e704179a3ef9e1f597",
+      "size": 122,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/480e65b483ffecaa07a398e704179a3ef9e1f597"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Patreon.url",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43f9abfd38ddca05cf5147ac02df40348b5ef0c7",
+      "size": 120,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/43f9abfd38ddca05cf5147ac02df40348b5ef0c7"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Samples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3ef4e56632e5dd610cce4b7ad876b6e2e76c9a76",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/3ef4e56632e5dd610cce4b7ad876b6e2e76c9a76"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Samples/mage.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "949e51f789ed6a41e38ff2b458c38d4e0b727506",
+      "size": 1550233,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/949e51f789ed6a41e38ff2b458c38d4e0b727506"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Samples/minion.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b8e9a0e027be7619c484bdb22b59d0f67f7be73",
+      "size": 709416,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/7b8e9a0e027be7619c484bdb22b59d0f67f7be73"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Samples/rogue.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb8782cdbce645455e28b1988f1b335ed31731fe",
+      "size": 749627,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/fb8782cdbce645455e28b1988f1b335ed31731fe"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Samples/warrior.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db3a00b3bac22cbd8737b09f958c634e4ccbee04",
+      "size": 1642498,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/db3a00b3bac22cbd8737b09f958c634e4ccbee04"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Textures",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fc566bc7beee770cf50034d3717c83b162b44a67",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/trees/fc566bc7beee770cf50034d3717c83b162b44a67"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/Textures/skeleton_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00bf24bd5fd17937e08fd90f819a7bc69de432b8",
+      "size": 17037,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/00bf24bd5fd17937e08fd90f819a7bc69de432b8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_skeletons/contents.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ccf34e43c4a70ff00095d87970522607c0d6dec",
+      "size": 1555209,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/0ccf34e43c4a70ff00095d87970522607c0d6dec"
+    },
+    {
+      "path": "icon.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44ba7cd276533aa05882d0571c3d90a473c334f4",
+      "size": 203341,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/git/blobs/44ba7cd276533aa05882d0571c3d90a473c334f4"
+    }
+  ],
+  "truncated": false
+}

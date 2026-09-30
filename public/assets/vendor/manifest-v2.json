@@ -1,0 +1,2853 @@
+{
+  "checked_at": "2026-09-30 Asia/Shanghai",
+  "license": "CC0 1.0",
+  "author_sources": [
+    {
+      "file": "kaykit/Knight.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0@672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb",
+      "bytes": 3659532,
+      "git_blob_sha1": "717b56ca2b5ff5392679774725201ba03a3eefab",
+      "sha256": "60428e3abc09ba83e595d256e3af8c5c976b46cdae599f0802fc82b4a3445168"
+    },
+    {
+      "file": "kaykit/Rogue_Hooded.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Rogue_Hooded.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0@672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Rogue_Hooded.glb",
+      "bytes": 3597652,
+      "git_blob_sha1": "5d2b1403240d5f9ffff12e02c007572038eca2a8",
+      "sha256": "93e6e25213009952276d9cf34f5d96a243767334c66f280db0433ddfabb91545"
+    },
+    {
+      "file": "kaykit/Skeleton_Warrior.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Warrior.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Warrior.glb",
+      "bytes": 4863620,
+      "git_blob_sha1": "769e85c9e4cee8d1bd0952ddb3e9d26293144581",
+      "sha256": "178b6fda810b814c250d8a2010c24dfd9b458b9006dd323353e620b7ff118bbe"
+    },
+    {
+      "file": "kaykit/Skeleton_Mage.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Mage.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Mage.glb",
+      "bytes": 4761048,
+      "git_blob_sha1": "5f85aea26b4f33b88080d6eb57d25d1ae5d84d14",
+      "sha256": "e05b0f5cfa395271c9f75fd07c0a0613c56f401ece4ab644e080001a79971075"
+    },
+    {
+      "file": "kaykit/LICENSE-adventurers.txt",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/LICENSE.txt",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0@672074b73ba276876a19e8816ecdc5241817ab47/LICENSE.txt",
+      "bytes": 891,
+      "git_blob_sha1": "877e44735b5869c10e17a59e3b757905aa390626",
+      "sha256": "ae322141814056dda0deea7540d74c41d87aee1da319977cd1bd84ee5a923629"
+    },
+    {
+      "file": "kaykit/LICENSE-skeletons.txt",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/LICENSE.txt",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/LICENSE.txt",
+      "bytes": 914,
+      "git_blob_sha1": "5de5a1e35003680bd6b97b4c247eed71d51a9fb7",
+      "sha256": "5d822abca4e08c5a91d329e5372b3dc605cba8d994f752cb0f7dfdb7a0a79954"
+    },
+    {
+      "file": "kaykit/props/LICENSE.txt",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/LICENSE.txt",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/LICENSE.txt",
+      "bytes": 829,
+      "git_blob_sha1": "686cf4ee3931b75d4ecfac6308f9d3287553748c",
+      "sha256": "c5f17abf619731f57f6bbff450f6484214605c13aa96bb75bbcfc70930941ff7"
+    },
+    {
+      "file": "kaykit/props/barrel_large_decorated.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/barrel_large_decorated.gltf.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/barrel_large_decorated.gltf.glb",
+      "bytes": 73628,
+      "git_blob_sha1": "dd8b97dde32e6b1a08b217ef0c640b1d7c93f283",
+      "sha256": "d3ad760d5005500a8755e5a816e574dd7e4227c5bb038685a3cb0ab2ad8bb6cb"
+    },
+    {
+      "file": "kaykit/props/crates_stacked.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/crates_stacked.gltf.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/crates_stacked.gltf.glb",
+      "bytes": 103704,
+      "git_blob_sha1": "7f273be5ebd143b58135ecc1d061d22a633cad92",
+      "sha256": "43182b077ead9b033804300ef453b7402bdc979f00cfce2d7f0c91dcf6bb5d3c"
+    },
+    {
+      "file": "kaykit/props/pillar_decorated.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/pillar_decorated.gltf.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/pillar_decorated.gltf.glb",
+      "bytes": 62460,
+      "git_blob_sha1": "7eda56c427e1824bca02b03f1eca93696302a1aa",
+      "sha256": "eecf7d454a1b6767a113e2490cb1536134abea0b57329a50cf2250d3ed8e2f65"
+    },
+    {
+      "file": "kaykit/props/wall_arched.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/wall_arched.gltf.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/wall_arched.gltf.glb",
+      "bytes": 69124,
+      "git_blob_sha1": "d049ace889b606edb5d638b9996aeb580f095387",
+      "sha256": "916a7d81b8d6ebddb069440a0f9ecb14c9c2a1e5cd7769acf2218d630bd56cb8"
+    },
+    {
+      "file": "kaykit/props/torch_mounted.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/torch_mounted.gltf.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/torch_mounted.gltf.glb",
+      "bytes": 33220,
+      "git_blob_sha1": "5c3892703d75e029192aa63b9cbfb1c1f11efa01",
+      "sha256": "a617c159e02932db48ca81ec46f1f100acc8904fb6ece43e919d2f93c13950e9"
+    },
+    {
+      "file": "kaykit/props/candle_triple.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/candle_triple.gltf.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/candle_triple.gltf.glb",
+      "bytes": 28240,
+      "git_blob_sha1": "c8c7e63300d6b689607be6f13d828348f0ecc2e6",
+      "sha256": "3536f0a55df50c728ec9c369c4a6a81c913b33a507ac4a192d418d28fd6677c2"
+    },
+    {
+      "file": "kaykit/props/chest.glb",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0/blob/b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/chest.glb",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0@b0ca9bd96a8072ab36a3a5464f00ed1e06a16d07/addons/kaykit_dungeon_remastered/Assets/gltf/chest.glb",
+      "bytes": 81412,
+      "git_blob_sha1": "534c76a794d4b531a91619871845e92e3ca6e432",
+      "sha256": "f72fd2201cd42ad399928a0b7bcc34d5b0e6d0624aeaf824fef81852109955f8"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Blade.gltf",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Blade.gltf",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Blade.gltf",
+      "bytes": 3047,
+      "git_blob_sha1": "4ebd36b31663c00936b6270c15b6af751b5be091",
+      "sha256": "682a1df2eecb93dea35de628d6b93ca40d1b83586422356f3c1956741f2abf76"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Blade.bin",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Blade.bin",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Blade.bin",
+      "bytes": 20056,
+      "git_blob_sha1": "98fa74bb4ecca0d474d8f992d10cbd7e55f18106",
+      "sha256": "ccf4f6642130d11650400fa649669ccdb784280eef235fac3a12a197cbc7debe"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Axe.gltf",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Axe.gltf",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Axe.gltf",
+      "bytes": 3045,
+      "git_blob_sha1": "79d77edd260b727980571b4b2836f942e0b31d3d",
+      "sha256": "44c8b65942cbb573c99dc14c2a188fad8c47e29ad9764d27b47e6f57bb7e4ebd"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Axe.bin",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Axe.bin",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Axe.bin",
+      "bytes": 25348,
+      "git_blob_sha1": "609e545071b90bfff0472719ae5229e0d206be68",
+      "sha256": "f994f9e1b3297961a2b27120adb81ccc61ef7a901586b584fa53fdba8b962cc7"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Staff.gltf",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Staff.gltf",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Staff.gltf",
+      "bytes": 3057,
+      "git_blob_sha1": "d0cff560383244e2ebbc4a593c0afb890082a514",
+      "sha256": "6bb554fef0889dc9e1a69a71ddae793a772fc18eea059ded61be4f8157fd2f04"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Staff.bin",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Staff.bin",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Staff.bin",
+      "bytes": 69244,
+      "git_blob_sha1": "5fc8906eb543a7e056e712993326a678456d4397",
+      "sha256": "2b91a59316cea919b2a8b3d94ab85e3b5faa9fdb607a9ab633a6bb6d1e6bbf2f"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Shield_Large_A.gltf",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_A.gltf",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_A.gltf",
+      "bytes": 3071,
+      "git_blob_sha1": "933c7dafe964bf6732dedbcbae703826d10dde42",
+      "sha256": "7844df0f1607259c45d01fd4f9d7bad03b5bfe50897a136831915fecff240a92"
+    },
+    {
+      "file": "kaykit/source-accessories/Skeleton_Shield_Large_A.bin",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_A.bin",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_A.bin",
+      "bytes": 33292,
+      "git_blob_sha1": "83b1db6d9fbfea6ddeaffef189f01b4272247fd8",
+      "sha256": "06d975dbf7058088c0ad2cde1932e15435b5d374de3be21199a97d3be25d776d"
+    },
+    {
+      "file": "kaykit/source-accessories/skeleton_texture.png",
+      "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/blob/15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/skeleton_texture.png",
+      "transport": "https://cdn.jsdelivr.net/gh/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0@15b62b9bad122f72926c10fb14d622c73819fa54/addons/kaykit_character_pack_skeletons/Assets/gltf/skeleton_texture.png",
+      "bytes": 17037,
+      "git_blob_sha1": "00bf24bd5fd17937e08fd90f819a7bc69de432b8",
+      "sha256": "15741a25c53e04fa9bf3beac3bc0de442359404b1ff9be863b892cb551ad3657"
+    }
+  ],
+  "models": [
+    {
+      "file": "kaykit/Knight.glb",
+      "bytes": 3659532,
+      "sha256": "60428e3abc09ba83e595d256e3af8c5c976b46cdae599f0802fc82b4a3445168",
+      "meshes": 15,
+      "skins": 1,
+      "triangles": 6952,
+      "mesh_nodes": [
+        "1H_Sword_Offhand",
+        "Badge_Shield",
+        "Rectangle_Shield",
+        "Round_Shield",
+        "Spike_Shield",
+        "1H_Sword",
+        "2H_Sword",
+        "Knight_Helmet",
+        "Knight_Cape",
+        "Knight_ArmLeft",
+        "Knight_ArmRight",
+        "Knight_Body",
+        "Knight_Head",
+        "Knight_LegLeft",
+        "Knight_LegRight"
+      ],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "knight_texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 6,
+          "mimeType": "image/png",
+          "name": "knight_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [
+        [
+          "root",
+          "hips",
+          "spine",
+          "chest",
+          "upperarm.l",
+          "lowerarm.l",
+          "wrist.l",
+          "hand.l",
+          "handslot.l",
+          "upperarm.r",
+          "lowerarm.r",
+          "wrist.r",
+          "hand.r",
+          "handslot.r",
+          "head",
+          "upperleg.l",
+          "lowerleg.l",
+          "foot.l",
+          "toes.l",
+          "upperleg.r",
+          "lowerleg.r",
+          "foot.r",
+          "toes.r",
+          "kneeIK.l",
+          "control-toe-roll.l",
+          "control-heel-roll.l",
+          "control-foot-roll.l",
+          "heelIK.l",
+          "IK-foot.l",
+          "IK-toe.l",
+          "kneeIK.r",
+          "control-toe-roll.r",
+          "control-heel-roll.r",
+          "control-foot-roll.r",
+          "heelIK.r",
+          "IK-foot.r",
+          "IK-toe.r",
+          "elbowIK.l",
+          "handIK.l",
+          "elbowIK.r",
+          "handIK.r"
+        ]
+      ],
+      "animations": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration": 1.16667,
+          "channels": 122
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration": 1.6,
+          "channels": 101
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration": 1.63333,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration": 1.1,
+          "channels": 94
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration": 2.4,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration": 0.66667,
+          "channels": 87
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 97
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration": 1.06667,
+          "channels": 94
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration": 1.6,
+          "channels": 109
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration": 1.06667,
+          "channels": 108
+        },
+        {
+          "name": "Block",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Attack",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Hit",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Blocking",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Cheer",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Death_A",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_B",
+          "duration": 2.63333,
+          "channels": 123
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Left",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Right",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration": 1.26667,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration": 1.16667,
+          "channels": 96
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 94
+        },
+        {
+          "name": "Hit_A",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Hit_B",
+          "duration": 0.86667,
+          "channels": 123
+        },
+        {
+          "name": "Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Interact",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration": 1.16667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Land",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Start",
+          "duration": 0.6,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Down",
+          "duration": 3,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Idle",
+          "duration": 2.66667,
+          "channels": 102
+        },
+        {
+          "name": "Lie_Pose",
+          "duration": 0,
+          "channels": 102
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "PickUp",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Running_A",
+          "duration": 0.8,
+          "channels": 122
+        },
+        {
+          "name": "Running_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration": 3.6,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration": 0,
+          "channels": 85
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration": 4,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration": 0,
+          "channels": 84
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration": 1.13333,
+          "channels": 94
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration": 2.53333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration": 2.1,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcasting",
+          "duration": 0.66667,
+          "channels": 95
+        },
+        {
+          "name": "T-Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Throw",
+          "duration": 1.36667,
+          "channels": 100
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration": 1.46667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Use_Item",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "Walking_A",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_C",
+          "duration": 1.6,
+          "channels": 119
+        }
+      ],
+      "up_axis": "+Y",
+      "forward_axis": "+Z",
+      "idle_height": 2.437497331527993,
+      "idle_height_method": "Blender 5.2.1, Idle frame 8 at 24fps, evaluated visible mesh vertices",
+      "default_hidden_mesh_nodes": [
+        "Spike_Shield",
+        "1H_Sword_Offhand",
+        "2H_Sword",
+        "Rectangle_Shield",
+        "Round_Shield"
+      ],
+      "preview": "kaykit/Knight-inspection.png"
+    },
+    {
+      "file": "kaykit/Rogue_Hooded.glb",
+      "bytes": 3597652,
+      "sha256": "93e6e25213009952276d9cf34f5d96a243767334c66f280db0433ddfabb91545",
+      "meshes": 12,
+      "skins": 1,
+      "triangles": 6035,
+      "mesh_nodes": [
+        "Knife_Offhand",
+        "1H_Crossbow",
+        "2H_Crossbow",
+        "Knife",
+        "Throwable",
+        "Rogue_Cape",
+        "Rogue_ArmLeft",
+        "Rogue_ArmRight",
+        "Rogue_Body",
+        "Rogue_Head_Hooded",
+        "Rogue_LegLeft",
+        "Rogue_LegRight"
+      ],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "rogue_texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 6,
+          "mimeType": "image/png",
+          "name": "rogue_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [
+        [
+          "root",
+          "hips",
+          "spine",
+          "chest",
+          "upperarm.l",
+          "lowerarm.l",
+          "wrist.l",
+          "hand.l",
+          "handslot.l",
+          "upperarm.r",
+          "lowerarm.r",
+          "wrist.r",
+          "hand.r",
+          "handslot.r",
+          "head",
+          "upperleg.l",
+          "lowerleg.l",
+          "foot.l",
+          "toes.l",
+          "upperleg.r",
+          "lowerleg.r",
+          "foot.r",
+          "toes.r",
+          "kneeIK.l",
+          "control-toe-roll.l",
+          "control-heel-roll.l",
+          "control-foot-roll.l",
+          "heelIK.l",
+          "IK-foot.l",
+          "IK-toe.l",
+          "kneeIK.r",
+          "control-toe-roll.r",
+          "control-heel-roll.r",
+          "control-foot-roll.r",
+          "heelIK.r",
+          "IK-foot.r",
+          "IK-toe.r",
+          "elbowIK.l",
+          "handIK.l",
+          "elbowIK.r",
+          "handIK.r"
+        ]
+      ],
+      "animations": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration": 1.16667,
+          "channels": 122
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration": 1.6,
+          "channels": 101
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration": 1.63333,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration": 1.1,
+          "channels": 94
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration": 2.4,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration": 0.66667,
+          "channels": 87
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 97
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration": 1.06667,
+          "channels": 94
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration": 1.6,
+          "channels": 109
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration": 1.06667,
+          "channels": 108
+        },
+        {
+          "name": "Block",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Attack",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Hit",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Blocking",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Cheer",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Death_A",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_B",
+          "duration": 2.63333,
+          "channels": 123
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Left",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Right",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration": 1.26667,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration": 1.16667,
+          "channels": 96
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 94
+        },
+        {
+          "name": "Hit_A",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Hit_B",
+          "duration": 0.86667,
+          "channels": 123
+        },
+        {
+          "name": "Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Interact",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration": 1.16667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Land",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Start",
+          "duration": 0.6,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Down",
+          "duration": 3,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Idle",
+          "duration": 2.66667,
+          "channels": 102
+        },
+        {
+          "name": "Lie_Pose",
+          "duration": 0,
+          "channels": 102
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "PickUp",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Running_A",
+          "duration": 0.8,
+          "channels": 122
+        },
+        {
+          "name": "Running_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration": 3.6,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration": 0,
+          "channels": 85
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration": 4,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration": 0,
+          "channels": 84
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration": 1.13333,
+          "channels": 94
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration": 2.53333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration": 2.1,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcasting",
+          "duration": 0.66667,
+          "channels": 95
+        },
+        {
+          "name": "T-Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Throw",
+          "duration": 1.36667,
+          "channels": 100
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration": 1.46667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Use_Item",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "Walking_A",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_C",
+          "duration": 1.6,
+          "channels": 119
+        }
+      ],
+      "up_axis": "+Y",
+      "forward_axis": "+Z",
+      "idle_height": 2.2221964977215976,
+      "idle_height_method": "Blender 5.2.1, Idle frame 8 at 24fps, evaluated visible mesh vertices",
+      "default_hidden_mesh_nodes": [
+        "Throwable",
+        "Knife_Offhand",
+        "1H_Crossbow",
+        "2H_Crossbow"
+      ],
+      "preview": "kaykit/Rogue_Hooded-inspection.png"
+    },
+    {
+      "file": "kaykit/Skeleton_Axe.glb",
+      "bytes": 43772,
+      "sha256": "a5489c834bda6a7d421b53451af621d6a5deb7268d834f688df6d4c9e9cf8e20",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 534,
+      "mesh_nodes": [
+        "Skeleton_Axe"
+      ],
+      "materials": [
+        {
+          "name": "skeleton",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "images": [
+        {
+          "mimeType": "image/png",
+          "name": "skeleton_texture",
+          "bufferView": 4
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/Skeleton_Blade.glb",
+      "bytes": 38480,
+      "sha256": "3bf257b4fdeb6a47e47e2b13e2427bd88f15d6e2517534f4176426092ce5dbfe",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 457,
+      "mesh_nodes": [
+        "Skeleton_Blade"
+      ],
+      "materials": [
+        {
+          "name": "skeleton",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "images": [
+        {
+          "mimeType": "image/png",
+          "name": "skeleton_texture",
+          "bufferView": 4
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/Skeleton_Mage.glb",
+      "bytes": 4761048,
+      "sha256": "e05b0f5cfa395271c9f75fd07c0a0613c56f401ece4ab644e080001a79971075",
+      "meshes": 9,
+      "skins": 1,
+      "triangles": 4588,
+      "mesh_nodes": [
+        "Skeleton_Mage_Hat",
+        "Skeleton_Mage_ArmLeft",
+        "Skeleton_Mage_ArmRight",
+        "Skeleton_Mage_Body",
+        "Skeleton_Mage_Eyes",
+        "Skeleton_Mage_Jaw",
+        "Skeleton_Mage_LegLeft",
+        "Skeleton_Mage_LegRight",
+        "Skeleton_Mage_Skull"
+      ],
+      "materials": [
+        {
+          "name": "skeleton",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        },
+        {
+          "emissiveFactor": [
+            1,
+            1,
+            0.18575208261609077
+          ],
+          "name": "Glow",
+          "pbrMetallicRoughness": {}
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 6,
+          "mimeType": "image/png",
+          "name": "skeleton_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [
+        [
+          "root",
+          "hips",
+          "spine",
+          "chest",
+          "upperarm.l",
+          "lowerarm.l",
+          "wrist.l",
+          "hand.l",
+          "handslot.l",
+          "upperarm.r",
+          "lowerarm.r",
+          "wrist.r",
+          "hand.r",
+          "handslot.r",
+          "head",
+          "upperleg.l",
+          "lowerleg.l",
+          "foot.l",
+          "toes.l",
+          "upperleg.r",
+          "lowerleg.r",
+          "foot.r",
+          "toes.r",
+          "kneeIK.l",
+          "control-toe-roll.l",
+          "control-heel-roll.l",
+          "control-foot-roll.l",
+          "heelIK.l",
+          "IK-foot.l",
+          "IK-toe.l",
+          "kneeIK.r",
+          "control-toe-roll.r",
+          "control-heel-roll.r",
+          "control-foot-roll.r",
+          "heelIK.r",
+          "IK-foot.r",
+          "IK-toe.r",
+          "elbowIK.l",
+          "handIK.l",
+          "elbowIK.r",
+          "handIK.r"
+        ]
+      ],
+      "animations": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Jump_Chop",
+          "duration": 1.33333,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration": 1.16667,
+          "channels": 122
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration": 1.6,
+          "channels": 101
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration": 1.63333,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration": 1.1,
+          "channels": 94
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration": 2.4,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration": 0.66667,
+          "channels": 87
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 97
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration": 1.06667,
+          "channels": 94
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration": 1.6,
+          "channels": 109
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration": 1.06667,
+          "channels": 108
+        },
+        {
+          "name": "Block",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Attack",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Hit",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Blocking",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Cheer",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Death_A",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_B",
+          "duration": 2.63333,
+          "channels": 123
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_C_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_C_Skeletons",
+          "duration": 2,
+          "channels": 102
+        },
+        {
+          "name": "Death_C_Skeletons_Resurrect",
+          "duration": 2.7,
+          "channels": 101
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Left",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Right",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration": 1.26667,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration": 1.16667,
+          "channels": 96
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 94
+        },
+        {
+          "name": "Hit_A",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Hit_B",
+          "duration": 0.86667,
+          "channels": 123
+        },
+        {
+          "name": "Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Idle_B",
+          "duration": 2.13333,
+          "channels": 123
+        },
+        {
+          "name": "Idle_Combat",
+          "duration": 4.26667,
+          "channels": 97
+        },
+        {
+          "name": "Interact",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration": 1.16667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Land",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Start",
+          "duration": 0.6,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Down",
+          "duration": 3,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Idle",
+          "duration": 2.66667,
+          "channels": 102
+        },
+        {
+          "name": "Lie_Pose",
+          "duration": 0,
+          "channels": 102
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "PickUp",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Running_A",
+          "duration": 0.8,
+          "channels": 122
+        },
+        {
+          "name": "Running_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Running_C",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration": 3.6,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration": 0,
+          "channels": 85
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration": 4,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration": 0,
+          "channels": 84
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration": 1.13333,
+          "channels": 94
+        },
+        {
+          "name": "Skeleton_Inactive_Standing_Pose",
+          "duration": 0,
+          "channels": 98
+        },
+        {
+          "name": "Skeletons_Awaken_Floor",
+          "duration": 2.3,
+          "channels": 105
+        },
+        {
+          "name": "Skeletons_Awaken_Floor_Long",
+          "duration": 3.83333,
+          "channels": 106
+        },
+        {
+          "name": "Skeletons_Awaken_Standing",
+          "duration": 1,
+          "channels": 103
+        },
+        {
+          "name": "Skeletons_Inactive_Floor_Pose",
+          "duration": 0,
+          "channels": 94
+        },
+        {
+          "name": "Spawn_Air",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Spawn_Ground",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Spawn_Ground_Skeletons",
+          "duration": 3.56667,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration": 2.53333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration": 2.1,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Summon",
+          "duration": 4.3,
+          "channels": 99
+        },
+        {
+          "name": "Spellcasting",
+          "duration": 0.66667,
+          "channels": 95
+        },
+        {
+          "name": "T-Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Taunt",
+          "duration": 1.03333,
+          "channels": 123
+        },
+        {
+          "name": "Taunt_Longer",
+          "duration": 3,
+          "channels": 123
+        },
+        {
+          "name": "Throw",
+          "duration": 1.36667,
+          "channels": 100
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration": 1.46667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Use_Item",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "Walking_A",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_C",
+          "duration": 1.6,
+          "channels": 119
+        },
+        {
+          "name": "Walking_D_Skeletons",
+          "duration": 1.6,
+          "channels": 123
+        }
+      ],
+      "up_axis": "+Y",
+      "forward_axis": "+Z",
+      "idle_height": 2.6002892383985454,
+      "idle_height_method": "Blender 5.2.1, Idle frame 8 at 24fps, evaluated visible mesh vertices",
+      "default_hidden_mesh_nodes": [],
+      "preview": "kaykit/Skeleton_Mage-inspection.png"
+    },
+    {
+      "file": "kaykit/Skeleton_Shield_Large_A.glb",
+      "bytes": 51732,
+      "sha256": "a0c40e76ae5be859f3478aacaf51811ba359f82c18702fef03401fafb16c2c27",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 626,
+      "mesh_nodes": [
+        "Skeleton_Shield_Large_A"
+      ],
+      "materials": [
+        {
+          "name": "skeleton",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "images": [
+        {
+          "mimeType": "image/png",
+          "name": "skeleton_texture",
+          "bufferView": 4
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/Skeleton_Staff.glb",
+      "bytes": 87680,
+      "sha256": "99342d194c8c50ba702566189b9f4be6b29cf9b5d0d0fc5369a0dfd86a885786",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 1519,
+      "mesh_nodes": [
+        "Skeleton_Staff"
+      ],
+      "materials": [
+        {
+          "name": "skeleton",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        }
+      ],
+      "images": [
+        {
+          "mimeType": "image/png",
+          "name": "skeleton_texture",
+          "bufferView": 4
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/Skeleton_Warrior.glb",
+      "bytes": 4863620,
+      "sha256": "178b6fda810b814c250d8a2010c24dfd9b458b9006dd323353e620b7ff118bbe",
+      "meshes": 10,
+      "skins": 1,
+      "triangles": 5934,
+      "mesh_nodes": [
+        "Skeleton_Warrior_Helmet",
+        "Skeleton_Warrior_ArmLeft",
+        "Skeleton_Warrior_ArmRight",
+        "Skeleton_Warrior_Body",
+        "Skeleton_Warrior_Cloak",
+        "Skeleton_Warrior_Eyes",
+        "Skeleton_Warrior_Head",
+        "Skeleton_Warrior_Jaw",
+        "Skeleton_Warrior_LegLeft",
+        "Skeleton_Warrior_LegRight"
+      ],
+      "materials": [
+        {
+          "name": "skeleton",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5
+          }
+        },
+        {
+          "emissiveFactor": [
+            1,
+            1,
+            0.18575208261609077
+          ],
+          "name": "Glow",
+          "pbrMetallicRoughness": {}
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 6,
+          "mimeType": "image/png",
+          "name": "skeleton_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [
+        [
+          "root",
+          "hips",
+          "spine",
+          "chest",
+          "upperarm.l",
+          "lowerarm.l",
+          "wrist.l",
+          "hand.l",
+          "handslot.l",
+          "upperarm.r",
+          "lowerarm.r",
+          "wrist.r",
+          "hand.r",
+          "handslot.r",
+          "head",
+          "upperleg.l",
+          "lowerleg.l",
+          "foot.l",
+          "toes.l",
+          "upperleg.r",
+          "lowerleg.r",
+          "foot.r",
+          "toes.r",
+          "kneeIK.l",
+          "control-toe-roll.l",
+          "control-heel-roll.l",
+          "control-foot-roll.l",
+          "heelIK.l",
+          "IK-foot.l",
+          "IK-toe.l",
+          "kneeIK.r",
+          "control-toe-roll.r",
+          "control-heel-roll.r",
+          "control-foot-roll.r",
+          "heelIK.r",
+          "IK-foot.r",
+          "IK-toe.r",
+          "elbowIK.l",
+          "handIK.l",
+          "elbowIK.r",
+          "handIK.r"
+        ]
+      ],
+      "animations": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Jump_Chop",
+          "duration": 1.33333,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration": 1.16667,
+          "channels": 122
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 120
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration": 1.6,
+          "channels": 101
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration": 1.63333,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration": 1.1,
+          "channels": 94
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration": 2.4,
+          "channels": 98
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration": 0.66667,
+          "channels": 87
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 97
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration": 1.06667,
+          "channels": 94
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration": 1.6,
+          "channels": 109
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration": 1.06667,
+          "channels": 108
+        },
+        {
+          "name": "Block",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Attack",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Block_Hit",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Blocking",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Cheer",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Death_A",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_B",
+          "duration": 2.63333,
+          "channels": 123
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_C_Pose",
+          "duration": 0,
+          "channels": 83
+        },
+        {
+          "name": "Death_C_Skeletons",
+          "duration": 2,
+          "channels": 102
+        },
+        {
+          "name": "Death_C_Skeletons_Resurrect",
+          "duration": 2.7,
+          "channels": 101
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Left",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dodge_Right",
+          "duration": 0.4,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration": 1.26667,
+          "channels": 123
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration": 1.16667,
+          "channels": 96
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration": 1.6,
+          "channels": 94
+        },
+        {
+          "name": "Hit_A",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Hit_B",
+          "duration": 0.86667,
+          "channels": 123
+        },
+        {
+          "name": "Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Idle_B",
+          "duration": 2.13333,
+          "channels": 123
+        },
+        {
+          "name": "Idle_Combat",
+          "duration": 4.26667,
+          "channels": 97
+        },
+        {
+          "name": "Interact",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration": 1.16667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Land",
+          "duration": 0.66667,
+          "channels": 123
+        },
+        {
+          "name": "Jump_Start",
+          "duration": 0.6,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Down",
+          "duration": 3,
+          "channels": 123
+        },
+        {
+          "name": "Lie_Idle",
+          "duration": 2.66667,
+          "channels": 102
+        },
+        {
+          "name": "Lie_Pose",
+          "duration": 0,
+          "channels": 102
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration": 2.33333,
+          "channels": 123
+        },
+        {
+          "name": "PickUp",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Running_A",
+          "duration": 0.8,
+          "channels": 122
+        },
+        {
+          "name": "Running_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Running_C",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration": 3.6,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration": 0,
+          "channels": 85
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration": 0.8,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration": 1,
+          "channels": 123
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration": 4,
+          "channels": 89
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration": 0,
+          "channels": 84
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration": 1.13333,
+          "channels": 94
+        },
+        {
+          "name": "Skeleton_Inactive_Standing_Pose",
+          "duration": 0,
+          "channels": 98
+        },
+        {
+          "name": "Skeletons_Awaken_Floor",
+          "duration": 2.3,
+          "channels": 105
+        },
+        {
+          "name": "Skeletons_Awaken_Floor_Long",
+          "duration": 3.83333,
+          "channels": 106
+        },
+        {
+          "name": "Skeletons_Awaken_Standing",
+          "duration": 1,
+          "channels": 103
+        },
+        {
+          "name": "Skeletons_Inactive_Floor_Pose",
+          "duration": 0,
+          "channels": 94
+        },
+        {
+          "name": "Spawn_Air",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Spawn_Ground",
+          "duration": 1.3,
+          "channels": 123
+        },
+        {
+          "name": "Spawn_Ground_Skeletons",
+          "duration": 3.56667,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration": 2.53333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration": 2.1,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Spellcast_Summon",
+          "duration": 4.3,
+          "channels": 99
+        },
+        {
+          "name": "Spellcasting",
+          "duration": 0.66667,
+          "channels": 95
+        },
+        {
+          "name": "T-Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Taunt",
+          "duration": 1.03333,
+          "channels": 123
+        },
+        {
+          "name": "Taunt_Longer",
+          "duration": 3,
+          "channels": 123
+        },
+        {
+          "name": "Throw",
+          "duration": 1.36667,
+          "channels": 100
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration": 0.93333,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration": 1.46667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration": 1.66667,
+          "channels": 123
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration": 0,
+          "channels": 123
+        },
+        {
+          "name": "Use_Item",
+          "duration": 1.6,
+          "channels": 123
+        },
+        {
+          "name": "Walking_A",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_B",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration": 1.06667,
+          "channels": 123
+        },
+        {
+          "name": "Walking_C",
+          "duration": 1.6,
+          "channels": 119
+        },
+        {
+          "name": "Walking_D_Skeletons",
+          "duration": 1.6,
+          "channels": 123
+        }
+      ],
+      "up_axis": "+Y",
+      "forward_axis": "+Z",
+      "idle_height": 2.5611042948439717,
+      "idle_height_method": "Blender 5.2.1, Idle frame 8 at 24fps, evaluated visible mesh vertices",
+      "default_hidden_mesh_nodes": [],
+      "preview": "kaykit/Skeleton_Warrior-inspection.png"
+    },
+    {
+      "file": "kaykit/props/barrel_large_decorated.glb",
+      "bytes": 73628,
+      "sha256": "d3ad760d5005500a8755e5a816e574dd7e4227c5bb038685a3cb0ab2ad8bb6cb",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 1047,
+      "mesh_nodes": [
+        "barrel_large_decorated"
+      ],
+      "materials": [
+        {
+          "name": "texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.44999998807907104
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 4,
+          "mimeType": "image/png",
+          "name": "dungeon_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/props/candle_triple.glb",
+      "bytes": 28240,
+      "sha256": "3536f0a55df50c728ec9c369c4a6a81c913b33a507ac4a192d418d28fd6677c2",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 198,
+      "mesh_nodes": [
+        "candle_triple"
+      ],
+      "materials": [
+        {
+          "name": "texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.44999998807907104
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 4,
+          "mimeType": "image/png",
+          "name": "dungeon_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/props/chest.glb",
+      "bytes": 81412,
+      "sha256": "f72fd2201cd42ad399928a0b7bcc34d5b0e6d0624aeaf824fef81852109955f8",
+      "meshes": 2,
+      "skins": 0,
+      "triangles": 728,
+      "mesh_nodes": [
+        "chest_lid",
+        "chest"
+      ],
+      "materials": [
+        {
+          "name": "texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.44999998807907104
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 5,
+          "mimeType": "image/png",
+          "name": "dungeon_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/props/crates_stacked.glb",
+      "bytes": 103704,
+      "sha256": "43182b077ead9b033804300ef453b7402bdc979f00cfce2d7f0c91dcf6bb5d3c",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 1331,
+      "mesh_nodes": [
+        "crates_stacked"
+      ],
+      "materials": [
+        {
+          "name": "texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.44999998807907104
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 4,
+          "mimeType": "image/png",
+          "name": "dungeon_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/props/pillar_decorated.glb",
+      "bytes": 62460,
+      "sha256": "eecf7d454a1b6767a113e2490cb1536134abea0b57329a50cf2250d3ed8e2f65",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 761,
+      "mesh_nodes": [
+        "pillar_decorated"
+      ],
+      "materials": [
+        {
+          "name": "texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.44999998807907104
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 4,
+          "mimeType": "image/png",
+          "name": "dungeon_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/props/torch_mounted.glb",
+      "bytes": 33220,
+      "sha256": "a617c159e02932db48ca81ec46f1f100acc8904fb6ece43e919d2f93c13950e9",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 278,
+      "mesh_nodes": [
+        "torch_mounted"
+      ],
+      "materials": [
+        {
+          "name": "texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.44999998807907104
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 4,
+          "mimeType": "image/png",
+          "name": "dungeon_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    },
+    {
+      "file": "kaykit/props/wall_arched.glb",
+      "bytes": 69124,
+      "sha256": "916a7d81b8d6ebddb069440a0f9ecb14c9c2a1e5cd7769acf2218d630bd56cb8",
+      "meshes": 1,
+      "skins": 0,
+      "triangles": 724,
+      "mesh_nodes": [
+        "wall_arched"
+      ],
+      "materials": [
+        {
+          "name": "texture",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0,
+              "texCoord": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.44999998807907104
+          }
+        }
+      ],
+      "images": [
+        {
+          "bufferView": 4,
+          "mimeType": "image/png",
+          "name": "dungeon_texture"
+        }
+      ],
+      "external_images": [],
+      "bones": [],
+      "animations": []
+    }
+  ],
+  "textures": [
+    {
+      "file": "polyhaven/monastery_stone_floor/monastery_stone_floor_diff_1k.jpg",
+      "asset": "monastery_stone_floor",
+      "map": "Diffuse",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/monastery_stone_floor",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/monastery_stone_floor/monastery_stone_floor_diff_1k.jpg",
+      "bytes": 766525,
+      "md5": "8e748f767d8e478438ef748833365754",
+      "sha256": "8e52ec982469ce9da312cefe3126c1dff05b7150234971bc6dff6e31c3c584ae"
+    },
+    {
+      "file": "polyhaven/monastery_stone_floor/monastery_stone_floor_nor_gl_1k.jpg",
+      "asset": "monastery_stone_floor",
+      "map": "nor_gl",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/monastery_stone_floor",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/monastery_stone_floor/monastery_stone_floor_nor_gl_1k.jpg",
+      "bytes": 1063115,
+      "md5": "257ccdbbe1c2a23f74cece55b81861ac",
+      "sha256": "f2f1c3e8d52c1e3a49ef59695743872f2adaa57bc0d3f64b129ce988966162c1"
+    },
+    {
+      "file": "polyhaven/monastery_stone_floor/monastery_stone_floor_rough_1k.jpg",
+      "asset": "monastery_stone_floor",
+      "map": "Rough",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/monastery_stone_floor",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/monastery_stone_floor/monastery_stone_floor_rough_1k.jpg",
+      "bytes": 477972,
+      "md5": "ea3793f350c70ebd6216ae5b4565d4eb",
+      "sha256": "8d987222b727442c11c30cd4d8a32ed48f02e46683acd088d994baef5bf311a9"
+    },
+    {
+      "file": "polyhaven/monastery_stone_floor/monastery_stone_floor_ao_1k.jpg",
+      "asset": "monastery_stone_floor",
+      "map": "AO",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/monastery_stone_floor",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/monastery_stone_floor/monastery_stone_floor_ao_1k.jpg",
+      "bytes": 590385,
+      "md5": "77a1643082fa1a997959624c4413a43f",
+      "sha256": "c7b0d90cf7c33c683efc0dcebd55a3ecc2e700689aa96879ed86032f9f0598fc"
+    },
+    {
+      "file": "polyhaven/stone_wall/stone_wall_diff_1k.jpg",
+      "asset": "stone_wall",
+      "map": "Diffuse",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/stone_wall",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/stone_wall/stone_wall_diff_1k.jpg",
+      "bytes": 836975,
+      "md5": "451e4c5e2309af341fcdc1f1d637b1d6",
+      "sha256": "390969aead48d9a10ac731a5e0af8761cc4ed89faa02ba775b913930b4398d87"
+    },
+    {
+      "file": "polyhaven/stone_wall/stone_wall_nor_gl_1k.jpg",
+      "asset": "stone_wall",
+      "map": "nor_gl",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/stone_wall",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/stone_wall/stone_wall_nor_gl_1k.jpg",
+      "bytes": 1172420,
+      "md5": "5c686c6c907ae2a1bb5c438ad96da055",
+      "sha256": "801d7ff8bc472e5ad95872546c19a4c63cc776060b4ced629fece2d08591964e"
+    },
+    {
+      "file": "polyhaven/stone_wall/stone_wall_rough_1k.jpg",
+      "asset": "stone_wall",
+      "map": "Rough",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/stone_wall",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/stone_wall/stone_wall_rough_1k.jpg",
+      "bytes": 301003,
+      "md5": "ddc708ee3b0730ec9c5e79c52990aff1",
+      "sha256": "8c06e7c67d0d9701966732cc90c4e356b5bd5656aa35bf82650576e78322cbdd"
+    },
+    {
+      "file": "polyhaven/stone_wall/stone_wall_ao_1k.jpg",
+      "asset": "stone_wall",
+      "map": "AO",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/stone_wall",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/stone_wall/stone_wall_ao_1k.jpg",
+      "bytes": 594347,
+      "md5": "e149063a67a8d60c790542297100d6ad",
+      "sha256": "92b98832bd941106810faab6cf7bce575e1f2c5026eca2cb685f6b0502451654"
+    },
+    {
+      "file": "polyhaven/rocks_ground_05/rocks_ground_05_diff_1k.jpg",
+      "asset": "rocks_ground_05",
+      "map": "Diffuse",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/rocks_ground_05",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_05/rocks_ground_05_diff_1k.jpg",
+      "bytes": 756710,
+      "md5": "76bd7cba49ee86cdd1ad0b95f864a69a",
+      "sha256": "7dc4eb1e511588238368c5af73cd38bba528f02f4dff941da8282963c15b325d"
+    },
+    {
+      "file": "polyhaven/rocks_ground_05/rocks_ground_05_nor_gl_1k.jpg",
+      "asset": "rocks_ground_05",
+      "map": "nor_gl",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/rocks_ground_05",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_05/rocks_ground_05_nor_gl_1k.jpg",
+      "bytes": 1387386,
+      "md5": "5ccd47dac2eafdbdebdab02222adf750",
+      "sha256": "5ee17fa20945e535e748b8ed9a9239d940644aec4b5421340c8bfb58537c7210"
+    },
+    {
+      "file": "polyhaven/rocks_ground_05/rocks_ground_05_rough_1k.jpg",
+      "asset": "rocks_ground_05",
+      "map": "Rough",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/rocks_ground_05",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_05/rocks_ground_05_rough_1k.jpg",
+      "bytes": 473494,
+      "md5": "91bb42110da4bb05089dfb3e167dc849",
+      "sha256": "62f44d1e0e014f91465fb26ac6cc4af8a810ca89290656cccf1b1c2e2bfdaece"
+    },
+    {
+      "file": "polyhaven/rocks_ground_05/rocks_ground_05_ao_1k.jpg",
+      "asset": "rocks_ground_05",
+      "map": "AO",
+      "pixel_size": [
+        1024,
+        1024
+      ],
+      "source": "https://polyhaven.com/a/rocks_ground_05",
+      "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rocks_ground_05/rocks_ground_05_ao_1k.jpg",
+      "bytes": 328541,
+      "md5": "4aaf17bac24a0313e854f5a11195455e",
+      "sha256": "cbdcc80f5edeb6457593070fa9761acbd52d5c062347049699a5fd35da15709d"
+    }
+  ],
+  "texture_total_bytes": 8748873
+}

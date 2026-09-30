@@ -1,0 +1,1085 @@
+{
+  "sha": "672074b73ba276876a19e8816ecdc5241817ab47",
+  "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/672074b73ba276876a19e8816ecdc5241817ab47",
+  "tree": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2c395e988fdac4447ed6f0230cdacaa3f132c34",
+      "size": 850,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/c2c395e988fdac4447ed6f0230cdacaa3f132c34"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68462ed9a0ae3e81134e94afa6fa03b9d65b63dd",
+      "size": 35,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/68462ed9a0ae3e81134e94afa6fa03b9d65b63dd"
+    },
+    {
+      "path": "LICENSE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "877e44735b5869c10e17a59e3b757905aa390626",
+      "size": 891,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/877e44735b5869c10e17a59e3b757905aa390626"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba1c05039c26747798da9dc356451c8e8d586b65",
+      "size": 2535,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/ba1c05039c26747798da9dc356451c8e8d586b65"
+    },
+    {
+      "path": "addons",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cafd4a4a54359703de8489a3f5618fe752797df2",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/cafd4a4a54359703de8489a3f5618fe752797df2"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7979a02ea89caa5d73f60adb956f31963a5f7a82",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/7979a02ea89caa5d73f60adb956f31963a5f7a82"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6e01e5fda337d2073ad8a305dd24f55524c969d4",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/6e01e5fda337d2073ad8a305dd24f55524c969d4"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7378aef5e7b4c455a4c564a75e835a1081f92023",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/7378aef5e7b4c455a4c564a75e835a1081f92023"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/arrow.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1dbbfd0aadd602028f3938635ec2ded03456a51",
+      "size": 20524,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d1dbbfd0aadd602028f3938635ec2ded03456a51"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/arrow_bundle.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a91c0a060cde839b8887e31bddd70d3984ce9e57",
+      "size": 28700,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a91c0a060cde839b8887e31bddd70d3984ce9e57"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/axe_1handed.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4953abf9ecefbc48568bebc86956931317ea8462",
+      "size": 28060,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/4953abf9ecefbc48568bebc86956931317ea8462"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/axe_2handed.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f5919f0fdf4b3cc706eb9fa7717c9420efc21c7",
+      "size": 37580,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/7f5919f0fdf4b3cc706eb9fa7717c9420efc21c7"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/barbarian_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29d2db09000ac28e626cf24c3d5ff48f7c324351",
+      "size": 15089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/29d2db09000ac28e626cf24c3d5ff48f7c324351"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/crossbow_1handed.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef75e2c4680278714e7e3103598a4c6796d5c4de",
+      "size": 38796,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/ef75e2c4680278714e7e3103598a4c6796d5c4de"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/crossbow_2handed.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0da291971ce40b5faf86c8352e4152a68c1e4edc",
+      "size": 47068,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/0da291971ce40b5faf86c8352e4152a68c1e4edc"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/dagger.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e63122c4c1faef77813890d1ea322fe79c42dbd",
+      "size": 24908,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/3e63122c4c1faef77813890d1ea322fe79c42dbd"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/knight_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a56eae7514f908862e304620b89dc2d0cb9f362f",
+      "size": 14172,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a56eae7514f908862e304620b89dc2d0cb9f362f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/mage_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0b91fba111e8b9c952aab6698807c0200061100",
+      "size": 16311,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d0b91fba111e8b9c952aab6698807c0200061100"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/mug_empty.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e715adbd8b690565c54c2536baa08a7b0e4e12f2",
+      "size": 29308,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/e715adbd8b690565c54c2536baa08a7b0e4e12f2"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/mug_full.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95161ef3254fc6beb969fd85f4f8ea58b2586aee",
+      "size": 30636,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/95161ef3254fc6beb969fd85f4f8ea58b2586aee"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/quiver.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd849ef2032b7b44efee97944823aa4ad87e648b",
+      "size": 28092,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/cd849ef2032b7b44efee97944823aa4ad87e648b"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/rogue_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "542954baba7281f028f93306943fc780b1ebcf55",
+      "size": 16670,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/542954baba7281f028f93306943fc780b1ebcf55"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_badge.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b334acbdead8d7ea6655263080dca3ab3e0be517",
+      "size": 27596,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/b334acbdead8d7ea6655263080dca3ab3e0be517"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_badge_color.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf76bcb24e1c82e74daf2357d3d978090118908c",
+      "size": 27596,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/bf76bcb24e1c82e74daf2357d3d978090118908c"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_round.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "511d0cfa302c3b323ed042b184a1c026010b70bf",
+      "size": 28556,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/511d0cfa302c3b323ed042b184a1c026010b70bf"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_round_barbarian.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d52ca666082b16f1f069187f53630064c9222a76",
+      "size": 28524,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d52ca666082b16f1f069187f53630064c9222a76"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_round_color.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "294525b4b4d2fe58afdf9c1e10bc986b29aac953",
+      "size": 28508,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/294525b4b4d2fe58afdf9c1e10bc986b29aac953"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_spikes.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9c478ae5155eafbcd8eee6b421de7c6efa928eb",
+      "size": 33596,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/f9c478ae5155eafbcd8eee6b421de7c6efa928eb"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_spikes_color.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb3ec3d8692ec6300ecc132418356c79aa374d2c",
+      "size": 33596,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/fb3ec3d8692ec6300ecc132418356c79aa374d2c"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_square.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c04ce52a10d39f77a1fae9ee608d1aeedfdcecb",
+      "size": 27884,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/9c04ce52a10d39f77a1fae9ee608d1aeedfdcecb"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/shield_square_color.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e84da07d9ca4bbff51d95f40ba9f4447d04c83e",
+      "size": 27916,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/1e84da07d9ca4bbff51d95f40ba9f4447d04c83e"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/smokebomb.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b0f1f6a9ad19c447a3be96bc47cf39cb588cf36",
+      "size": 27596,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/3b0f1f6a9ad19c447a3be96bc47cf39cb588cf36"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/spellbook_closed.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6449aabfa834922146e44d2839c053a74706a3d",
+      "size": 27276,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/b6449aabfa834922146e44d2839c053a74706a3d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/spellbook_open.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01455d43b3273252a8dce4aec0236a0af883fad2",
+      "size": 27468,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/01455d43b3273252a8dce4aec0236a0af883fad2"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/staff.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1df437f8ca1d8e46a377eb8f7965f440f0652293",
+      "size": 32780,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/1df437f8ca1d8e46a377eb8f7965f440f0652293"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/sword_1handed.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9c79dfa08863cdbd49eeca6546e8390d54d15d5",
+      "size": 28428,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a9c79dfa08863cdbd49eeca6546e8390d54d15d5"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/sword_2handed.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2dd01678c428f4fa6c0e3e0fc9d2f745a8fab11b",
+      "size": 32044,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/2dd01678c428f4fa6c0e3e0fc9d2f745a8fab11b"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/sword_2handed_color.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0193ca7224aebfc039590531196be331a38b60e",
+      "size": 32060,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/c0193ca7224aebfc039590531196be331a38b60e"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/fbx/wand.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06dc8c77a5dbfd711f1a8b8979756be4095ea4c2",
+      "size": 23516,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/06dc8c77a5dbfd711f1a8b8979756be4095ea4c2"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0068887881c6106b6cf88e5fa105327da58c99ef",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/0068887881c6106b6cf88e5fa105327da58c99ef"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/arrow.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a02c800802553ffda2494b75c16722f258eaecee",
+      "size": 2648,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a02c800802553ffda2494b75c16722f258eaecee"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/arrow.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bc0ca184be48cf16eed8924c349aea4e189201f",
+      "size": 3058,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/1bc0ca184be48cf16eed8924c349aea4e189201f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/arrow_bundle.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67c2058b481284fa1fa21e1152175103750f3483",
+      "size": 15344,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/67c2058b481284fa1fa21e1152175103750f3483"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/arrow_bundle.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8b92bf249a4a9aada3deaa53ca3306adfbda180",
+      "size": 3078,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a8b92bf249a4a9aada3deaa53ca3306adfbda180"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/axe_1handed.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f2a1f938805bfc829c8b83851f061179b7ac657",
+      "size": 12524,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/6f2a1f938805bfc829c8b83851f061179b7ac657"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/axe_1handed.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b367258502ed8f8b172d18c72c71d81befbb39f4",
+      "size": 3087,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/b367258502ed8f8b172d18c72c71d81befbb39f4"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/axe_2handed.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8abd54b0662070dbaf24d3a74851a606bb06e92",
+      "size": 21960,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/b8abd54b0662070dbaf24d3a74851a606bb06e92"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/axe_2handed.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0295aca8c5354070a58c6e9fca1647812b71067",
+      "size": 3083,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d0295aca8c5354070a58c6e9fca1647812b71067"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/barbarian_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29d2db09000ac28e626cf24c3d5ff48f7c324351",
+      "size": 15089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/29d2db09000ac28e626cf24c3d5ff48f7c324351"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/crossbow_1handed.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "580f31096f7001f8808a00a5bb5108248b4f3337",
+      "size": 25200,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/580f31096f7001f8808a00a5bb5108248b4f3337"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/crossbow_1handed.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a34c011544e29ada99ce9464edd1d040a1fa1621",
+      "size": 3083,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a34c011544e29ada99ce9464edd1d040a1fa1621"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/crossbow_2handed.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ca37dcaefbd4daeaa48d6bb78201a599524a945",
+      "size": 34896,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/3ca37dcaefbd4daeaa48d6bb78201a599524a945"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/crossbow_2handed.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c70f58913d64db677e6a2cd8e62b9aa4cf24ae3",
+      "size": 3083,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/6c70f58913d64db677e6a2cd8e62b9aa4cf24ae3"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/dagger.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8825c09e4f6cf6cba918770082505ab9cc5d9a48",
+      "size": 7656,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/8825c09e4f6cf6cba918770082505ab9cc5d9a48"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/dagger.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f090037e4ecdd0e6e891a412b2c4a9409226825e",
+      "size": 3065,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/f090037e4ecdd0e6e891a412b2c4a9409226825e"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/knight_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a56eae7514f908862e304620b89dc2d0cb9f362f",
+      "size": 14172,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a56eae7514f908862e304620b89dc2d0cb9f362f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/mage_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0b91fba111e8b9c952aab6698807c0200061100",
+      "size": 16311,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d0b91fba111e8b9c952aab6698807c0200061100"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/mug_empty.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9411527a0f43c03b90cdc5d5165cfd5827e00acf",
+      "size": 14644,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/9411527a0f43c03b90cdc5d5165cfd5827e00acf"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/mug_empty.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b1887233bd6d4698e57ffdfe8938a1b4cf91676",
+      "size": 3086,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/6b1887233bd6d4698e57ffdfe8938a1b4cf91676"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/mug_full.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "514dba14bac0771f9369442dbfd02644981ebeb3",
+      "size": 15772,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/514dba14bac0771f9369442dbfd02644981ebeb3"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/mug_full.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5646fcca80b4a37740b694147d8e89843ddb6fbf",
+      "size": 3084,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/5646fcca80b4a37740b694147d8e89843ddb6fbf"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/quiver.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "585cc493399a31a100dfa31d995b9fee62ea6256",
+      "size": 13884,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/585cc493399a31a100dfa31d995b9fee62ea6256"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/quiver.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ed3f94fff3fb02773f6437db8b0089e8ed1493d",
+      "size": 3065,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/6ed3f94fff3fb02773f6437db8b0089e8ed1493d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/rogue_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "542954baba7281f028f93306943fc780b1ebcf55",
+      "size": 16670,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/542954baba7281f028f93306943fc780b1ebcf55"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_badge.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b035daa7c9aff96d3a87d2f82da1d4ca3655954d",
+      "size": 10628,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/b035daa7c9aff96d3a87d2f82da1d4ca3655954d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_badge.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea24d093f903e4b0eec8131a112e3699c6297da9",
+      "size": 3080,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/ea24d093f903e4b0eec8131a112e3699c6297da9"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_badge_color.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc45e718204a11c2d4644e6f862ba68356ff394a",
+      "size": 10500,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/cc45e718204a11c2d4644e6f862ba68356ff394a"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_badge_color.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92f4326f2a98d9db1ec092ad49d6ce5a32198f27",
+      "size": 3092,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/92f4326f2a98d9db1ec092ad49d6ce5a32198f27"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_round.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e35d339cfb38425253a3c236de7bdf5da199ae4",
+      "size": 12008,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/9e35d339cfb38425253a3c236de7bdf5da199ae4"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_round.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1a20d3ce24239a540236806c4ce424e137439ea",
+      "size": 3083,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d1a20d3ce24239a540236806c4ce424e137439ea"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_round_barbarian.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84ef0cdc09ef3ab7aa4c543fc41a15cbc6e7814b",
+      "size": 11752,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/84ef0cdc09ef3ab7aa4c543fc41a15cbc6e7814b"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_round_barbarian.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0902b868b44661f9a939929013524048b0cab06e",
+      "size": 3112,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/0902b868b44661f9a939929013524048b0cab06e"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_round_color.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2da32badf3807a9a1e3076ebaafb6f490a2a630a",
+      "size": 11752,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/2da32badf3807a9a1e3076ebaafb6f490a2a630a"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_round_color.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1cbbc93dc970a212421e6665f3138442fc57d9e",
+      "size": 3095,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/e1cbbc93dc970a212421e6665f3138442fc57d9e"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_spikes.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bf1c5fbb5a209bab967424f85a52a739491efa9",
+      "size": 21464,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/6bf1c5fbb5a209bab967424f85a52a739491efa9"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_spikes.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "161bc365e18b6bce5ce65f45c3f2f9a3979e9e46",
+      "size": 3083,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/161bc365e18b6bce5ce65f45c3f2f9a3979e9e46"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_spikes_color.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae7d3eb6ea6d8308a60ae4f0b21e7b28272d41e1",
+      "size": 21464,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/ae7d3eb6ea6d8308a60ae4f0b21e7b28272d41e1"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_spikes_color.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f30cfe9a24220bda5bfb669f02f521ed9487729",
+      "size": 3095,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/5f30cfe9a24220bda5bfb669f02f521ed9487729"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_square.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de4982aae7021632652cf2f18ec9365a4128aab8",
+      "size": 10724,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/de4982aae7021632652cf2f18ec9365a4128aab8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_square.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dc58f2180923885e082279d39b40f153b695508",
+      "size": 3081,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/0dc58f2180923885e082279d39b40f153b695508"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_square_color.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "713fe01bb083afdb57c9180f73481b49c45c3f38",
+      "size": 10724,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/713fe01bb083afdb57c9180f73481b49c45c3f38"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/shield_square_color.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0b349271958803dda64c7d808a1d13f17e3133b",
+      "size": 3093,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a0b349271958803dda64c7d808a1d13f17e3133b"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/smokebomb.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15d9dec1f92d4095656383a4311ac643e359efde",
+      "size": 11460,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/15d9dec1f92d4095656383a4311ac643e359efde"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/smokebomb.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1360a2237a5531ad4b9fbee592dc96cd43c62054",
+      "size": 3073,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/1360a2237a5531ad4b9fbee592dc96cd43c62054"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/spellbook_closed.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c1f5a090ba35454d813bd57848a9908c9343f6f",
+      "size": 14520,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/0c1f5a090ba35454d813bd57848a9908c9343f6f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/spellbook_closed.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eba2a0592cc6b74863e94bd1e1677cc8090456fd",
+      "size": 3083,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/eba2a0592cc6b74863e94bd1e1677cc8090456fd"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/spellbook_open.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78ac7238dc8c4462d1c1c89cb30c50ec99465c3d",
+      "size": 15128,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/78ac7238dc8c4462d1c1c89cb30c50ec99465c3d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/spellbook_open.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a35e30896d0ef68a4fac4d7e939ec3bb8c2acff",
+      "size": 3076,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/2a35e30896d0ef68a4fac4d7e939ec3bb8c2acff"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/staff.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "680e289846b61c83a6c10ea444caa34faf43c9e4",
+      "size": 18576,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/680e289846b61c83a6c10ea444caa34faf43c9e4"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/staff.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8bbebc6f3f6fb59e152d6b45de52add254f0697",
+      "size": 3061,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d8bbebc6f3f6fb59e152d6b45de52add254f0697"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/sword_1handed.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1aca5d22ca1dbae65756af6c0b438f251c2c7e45",
+      "size": 13256,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/1aca5d22ca1dbae65756af6c0b438f251c2c7e45"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/sword_1handed.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea5115c52ee9c07b2128105c0701fe706add7593",
+      "size": 3080,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/ea5115c52ee9c07b2128105c0701fe706add7593"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/sword_2handed.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11d1a5627499582733d4d5918807415fd0dc2baf",
+      "size": 19912,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/11d1a5627499582733d4d5918807415fd0dc2baf"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/sword_2handed.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "593016769c491c37ce4705bc76f80e2a042ccaee",
+      "size": 3081,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/593016769c491c37ce4705bc76f80e2a042ccaee"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/sword_2handed_color.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc5ddd9696adb615a3db6b9ff0b8fbfc533a0921",
+      "size": 19880,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/dc5ddd9696adb615a3db6b9ff0b8fbfc533a0921"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/sword_2handed_color.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2409353269dede23008b6fc702233ec5eb8d090d",
+      "size": 3093,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/2409353269dede23008b6fc702233ec5eb8d090d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/wand.bin",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "492d79a4b86352d1e7c81cfed4ac3a02ae48565b",
+      "size": 5956,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/492d79a4b86352d1e7c81cfed4ac3a02ae48565b"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Assets/gltf/wand.gltf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67f272fb273bdeb403674509464d7948a3aeb826",
+      "size": 3058,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/67f272fb273bdeb403674509464d7948a3aeb826"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2867c8560f96d5bc9db1b7b12d476565b17aff97",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/2867c8560f96d5bc9db1b7b12d476565b17aff97"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d894022a408244992b60c50439f65ed4bf789452",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/d894022a408244992b60c50439f65ed4bf789452"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/Barbarian.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d0fb472fac31bb5cfcf48d5f2baec1556800d59",
+      "size": 19900684,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/0d0fb472fac31bb5cfcf48d5f2baec1556800d59"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/Knight.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "101848795913dea0d37ac3ec9352fdf9dd024010",
+      "size": 20659324,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/101848795913dea0d37ac3ec9352fdf9dd024010"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/Mage.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78a42299871507d5322592fc02905e66dfb738ca",
+      "size": 19502156,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/78a42299871507d5322592fc02905e66dfb738ca"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/Rogue.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3101c172b54ae0a25beef21c6ab4945962939cda",
+      "size": 19529164,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/3101c172b54ae0a25beef21c6ab4945962939cda"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/RogueHooded.fbx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02b0ff4dc8bdfd6d5cc2c25c0092a2bec813e768",
+      "size": 19516300,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/02b0ff4dc8bdfd6d5cc2c25c0092a2bec813e768"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/barbarian_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29d2db09000ac28e626cf24c3d5ff48f7c324351",
+      "size": 15089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/29d2db09000ac28e626cf24c3d5ff48f7c324351"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/knight_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a56eae7514f908862e304620b89dc2d0cb9f362f",
+      "size": 14172,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a56eae7514f908862e304620b89dc2d0cb9f362f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/mage_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0b91fba111e8b9c952aab6698807c0200061100",
+      "size": 16311,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d0b91fba111e8b9c952aab6698807c0200061100"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/fbx/rogue_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "542954baba7281f028f93306943fc780b1ebcf55",
+      "size": 16670,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/542954baba7281f028f93306943fc780b1ebcf55"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9243ca6f86d651e9965525121329741861366f93",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/9243ca6f86d651e9965525121329741861366f93"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/Barbarian.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66d312ab6dc02b35fb648e7585bfdddb4e02eeef",
+      "size": 3613268,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/66d312ab6dc02b35fb648e7585bfdddb4e02eeef"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "717b56ca2b5ff5392679774725201ba03a3eefab",
+      "size": 3659532,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/717b56ca2b5ff5392679774725201ba03a3eefab"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/Mage.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c89f19f6e707f6e07e4632a08876bd6d0172b082",
+      "size": 3589240,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/c89f19f6e707f6e07e4632a08876bd6d0172b082"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/Rogue.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8827661105eef7b2bfbef3bc676d41a47625733",
+      "size": 3616284,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/c8827661105eef7b2bfbef3bc676d41a47625733"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/Rogue_Hooded.glb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d2b1403240d5f9ffff12e02c007572038eca2a8",
+      "size": 3597652,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/5d2b1403240d5f9ffff12e02c007572038eca2a8"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/barbarian_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29d2db09000ac28e626cf24c3d5ff48f7c324351",
+      "size": 15089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/29d2db09000ac28e626cf24c3d5ff48f7c324351"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/knight_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a56eae7514f908862e304620b89dc2d0cb9f362f",
+      "size": 14172,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a56eae7514f908862e304620b89dc2d0cb9f362f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/mage_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0b91fba111e8b9c952aab6698807c0200061100",
+      "size": 16311,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d0b91fba111e8b9c952aab6698807c0200061100"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Characters/gltf/rogue_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "542954baba7281f028f93306943fc780b1ebcf55",
+      "size": 16670,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/542954baba7281f028f93306943fc780b1ebcf55"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/LICENSE.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "877e44735b5869c10e17a59e3b757905aa390626",
+      "size": 891,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/877e44735b5869c10e17a59e3b757905aa390626"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/More KayKit Assets.url",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fa681965f4d10018e3b360c86725ef9ceee0b98",
+      "size": 129,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/7fa681965f4d10018e3b360c86725ef9ceee0b98"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Patreon.url",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43f9abfd38ddca05cf5147ac02df40348b5ef0c7",
+      "size": 120,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/43f9abfd38ddca05cf5147ac02df40348b5ef0c7"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Samples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b7d3bf989737e2580dd961a1bd5a252dc07972b0",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/b7d3bf989737e2580dd961a1bd5a252dc07972b0"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Samples/barbarian.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1e144b04c37a0d291aa7da2a4c64d5ebaeb7663",
+      "size": 635894,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/e1e144b04c37a0d291aa7da2a4c64d5ebaeb7663"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Samples/druid.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92f36ab4a89947ca17a4e791a0d6066ffb759230",
+      "size": 751044,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/92f36ab4a89947ca17a4e791a0d6066ffb759230"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Samples/engineer.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ef536c5a448b5bdb59d17aa147d6c8569ed9b9f",
+      "size": 794682,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/9ef536c5a448b5bdb59d17aa147d6c8569ed9b9f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Samples/knight.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23ace548e0be00eb9a00de60df1457e8bcc760a9",
+      "size": 702980,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/23ace548e0be00eb9a00de60df1457e8bcc760a9"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Samples/mage.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43dfe6efa3864749f2be47fc973cdaa1e14f890d",
+      "size": 625007,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/43dfe6efa3864749f2be47fc973cdaa1e14f890d"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Samples/rogue.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30b7c22d6d928621601265b127410ebf6625c772",
+      "size": 568255,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/30b7c22d6d928621601265b127410ebf6625c772"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Textures",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e37a4fee5a8ecab3eb1438a112dcaa694660706b",
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/trees/e37a4fee5a8ecab3eb1438a112dcaa694660706b"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Textures/barbarian_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29d2db09000ac28e626cf24c3d5ff48f7c324351",
+      "size": 15089,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/29d2db09000ac28e626cf24c3d5ff48f7c324351"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Textures/knight_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a56eae7514f908862e304620b89dc2d0cb9f362f",
+      "size": 14172,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/a56eae7514f908862e304620b89dc2d0cb9f362f"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Textures/mage_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0b91fba111e8b9c952aab6698807c0200061100",
+      "size": 16311,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/d0b91fba111e8b9c952aab6698807c0200061100"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/Textures/rogue_texture.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "542954baba7281f028f93306943fc780b1ebcf55",
+      "size": 16670,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/542954baba7281f028f93306943fc780b1ebcf55"
+    },
+    {
+      "path": "addons/kaykit_character_pack_adventures/contents.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "239e2281d084c99ef9a3f395c9db3d353d4b1f35",
+      "size": 726188,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/239e2281d084c99ef9a3f395c9db3d353d4b1f35"
+    },
+    {
+      "path": "icon.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a13d06e3f67c7f82e78aadd6bdefebd47188f26",
+      "size": 555762,
+      "url": "https://api.github.com/repos/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/git/blobs/0a13d06e3f67c7f82e78aadd6bdefebd47188f26"
+    }
+  ],
+  "truncated": false
+}

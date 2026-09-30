@@ -1,0 +1,17 @@
+{
+  "enemies": 36,
+  "frames": 441,
+  "fx": 0,
+  "max": 66.69999999998254,
+  "mean": 17.724943310657622,
+  "p50": 16.699999999982538,
+  "p95": 17.70000000001164,
+  "particles": 0,
+  "quality": "high",
+  "version": "0.4.0",
+  "viewport": "1280x720",
+  "devicePixelRatio": 2,
+  "rendererPixelRatio": 1.5,
+  "sample": "8 seconds, 36 durable QA enemies, alternating three element casts every 1.2 seconds; first 12 frames excluded",
+  "scope": "Single-machine short sample, not a sustained or cross-device FPS guarantee. fx and particles are values at readback, not peaks."
+}

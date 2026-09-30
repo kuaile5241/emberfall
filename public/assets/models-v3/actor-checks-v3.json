@@ -1,0 +1,43 @@
+{
+  "passed": 22,
+  "failures": [],
+  "checks": [
+    "pre-spawn attack is delivered on first actor update",
+    "bone skins are independently cloned and default extra equipment is hidden",
+    "running keeps lower-body gait during upper-body attack",
+    "aim turn is damped instead of snapping",
+    "pause freezes animation time and pose",
+    "all three combo steps select distinct authored clips",
+    "normal attack cannot interrupt cast, which does not lock for ground-effect duration",
+    "casting returns to locomotion after short animation",
+    "dash interrupts casting with higher priority",
+    "hit emission is actor-local and asset materials remain immutable",
+    "buff metadata uses real activeBuffs state",
+    "slow effect changes enemy-local ring",
+    "enemy warning starts authored attack animation",
+    "death interrupts enemy windup and keeps a visible corpse",
+    "corpse is cleaned up after death animation",
+    "events for absent actors expire rather than requeue forever",
+    "lightning equipment changes rig silhouette and held weapon",
+    "lightning overlay changes real arm bones",
+    "water equipment changes rig silhouette and held weapon",
+    "water overlay changes real arm bones",
+    "death cannot be interrupted by new combat events",
+    "clear removes all actor resources from scene"
+  ],
+  "assets": [
+    "Knight",
+    "Rogue_Hooded",
+    "Mage",
+    "Skeleton_Warrior",
+    "Skeleton_Mage",
+    "Skeleton_Blade",
+    "Skeleton_Axe",
+    "Skeleton_Staff",
+    "Skeleton_Shield_Large_A",
+    "Fire_Sword",
+    "Lightning_Spear",
+    "Water_Staff"
+  ],
+  "visualRenderingVerified": false
+}

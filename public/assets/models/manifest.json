@@ -1,0 +1,458 @@
+{
+  "formatVersion": 1,
+  "authoring": "Blender 5.2.1; original procedural geometry, flat PBR materials",
+  "coordinates": {
+    "units": "meters",
+    "origin": "ground centered",
+    "blenderUp": "+Z",
+    "blenderForward": "-Y",
+    "gltfUp": "+Y",
+    "gltfForward": "+Z"
+  },
+  "animation": "Rigid named pivots; no skeleton or baked clips. Rotate limb pivots around local X for walk swings.",
+  "assets": {
+    "player": {
+      "file": "player.glb",
+      "bytes": 111260,
+      "dimensions": [
+        1.5629,
+        2.0241,
+        0.815
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.7129,
+          -0.345,
+          0.0
+        ],
+        "max": [
+          0.85,
+          0.47,
+          2.0241
+        ]
+      },
+      "nodes": [
+        "player_body",
+        "player_head",
+        "player_cape",
+        "player_leg_l",
+        "player_leg_r",
+        "player_arm_l",
+        "player_arm_r",
+        "player_weapon"
+      ],
+      "meshCount": 8,
+      "triangles": 1176,
+      "materials": [
+        "AntiqueGold",
+        "AshenArmor",
+        "CharredLeather",
+        "EmberGlow",
+        "GiltEdges",
+        "Obsidian",
+        "OxbloodCloth",
+        "RavenCloth",
+        "SilverSteel"
+      ]
+    },
+    "skeleton": {
+      "file": "skeleton.glb",
+      "bytes": 109920,
+      "dimensions": [
+        1.2381,
+        1.851,
+        0.3851
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.5481,
+          -0.205,
+          0.0
+        ],
+        "max": [
+          0.69,
+          0.1801,
+          1.851
+        ]
+      },
+      "nodes": [
+        "skeleton_body",
+        "skeleton_head",
+        "skeleton_leg_l",
+        "skeleton_arm_l",
+        "skeleton_leg_r",
+        "skeleton_arm_r",
+        "skeleton_weapon"
+      ],
+      "meshCount": 7,
+      "triangles": 1336,
+      "materials": [
+        "BurntOak",
+        "ColdIron",
+        "EmberGlow",
+        "IvoryBone",
+        "Obsidian",
+        "SilverSteel"
+      ]
+    },
+    "wraith": {
+      "file": "wraith.glb",
+      "bytes": 70240,
+      "dimensions": [
+        1.6629,
+        2.275,
+        0.775
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.755,
+          -0.315,
+          0.0
+        ],
+        "max": [
+          0.9079,
+          0.46,
+          2.275
+        ]
+      },
+      "nodes": [
+        "wraith_body",
+        "wraith_head",
+        "wraith_cape",
+        "wraith_leg_l",
+        "wraith_leg_r",
+        "wraith_arm_l",
+        "wraith_arm_r",
+        "wraith_weapon"
+      ],
+      "meshCount": 6,
+      "triangles": 808,
+      "materials": [
+        "AntiqueGold",
+        "BurntOak",
+        "Obsidian",
+        "RavenCloth",
+        "SpectralCloth",
+        "SpiritGlow"
+      ]
+    },
+    "brute": {
+      "file": "brute.glb",
+      "bytes": 129920,
+      "dimensions": [
+        2.19,
+        2.56,
+        0.984
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.96,
+          -0.464,
+          0.0
+        ],
+        "max": [
+          1.23,
+          0.52,
+          2.56
+        ]
+      },
+      "nodes": [
+        "brute_body",
+        "brute_head",
+        "brute_cape",
+        "brute_leg_l",
+        "brute_leg_r",
+        "brute_arm_l",
+        "brute_arm_r",
+        "brute_weapon"
+      ],
+      "meshCount": 8,
+      "triangles": 1358,
+      "materials": [
+        "AntiqueGold",
+        "BurntOak",
+        "CharredLeather",
+        "ColdIron",
+        "EmberGlow",
+        "Obsidian",
+        "OxbloodCloth",
+        "RavenCloth",
+        "SilverSteel"
+      ]
+    },
+    "boss": {
+      "file": "boss.glb",
+      "bytes": 185316,
+      "dimensions": [
+        2.9128,
+        3.834,
+        1.58
+      ],
+      "boundsBlender": {
+        "min": [
+          -1.3178,
+          -0.68,
+          0.0
+        ],
+        "max": [
+          1.595,
+          0.9,
+          3.834
+        ]
+      },
+      "nodes": [
+        "boss_body",
+        "boss_head",
+        "boss_cape",
+        "boss_leg_l",
+        "boss_leg_r",
+        "boss_arm_l",
+        "boss_arm_r",
+        "boss_weapon"
+      ],
+      "meshCount": 8,
+      "triangles": 2202,
+      "materials": [
+        "AntiqueGold",
+        "BurntOak",
+        "ColdIron",
+        "EmberGlow",
+        "GiltEdges",
+        "IvoryBone",
+        "Obsidian",
+        "OxbloodCloth",
+        "RavenCloth"
+      ]
+    },
+    "pillar": {
+      "file": "pillar.glb",
+      "bytes": 29276,
+      "dimensions": [
+        1.05,
+        2.56,
+        1.05
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.525,
+          -0.525,
+          0.0
+        ],
+        "max": [
+          0.525,
+          0.525,
+          2.56
+        ]
+      },
+      "nodes": [
+        "pillar_body"
+      ],
+      "meshCount": 1,
+      "triangles": 380,
+      "materials": [
+        "AntiqueGold",
+        "AshStone",
+        "Basalt"
+      ]
+    },
+    "arch": {
+      "file": "arch.glb",
+      "bytes": 52076,
+      "dimensions": [
+        3.04,
+        4.02,
+        0.855
+      ],
+      "boundsBlender": {
+        "min": [
+          -1.52,
+          -0.455,
+          0.0
+        ],
+        "max": [
+          1.52,
+          0.4,
+          4.02
+        ]
+      },
+      "nodes": [
+        "arch_body"
+      ],
+      "meshCount": 1,
+      "triangles": 656,
+      "materials": [
+        "AntiqueGold",
+        "AshStone",
+        "Basalt",
+        "EmberGlow"
+      ]
+    },
+    "brazier": {
+      "file": "brazier.glb",
+      "bytes": 51268,
+      "dimensions": [
+        0.77,
+        1.775,
+        0.77
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.385,
+          -0.385,
+          0.0
+        ],
+        "max": [
+          0.385,
+          0.385,
+          1.775
+        ]
+      },
+      "nodes": [
+        "brazier_body",
+        "brazier_flame"
+      ],
+      "meshCount": 2,
+      "triangles": 642,
+      "materials": [
+        "AntiqueGold",
+        "Basalt",
+        "ColdIron",
+        "EmberGlow",
+        "FireHeart",
+        "GiltEdges",
+        "Obsidian"
+      ]
+    },
+    "sarcophagus": {
+      "file": "sarcophagus.glb",
+      "bytes": 48200,
+      "dimensions": [
+        1.17,
+        1.17,
+        2.3
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.585,
+          -1.15,
+          0.0
+        ],
+        "max": [
+          0.585,
+          1.15,
+          1.17
+        ]
+      },
+      "nodes": [
+        "sarcophagus_body"
+      ],
+      "meshCount": 1,
+      "triangles": 640,
+      "materials": [
+        "AntiqueGold",
+        "AshStone",
+        "Basalt"
+      ]
+    },
+    "altar": {
+      "file": "altar.glb",
+      "bytes": 38664,
+      "dimensions": [
+        1.8,
+        1.475,
+        1.35
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.9,
+          -0.675,
+          0.0
+        ],
+        "max": [
+          0.9,
+          0.675,
+          1.475
+        ]
+      },
+      "nodes": [
+        "altar_body"
+      ],
+      "meshCount": 1,
+      "triangles": 424,
+      "materials": [
+        "AntiqueGold",
+        "AshStone",
+        "Basalt",
+        "EmberGlow",
+        "FireHeart",
+        "IvoryBone",
+        "OxbloodCloth"
+      ]
+    },
+    "chest": {
+      "file": "chest.glb",
+      "bytes": 50664,
+      "dimensions": [
+        1.01,
+        0.8311,
+        0.7667
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.505,
+          -0.389,
+          0.0
+        ],
+        "max": [
+          0.505,
+          0.3777,
+          0.8311
+        ]
+      },
+      "nodes": [
+        "chest_body",
+        "chest_lid"
+      ],
+      "meshCount": 2,
+      "triangles": 608,
+      "materials": [
+        "AntiqueGold",
+        "BurntOak",
+        "ColdIron",
+        "GiltEdges",
+        "Obsidian"
+      ]
+    },
+    "crystal": {
+      "file": "crystal.glb",
+      "bytes": 21452,
+      "dimensions": [
+        1.0103,
+        1.35,
+        0.7534
+      ],
+      "boundsBlender": {
+        "min": [
+          -0.5183,
+          -0.3697,
+          0.0
+        ],
+        "max": [
+          0.4919,
+          0.3837,
+          1.35
+        ]
+      },
+      "nodes": [
+        "crystal_body"
+      ],
+      "meshCount": 1,
+      "triangles": 228,
+      "materials": [
+        "Amethyst",
+        "Basalt",
+        "SpiritGlow"
+      ]
+    }
+  }
+}

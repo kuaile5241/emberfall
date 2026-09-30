@@ -1,0 +1,72 @@
+{
+  "title": "Emberfall original synthesized audio",
+  "generator": "tools/generate_audio.py",
+  "seeded": true,
+  "provenance": "Original synthesis; no external samples or recordings.",
+  "loop": "ambience.wav: 48 seconds, periodic oscillator bed and wrapped bell tails",
+  "files": [
+    {
+      "file": "ambience.wav",
+      "seconds": 48,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -12.4,
+      "rms_dbfs": -22.79,
+      "bytes": 4608044
+    },
+    {
+      "file": "hit.wav",
+      "seconds": 0.27,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -7.96,
+      "rms_dbfs": -25.81,
+      "bytes": 25964
+    },
+    {
+      "file": "slash.wav",
+      "seconds": 0.29,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -9.9,
+      "rms_dbfs": -23.02,
+      "bytes": 27884
+    },
+    {
+      "file": "dash.wav",
+      "seconds": 0.46,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -9.9,
+      "rms_dbfs": -23.46,
+      "bytes": 44204
+    },
+    {
+      "file": "heal.wav",
+      "seconds": 1.55,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -9.37,
+      "rms_dbfs": -21.14,
+      "bytes": 148844
+    },
+    {
+      "file": "pickup.wav",
+      "seconds": 0.68,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -11.06,
+      "rms_dbfs": -22.43,
+      "bytes": 65324
+    },
+    {
+      "file": "boss.wav",
+      "seconds": 2.6,
+      "sample_rate": 24000,
+      "channels": 2,
+      "peak_dbfs": -7.96,
+      "rms_dbfs": -17.71,
+      "bytes": 249644
+    }
+  ]
+}

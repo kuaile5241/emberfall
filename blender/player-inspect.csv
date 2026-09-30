@@ -1,0 +1,59 @@
+
+ OVERVIEW
+ ────────────────────────────────────────────
+key,value
+version,2.0
+generator,Khronos glTF Blender I/O v5.2.40
+extensionsUsed,KHR_materials_emissive_strength
+extensionsRequired,none
+
+
+
+
+ SCENES
+ ────────────────────────────────────────────
+#,name,rootName,bboxMin,bboxMax,renderVertexCount,uploadVertexCount,uploadNaiveVertexCount
+0,Scene,player_root,"-0.71286, 0, -0.47","0.85, 2.0241, 0.345",3528,2500,2500
+
+
+
+
+ MESHES
+ ────────────────────────────────────────────
+#,name,mode,meshPrimitives,glPrimitives,vertices,indices,attributes,instances,size
+0,player_arm_l_mesh_geometry,TRIANGLES,4,156,360,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,12456
+1,player_arm_r_mesh_geometry,TRIANGLES,4,156,360,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,12456
+2,player_weapon_mesh_geometry,TRIANGLES,5,100,204,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,7032
+3,player_body_mesh_geometry,TRIANGLES,7,204,420,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,14136
+4,player_cape_mesh_geometry,TRIANGLES,2,88,172,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,6032
+5,player_head_mesh_geometry,TRIANGLES,3,64,120,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,4224
+6,player_leg_l_mesh_geometry,TRIANGLES,4,204,432,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,14784
+7,player_leg_r_mesh_geometry,TRIANGLES,4,204,432,u16,"NORMAL:f32, POSITION:f32, TEXCOORD_0:f32",1,14784
+
+
+
+
+ MATERIALS
+ ────────────────────────────────────────────
+#,name,instances,textures,alphaMode,doubleSided
+0,AshenArmor,5,,OPAQUE,✓
+1,AntiqueGold,7,,OPAQUE,✓
+2,RavenCloth,6,,OPAQUE,✓
+3,CharredLeather,4,,OPAQUE,✓
+4,GiltEdges,2,,OPAQUE,✓
+5,SilverSteel,1,,OPAQUE,✓
+6,EmberGlow,3,,OPAQUE,✓
+7,OxbloodCloth,2,,OPAQUE,✓
+8,Obsidian,3,,OPAQUE,✓
+
+
+
+
+ TEXTURES
+ ────────────────────────────────────────────
+No textures found.
+
+
+ ANIMATIONS
+ ────────────────────────────────────────────
+No animations found.

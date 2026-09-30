@@ -1,0 +1,50 @@
+/* Fully scoped: these cards replace only the existing upgrade dialog content. */
+.overlay[data-panel="upgrade"] section { width: min(1110px, 96vw); max-height: 97vh; padding: 18px 18px 12px; overflow: auto; }
+.blessing-draw { --blessing-ink: #ddc697; text-align: center; isolation: isolate; }
+.blessing-heading { margin-bottom: 25px; }
+.blessing-kicker { display: inline-block; color: #ac9978; font-size: 10px; letter-spacing: 4px; }
+.blessing-heading h3 { margin: 10px 0 7px; font: 32px 'Songti SC', 'Noto Serif SC', serif; font-weight: 500; letter-spacing: 7px; color: #eee0c1; }
+.blessing-heading p { margin: 0; font: 11px 'Songti SC', serif; letter-spacing: 2px; color: #929f94; }
+.blessing-hand { display: flex; align-items: center; justify-content: center; gap: 23px; perspective: 1200px; }
+.blessing-card { --card-color: #d6b986; --card-dark: #5d4932; display: flex; align-items: center; flex-direction: column; position: relative; width: 280px; min-height: 449px; padding: 24px 26px 24px; border: 0; color: var(--card-color); background: radial-gradient(ellipse at 50% 32%, #2f332cc7, transparent 65%), linear-gradient(165deg, #1b2523, #0b1519 70%, #172320); box-shadow: 0 17px 30px #0009; clip-path: polygon(7% 0, 93% 0, 100% 4.3%, 100% 95.7%, 93% 100%, 7% 100%, 0 95.7%, 0 4.3%); cursor: pointer; transition: transform .24s ease, filter .24s, box-shadow .24s, opacity .2s; animation: blessing-deal .55s cubic-bezier(.19,1,.22,1) backwards; animation-delay: calc(var(--card-index) * 100ms); }
+.blessing-card[data-category="body"] { --card-color: #a8c5af; --card-dark: #355451; background: radial-gradient(ellipse at 50% 31%, #32484180, transparent 65%), linear-gradient(165deg, #1b2928, #0d181c 72%, #1e2c29); }
+.blessing-card[data-category="element"] { --card-color: #a9c8e0; --card-dark: #3e4e77; background: radial-gradient(ellipse at 50% 31%, #31426380, transparent 65%), linear-gradient(165deg, #20272e, #0c171d 72%, #1b2630); }
+.blessing-card:hover, .blessing-card:focus-visible { background-color: transparent; border: 0; transform: translateY(-13px) rotateX(2deg); filter: brightness(1.17); box-shadow: 0 25px 40px #000a; outline: none; }
+.blessing-card:focus-visible .blessing-frame { stroke-width: 2px; filter: drop-shadow(0 0 4px currentColor); }
+.blessing-card:hover .blessing-glyph { filter: drop-shadow(0 0 5px currentColor); }
+.blessing-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.blessing-grain { pointer-events: none; position: absolute; inset: 11px; opacity: .24; background: repeating-linear-gradient(0deg, transparent, transparent 4px, #e0d7b411 4px, #e0d7b411 5px), repeating-linear-gradient(123deg, transparent, transparent 10px, #b6c5aa09 10px, #b6c5aa09 11px); z-index: -1; }
+.blessing-kind { font-size: 9px; letter-spacing: 6px; padding-left: 6px; line-height: 1; opacity: .8; }
+.blessing-emblem { width: 194px; height: 195px; flex: 0 0 195px; margin: 7px 0 2px; overflow: visible; }
+.blessing-glyph { transition: filter .24s; }
+.blessing-title { font: 24px 'Songti SC', 'Noto Serif SC', serif; font-weight: 500; letter-spacing: 3px; color: #ece2cb; }
+.blessing-divider { position: relative; width: 70px; height: 1px; margin: 17px 0; background: linear-gradient(90deg, transparent, var(--card-color), transparent); opacity: .65; }
+.blessing-divider i { position: absolute; left: 50%; top: -2px; width: 5px; height: 5px; background: var(--card-color); transform: translateX(-50%) rotate(45deg); }
+.blessing-description { min-height: 43px; font-size: 12px; line-height: 1.8; font-weight: 400; color: #c5cbbb; max-width: 214px; }
+.blessing-stack { font-size: 9px; letter-spacing: 1px; margin: 11px 0 0; color: #83968e; }
+.blessing-stack b { color: var(--card-color); font-weight: 400; margin-left: 5px; }
+.blessing-choose { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 20px; font-size: 10px; color: var(--card-color); letter-spacing: 1px; }
+.blessing-choose kbd { border: 1px solid currentColor; border-radius: 50%; width: 21px; height: 21px; display: inline-grid; place-items: center; font: 11px Georgia, serif; opacity: .7; }
+.blessing-card:hover .blessing-choose kbd, .blessing-card:focus-visible .blessing-choose kbd { background: var(--card-color); color: #132023; opacity: 1; }
+.blessing-help { margin: 24px 0 0; font-size: 10px; color: #9ca796; letter-spacing: .5px; }
+.blessing-help kbd { margin: 0 3px; font: 11px Georgia, serif; color: #d4c49c; }
+.blessing-help>span { margin-left: 22px; color: #6e817b; }
+.blessing-hand.has-selection .blessing-card:not(.is-selected) { opacity: .25; transform: scale(.97); }
+.blessing-card.is-selected { animation: blessing-seal .2s ease-out forwards; pointer-events: none; }
+@keyframes blessing-deal { from { opacity: 0; transform: translateY(24px) rotateY(12deg) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes blessing-seal { to { filter: brightness(1.65); transform: translateY(-12px) scale(1.035); } }
+@media (max-height: 760px) and (min-width: 701px) {
+  .blessing-heading { margin-bottom: 18px; }.blessing-heading h3 { font-size: 27px; }.blessing-card { width: 256px; min-height: 390px; padding: 22px 23px; }.blessing-emblem { width: 158px; height: 159px; flex-basis: 159px; margin-bottom: 0; }.blessing-title { font-size: 22px; }.blessing-divider { margin: 12px 0; }.blessing-choose { margin-top: 15px; }.blessing-help { margin-top: 17px; }
+}
+@media (max-width: 850px) {
+  .blessing-hand { gap: 12px; }.blessing-card { width: calc((100vw - 95px) / 3); padding-inline: 17px; }.blessing-title { font-size: 21px; letter-spacing: 1px; }.blessing-emblem { width: 100%; }.blessing-description { font-size: 11px; min-height: 58px; }
+}
+@media (max-width: 700px) {
+  .overlay[data-panel="upgrade"] section { padding: 13px 7px; }.blessing-heading { margin-bottom: 15px; }.blessing-heading h3 { font-size: 26px; }.blessing-hand { gap: 8px; }.blessing-card { width: calc((100vw - 65px) / 3); min-height: 335px; padding: 22px 12px 18px; }.blessing-emblem { height: 130px; flex-basis: 130px; margin-top: 9px; }.blessing-title { font-size: 18px; }.blessing-kind { font-size: 8px; letter-spacing: 3px; }.blessing-divider { margin: 12px 0; }.blessing-description { min-height: 62px; font-size: 10px; }.blessing-stack { margin-top: 8px; font-size: 8px; }.blessing-choose { margin-top: 13px; font-size: 8px; gap: 4px; }.blessing-choose kbd { width: 18px; height: 18px; }.blessing-help>span { display: block; margin: 10px 0 0; }
+}
+@media (max-width: 480px) {
+  .blessing-hand { flex-direction: column; gap: 12px; }.blessing-card { width: min(330px, 83vw); min-height: 180px; display: grid; grid-template-columns: 90px 1fr; grid-template-rows: 17px 31px auto 20px 21px; column-gap: 15px; padding: 18px 24px; text-align: left; }.blessing-emblem { grid-column: 1; grid-row: 1 / 6; width: 90px; height: 115px; margin: 0; }.blessing-kind { padding: 0; }.blessing-title { font-size: 20px; }.blessing-divider { display: none; }.blessing-description { min-height: 0; font-size: 10px; }.blessing-stack { margin: 0; }.blessing-choose { margin: 0; justify-content: start; }.blessing-card:hover { transform: translateY(-3px); }.blessing-heading p { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blessing-card, .blessing-glyph { animation: none !important; transition: none !important; }.blessing-card:hover, .blessing-card:focus-visible { transform: none; }
+}

@@ -1,0 +1,174 @@
+{
+  "status": "pass",
+  "totalBytes": 898256,
+  "assets": [
+    {
+      "asset": "player",
+      "bytes": 111260,
+      "triangles": 1176,
+      "drawCalls": 33,
+      "dimensionsXYZ": [
+        1.5629,
+        2.0241,
+        0.815
+      ],
+      "groundY": -3e-07,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "skeleton",
+      "bytes": 109920,
+      "triangles": 1336,
+      "drawCalls": 12,
+      "dimensionsXYZ": [
+        1.2381,
+        1.851,
+        0.3851
+      ],
+      "groundY": -0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "wraith",
+      "bytes": 70240,
+      "triangles": 808,
+      "drawCalls": 17,
+      "dimensionsXYZ": [
+        1.6629,
+        2.275,
+        0.775
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "brute",
+      "bytes": 129920,
+      "triangles": 1358,
+      "drawCalls": 31,
+      "dimensionsXYZ": [
+        2.19,
+        2.56,
+        0.984
+      ],
+      "groundY": 1e-07,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "boss",
+      "bytes": 185316,
+      "triangles": 2202,
+      "drawCalls": 32,
+      "dimensionsXYZ": [
+        2.9128,
+        3.834,
+        1.58
+      ],
+      "groundY": -0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "pillar",
+      "bytes": 29276,
+      "triangles": 380,
+      "drawCalls": 3,
+      "dimensionsXYZ": [
+        1.05,
+        2.56,
+        1.05
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "arch",
+      "bytes": 52076,
+      "triangles": 656,
+      "drawCalls": 4,
+      "dimensionsXYZ": [
+        3.04,
+        4.02,
+        0.855
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "brazier",
+      "bytes": 51268,
+      "triangles": 642,
+      "drawCalls": 7,
+      "dimensionsXYZ": [
+        0.77,
+        1.775,
+        0.77
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "sarcophagus",
+      "bytes": 48200,
+      "triangles": 640,
+      "drawCalls": 3,
+      "dimensionsXYZ": [
+        1.17,
+        1.17,
+        2.3
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "altar",
+      "bytes": 38664,
+      "triangles": 424,
+      "drawCalls": 7,
+      "dimensionsXYZ": [
+        1.8,
+        1.475,
+        1.35
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "chest",
+      "bytes": 50664,
+      "triangles": 608,
+      "drawCalls": 7,
+      "dimensionsXYZ": [
+        1.01,
+        0.8311,
+        0.7667
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    },
+    {
+      "asset": "crystal",
+      "bytes": 21452,
+      "triangles": 228,
+      "drawCalls": 3,
+      "dimensionsXYZ": [
+        1.0103,
+        1.35,
+        0.7534
+      ],
+      "groundY": 0.0,
+      "externalResources": false,
+      "status": "pass"
+    }
+  ]
+}
