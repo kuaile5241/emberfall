@@ -1,0 +1,131 @@
+/* Inventory uses only real equipment, stock and camp levels from the profile. */
+.inv-view { container-type: inline-size; --inv-line: #bcb58d29; --inv-gold: #e9ca8d; --inv-muted: #93aca3; --inv-accent: #92c9b7; color: #e1e7d5; }
+.inv-page-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 0 0 9px; }
+.inv-eyebrow { display: block; font-size: 9px; font-weight: 500; color: #aeb99d; letter-spacing: .14em; line-height: 1.5; }
+.inv-page-heading h3 { font: 500 27px 'Songti SC', 'Noto Serif SC', Georgia, serif; color: #f0e6c8; letter-spacing: .08em; margin: 5px 0 0; }
+.inv-count { display: flex; align-items: center; gap: 6px; padding: 7px 10px; font-size: 10px; color: #b9c4a9; border: 1px solid var(--inv-line); border-radius: 20px; background: #2e493622; white-space: nowrap; }
+.inv-count .camp-icon { width: 15px; height: 15px; color: #d5bc83; }
+.inv-page-intro { color: var(--inv-muted); font-size: 11px; line-height: 1.7; margin: 0 0 17px; }
+.inv-filters { display: flex; gap: 6px; padding: 5px; margin-bottom: 15px; width: fit-content; max-width: 100%; border: 1px solid #a8c1a324; border-radius: 13px; background: #0719188c; }
+.camp-shell .inv-filter { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 13px; border: 1px solid transparent; background: transparent; color: #90aaa0; border-radius: 9px; font-size: 10px; }
+.inv-filter .camp-icon, .inv-filter .boon-icon { width: 17px; height: 17px; color: var(--inv-accent); }
+.camp-shell .inv-filter[aria-pressed="true"] { color: #ede2c2; border-color: #c1b98e50; background: linear-gradient(120deg, #77906c35, #af8e572c); box-shadow: 0 2px 7px #0003; }
+.camp-shell .inv-filter:hover { color: #ece7d0; background: #88ad8620; }
+.inv-workspace { display: grid; grid-template-columns: minmax(0,.88fr) minmax(0,1.12fr); align-items: start; gap: 15px; }
+.inv-collection { min-width: 0; }
+.inv-weapon-grid, .inv-supply-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+.camp-shell .inv-weapon-tile, .camp-shell .inv-supply-tile { display: flex; flex-direction: column; align-items: center; position: relative; min-width: 0; padding: 11px 8px 12px; color: #dbe4ce; border: 1px solid #9fb2973b; border-radius: 14px; background: radial-gradient(ellipse at 50% 28%, #506f513b, #11292570 74%); box-shadow: 0 5px 12px #0002, inset 0 1px 0 #e9eccb08; transition: border-color .18s, background .18s, transform .18s; }
+.camp-shell .inv-weapon-tile:hover, .camp-shell .inv-supply-tile:hover { transform: translateY(-2px); border-color: #d8d1a987; background: radial-gradient(ellipse at 50% 28%, #73866844, #17352d77 74%); }
+.camp-shell .inv-weapon-tile.is-selected, .camp-shell .inv-supply-tile.is-selected { border-color: #dec486b0; background: radial-gradient(ellipse at 50% 24%, #a1985b30, #1a342c99 75%); box-shadow: 0 0 0 2px #d3bb7630, 0 7px 16px #0003; }
+.inv-tile-art { display: block; width: 88px; height: 88px; max-width: 100%; margin: 0 auto 4px; }
+.inv-tile-art .skill-illustration { display: block; width: 100%; height: 100%; filter: drop-shadow(0 4px 8px #0005); }
+.inv-weapon-tile strong, .inv-supply-tile strong { font: 500 13px 'Songti SC', Georgia, serif; text-align: center; line-height: 1.35; overflow-wrap: anywhere; }
+.inv-weapon-tile small, .inv-supply-tile small { color: #9aac95; font-size: 9px; margin-top: 6px; line-height: 1.4; }
+.inv-weapon-tile.is-locked .inv-tile-art { filter: saturate(.4); opacity: .58; }
+.inv-weapon-tile.is-locked strong { color: #92a69b; }
+.inv-tile-status { display: grid; place-items: center; position: absolute; top: 9px; right: 9px; z-index: 1; width: 19px; height: 19px; color: #c8cdab; }
+.inv-tile-status .camp-icon { width: 16px; height: 16px; stroke-width: 1.8; }
+.inv-tile-status:empty { display: none; }
+.inv-tile-status:has(.camp-icon) { background: #0d2723e0; border-radius: 50%; border: 1px solid #a0b38a45; }
+.inv-collection-note { display: flex; align-items: flex-start; gap: 7px; color: #83a395; font-size: 9px; line-height: 1.7; margin: 15px 1px 0; }
+.inv-collection-note .camp-icon { flex: 0 0 15px; width: 15px; height: 15px; margin-top: 1px; color: #b3ad80; }
+.inv-detail { padding: 17px 17px 15px; min-width: 0; border: 1px solid #b7bea052; border-radius: 18px; background: linear-gradient(145deg, #32504157, #071d21bb 90%); box-shadow: 0 10px 25px #0002, inset 0 1px 0 #deead213; }
+.inv-detail-heading { display: flex; align-items: center; gap: 8px; margin: -5px -3px 8px; }
+.inv-detail-art { display: block; width: 80px; height: 80px; flex: 0 0 80px; }
+.inv-detail-art .skill-illustration { width: 100%; height: 100%; display: block; }
+.inv-detail-heading>div { min-width: 0; }
+.inv-element-label { color: var(--inv-accent); font-size: 9px; line-height: 1.4; }
+.inv-detail h4 { margin: 5px 0 7px; font: 500 20px 'Songti SC', Georgia, serif; line-height: 1.22; color: #f2e8c8; overflow-wrap: anywhere; }
+.inv-detail-status { display: flex; align-items: center; gap: 4px; color: #9aba9f; font-size: 9px; }
+.inv-detail-status .camp-icon { width: 12px; height: 12px; }
+.inv-description { font-size: 10px; line-height: 1.7; color: #a8c0b1; margin: 7px 0 14px; }
+.inv-skill { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-block: 1px solid var(--inv-line); }
+.inv-skill>span { width: 41px; height: 41px; flex: 0 0 41px; }
+.inv-skill .skill-illustration { width: 100%; height: 100%; }
+.inv-skill small { color: #91a891; font-size: 8px; letter-spacing: .07em; }
+.inv-skill strong { display: block; font: 500 14px 'Songti SC', Georgia, serif; color: #e3d7b2; margin: 4px 0; }
+.inv-skill p { color: #a1b6a7; font-size: 9px; line-height: 1.7; margin: 4px 0 0; }
+.inv-stats-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 15px 0 6px; color: #c4d1b9; font-size: 10px; }
+.inv-stats-heading small { color: #7f9b8b; font-size: 8px; }
+.inv-stats { margin: 0; }
+.inv-stat-row { display: flex; align-items: center; justify-content: space-between; gap: 9px; min-height: 28px; border-bottom: 1px solid #8aab8720; }
+.inv-stat-row dt { color: #9fb5a4; font-size: 9px; }
+.inv-stat-row dd { display: flex; gap: 7px; align-items: baseline; margin: 0; font: 12px Georgia, serif; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.inv-stat-before { color: #7d9b8f; font-size: 10px; }
+.inv-stat-arrow { color: #77917f; font: 9px sans-serif; }
+.inv-stat-row strong { color: #e6d4a7; font-weight: 400; min-width: 40px; text-align: right; }
+.inv-stat-row strong.is-better { color: #9edab6; }
+.inv-stat-row strong.is-lower { color: #e7b792; }
+.inv-stat-row strong small { color: #8fa896; font: 8px sans-serif; margin-left: 3px; }
+.inv-stat-note { color: #79998a; font-size: 8px; line-height: 1.7; margin: 9px 0 0; }
+.inv-detail-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
+.inv-equip-action { margin: 8px 0 14px; }
+.inv-outfit-label { display: flex; align-items: center; gap: 6px; color: #cbb896; font-size: 10px; line-height: 1.6; margin: 8px 0; }
+.inv-outfit-label .camp-icon { width: 15px; height: 15px; flex: 0 0 15px; }
+.camp-shell .inv-primary, .camp-shell .inv-secondary, .camp-shell .inv-upgrade-button { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 10px; min-height: 37px; padding: 9px 12px; font-size: 10px; line-height: 1.35; border: 1px solid #d4b5766b; color: #f0d99f; background: linear-gradient(120deg, #90734855, #466a4738); }
+.camp-shell .inv-primary:hover, .camp-shell .inv-upgrade-button:hover { background: linear-gradient(120deg, #b38d595a, #607d4655); border-color: #e7c38f; }
+.inv-primary .camp-icon, .inv-secondary .camp-icon { width: 16px; height: 16px; }
+.camp-shell .inv-primary.is-equipped { color: #b8d8b7; border-color: #91b99255; background: #4c745233; opacity: 1; }
+.inv-detail-actions>small { text-align: center; font-size: 8px; color: #829d88; line-height: 1.6; }
+.camp-shell .inv-secondary { color: #b4ceb7; border-color: #98b7953b; background: #244b3933; }
+.camp-shell .inv-secondary:hover { background: #537b493b; border-color: #adc39a85; }
+.inv-packed-slot { display: flex; align-items: center; gap: 13px; padding: 12px 15px; margin: 0 0 17px; border: 1px dashed #95b3a258; background: linear-gradient(90deg, #53725725, #17332c55); border-radius: 15px; }
+.inv-packed-slot.is-packed { border-style: solid; border-color: #d2bc786f; background: linear-gradient(90deg, #8c91552b, #1d453653); }
+.inv-packed-art { display: grid; place-items: center; width: 53px; height: 53px; flex: 0 0 53px; border-radius: 11px; background: #0f292679; color: #89ad98; }
+.inv-packed-art>.camp-icon { width: 25px; height: 25px; }
+.inv-packed-art .skill-illustration { width: 100%; height: 100%; }
+.inv-packed-slot>div { flex: 1; min-width: 0; }
+.inv-packed-slot .inv-eyebrow { font-size: 8px; }
+.inv-packed-slot .inv-eyebrow b { color: #709680; margin-left: 5px; font-weight: 400; }
+.inv-packed-slot strong { display: block; color: #dbdfc0; font: 500 14px 'Songti SC', Georgia, serif; margin: 4px 0; line-height: 1.3; }
+.inv-packed-slot small { display: block; color: #829f8c; font-size: 8px; line-height: 1.5; }
+.camp-shell .inv-remove { flex: 0 0 auto; color: #bcbe96; border: 1px solid #adbe9250; padding: 6px 9px; border-radius: 8px; background: #32503a40; font-size: 9px; }
+.inv-slot-empty { color: #6f9580; font-size: 9px; }
+.inv-section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.inv-section-title h4 { margin: 0; color: #c0d0b7; font-size: 11px; font-weight: 500; }
+.inv-section-title>span { color: #809e8c; font-size: 8px; }
+.inv-stock { position: absolute; top: 10px; left: 10px; font: 11px Georgia, serif; color: #e1cf9d; padding: 2px 5px; border-radius: 5px; background: #12291bba; }
+.inv-supply-tile .inv-tile-art { width: 88px; height: 88px; margin-top: 8px; }
+.inv-supply-tile.is-empty .inv-tile-art { opacity: .64; }
+.inv-empty-state { display: flex; align-items: flex-start; gap: 9px; padding: 14px 9px 0; color: #88a493; }
+.inv-empty-state .camp-icon { width: 23px; height: 23px; flex: 0 0 23px; margin-top: 1px; }
+.inv-empty-state p { margin: 0; font-size: 9px; line-height: 1.7; }
+.inv-supply-detail { margin-top: 24px; }
+.inv-supply-effect { display: flex; align-items: center; gap: 7px; margin: 14px 0 12px; padding: 10px 11px; border-radius: 9px; color: #c5ddb7; background: #5b834e29; border: 1px solid #96bd8329; }
+.inv-supply-effect .boon-icon { width: 20px; height: 20px; }
+.inv-supply-effect strong { font-size: 11px; font-weight: 500; }
+.inv-supply-price { display: flex; align-items: center; justify-content: space-between; border-block: 1px solid var(--inv-line); padding: 12px 0; font-size: 10px; color: #9db3a1; }
+.inv-supply-price strong { display: flex; align-items: center; gap: 5px; font: 15px Georgia, serif; color: #e5cc91; }
+.inv-supply-price .camp-icon { width: 15px; height: 15px; }
+.inv-upgrade { margin-top: 19px; padding: 17px; border: 1px solid #d6bf7650; border-radius: 17px; background: linear-gradient(120deg, #7f764225, #24453255); }
+.inv-upgrade-heading { display: flex; align-items: center; gap: 10px; }
+.inv-upgrade-emblem { display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px; border-radius: 12px; color: #e4c685; border: 1px solid #bc9f684b; background: #9c714125; }
+.inv-upgrade-emblem .camp-icon { width: 29px; height: 29px; }
+.inv-upgrade-heading h4 { margin: 4px 0 0; font: 500 17px 'Songti SC', Georgia, serif; color: #e8ddb7; }
+.inv-level { margin-left: auto; color: #c6c28e; font-size: 10px; white-space: nowrap; }
+.inv-upgrade-track { list-style: none; display: grid; grid-template-columns: repeat(3,1fr); padding: 0; margin: 19px 0 17px; }
+.inv-upgrade-track li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 7px; color: #688c76; z-index: 0; }
+.inv-upgrade-track li::before { content: ''; position: absolute; top: 13px; left: 0; right: 0; height: 2px; background: #56735740; z-index: -1; }
+.inv-upgrade-track li:first-child::before { left: 50%; }.inv-upgrade-track li:last-child::before { right: 50%; }
+.inv-upgrade-track li>span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #17352b; border: 1px solid #708d6877; font: 12px Georgia, serif; }
+.inv-upgrade-track li>span .camp-icon { width: 17px; height: 17px; }
+.inv-upgrade-track li small { text-align: center; font-size: 9px; line-height: 1.4; }
+.inv-upgrade-track li.is-complete { color: #b2c8a0; }.inv-upgrade-track li.is-complete>span { background: #5e75484d; border-color: #adbb8e7d; }
+.inv-upgrade-track li.is-next { color: #dfc791; }.inv-upgrade-track li.is-next>span { color: #f0d29b; border-color: #c8a967; background: #725c374d; box-shadow: 0 0 0 3px #b3a56316; }
+.inv-upgrade-bottom { display: flex; justify-content: space-between; gap: 15px; align-items: center; padding-top: 13px; border-top: 1px solid #b6bf8a27; }
+.inv-upgrade-bottom p { color: #8dac95; font-size: 9px; line-height: 1.7; margin: 0 0 4px; }
+.inv-upgrade-bottom p.inv-next-bonus { color: #c7cea0; }
+.camp-shell .inv-upgrade-button { flex: 0 0 auto; flex-direction: column; gap: 4px; padding: 9px 14px; min-width: 120px; }
+.inv-upgrade-button small { color: #bead7f; font-size: 8px; }
+.inv-max-level { display: flex; align-items: center; gap: 5px; color: #b1c7a2; font-size: 10px; }
+.inv-max-level .camp-icon { width: 18px; height: 18px; }
+.camp-shell .inv-view button:focus-visible { outline: 2px solid #f0d798; outline-offset: 3px; }
+.camp-shell .inv-view button:disabled:not(.is-equipped) { opacity: .43; cursor: not-allowed; transform: none; }
+.camp-shell:lang(en) .inv-view h3, .camp-shell:lang(en) .inv-eyebrow { letter-spacing: .04em; }
+.camp-shell:lang(en) .inv-weapon-tile strong, .camp-shell:lang(en) .inv-supply-tile strong { font-size: 12px; }
+.camp-shell:lang(en) .inv-detail h4 { font-size: 19px; }
+.camp-shell:lang(en) .inv-packed-slot strong { font-size: 13px; }
+@container (min-width: 760px) { .inv-weapon-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }.inv-workspace { grid-template-columns: minmax(0,1fr) minmax(300px,.85fr); }.inv-detail { padding: 19px 21px; }.inv-tile-art { width: 101px; height: 101px; }.inv-bag-workspace { grid-template-columns: minmax(0,.82fr) minmax(0,1fr); } }
+@container (max-width: 440px) { .inv-workspace { grid-template-columns: 1fr; }.inv-weapon-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }.inv-weapon-tile .inv-tile-art { width: 72px; height: 72px; }.inv-detail { padding: 16px; }.inv-detail-heading { gap: 12px; }.inv-supply-detail { margin-top: 0; }.inv-supply-grid { max-width: 300px; }.inv-packed-slot { padding: 11px; gap: 9px; }.inv-packed-slot strong { font-size: 12px; }.inv-upgrade-bottom { gap: 9px; flex-wrap: wrap; }.inv-count { font-size: 9px; padding: 6px 8px; } }
+@container (max-width: 330px) { .inv-weapon-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }.inv-filters { gap: 3px; }.camp-shell .inv-filter { padding-inline: 9px; }.inv-packed-art { width: 43px; height: 43px; flex-basis: 43px; }.inv-eyebrow { font-size: 8px; }.inv-packed-slot .inv-eyebrow b { display: none; } }
+@media (prefers-reduced-motion: reduce) { .camp-shell .inv-view button { transition: none; }.camp-shell .inv-view button:hover { transform: none; } }

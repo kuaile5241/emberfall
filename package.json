@@ -1,13 +1,14 @@
 {
   "name": "emberfall-beneath-the-bell",
-  "version": "0.4.1",
+  "version": "0.6.1",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
-    "test": "node --test tests/*.test.js"
+    "test": "node --test tests/*.test.js",
+    "test:flow": "node tools/run-flow-checks.mjs"
   },
   "dependencies": {
     "three": "0.186.1"

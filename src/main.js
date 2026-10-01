@@ -1,3 +1,4 @@
+import { t, getLocale, setLocale, initLocale, onLocaleChange } from './i18n.js';
 import { Game, ROOMS } from './game.js';
 import { DungeonView } from './view.js';
 import { GameAudio } from './audio.js';
@@ -10,18 +11,26 @@ import { CampPreview } from './camp-preview.js';
 import { blessingMarkup, markBlessingSelected } from './blessing-cards.js';
 import './style.css';
 import './camp.css';
+import './inventory-v6.css';
+import './camp-v6.css';
 import './blessing-cards.css';
 import './battle-v4.css';
+import './theme-dark.css';
 
 const $ = id => document.getElementById(id);
 const ui = Object.fromEntries(['world', 'loading', 'load-progress', 'menu', 'battle-impact', 'multikill', 'expedition-tracker',
   'hud', 'timer', 'sound', 'pause', 'bossbar', 'minimap', 'interaction-hint',
   'toast', 'floaters', 'level', 'hp-text', 'hp-bar', 'xp-bar', 'attack-button', 'dash-button', 'burst-button',
   'heal-button', 'potions', 'weapon', 'kills', 'build-open', 'overlay', 'overlay-content',
-  'damage-flash', 'shield-value', 'buffs', 'weapon-cycle'].map(id => [id, $(id)]));
-const QA_MODE = new URLSearchParams(location.search).get('qa') === '1';
-const SETTINGS_KEY = 'emberfall.settings.v1' + (QA_MODE ? '.qa' : '');
-const RECORD_KEY = 'emberfall.records.v1' + (QA_MODE ? '.qa' : '');
+  'damage-flash', 'shield-value', 'buffs', 'weapon-cycle', 'language-switch'].map(id => [id, $(id)]));
+const query = new URLSearchParams(location.search);
+const QA_MODE = query.get('qa') === '1';
+const QA_FLOW_MODE = QA_MODE && query.get('flow') === '1';
+// Each automated page gets fresh test-only keys; ordinary saves are never reset.
+const qaSuffix = QA_FLOW_MODE ? `.qa.flow.${crypto.randomUUID()}` : QA_MODE ? '.qa' : '';
+initLocale({ storage: localStorage, key: 'emberfall.locale.v1' + qaSuffix });
+const SETTINGS_KEY = 'emberfall.settings.v1' + qaSuffix;
+const RECORD_KEY = 'emberfall.records.v1' + qaSuffix;
 const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 const finite = (n, fallback = 0) => Number.isFinite(Number(n)) ? Number(n) : fallback;
 const escape = text => String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -53,7 +62,7 @@ const records = {
   bestRoom: clamp(Math.floor(finite(savedRecords?.bestRoom)), 0, ROOMS.length),
   fastestVictory: finite(savedRecords?.fastestVictory, 0),
 };
-const PROFILE_KEY = 'emberfall.profile.v4' + (QA_MODE ? '.qa' : '');
+const PROFILE_KEY = 'emberfall.profile.v4' + qaSuffix;
 const profileStore = new ProfileStore({ storage: localStorage, key: PROFILE_KEY, legacyRecords: records });
 let campUI = null, campPreview = null;
 let runId = null, runQuest = null, lastSettlement = null, checkpointClock = 0, checkpointWarning = false;
@@ -66,10 +75,12 @@ let overlay = null;
 let lastRoom = -1;
 let resultRecorded = false, recordSaved = true;
 let previousFrame = performance.now();
+let qaManualDrive = false;
 let hudClock = 0;
 let flash = 0;
 let toastTimer = 0;
 let popupReturn = null;
+let pauseMessage = '', resultViewData = null, loadFailure = null, loadingProgress = null;
 let narrowNotified = false;
 let selectedWeaponId = profileStore.profile.loadout || DEFAULT_WEAPON_ID;
 let displayedWeaponId = null;
@@ -102,13 +113,13 @@ function playable() {
 function syncAudio() {
   audio.setRunning(playable());
   ui.sound.innerHTML = utilityIcon(settings.muted || settings.volume === 0 ? 'mute' : 'sound');
-  ui.sound.setAttribute('aria-label', settings.muted ? '打开声音' : '静音');
+  ui.sound.setAttribute('aria-label', settings.muted ? t('打开声音') : t('静音'));
   ui.sound.setAttribute('aria-pressed', String(!settings.muted));
 }
 
 function showToast(message, duration = 1800) {
   clearTimeout(toastTimer);
-  ui.toast.textContent = message;
+  ui.toast.textContent = t(message);
   ui.toast.style.opacity = '1';
   ui['interaction-hint'].style.opacity = '0';
   toastTimer = setTimeout(() => { ui.toast.style.opacity = '0'; ui['interaction-hint'].style.opacity = ''; }, duration);
@@ -144,13 +155,16 @@ function updateRecordLabel() { if (!game) campUI?.render(); }
 
 function settleExpedition(outcome) {
   if (!game || !runId) return { ok: true, reward: null };
+  const synced = profileStore.sync({ runId });
+  if (!synced.ok) return synced;
   const result = profileStore.settleRun(runId, { ...game.runSummary, outcome });
   if (result.ok) { lastSettlement = result; runId = null; }
   return result;
 }
 function checkpointExpedition() {
   if (!game || !runId || !['playing', 'upgrade'].includes(game.status)) return;
-  const result = profileStore.checkpointRun?.(runId, game.runSummary);
+  const synced = profileStore.sync({ runId });
+  const result = synced.ok ? profileStore.checkpointRun(runId, game.runSummary) : synced;
   if (result && !result.ok && !checkpointWarning) { checkpointWarning = true; showToast('战利品暂未保存，请保持页面打开', 3200); }
 }
 function renderCamp() {
@@ -172,7 +186,7 @@ export function startGame(options = {}) {
   if (!ready) return false;
   const requested = options.difficulty || 'normal';
   const difficulty = requested === 'easy' ? 'story' : ['story', 'normal', 'hard'].includes(requested) ? requested : 'normal';
-  if (game && runId) { const settled = settleExpedition(['dead', 'won'].includes(game.status) ? game.status : 'retreated'); if (!settled.ok) { showToast(settled.message || '无法保存本局，暂不能重新出征', 3000); return false; } }
+  if (game && runId) { const settled = settleExpedition(['dead', 'won'].includes(game.status) ? game.status : 'retreated'); if (!settled.ok) { showToast(settled.message || t('无法保存本局，暂不能重新出征'), 3000); return false; } }
   if (options.weaponId && profileStore.profile.unlockedWeapons.includes(options.weaponId)) {
     const selected = profileStore.selectWeapon(options.weaponId); if (!selected.ok) return false;
   }
@@ -184,7 +198,8 @@ export function startGame(options = {}) {
   const camp = profileStore.profile;
   const quest = QUESTS.find(item => item.id === camp.activeQuest);
   runQuest = quest ? { ...quest, baseProgress: camp.quests[quest.id].progress } : null;
-  const seed = options.seed ?? (globalThis.crypto?.getRandomValues ? crypto.getRandomValues(new Uint32Array(1))[0] : Date.now());
+  const flowSeed = QA_FLOW_MODE && /^\d{1,10}$/.test(query.get('seed') || '') ? Number(query.get('seed')) >>> 0 : QA_FLOW_MODE ? 913 : null;
+  const seed = options.seed ?? flowSeed ?? (globalThis.crypto?.getRandomValues ? crypto.getRandomValues(new Uint32Array(1))[0] : Date.now());
   clearInput();
   hideOverlay();
   ui.floaters.replaceChildren();
@@ -194,6 +209,8 @@ export function startGame(options = {}) {
   ui['damage-flash'].style.opacity = '0';
   flash = 0;
   resultRecorded = false; recordSaved = true; blessingSelectionPending = false; impactTime = 0;
+  ui['language-switch'].disabled = false;
+  resultViewData = null;
   ui.multikill.classList.remove('visible'); ui.multikill.replaceChildren(); clearTimeout(killBannerTimer);
   game = new Game({ ...prepared.run, seed, difficulty }).start();
   displayedWeaponId = null;
@@ -215,8 +232,10 @@ export function startGame(options = {}) {
 }
 
 function showMenu() {
-  if (game && runId) { const result = settleExpedition(['dead','won'].includes(game.status) ? game.status : 'retreated'); if (!result.ok) { showToast(result.message || '无法保存本局战利品，请保持页面打开', 3200); return; } }
+  if (game && runId) { const result = settleExpedition(['dead','won'].includes(game.status) ? game.status : 'retreated'); if (!result.ok) { showToast(result.message || t('无法保存本局战利品，请保持页面打开'), 3200); return; } }
   clearInput();
+  blessingSelectionPending = false;
+  ui['language-switch'].disabled = false;
   game = null;
   lastRoom = -1;
   hideOverlay();
@@ -235,18 +254,19 @@ function applyViewSettings() {
 
 function openPause(message = '') {
   if (!game || ['dead', 'won', 'menu'].includes(game.status)) return;
+  pauseMessage = message;
   showOverlay('pause', `
-    <h3>暂停</h3>${message ? `<p class="sub">${escape(message)}</p>` : ''}
+    <h3>${t('暂停')}</h3>${message ? `<p class="sub">${escape(t(message))}</p>` : ''}
     <div class="settings">
-      <label>声音 <input id="volume-setting" aria-label="音量" type="range" min="0" max="100" value="${Math.round(settings.volume * 100)}"></label>
-      <label>画质 <select id="quality-setting">${[['low', '低'], ['medium', '中'], ['high', '高']].map(([value, name]) => `<option value="${value}" ${settings.quality === value ? 'selected' : ''}>${name}</option>`).join('')}</select></label>
-      <label class="setting-toggle">光晕 <input id="bloom-setting" type="checkbox" ${settings.bloom ? 'checked' : ''}><span class="switch" aria-hidden="true"></span></label>
-      <label class="setting-toggle">镜头震动 <input id="shake-setting" type="checkbox" ${settings.shake ? 'checked' : ''}><span class="switch" aria-hidden="true"></span></label>
-      <label class="effects-setting">特效强度 <input id="effects-setting" aria-label="特效强度" type="range" min="0.5" max="1.5" step="0.1" value="${settings.effects}"><output id="effects-value">${settings.effects.toFixed(1)}×</output></label>
+      <label>${t('声音')} <input id="volume-setting" aria-label="${t('音量')}" type="range" min="0" max="100" value="${Math.round(settings.volume * 100)}"></label>
+      <label>${t('画质')} <select id="quality-setting">${[['low', t('低')], ['medium', t('中')], ['high', t('高')]].map(([value, name]) => `<option value="${value}" ${settings.quality === value ? 'selected' : ''}>${t(name)}</option>`).join('')}</select></label>
+      <label class="setting-toggle">${t('光晕')} <input id="bloom-setting" type="checkbox" ${settings.bloom ? 'checked' : ''}><span class="switch" aria-hidden="true"></span></label>
+      <label class="setting-toggle">${t('镜头震动')} <input id="shake-setting" type="checkbox" ${settings.shake ? 'checked' : ''}><span class="switch" aria-hidden="true"></span></label>
+      <label class="effects-setting">${t('特效强度')} <input id="effects-setting" aria-label="${t('特效强度')}" type="range" min="0.5" max="1.5" step="0.1" value="${settings.effects}"><output id="effects-value">${settings.effects.toFixed(1)}×</output></label>
     </div>
-    <div class="actions"><button id="resume-game" class="primary">继续游戏</button><button id="pause-help" class="secondary">操作</button><button id="pause-build" class="secondary">装备</button></div>
-    <div class="actions" style="margin-top:18px"><button id="restart-game" class="text-btn">重新开始</button><button id="return-menu" class="text-btn">收队回营</button></div>
-    <p class="sub" style="font-size:10px;margin-top:26px">收队带回 25% 金币与已发现装备；本局祝福不保留。</p>`);
+    <div class="actions"><button id="resume-game" class="primary">${t('继续游戏')}</button><button id="pause-help" class="secondary">${t('操作')}</button><button id="pause-build" class="secondary">${t('装备')}</button></div>
+    <div class="actions" style="margin-top:18px"><button id="restart-game" class="text-btn">${t('重新开始')}</button><button id="return-menu" class="text-btn">${t('收队回营')}</button></div>
+    <p class="sub" style="font-size:10px;margin-top:26px">${t('收队带回 25% 金币与已发现装备；本局祝福不保留。')}</p>`);
   $('resume-game').addEventListener('click', restoreGame);
   $('pause-help').addEventListener('click', () => openHelp('pause'));
   $('pause-build').addEventListener('click', () => openBuild('pause'));
@@ -278,10 +298,10 @@ function closePopup() {
 
 function openHelp(returnTo = null) {
   popupReturn = returnTo;
-  showOverlay('help', `<h3>操作</h3>
-    <div class="help-grid"><div><kbd>W A S D</kbd>移动</div><div><kbd>鼠标</kbd>瞄准</div><div><kbd>左键 / J</kbd>按住连续攻击</div><div><kbd>SPACE</kbd>闪避，短暂无敌</div><div><kbd>右键 / K</kbd>当前武器范围技能</div><div><kbd>Q</kbd>治疗药水</div><div><kbd>E</kbd>清场后领取奖励</div><div><kbd>1 / 2 / 3</kbd>选择祝福</div><div><kbd>B</kbd>装备与构筑</div><div><kbd>TAB</kbd>切换元素武器</div><div><kbd>ESC</kbd>暂停 / 返回</div></div>
-    <p class="sub">躲开红色攻击预警。范围群杀会返还冷却；清场领奖后沿金色标记前进。<br>装备自动拾取，按 B 更换；Tab 优先使用已拥有的高级装备。<br>地图青色菱形是支线目标，靠近按 E 互动。击败最终 Boss 及随从即可通关。</p>
-    <button id="close-popup" class="primary">返回</button>`);
+  showOverlay('help', `<h3>${t('操作')}</h3>
+    <div class="help-grid"><div><kbd>W A S D</kbd>${t('移动')}</div><div><kbd>${t('鼠标')}</kbd>${t('瞄准')}</div><div><kbd>${t('左键 / J')}</kbd>${t('按住连续攻击')}</div><div><kbd>SPACE</kbd>${t('闪避，短暂无敌')}</div><div><kbd>${t('右键 / K')}</kbd>${t('当前武器范围技能')}</div><div><kbd>Q</kbd>${t('治疗药水')}</div><div><kbd>E</kbd>${t('清场后领取奖励')}</div><div><kbd>1 / 2 / 3</kbd>${t('选择祝福')}</div><div><kbd>B</kbd>${t('装备与构筑')}</div><div><kbd>TAB</kbd>${t('切换元素武器')}</div><div><kbd>ESC</kbd>${t('暂停 / 返回')}</div></div>
+    <p class="sub">${t('躲开红色攻击预警。范围群杀会返还冷却；清场领奖后沿金色标记前进。')}<br>${t('装备自动拾取，按 B 更换；Tab 优先使用已拥有的高级装备。')}<br>${t('地图青色菱形是支线目标，靠近按 E 互动。击败最终 Boss 及随从即可通关。')}</p>
+    <button id="close-popup" class="primary">${t('返回')}</button>`);
   $('close-popup').addEventListener('click', closePopup);
 }
 
@@ -290,24 +310,24 @@ function openBuild(returnTo = null) {
   popupReturn = returnTo;
   const stats = game.combatStats;
   const boons = game.boons.length
-    ? game.boons.map(boon => `<div>${boonIcon(boon.icon)}<span><strong>${escape(boon.name)}${boon.stacks > 1 ? ` ×${boon.stacks}` : ''}</strong><small>${escape(boon.description)}</small></span></div>`).join('')
-    : '<p class="sub">尚未获得祝福</p>';
+    ? game.boons.map(boon => `<div>${boonIcon(boon.icon)}<span><strong>${escape(t(boon.name))}${boon.stacks > 1 ? ` ×${boon.stacks}` : ''}</strong><small>${escape(t(boon.description))}</small></span></div>`).join('')
+    : `<p class="sub">${t('尚未获得祝福')}</p>`;
   const cards = [...EQUIPMENT].sort((a, b) => a.tier - b.tier).map(item => {
     const owned = game.inventory.includes(item.id), equipped = item.id === game.weapon.id;
     const preview = game.statsForWeapon(item.id);
     return `<article class="weapon-card ${equipped ? 'equipped' : ''} ${owned ? '' : 'locked'}" data-element="${item.element}" data-weapon-card="${item.id}">
-      <div class="weapon-card-top"><span class="weapon-art">${skillIcon('attack', item)}</span><div><span class="weapon-tier">${ELEMENTS[item.element].name} · ${item.tier === 1 ? '初始武器' : '进阶武器'}</span><h4>${escape(item.name)}</h4><span class="weapon-class">${escape(item.className)}</span></div></div>
-      <div class="weapon-numbers"><span><b>${Math.round(preview.damage)}</b> 攻击</span><span><b>${preview.attackInterval.toFixed(2)}</b> 秒 / 次</span><span><b>${preview.attackRange.toFixed(1)}</b> 米</span></div>
-      <p class="weapon-skill"><strong>${escape(item.skillName)}</strong><span>${Math.round(preview.skillDamage)} 爆发 · ${preview.skillCooldown.toFixed(1)} 秒冷却</span></p>
-      <p class="weapon-description">${escape(item.skillDescription)}</p>
-      ${equipped ? '<span class="equip-state">已装备</span>' : owned ? `<button class="equip-button" data-equip="${item.id}">装备</button>` : '<span class="equip-state locked-label">探索获得</span>'}
+      <div class="weapon-card-top"><span class="weapon-art">${skillIcon('attack', item)}</span><div><span class="weapon-tier">${t(ELEMENTS[item.element].name)} · ${item.tier === 1 ? t('初始武器') : t('进阶武器')}</span><h4>${escape(t(item.name))}</h4><span class="weapon-class">${escape(t(item.className))}</span></div></div>
+      <div class="weapon-numbers"><span><b>${Math.round(preview.damage)}</b> ${t('攻击')}</span><span><b>${preview.attackInterval.toFixed(2)}</b> ${t('秒 / 次')}</span><span><b>${preview.attackRange.toFixed(1)}</b> ${t('米')}</span></div>
+      <p class="weapon-skill"><strong>${escape(t(item.skillName))}</strong><span>${t('{damage} 爆发 · {cooldown} 秒冷却', { damage: Math.round(preview.skillDamage), cooldown: preview.skillCooldown.toFixed(1) })}</span></p>
+      <p class="weapon-description">${escape(t(item.skillDescription))}</p>
+      ${equipped ? `<span class="equip-state">${t('已装备')}</span>` : owned ? `<button class="equip-button" data-equip="${item.id}">${t('装备')}</button>` : `<span class="equip-state locked-label">${t('探索获得')}</span>`}
     </article>`;
   }).join('');
-  showOverlay('build', `<div class="build-heading"><div><h3>装备与构筑</h3><p class="sub">${escape(game.weapon.className)} · Tab 切换元素，优先使用高级装备</p></div><button id="close-popup" class="close-build" aria-label="关闭装备面板">返回 <kbd>B / ESC</kbd></button></div>
-    <div class="build-stats"><div><strong>${Math.round(stats.damage)}</strong><small>攻击</small></div><div><strong>${Math.round(stats.critChance * 100)}%</strong><small>暴击</small></div><div><strong>${Math.round(stats.armor * 100)}%</strong><small>减伤</small></div><div><strong>${stats.speed.toFixed(1)}</strong><small>移动速度</small></div><div><strong>${Math.ceil(game.player.shield || 0)}</strong><small>护盾</small></div></div>
+  showOverlay('build', `<div class="build-heading"><div><h3>${t('装备与构筑')}</h3><p class="sub">${escape(t(game.weapon.className))} · ${t('Tab 切换元素，优先使用高级装备')}</p></div><button id="close-popup" class="close-build" aria-label="${t('关闭装备面板')}">${t('返回')} <kbd>B / ESC</kbd></button></div>
+    <div class="build-stats"><div><strong>${Math.round(stats.damage)}</strong><small>${t('攻击')}</small></div><div><strong>${Math.round(stats.critChance * 100)}%</strong><small>${t('暴击')}</small></div><div><strong>${Math.round(stats.armor * 100)}%</strong><small>${t('减伤')}</small></div><div><strong>${stats.speed.toFixed(1)}</strong><small>${t('移动速度')}</small></div><div><strong>${Math.ceil(game.player.shield || 0)}</strong><small>${t('护盾')}</small></div></div>
     <div class="weapon-inventory">${cards}</div>
-    <div class="build-footnote">属性已计入本局祝福与当前增益 · 高级装备来自清场奖励和精英掉落</div>
-    <details class="build-boons"><summary>祝福 <span>${game.boons.reduce((n, boon) => n + boon.stacks, 0)}</span></summary><div class="boon-list">${boons}</div></details>`);
+    <div class="build-footnote">${t('属性已计入本局祝福与当前增益 · 高级装备来自清场奖励和精英掉落')}</div>
+    <details class="build-boons"><summary>${t('祝福')} <span>${game.boons.reduce((n, boon) => n + boon.stacks, 0)}</span></summary><div class="boon-list">${boons}</div></details>`);
   $('close-popup').addEventListener('click', closePopup);
   ui['overlay-content'].querySelectorAll('[data-equip]').forEach(button => button.addEventListener('click', () => {
     if (!game.equipWeapon(button.dataset.equip)) return;
@@ -324,11 +344,16 @@ function cycleWeapon() {
   ui.world.focus({ preventScroll: true });
 }
 
-function showUpgrade() {
+let pendingBlessingIndex = null;
+function showUpgrade(preserveSelection = false) {
   if (game?.status !== 'upgrade') return;
-  blessingSelectionPending = false;
+  // Returning from pause must keep the original selection locked until its
+  // animation commits. Its old card indices cannot select a queued next level.
+  if (preserveSelection && blessingSelectionPending && overlay === 'upgrade') return;
   showOverlay('upgrade', blessingMarkup(game));
+  if (blessingSelectionPending) markBlessingSelected(ui['overlay-content'], pendingBlessingIndex);
   ui['overlay-content'].querySelectorAll('[data-choice]').forEach(button => {
+    button.disabled = blessingSelectionPending;
     button.addEventListener('click', () => chooseUpgrade(Number(button.dataset.choice)));
   });
 }
@@ -336,6 +361,8 @@ function showUpgrade() {
 function chooseUpgrade(index) {
   if (overlay !== 'upgrade' || game?.status !== 'upgrade' || blessingSelectionPending || !game.choices[index]) return;
   blessingSelectionPending = true;
+  pendingBlessingIndex = index;
+  ui['language-switch'].disabled = true;
   markBlessingSelected(ui['overlay-content'], index);
   const pendingGame = game;
   setTimeout(() => {
@@ -345,6 +372,8 @@ function chooseUpgrade(index) {
     } finally {
       // The click guard belongs to this animation, not the rest of the run.
       blessingSelectionPending = false;
+      pendingBlessingIndex = null;
+      ui['language-switch'].disabled = false;
     }
     // A pointer/blur may have opened pause while the selection animated.
     if (overlay === 'upgrade') restoreGame();
@@ -368,16 +397,23 @@ function showResult() {
     saved = recordSaved && saved;
   }
   saved = saved && recordSaved;
-  showOverlay('result', `<h3>${won ? '凯旋' : '火种未熄'}</h3>
-    <p class="sub">${won ? '丧钟守卫已被击败' : escape(game.roomName)}</p>
-    <div class="stats"><div><strong>${clock(game.time)}</strong><small>耗时</small></div><div><strong>${game.kills}</strong><small>击杀</small></div><div><strong>${game.player.level}</strong><small>等级</small></div><div><strong>${game.gold}</strong><small>金币</small></div></div>
-    <p class="settlement-reward">带回 <strong>${settlement?.reward?.gold ?? 0}</strong> 金币 · <strong>${settlement?.reward?.essence ?? 0}</strong> 余烬精华${settlement?.reward?.unlockedWeapons?.length ? ` · 发现 ${settlement.reward.unlockedWeapons.length} 件装备` : ''}</p>
-    <p class="sub">${difficultyLabel[game.difficulty]} · ${game.boons.reduce((total, boon) => total + boon.stacks, 0)} 项祝福 · ${Math.round(game.damageDealt)} 伤害</p>
-    <div class="actions"><button id="play-again" class="primary">再来一局</button><button id="result-menu" class="secondary">返回营地</button></div>
-    <p class="sub" style="font-size:10px;margin-top:25px">${saved ? '战利品与委托进度已保存' : '保存未成功，请保持页面打开'}</p>`);
+  resultViewData = { won, settlement, saved };
+  renderResult();
+  updateRecordLabel();
+}
+
+function renderResult() {
+  if (!game || !resultViewData) return;
+  const { won, settlement, saved } = resultViewData;
+  showOverlay('result', `<h3>${won ? t('凯旋') : t('火种未熄')}</h3>
+    <p class="sub">${won ? t('丧钟守卫已被击败') : escape(t(game.roomName))}</p>
+    <div class="stats"><div><strong>${clock(game.time)}</strong><small>${t('耗时')}</small></div><div><strong>${game.kills}</strong><small>${t('击杀')}</small></div><div><strong>${game.player.level}</strong><small>${t('等级')}</small></div><div><strong>${game.gold}</strong><small>${t('金币')}</small></div></div>
+    <p class="settlement-reward">${t('带回')} <strong>${settlement?.reward?.gold ?? 0}</strong> ${t('金币')} · <strong>${settlement?.reward?.essence ?? 0}</strong> ${t('余烬精华')}${settlement?.reward?.unlockedWeapons?.length ? ` · ${t('发现 {count} 件装备', { count: settlement.reward.unlockedWeapons.length })}` : ''}</p>
+    <p class="sub">${t(difficultyLabel[game.difficulty])} · ${t('{count} 项祝福 · {damage} 伤害', { count: game.boons.reduce((total, boon) => total + boon.stacks, 0), damage: Math.round(game.damageDealt) })}</p>
+    <div class="actions"><button id="play-again" class="primary">${t('再来一局')}</button><button id="result-menu" class="secondary">${t('返回营地')}</button></div>
+    <p class="sub" style="font-size:10px;margin-top:25px">${saved ? t('战利品与委托进度已保存') : t('保存未成功，请保持页面打开')}</p>`);
   $('play-again').addEventListener('click', () => startGame({ difficulty: game.difficulty }));
   $('result-menu').addEventListener('click', showMenu);
-  updateRecordLabel();
 }
 
 function floatText(event, style, text) {
@@ -414,12 +450,12 @@ function consumeEvents() {
       case 'multikill':
         clearTimeout(killBannerTimer);
         ui.multikill.dataset.element = event.element;
-        ui.multikill.innerHTML = `<span class="kill-flourish">${event.kills >= 10 ? '横扫千军' : event.kills >= 6 ? '势不可挡' : '一击破阵'}</span><strong>${event.kills}<small>连斩</small></strong><span class="kill-reward">${event.cooldownRefund > .01 ? `技能回转 −${event.cooldownRefund.toFixed(1)}s · ` : ''}+${event.gold || 0} 金币</span>`;
+        ui.multikill.innerHTML = `<span class="kill-flourish">${event.kills >= 10 ? t('横扫千军') : event.kills >= 6 ? t('势不可挡') : t('一击破阵')}</span><strong>${event.kills}<small>${t('连斩')}</small></strong><span class="kill-reward">${event.cooldownRefund > .01 ? `${t('技能回转 −{seconds}s', { seconds: event.cooldownRefund.toFixed(1) })} · ` : ''}+${event.gold || 0} ${t('金币')}</span>`;
         ui.multikill.classList.remove('visible'); void ui.multikill.offsetWidth; ui.multikill.classList.add('visible');
         audio.play('multikill',{gain:.44});
         killBannerTimer = setTimeout(() => ui.multikill.classList.remove('visible'), 2400);
         break;
-      case 'poi': showToast(`${event.name} · 已取得`, 2500); audio.play('heal',{gain:.44}); checkpointExpedition(); break;
+      case 'poi': showToast(t('{name} · 已取得', { name: t(event.name) }), 2500); audio.play('heal',{gain:.44}); checkpointExpedition(); break;
       case 'hit':
         audio.play('hit', { gain: event.target === 'player' ? .42 : .24 });
         floatText(event, event.target === 'player' ? 'damage' : '', `${event.amount}`);
@@ -428,8 +464,8 @@ function consumeEvents() {
       case 'heal': audio.play('heal', { gain: .3 }); floatText(event, 'heal', `+${Math.round(event.amount)}`); if (event.source === 'potion') flashSkill('heal-button'); break;
       case 'pickup': audio.play('pickup', { gain: event.item === 'xp' ? .09 : .16 }); break;
       case 'upgrade': audio.play('heal', { gain: .24 }); if (event.reason === 'room' && !receivedEquipment) showToast('通道已开启', 2000); break;
-      case 'equip': if (!overlay) showToast(`${event.name} · ${event.className}`, 1100); break;
-      case 'equipment': showToast(`获得 ${event.name} · B 装备`, 2800); audio.play('pickup', { gain: .3 }); break;
+      case 'equip': if (!overlay) showToast(`${t(event.name)} · ${t(event.className)}`, 1100); break;
+      case 'equipment': showToast(t('获得 {name} · B 装备', { name: t(event.name) }), 2800); audio.play('pickup', { gain: .3 }); break;
       case 'bossphase': showToast('Boss 进入第二阶段', 2200); audio.play('boss', { gain: .5 }); break;
       default: break;
     }
@@ -518,8 +554,8 @@ function updateSkillArt() {
   displayedWeaponId = weapon.id;
   ui.hud.dataset.element = weapon.element;
   for (const node of document.querySelectorAll('[data-skill-art]')) node.innerHTML = skillIcon(node.dataset.skillArt, weapon);
-  ui['weapon-cycle'].title = 'Tab 切换元素（优先高级装备）';
-  ui['weapon-cycle'].setAttribute('aria-label', `${weapon.name}，Tab 切换元素武器`);
+  ui['weapon-cycle'].title = t('Tab 切换元素（优先高级装备）');
+  ui['weapon-cycle'].setAttribute('aria-label', t('{name}，Tab 切换元素武器', { name: t(weapon.name) }));
   ui['weapon-cycle'].querySelectorAll('[data-element]').forEach(node => node.classList.toggle('selected', node.dataset.element === weapon.element));
 }
 
@@ -528,13 +564,13 @@ function updateBuffs() {
   const signature = buffs.map(buff => buff.id).join('|');
   if (signature !== displayedBuffs) {
     displayedBuffs = signature;
-    ui.buffs.innerHTML = buffs.map(buff => `<div class="buff-medallion" data-buff="${escape(buff.id)}" data-element="${buff.element}">${boonIcon(elementGlyph[buff.element])}<span class="buff-time"></span><span class="buff-tooltip">${escape(buff.name)}</span></div>`).join('');
+    ui.buffs.innerHTML = buffs.map(buff => `<div class="buff-medallion" data-buff="${escape(buff.id)}" data-element="${buff.element}">${boonIcon(elementGlyph[buff.element])}<span class="buff-time"></span><span class="buff-tooltip">${escape(t(buff.name))}</span></div>`).join('');
   }
   for (const buff of buffs) {
     const node = ui.buffs.querySelector(`[data-buff="${buff.id}"]`);
     node.style.setProperty('--buff-angle', `${clamp(buff.remaining / buff.duration, 0, 1) * 360}deg`);
     node.querySelector('.buff-time').textContent = `${Math.ceil(buff.remaining)}s`;
-    node.title = `${buff.name} · 剩余 ${buff.remaining.toFixed(1)} 秒`;
+    node.title = t('{name} · 剩余 {seconds} 秒', { name: t(buff.name), seconds: buff.remaining.toFixed(1) });
     node.setAttribute('aria-label', node.title);
   }
 }
@@ -547,48 +583,48 @@ function updateHud() {
   updateBuffs();
   ui['shield-value'].querySelector('span').textContent = Math.ceil(p.shield || 0);
   ui['shield-value'].classList.toggle('active', p.shield > 0);
-  ui['shield-value'].setAttribute('aria-label', `护盾 ${Math.ceil(p.shield || 0)}`);
+  ui['shield-value'].setAttribute('aria-label', t('护盾 {amount}', { amount: Math.ceil(p.shield || 0) }));
   ui.timer.textContent = clock(game.time);
   ui.level.innerHTML = `<span>${p.level}</span>`;
   ui['hp-text'].textContent = `${Math.ceil(p.hp)} / ${p.maxHp}`;
   ui['hp-bar'].style.width = `${clamp(p.hp / p.maxHp, 0, 1) * 100}%`;
   ui['xp-bar'].style.width = `${clamp(p.xp / p.xpNext, 0, 1) * 100}%`;
-  ui['xp-bar'].title = `经验 ${Math.floor(p.xp)} / ${p.xpNext}`;
+  ui['xp-bar'].title = t('经验 {current} / {next}', { current: Math.floor(p.xp), next: p.xpNext });
   ui.potions.textContent = p.potions;
-  ui.weapon.textContent = game.weapon.name;
-  ui.kills.textContent = `${game.kills} 击杀 · ${game.gold} 金币`;
+  ui.weapon.textContent = t(game.weapon.name);
+  ui.kills.textContent = t('{kills} 击杀 · {gold} 金币', { kills: game.kills, gold: game.gold });
   const interaction = game.nearestInteraction;
   const rewardAvailable = game.status === 'playing' && (interaction || game.rewardReady);
   ui['interaction-hint'].classList.toggle('hidden', !rewardAvailable);
-  if (rewardAvailable) ui['interaction-hint'].innerHTML = `<kbd>E</kbd>${escape(interaction?.label || '领取祝福')}`;
+  if (rewardAvailable) ui['interaction-hint'].innerHTML = `<kbd>E</kbd>${escape(t(interaction?.label || t('领取祝福')))}`;
   const optional = (game.interestPoints || []).filter(point => point.available && !point.completed);
-  ui['expedition-tracker'].innerHTML = `<span>${escape(game.roomName)}</span><strong>${game.roomCleared ? '区域已肃清' : `第 ${game.waveIndex + 1} / ${game.waveCount} 波 · ${game.enemies.length} 敌人`}</strong>${runQuest ? `<small class="tracked-quest">${escape(runQuest.name)} · ${Math.min(runQuest.target,runQuest.baseProgress+(game.runSummary?.[runQuest.metric]||0))}/${runQuest.target}</small>` : ''}${optional.length ? `<small>◇ ${escape(optional[0].name)} · 支线 ${Math.round(Math.hypot(game.player.x-optional[0].x,game.player.z-optional[0].z))}m</small>` : ''}`;
+  ui['expedition-tracker'].innerHTML = `<span>${escape(t(game.roomName))}</span><strong>${game.roomCleared ? t('区域已肃清') : t('第 {wave} / {total} 波 · {enemies} 敌人', { wave: game.waveIndex + 1, total: game.waveCount, enemies: game.enemies.length })}</strong>${runQuest ? `<small class="tracked-quest">${escape(t(runQuest.name))} · ${Math.min(runQuest.target,runQuest.baseProgress+(game.runSummary?.[runQuest.metric]||0))}/${runQuest.target}</small>` : ''}${optional.length ? `<small>◇ ${escape(t(optional[0].name))} · ${t('支线 {distance}m', { distance: Math.round(Math.hypot(game.player.x-optional[0].x,game.player.z-optional[0].z)) })}</small>` : ''}`;
   const boss = game.enemies.find(enemy => enemy.type === 'boss');
   ui.bossbar.classList.toggle('hidden', !boss);
   if (boss) {
-    ui.bossbar.querySelector('strong').textContent = boss.phase === 2 ? '丧钟守卫 · 狂焰' : '丧钟守卫';
+    ui.bossbar.querySelector('strong').textContent = boss.phase === 2 ? t('丧钟守卫 · 狂焰') : t('丧钟守卫');
     ui.bossbar.querySelector('i').style.width = `${Math.max(0, boss.hp / boss.maxHp * 100)}%`;
     ui.bossbar.title = `${Math.ceil(boss.hp)} / ${boss.maxHp}`;
   }
   const tooltips = {
-    'attack-button': `左键 / J · 按住连击\n${Math.round(stats.damage)} 伤害 · ${stats.attackInterval.toFixed(2)} 秒 / 次`,
-    'dash-button': `SPACE · 短暂无敌\n冷却 ${p.dashCooldown.toFixed(1)} 秒`,
-    'burst-button': `右键 / K · ${Math.round(stats.skillDamage)} 爆发伤害\n${game.weapon.skillDescription}`,
-    'heal-button': `Q · 恢复生命\n剩余 ${p.potions} 瓶`,
+    'attack-button': t('左键 / J · 按住连击\n{damage} 伤害 · {interval} 秒 / 次', { damage: Math.round(stats.damage), interval: stats.attackInterval.toFixed(2) }),
+    'dash-button': t('SPACE · 短暂无敌\n冷却 {seconds} 秒', { seconds: p.dashCooldown.toFixed(1) }),
+    'burst-button': t('右键 / K · {damage} 爆发伤害\n{description}', { damage: Math.round(stats.skillDamage), description: t(game.weapon.skillDescription) }),
+    'heal-button': t('Q · 恢复生命\n剩余 {count} 瓶', { count: p.potions }),
   };
   for (const [id, remaining, max, name] of [
-    ['attack-button', p.attackCd, stats.attackInterval, attackNames[game.weapon.type] || '攻击'],
-    ['dash-button', p.dashCd, p.dashCooldown, '闪避'],
+    ['attack-button', p.attackCd, stats.attackInterval, attackNames[game.weapon.type] || t('攻击')],
+    ['dash-button', p.dashCd, p.dashCooldown, t('闪避')],
     ['burst-button', p.skillCd, stats.skillCooldown, game.weapon.skillName],
-    ['heal-button', p.potionCd, .8, '药水'],
+    ['heal-button', p.potionCd, .8, t('药水')],
   ]) {
     const cooling = remaining > .04;
     ui[id].style.setProperty('--cooldown-angle', `${clamp(remaining / max, 0, 1) * 360}deg`);
     ui[id].classList.toggle('is-cooling', cooling);
     ui[id].querySelector('.cooldown-number').textContent = cooling ? remaining >= 1 ? String(Math.ceil(remaining)) : remaining.toFixed(1) : '';
-    ui[id].setAttribute('aria-label', `${name}${cooling ? `，冷却 ${remaining.toFixed(1)} 秒` : '，已就绪'}。${tooltips[id].replaceAll('\n', '。')}`);
+    ui[id].setAttribute('aria-label', `${t(name)} · ${cooling ? t('冷却 {seconds} 秒', { seconds: remaining.toFixed(1) }) : t('已就绪')} · ${tooltips[id].replaceAll('\n', ' · ')}`);
     const tooltip = ui[id].querySelector('.skill-name');
-    const text = `<strong>${escape(name)}</strong><small>${escape(tooltips[id]).replaceAll('\n', '<br>')}</small>`;
+    const text = `<strong>${escape(t(name))}</strong><small>${escape(tooltips[id]).replaceAll('\n', `<br>`)}</small>`;
     if (tooltip.innerHTML !== text) tooltip.innerHTML = text;
     ui[id].setAttribute('aria-disabled', String(cooling));
   }
@@ -679,18 +715,67 @@ function suspend() {
   if (game && ['playing', 'upgrade'].includes(game.status) && overlay === null) openPause('已自动暂停');
 }
 addEventListener('blur', suspend);
-document.addEventListener('visibilitychange', () => { if (document.hidden) suspend(); });
+function refreshCampSave() { if (!game) campUI?.refreshFromStorage(); }
+addEventListener('focus', refreshCampSave);
+addEventListener('storage', event => { if (event.key === PROFILE_KEY || event.key === null) refreshCampSave(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) suspend(); else refreshCampSave(); });
 addEventListener('resize', () => { view?.resize(); campPreview?.resize(); });
 addEventListener('pagehide', checkpointExpedition);
 
-function frame(now) {
+function refreshLanguage() {
+  document.documentElement.lang = getLocale();
+  for (const node of document.querySelectorAll('[data-i18n]')) node.textContent = t(node.dataset.i18n);
+  for (const node of document.querySelectorAll('[data-i18n-aria]')) node.setAttribute('aria-label', t(node.dataset.i18nAria));
+  for (const node of document.querySelectorAll('[data-i18n-title]')) node.title = t(node.dataset.i18nTitle);
+  ui['language-switch'].querySelectorAll('[data-language]').forEach(node => node.classList.toggle('active', node.dataset.language === getLocale()));
+  const label = t(getLocale() === 'zh-CN' ? '切换到英文' : '切换到中文');
+  ui['language-switch'].setAttribute('aria-label', label);
+  ui['language-switch'].title = label;
+  displayedWeaponId = null;
+  displayedBuffs = null;
+  // Old transient notices can contain event-time names; the next event uses the new language.
+  clearTimeout(toastTimer);
+  ui.toast.style.opacity = '0';
+  ui['interaction-hint'].style.opacity = '';
+  ui.multikill.classList.remove('visible');
+  if (game) updateHud();
+  if (overlay === 'pause') openPause(pauseMessage);
+  else if (overlay === 'help') openHelp(popupReturn);
+  else if (overlay === 'build') openBuild(popupReturn);
+  else if (overlay === 'upgrade') showUpgrade(true);
+  else if (overlay === 'result') renderResult();
+  if (!ready) renderLoadingProgress();
+  syncAudio();
+}
+
+function renderLoadingProgress() {
+  if (loadFailure) {
+    ui.loading.querySelector('p').textContent = t('加载失败');
+    ui['load-progress'].textContent = t('加载失败：{message}。请确认资源可访问后重试。', { message: loadFailure.message || t('模型或 WebGL 初始化错误') });
+  } else if (loadingProgress) {
+    const data = loadingProgress;
+    const ratio = data.total ? data.loaded / data.total : data.loaded;
+    ui['load-progress'].textContent = `${t(data.label || '装载墓城模型')}${Number.isFinite(ratio) ? ` · ${Math.round(clamp(ratio, 0, 1) * 100)}%` : ''}`;
+  }
+}
+
+onLocaleChange(refreshLanguage);
+ui['language-switch'].addEventListener('click', () => {
+  if (blessingSelectionPending) return;
+  clearInput();
+  setLocale(getLocale() === 'zh-CN' ? 'en' : 'zh-CN');
+  if (playable()) ui.world.focus({ preventScroll: true });
+});
+refreshLanguage();
+
+function frame(now, qaInput = null) {
   const dt = Math.min(Math.max((now - previousFrame) / 1000, 0), .05);
   previousFrame = now;
   if (game && view && ready) {
-    const running = playable();
+    const running = playable() && (!qaManualDrive || qaInput !== null);
     if (running) {
       const aim = pointer.active ? view.aimAt(pointer.x, pointer.y) : null;
-      const input = {
+      const input = qaInput || {
         moveX: (Number(held.has('KeyD')) - Number(held.has('KeyA'))) * .8423 + (Number(held.has('KeyS')) - Number(held.has('KeyW'))) * .5391,
         moveZ: -(Number(held.has('KeyD')) - Number(held.has('KeyA'))) * .5391 + (Number(held.has('KeyS')) - Number(held.has('KeyW'))) * .8423,
         aimX: aim ? aim.x - game.player.x : 0,
@@ -711,7 +796,7 @@ function frame(now) {
     if (flash > 0) { flash = Math.max(0, flash - dt * 1.7); ui['damage-flash'].style.opacity = String(flash); }
   }
   if (!game && ready) campPreview?.render(dt);
-  requestAnimationFrame(frame);
+  if (qaInput === null) requestAnimationFrame(frame);
 }
 
 async function initialize() {
@@ -720,10 +805,8 @@ async function initialize() {
     view = new DungeonView(ui.world);
     applyViewSettings();
     await view.load((progress, total, label) => {
-      if (typeof progress === 'string') { ui['load-progress'].textContent = progress; return; }
-      const data = typeof progress === 'object' && progress !== null ? progress : { loaded: progress, total, label };
-      const ratio = data.total ? data.loaded / data.total : data.loaded;
-      ui['load-progress'].textContent = `${data.label || '装载墓城模型'}${Number.isFinite(ratio) ? ` · ${Math.round(clamp(ratio, 0, 1) * 100)}%` : ''}`;
+      loadingProgress = typeof progress === 'string' ? { label: progress } : typeof progress === 'object' && progress !== null ? progress : { loaded: progress, total, label };
+      renderLoadingProgress();
     });
     ready = true;
     ui.loading.classList.add('hidden');
@@ -734,6 +817,13 @@ async function initialize() {
     if (new URLSearchParams(location.search).get('qa') === '1') {
       window.__emberfall = {
         get game() { return game; }, view, startGame, profileStore, get campPreview() { return campPreview; },
+        storageKeys: { profile: PROFILE_KEY, settings: SETTINGS_KEY, records: RECORD_KEY, locale: 'emberfall.locale.v1' + qaSuffix },
+        setManualDrive(active) { qaManualDrive = Boolean(active); clearInput(); previousFrame = performance.now(); },
+        step(input = {}) {
+          if (!qaManualDrive || !playable()) return false;
+          frame(previousFrame + 1000 / 30, input);
+          return true;
+        },
         state: () => game ? { ready, status: game.status, overlay, seed: game.seed, difficulty: game.difficulty,
           room: game.roomIndex, roomName: game.roomName, cleared: game.roomCleared, rewardReady: game.rewardReady,
           currentZoneId: game.currentZoneId, visitedZones: [...game.visitedZoneIds], waypoint: game.nextWaypoint,
@@ -747,12 +837,20 @@ async function initialize() {
       };
     }
     requestAnimationFrame(frame);
+    if (QA_FLOW_MODE) {
+      const { runBrowserFlow } = await import('./qa-flow-runner.js');
+      window.__emberfallStartFlow = () => runBrowserFlow(window.__emberfall, {
+        locale: query.get('lang') === 'en' ? 'en' : 'zh-CN', demo: query.get('demo') === '1',
+      });
+      if (query.get('autostart') !== '0') window.__emberfallStartFlow();
+    }
   } catch (error) {
     console.error('Emberfall failed to initialize:', error);
-    ui.loading.querySelector('p').textContent = '加载失败';
-    ui['load-progress'].textContent = `加载失败：${error?.message || '模型或 WebGL 初始化错误'}。请确认资源可访问后重试。`;
+    loadFailure = error;
+    renderLoadingProgress();
     const retry = document.createElement('button');
-    retry.textContent = '重新加载'; retry.className = 'primary';
+    retry.textContent = t('重新加载'); retry.className = 'primary';
+    retry.dataset.i18n = '重新加载';
     retry.addEventListener('click', () => location.reload());
     ui.loading.append(retry);
   }

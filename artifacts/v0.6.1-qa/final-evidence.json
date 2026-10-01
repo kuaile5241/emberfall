@@ -1,0 +1,23 @@
+{
+  "tests": 144,
+  "finalBundle": "index-PBo3x7gE.js",
+  "browserErrorWarnings": [],
+  "normalProfileUnchanged": true,
+  "finalQaProfile": {
+    "loadout": "water-scepter",
+    "outfit": "深潮礼装",
+    "pending": null
+  },
+  "realBrowserFirstRoom": {
+    "kills": 30,
+    "rewardTaken": true,
+    "afterRewardMovement": 3.08
+  },
+  "normalSixZoneLogic": {
+    "seed": 913,
+    "kills": 293,
+    "seconds": 171,
+    "gold": 1165,
+    "checkpoints": 11
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "ordinaryKeys": [
+    "emberfall.profile.v4",
+    "emberfall.records.v1",
+    "emberfall.settings.v1"
+  ],
+  "unchanged": true,
+  "ordinaryQaHook": "undefined",
+  "ordinaryFlowHook": "undefined",
+  "checkedAfterAllRuns": true
+}
