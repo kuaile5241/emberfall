@@ -16,10 +16,10 @@ v0.6.1 统一炭黑、深灰与暖金界面；高级装备会同步改变肩甲�
 
 需要 **Node.js 22.12 或更新的 22.x 版本**及 npm。推荐使用电脑键鼠游玩，运行时无需账号或后端服务。
 
-当前 v0.6.1 位于 `codex/bilingual-ui` 功能分支。以下命令会直接获取这一版本：
+当前 v0.6.1 由 `main` 主分支提供。以下命令获取当前可游玩版本：
 
 ```sh
-git clone --branch codex/bilingual-ui https://github.com/we1jia/emberfall.git
+git clone https://github.com/we1jia/emberfall.git
 cd emberfall
 npm ci
 npm run dev
@@ -117,7 +117,7 @@ npm run build
 | `docs/` | 玩法、设计、素材来源及验收记录 |
 | `artifacts/` | 版本截图与验证记录 |
 
-采用 Gitflow：`main` 保留已发布版本，`develop` 用于集成，功能在独立分支开发。当前改进保留在 `codex/bilingual-ui`，提交推送与合并分别处理。
+采用 Gitflow：`main` 提供当前可游玩版本，`develop` 用于集成，功能在独立分支开发。本项目要求提交推送时，默认包含测试、README 更新、功能集成、主分支同步与远端核验；指定分支或限制合并时遵循当次要求。完整约定见 [AGENTS.md](AGENTS.md)。
 
 ## 文档与素材来源
 
