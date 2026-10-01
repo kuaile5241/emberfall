@@ -1,0 +1,446 @@
+{
+  "status": "passed",
+  "phase": "accepted",
+  "locale": "zh-CN",
+  "checks": [
+    {
+      "name": "language switches in the actual interface",
+      "passed": true
+    },
+    {
+      "name": "second chapter starts locked",
+      "passed": true
+    },
+    {
+      "name": "grave starts the selected map",
+      "passed": true
+    },
+    {
+      "name": "grave uses normal difficulty",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 1 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 2 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 3 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 4 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 5 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 6 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing safely interrupts the channel",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 7 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave keyboard hold completes forge-sigil",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 8 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 9 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave blessing 10 commits once",
+      "passed": true
+    },
+    {
+      "name": "grave wins without modifying simulation state",
+      "passed": true
+    },
+    {
+      "name": "grave physically collects its story evidence",
+      "passed": true
+    },
+    {
+      "name": "grave held E to finish the mechanism",
+      "passed": true
+    },
+    {
+      "name": "grave settles automatically with no pending run",
+      "passed": true
+    },
+    {
+      "name": "grave scene has five environment lights",
+      "passed": true
+    },
+    {
+      "name": "watch has a real claim button",
+      "passed": true
+    },
+    {
+      "name": "watch grants exactly one reward",
+      "passed": true
+    },
+    {
+      "name": "watch journal can be reread",
+      "passed": true
+    },
+    {
+      "name": "names has a real claim button",
+      "passed": true
+    },
+    {
+      "name": "names grants exactly one reward",
+      "passed": true
+    },
+    {
+      "name": "names journal can be reread",
+      "passed": true
+    },
+    {
+      "name": "forge has a real claim button",
+      "passed": true
+    },
+    {
+      "name": "forge grants exactly one reward",
+      "passed": true
+    },
+    {
+      "name": "forge journal can be reread",
+      "passed": true
+    },
+    {
+      "name": "bell has a real claim button",
+      "passed": true
+    },
+    {
+      "name": "bell grants exactly one reward",
+      "passed": true
+    },
+    {
+      "name": "bell journal can be reread",
+      "passed": true
+    },
+    {
+      "name": "first chapter unlocks the waterway",
+      "passed": true
+    },
+    {
+      "name": "aqueduct starts the selected map",
+      "passed": true
+    },
+    {
+      "name": "aqueduct uses normal difficulty",
+      "passed": true
+    },
+    {
+      "name": "aqueduct blessing 1 commits once",
+      "passed": true
+    },
+    {
+      "name": "aqueduct blessing 2 commits once",
+      "passed": true
+    },
+    {
+      "name": "aqueduct blessing safely interrupts the channel",
+      "passed": true
+    },
+    {
+      "name": "aqueduct blessing 3 commits once",
+      "passed": true
+    },
+    {
+      "name": "aqueduct keyboard hold completes sluice-wheel",
+      "passed": true
+    },
+    {
+      "name": "aqueduct blessing 4 commits once",
+      "passed": true
+    },
+    {
+      "name": "aqueduct wins without modifying simulation state",
+      "passed": true
+    },
+    {
+      "name": "aqueduct physically collects its story evidence",
+      "passed": true
+    },
+    {
+      "name": "aqueduct held E to finish the mechanism",
+      "passed": true
+    },
+    {
+      "name": "aqueduct settles automatically with no pending run",
+      "passed": true
+    },
+    {
+      "name": "aqueduct scene has five environment lights",
+      "passed": true
+    },
+    {
+      "name": "water pressure and hollow tide warnings appear",
+      "passed": true
+    },
+    {
+      "name": "descent has a real claim button",
+      "passed": true
+    },
+    {
+      "name": "descent grants exactly one reward",
+      "passed": true
+    },
+    {
+      "name": "descent journal can be reread",
+      "passed": true
+    },
+    {
+      "name": "sluice has a real claim button",
+      "passed": true
+    },
+    {
+      "name": "sluice grants exactly one reward",
+      "passed": true
+    },
+    {
+      "name": "sluice journal can be reread",
+      "passed": true
+    },
+    {
+      "name": "undertow has a real claim button",
+      "passed": true
+    },
+    {
+      "name": "undertow grants exactly one reward",
+      "passed": true
+    },
+    {
+      "name": "undertow journal can be reread",
+      "passed": true
+    },
+    {
+      "name": "seven main story nodes are claimed",
+      "passed": true
+    },
+    {
+      "name": "both chapters have one clear",
+      "passed": true
+    },
+    {
+      "name": "reading the saved profile preserves campaign progress",
+      "passed": true
+    },
+    {
+      "name": "ordinary player save and preferences are unchanged",
+      "passed": true
+    }
+  ],
+  "expeditions": [
+    {
+      "id": "grave",
+      "seed": 913,
+      "rooms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "choices": 10,
+      "channelFrames": 0,
+      "keyboardChannels": [
+        {
+          "id": "forge-sigil",
+          "elapsed": 2.4042999999999637
+        }
+      ],
+      "warningTypes": [
+        "cone",
+        "circle"
+      ],
+      "channelInterruptions": 1,
+      "status": "won",
+      "kills": 293,
+      "time": 174.69322222223983,
+      "hp": 120,
+      "pois": [
+        "burial-relic",
+        "forge-cache",
+        "forge-sigil"
+      ],
+      "bossWard": 0
+    },
+    {
+      "id": "aqueduct",
+      "seed": 913,
+      "rooms": [
+        0,
+        1,
+        2
+      ],
+      "choices": 4,
+      "channelFrames": 0,
+      "keyboardChannels": [
+        {
+          "id": "sluice-wheel",
+          "elapsed": 2.416800000000073
+        }
+      ],
+      "warningTypes": [
+        "pressure",
+        "cone",
+        "circle",
+        "ring"
+      ],
+      "channelInterruptions": 1,
+      "status": "won",
+      "kills": 116,
+      "time": 73.49728888888534,
+      "hp": 120,
+      "pois": [
+        "sluice-wheel"
+      ],
+      "bossWard": 0.2
+    }
+  ],
+  "storageKeys": {
+    "profile": "emberfall.profile.v4.qa.flow.cb2506f2-28f9-4cc7-bf40-d73dfd9235ed",
+    "settings": "emberfall.settings.v1.qa.flow.cb2506f2-28f9-4cc7-bf40-d73dfd9235ed",
+    "records": "emberfall.records.v1.qa.flow.cb2506f2-28f9-4cc7-bf40-d73dfd9235ed",
+    "locale": "emberfall.locale.v1.qa.flow.cb2506f2-28f9-4cc7-bf40-d73dfd9235ed"
+  },
+  "startedAt": "2026-10-01T08:56:21.509Z",
+  "profile": {
+    "version": 4,
+    "gold": 2613,
+    "essence": 15,
+    "loadout": "water-scepter",
+    "unlockedWeapons": [
+      "fire-sword",
+      "lightning-spear",
+      "water-staff",
+      "fire-greatsword",
+      "lightning-halberd",
+      "water-scepter"
+    ],
+    "items": {
+      "damage-tonic": 0,
+      "ward-charm": 0
+    },
+    "selectedSupply": null,
+    "campLevel": 0,
+    "activeQuest": null,
+    "quests": {
+      "ash-hunt": {
+        "status": "available",
+        "progress": 0
+      },
+      "gravebreaker": {
+        "status": "available",
+        "progress": 0
+      },
+      "side-search": {
+        "status": "available",
+        "progress": 0
+      },
+      "bell-breaker": {
+        "status": "available",
+        "progress": 0
+      }
+    },
+    "stats": {
+      "runs": 2,
+      "wins": 2,
+      "deaths": 0,
+      "retreats": 0,
+      "totalKills": 409,
+      "eliteKills": 7,
+      "sideRelics": 2,
+      "bossKills": 2,
+      "goldEarned": 1868,
+      "bestKills": 293,
+      "bestRoom": 6,
+      "fastestVictory": 73
+    },
+    "processedRuns": {
+      "bd5df821-8df0-49db-8350-bbb6cb725971": {
+        "outcome": "won",
+        "reward": {
+          "gold": 1274,
+          "essence": 4,
+          "unlockedWeapons": [
+            "fire-greatsword",
+            "lightning-halberd",
+            "water-scepter"
+          ],
+          "ratio": 1,
+          "questProgress": null,
+          "storyUnlocked": [
+            "grave:gate",
+            "grave:burial-relic",
+            "grave:forge-sigil",
+            "grave:boss"
+          ]
+        }
+      },
+      "cc405acc-dd0d-457d-a417-ed5974b6d3f9": {
+        "outcome": "won",
+        "reward": {
+          "gold": 594,
+          "essence": 3,
+          "unlockedWeapons": [],
+          "ratio": 1,
+          "questProgress": null,
+          "storyUnlocked": [
+            "aqueduct:cistern",
+            "aqueduct:sluice-wheel",
+            "aqueduct:boss"
+          ]
+        }
+      }
+    },
+    "pendingRun": null,
+    "campaign": {
+      "evidence": [
+        "grave:gate",
+        "grave:burial-relic",
+        "grave:forge-sigil",
+        "grave:boss",
+        "aqueduct:cistern",
+        "aqueduct:sluice-wheel",
+        "aqueduct:boss"
+      ],
+      "claimed": [
+        "watch",
+        "names",
+        "forge",
+        "bell",
+        "descent",
+        "sluice",
+        "undertow"
+      ],
+      "selectedExpedition": "aqueduct",
+      "clears": {
+        "grave": 1,
+        "aqueduct": 1
+      }
+    },
+    "activeRun": null
+  },
+  "normalSavePreserved": true,
+  "finishedAt": "2026-10-01T08:56:57.391Z"
+}

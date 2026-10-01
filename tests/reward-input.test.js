@@ -66,10 +66,10 @@ class StubElement {
   focus() {}
 }
 
-function fixture({ reducedMotion = false, locale = 'zh-CN' } = {}) {
+function fixture({ reducedMotion = false, locale = 'zh-CN', expeditionId = 'grave' } = {}) {
   initLocale();
   setLocale(locale);
-  const game = new Game({ seed: 917 }).start();
+  const game = new Game({ seed: 917, expeditionId }).start();
   game.enemies = [];
   game.player.invulnerable = 9999;
   game.drainEvents();
@@ -140,8 +140,79 @@ function fixture({ reducedMotion = false, locale = 'zh-CN' } = {}) {
       }
       timerNow = until;
     },
-    frame() { frameNow += 1000 / 60; context.frame(frameNow); },
+    frame(milliseconds = 1000 / 60) { frameNow += milliseconds; context.frame(frameNow); },
   };
+}
+
+// Local mechanism fixtures establish a cleared room and a valid approach
+// position. The assertions then use the shipped key listeners and main.frame;
+// natural navigation and progression are covered by campaign-flow separately.
+function mechanismKeyboardFixture(expeditionId) {
+  const harness = fixture({ expeditionId });
+  const { game } = harness;
+  const id = expeditionId === 'aqueduct' ? 'sluice-wheel' : 'forge-sigil';
+  const point = game.interestPoints.find(item => item.id === id);
+  game._enterRoom(point.zoneIndex);
+  game.enemies = [];
+  game.roomCleared = true; game.roomRewardTaken = true; game.rewardReady = false;
+  game._refreshInterestPoints();
+  Object.assign(game.player, { x: point.x, z: point.z });
+  game.drainEvents();
+  return { harness, point };
+}
+
+function renderKeyboardFrames(harness, count) {
+  for (let frame = 0; frame < count; frame++) harness.frame(1000 / 30);
+}
+
+for (const expeditionId of ['grave', 'aqueduct']) {
+  test(`${expeditionId}: one real E keydown held across main frames completes a mechanism once`, () => {
+    const { harness, point } = mechanismKeyboardFixture(expeditionId);
+    const gold = harness.game.gold;
+    harness.key('KeyE');
+    renderKeyboardFrames(harness, 60);
+    assert.equal(point.completed, false, 'two seconds is shorter than the required hold');
+    assert.ok(harness.game.interactionChannel?.elapsed > 1.9,
+      'the actual main input path keeps E held after its first-frame pulse');
+    renderKeyboardFrames(harness, 60);
+    harness.key('KeyE', 'keyup');
+    assert.equal(point.completed, true);
+    assert.equal(harness.game.gold, gold + point.reward.gold);
+    if (expeditionId === 'aqueduct') assert.equal(harness.game.bossWard, .2);
+    harness.key('KeyE'); renderKeyboardFrames(harness, 120); harness.key('KeyE', 'keyup');
+    assert.equal(harness.game.gold, gold + point.reward.gold, 'another keyboard hold cannot collect the same objective twice');
+  });
+
+  test(`${expeditionId}: a real short E press and release clears the channel without awarding it`, () => {
+    const { harness, point } = mechanismKeyboardFixture(expeditionId);
+    harness.key('KeyE'); renderKeyboardFrames(harness, 15);
+    assert.ok(harness.game.interactionChannel);
+    harness.key('KeyE', 'keyup'); harness.frame();
+    assert.equal(harness.game.interactionChannel, null);
+    renderKeyboardFrames(harness, 120);
+    assert.equal(point.completed, false);
+    assert.equal(harness.game.gold, 0);
+    assert.equal(harness.context.held.has('KeyE'), false);
+  });
+
+  test(`${expeditionId}: pausing a held operation freezes it and resuming without held E cannot continue it`, () => {
+    const { harness, point } = mechanismKeyboardFixture(expeditionId);
+    harness.key('KeyE'); renderKeyboardFrames(harness, 15);
+    const elapsed = harness.game.interactionChannel.elapsed, time = harness.game.time;
+    harness.key('Escape');
+    assert.equal(harness.context.overlay, 'pause');
+    assert.equal(harness.context.held.has('KeyE'), false, 'the actual pause path clears the prior held key');
+    harness.key('KeyE', 'keyup');
+    renderKeyboardFrames(harness, 120);
+    assert.equal(harness.game.time, time);
+    assert.equal(harness.game.interactionChannel.elapsed, elapsed);
+    harness.key('Escape'); renderKeyboardFrames(harness, 120);
+    assert.equal(harness.context.overlay, null);
+    assert.equal(harness.game.interactionChannel, null);
+    assert.equal(point.completed, false); assert.equal(harness.game.gold, 0);
+    harness.key('KeyE'); renderKeyboardFrames(harness, 120); harness.key('KeyE', 'keyup');
+    assert.equal(point.completed, true, 'a fresh held key can start the operation after resume');
+  });
 }
 
 const boonCount = game => game.boons.reduce((sum, boon) => sum + boon.stacks, 0);

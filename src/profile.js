@@ -1,4 +1,5 @@
 import { STARTER_WEAPON_IDS, DEFAULT_WEAPON_ID, equipmentById } from './content.js';
+import { chapterById, campaignNodeState, expeditionUnlocked, normalizeCampaign, storyNodeById, validEvidence, summaryEvidenceIds, storyEvidenceFromRun } from './campaign.js';
 
 export const PROFILE_VERSION = 4;
 export const DEFAULT_PROFILE_KEY = 'emberfall.profile.v4';
@@ -39,10 +40,10 @@ export function createDefaultProfile(legacyRecords = {}) {
     unlockedWeapons: [...STARTER_WEAPON_IDS], items: Object.fromEntries(SUPPLIES.map(item => [item.id, 0])),
     selectedSupply: null, campLevel: 0, activeQuest: null,
     quests: Object.fromEntries(QUESTS.map(quest => [quest.id, { status: 'available', progress: 0 }])),
-    stats, processedRuns: {}, pendingRun: null };
+    stats, processedRuns: {}, pendingRun: null, campaign: normalizeCampaign() };
 }
 
-function cleanSummary(value = {}) {
+function cleanSummary(value = {}, expeditionId = 'grave') {
   const result = {};
   for (const key of ['kills', 'eliteKills', 'sideRelics', 'bossKills']) result[key] = int(value?.[key], 0, 100000);
   result.eliteKills = Math.min(result.eliteKills, result.kills);
@@ -52,12 +53,15 @@ function cleanSummary(value = {}) {
   result.weaponId = equipmentById(value?.weaponId)?.id || DEFAULT_WEAPON_ID;
   result.inventory = weaponIds(value?.inventory);
   result.room = int(value?.room ?? value?.roomIndex, 0, 100);
+  Object.assign(result, summaryEvidenceIds(expeditionId, value));
   return result;
 }
-function mergeSummary(previous = {}, incoming = {}) {
-  const a = cleanSummary(previous), b = cleanSummary(incoming);
+function mergeSummary(previous = {}, incoming = {}, expeditionId = 'grave') {
+  const a = cleanSummary(previous, expeditionId), b = cleanSummary(incoming, expeditionId);
   for (const key of ['kills', 'eliteKills', 'sideRelics', 'bossKills', 'goldEarned', 'duration', 'room']) b[key] = Math.max(a[key], b[key]);
   b.inventory = weaponIds([...a.inventory, ...b.inventory]);
+  b.clearedZones = [...new Set([...a.clearedZones, ...b.clearedZones])];
+  b.poiIds = [...new Set([...a.poiIds, ...b.poiIds])];
   if (!equipmentById(incoming?.weaponId)) b.weaponId = a.weaponId;
   return b;
 }
@@ -68,7 +72,9 @@ function cleanReward(value = {}) {
     questProgress: object(value.questProgress) && questById(value.questProgress.id) ? {
       id: value.questProgress.id, progress: int(value.questProgress.progress, 0, questById(value.questProgress.id).target),
       target: questById(value.questProgress.id).target, completed: value.questProgress.completed === true,
-    } : null };
+    } : null,
+    storyUnlocked: validEvidence(value.storyUnlocked),
+    ...(chapterById(value.storyChapterUnlocked) ? { storyChapterUnlocked: value.storyChapterUnlocked } : {}) };
 }
 
 /** Sanitizes known V4 fields. Invalid envelopes are rejected, never overwritten on load. */
@@ -76,6 +82,8 @@ export function validateProfile(value) {
   if (!object(value)) return fail('invalid_profile', '营地存档格式损坏，原数据已保留。');
   if (value.version !== PROFILE_VERSION) return fail('unsupported_version', '营地存档版本不兼容，原数据已保留。');
   const profile = createDefaultProfile();
+  if (value.campaign != null && !object(value.campaign)) return fail('invalid_campaign', '剧情存档格式损坏，原数据已保留。');
+  profile.campaign = normalizeCampaign(value.campaign);
   profile.gold = int(value.gold, 0, MONEY_CAP); profile.essence = int(value.essence, 0, MONEY_CAP);
   profile.unlockedWeapons = weaponIds([...STARTER_WEAPON_IDS, ...(Array.isArray(value.unlockedWeapons) ? value.unlockedWeapons : [])]);
   profile.loadout = profile.unlockedWeapons.includes(value.loadout) ? value.loadout : DEFAULT_WEAPON_ID;
@@ -105,14 +113,16 @@ export function validateProfile(value) {
   if (value.pendingRun != null) {
     const pending = value.pendingRun, run = pending?.run;
     if (!object(pending) || !safeRunId(pending.runId) || !object(run) || Object.hasOwn(profile.processedRuns, pending.runId)) return fail('invalid_pending_run', '未结算出征记录损坏，原数据已保留。');
+    if (run.expeditionId !== undefined && !chapterById(run.expeditionId)) return fail('invalid_pending_run', '未结算出征目的地损坏，原数据已保留。');
+    const expeditionId = run.expeditionId || 'grave';
     const unlockedWeapons = weaponIds([...STARTER_WEAPON_IDS, ...(Array.isArray(run.unlockedWeapons) ? run.unlockedWeapons : [])]);
     const selected = supplyById(run.supply?.id);
     const runLevel = int(pending.campLevel, profile.campLevel, 3);
     profile.pendingRun = { runId: pending.runId, campLevel: runLevel,
       questId: questById(pending.questId) ? pending.questId : null,
-      run: { runId: pending.runId, weaponId: unlockedWeapons.includes(run.weaponId) ? run.weaponId : DEFAULT_WEAPON_ID,
+      run: { runId: pending.runId, expeditionId, weaponId: unlockedWeapons.includes(run.weaponId) ? run.weaponId : DEFAULT_WEAPON_ID,
         unlockedWeapons, campBonuses: campBonuses(runLevel), supply: selected ? { id: selected.id, ...clone(selected.effect) } : null },
-      summary: cleanSummary(pending.summary) };
+      summary: cleanSummary(pending.summary, expeditionId) };
   }
   return { ok: true, profile, repaired: JSON.stringify(profile) !== JSON.stringify(value) };
 }
@@ -193,6 +203,25 @@ export class ProfileStore {
       profile.selectedSupply = id ?? null;
     }, true);
   }
+  selectExpedition(id) {
+    return this._change(profile => {
+      if (!chapterById(id)) return fail('invalid_expedition', '出征目的地不存在。');
+      if (!expeditionUnlocked(profile, id)) return fail('expedition_locked', '请先领取“钟声止息以后”的剧情奖励，再进入沉钟水道。');
+      profile.campaign.selectedExpedition = id;
+    }, true);
+  }
+  claimStory(id) {
+    return this._change(profile => {
+      const node = storyNodeById(id);
+      if (!node || campaignNodeState(profile, node) !== 'completed') return fail('story_not_claimable', '剧情目标尚未完成、前置奖励未领取，或本次奖励已领取。');
+      profile.gold = Math.min(MONEY_CAP, profile.gold + node.reward.gold);
+      profile.essence = Math.min(MONEY_CAP, profile.essence + node.reward.essence);
+      profile.campaign.claimed.push(id);
+      const reward = { ...clone(node.reward), unlockedWeapons: [], storyId: id };
+      if (id === 'bell') reward.storyChapterUnlocked = 'aqueduct';
+      return { reward, story: id };
+    });
+  }
   buyItem(id, quantity = 1) {
     return this._change(profile => {
       const item = supplyById(id);
@@ -232,18 +261,21 @@ export class ProfileStore {
       return { reward: { gold: quest.reward.gold, essence: quest.reward.essence, unlockedWeapons } };
     });
   }
-  prepareRun(runId) {
+  prepareRun(runId, options = {}) {
     if (this._blocked) return fail(this._blocked, this.loadResult?.message || '存档状态异常。');
     if (!safeRunId(runId)) return fail('invalid_run_id', '出征编号无效。');
     if (Object.hasOwn(this._profile.processedRuns, runId)) return fail('run_already_settled', '这次出征已经结算，不能重复开始。');
     if (this._profile.pendingRun?.runId === runId) return { ok: true, run: clone(this._profile.pendingRun.run), reused: true, profile: this.snapshot() };
     return this._change(profile => {
+      const expeditionId = options?.expeditionId ?? profile.campaign.selectedExpedition;
+      if (!chapterById(expeditionId)) return fail('invalid_expedition', '出征目的地不存在。');
+      if (!expeditionUnlocked(profile, expeditionId)) return fail('expedition_locked', '请先领取“钟声止息以后”的剧情奖励，再进入沉钟水道。');
       if (Object.keys(profile.processedRuns).length >= RUN_LIMIT) return fail('ledger_full', '结算记录已满，未删除旧账；本次无法出征。');
       const selected = supplyById(profile.selectedSupply);
       if (selected && profile.items[selected.id] < 1) return fail('supply_unavailable', '所选补给已经用尽。');
       if (selected) profile.items[selected.id]--;
-      const run = { runId, weaponId: profile.loadout, unlockedWeapons: [...profile.unlockedWeapons], campBonuses: campBonuses(profile.campLevel), supply: selected ? { id: selected.id, ...clone(selected.effect) } : null };
-      profile.pendingRun = { runId, run, campLevel: profile.campLevel, questId: profile.activeQuest, summary: cleanSummary({ weaponId: profile.loadout }) };
+      const run = { runId, expeditionId, weaponId: profile.loadout, unlockedWeapons: [...profile.unlockedWeapons], campBonuses: campBonuses(profile.campLevel), supply: selected ? { id: selected.id, ...clone(selected.effect) } : null };
+      profile.pendingRun = { runId, run, campLevel: profile.campLevel, questId: profile.activeQuest, summary: cleanSummary({ weaponId: profile.loadout }, expeditionId) };
       if (selected && profile.items[selected.id] === 0) profile.selectedSupply = null;
       return { run: clone(run), reused: false };
     });
@@ -251,7 +283,7 @@ export class ProfileStore {
   checkpointRun(runId, summary) {
     return this._change(profile => {
       if (!profile.pendingRun || profile.pendingRun.runId !== runId) return fail('run_not_pending', '没有对应的未结算出征。');
-      profile.pendingRun.summary = mergeSummary(profile.pendingRun.summary, summary);
+      profile.pendingRun.summary = mergeSummary(profile.pendingRun.summary, summary, profile.pendingRun.run.expeditionId);
       return { checkpoint: clone(profile.pendingRun.summary) };
     }, true);
   }
@@ -265,12 +297,16 @@ export class ProfileStore {
     return this._change(profile => {
       const pending = profile.pendingRun;
       if (!pending || pending.runId !== runId) return fail('run_not_pending', '没有对应的未结算出征。');
-      const result = mergeSummary(pending.summary, summary), ratio = SETTLEMENT_RATIOS[outcome];
+      const expeditionId = pending.run.expeditionId;
+      const result = mergeSummary(pending.summary, summary, expeditionId), ratio = SETTLEMENT_RATIOS[outcome];
       const gold = Math.floor(result.goldEarned * ratio) + (outcome === 'won' ? 80 : 0);
       const essence = outcome === 'retreated' ? 0 : Math.floor(result.eliteKills / 2) + (outcome === 'won' ? 2 : 0);
       const unlockedWeapons = [];
       for (const id of result.inventory) if (!profile.unlockedWeapons.includes(id)) { profile.unlockedWeapons.push(id); unlockedWeapons.push(id); }
-      const reward = { gold, essence, unlockedWeapons, ratio, questProgress: null };
+      const storyUnlocked = storyEvidenceFromRun(expeditionId, result, outcome).filter(id => !profile.campaign.evidence.includes(id));
+      profile.campaign.evidence = validEvidence([...profile.campaign.evidence, ...storyUnlocked]);
+      if (outcome === 'won') profile.campaign.clears[expeditionId] = int(profile.campaign.clears[expeditionId] + 1);
+      const reward = { gold, essence, unlockedWeapons, ratio, questProgress: null, storyUnlocked };
       profile.gold = Math.min(MONEY_CAP, profile.gold + gold); profile.essence = Math.min(MONEY_CAP, profile.essence + essence);
       const quest = questById(pending.questId);
       if (quest && !['claimed', 'completed'].includes(profile.quests[quest.id].status)) {

@@ -2,7 +2,8 @@ import { EQUIPMENT, ELEMENTS, DEFAULT_WEAPON_ID } from './content.js';
 import { SUPPLIES, CAMP_LEVELS, QUESTS } from './profile.js';
 import { skillIcon, campIcon, boonIcon } from './icons.js';
 import { t, getLocale, onLocaleChange } from './i18n.js';
-import { ZONES } from './world.js';
+import { expeditionMeta } from './campaign.js';
+import { renderCampaignOverview, renderExpeditionPicker, renderStoryJournal } from './campaign-ui.js';
 import { renderArmory, renderBag, normalizeArmorySelection, normalizeBagSelection, weaponForClass } from './camp-inventory.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
@@ -43,7 +44,7 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
     </section>
     <section id="camp-panel" class="camp-pane" role="tabpanel" aria-labelledby="camp-tab-camp"></section>
   </div>
-  <footer class="camp-footer"><div class="camp-footer-left"><button data-action="help">${campIcon('help')}<span data-camp-label="操作"></span></button><span>v0.6.1</span></div><div class="camp-footer-center"><span class="camp-departure-note"></span><button class="camp-start" data-action="start"><span data-camp-label="出征"></span>${campIcon('arrow')}</button></div><div class="camp-footer-right"><span data-camp-label="难度"></span><select id="camp-difficulty" data-camp-aria="出征难度"><option value="story" data-camp-label="轻松"></option><option value="normal" selected data-camp-label="标准"></option><option value="hard" data-camp-label="困难"></option></select></div></footer>
+  <footer class="camp-footer"><div class="camp-footer-left"><button data-action="help">${campIcon('help')}<span data-camp-label="操作"></span></button><span>v0.7.0</span></div><div class="camp-footer-center"><span class="camp-departure-note"></span><button class="camp-start" data-action="start"><span data-camp-label="出征"></span>${campIcon('arrow')}</button></div><div class="camp-footer-right"><span data-camp-label="难度"></span><select id="camp-difficulty" data-camp-aria="出征难度"><option value="story" data-camp-label="轻松"></option><option value="normal" selected data-camp-label="标准"></option><option value="hard" data-camp-label="困难"></option></select></div></footer>
   <div class="camp-notice" role="status" aria-live="polite"></div>`;
   root.replaceChildren(shell);
   const portraitCanvas = shell.querySelector('#camp-portrait');
@@ -86,7 +87,7 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
       return `<button class="camp-contract-preview" data-nav="quests">${campIcon(state.status === 'completed' ? 'check' : 'quest')}<div><strong>${text(quest.name)}</strong><small>${state.status === 'completed' ? text('已完成，前往委托领取报酬') : text(quest.description)}<span class="camp-contract-rail"><i style="width:${state.progress / quest.target * 100}%"></i></span></small></div><span>${state.progress} / ${quest.target}${campIcon('arrow')}</span></button>`;
     }).join('') : `<button class="camp-contract-empty" data-nav="quests">${campIcon('quest')}<span><strong>${text('领取你的下一份委托')}</strong><small>${text('完成委托，解锁进阶军械。')}</small></span>${campIcon('arrow')}</button>`;
     return `<div class="camp-section-title"><div><span class="camp-eyebrow">${text('整备台')}</span><h3>${text('营地')}</h3></div><span class="camp-ready-tag">${campIcon(profile.pendingRun ? 'camp' : 'check')}${text(profile.pendingRun ? '等待结算' : '整备就绪')}</span></div>
-      <article class="camp-expedition"><div class="camp-expedition-shade"></div><div class="camp-expedition-copy"><span class="camp-chapter">${text('第一章')}</span><h3>${text('钟下墓城')}</h3><p>${text('六个区域 · 两处支路 · 丧钟守卫')}</p><div class="camp-expedition-tags"><span>${campIcon('quest')}${text('连续探索')}</span><span>${campIcon('flame')}${text('三元素战斗')}</span></div></div><div class="camp-route-v6" aria-label="${text('地下城路线')}">${ZONES.map((zone,index)=>`<span class="${index===0?'is-start':''} ${index===ZONES.length-1?'is-boss':''}" title="${text(zone.name)}"><b>${String(index+1).padStart(2,'0')}</b><i></i></span>`).join('')}</div></article>
+      ${renderExpeditionPicker(profile)}${renderCampaignOverview(profile)}
       <div class="camp-overview-loadout"><button data-nav="armory" class="camp-ready-item"><span class="camp-ready-icon">${skillIcon('attack',weapon)}</span><span><small>${text('出征武器')}</small><strong>${text(weapon.name)}</strong><em>${text(weapon.className)}</em></span>${campIcon('arrow')}</button><button data-nav="bag" class="camp-ready-item"><span class="camp-ready-icon">${selectedSupply?supplyArt(selectedSupply):campIcon('bag')}</span><span><small>${text('携带补给')}</small><strong>${selectedSupply?text(selectedSupply.name):text('未携带补给')}</strong><em>${selectedSupply?text('出征消耗一份'):text('可携带一件补给')}</em></span>${campIcon('arrow')}</button></div>
       <div class="camp-section-heading"><h4>${text('当前委托')}</h4><button class="camp-text-action" data-nav="quests">${text('查看委托')}${campIcon('arrow')}</button></div>${questCards}
       <button class="camp-growth-strip" data-nav="bag"><span class="camp-growth-symbol">${campIcon('camp')}</span><span><strong>${text('营地强化')}</strong><small>${currentLevel?text('生命 +{hp} · 伤害 +{damage}%',{hp:currentLevel.bonuses.maxHp,damage:Math.round((currentLevel.bonuses.damageMultiplier-1)*100)}):text('建立你的永久加成')}</small></span><span class="camp-growth-track">${CAMP_LEVELS.map(level=>`<i class="${level.level<=profile.campLevel?'active':''}"></i>`).join('')}<b>${profile.campLevel}/${CAMP_LEVELS.length}</b></span>${campIcon('arrow')}</button>
@@ -98,7 +99,7 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
 
   function questsMarkup(profile) {
     const hasActiveQuest = QUESTS.some(quest => questState(profile, quest).status === 'active');
-    return `<h3 class="camp-pane-title">${text('委托')}</h3><p class="camp-pane-sub">${text('一次累计一份。出征前接受，回营结算进度；改接委托会保留已有进度。')}</p><div class="camp-quests">${QUESTS.map(quest => {
+    return `${renderStoryJournal(profile)}<h3 class="camp-pane-title">${text('委托')}</h3><p class="camp-pane-sub">${text('一次累计一份。出征前接受，回营结算进度；改接委托会保留已有进度。')}</p><div class="camp-quests">${QUESTS.map(quest => {
       const state = questState(profile, quest);
       const complete = state.status === 'completed', claimed = state.status === 'claimed';
       return `<article class="camp-quest ${complete ? 'is-complete' : ''} ${claimed ? 'is-claimed' : ''}" data-quest="${quest.id}"><span class="camp-quest-seal">${campIcon(claimed ? 'check' : 'quest')}</span><h4>${text(quest.name)}</h4><p>${text(quest.description)}</p><div class="camp-quest-progress"><div class="camp-progress-rail"><i style="width:${Math.min(100, state.progress / quest.target * 100)}%"></i></div><span>${state.progress} / ${quest.target}</span></div><div class="camp-quest-bottom"><span class="camp-quest-reward">${rewardMarkup(quest)}</span>
@@ -118,7 +119,7 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
     inventoryState = { ...inventoryState, ...normalizeArmorySelection(profile, inventoryState), ...normalizeBagSelection(profile, inventoryState) };
     shell.querySelector('.camp-header-level').textContent = t('营地 {level} 级', { level: profile.campLevel });
     shell.querySelector('.camp-portrait-tag').textContent = t(ELEMENTS[weapon.element].name);
-    shell.querySelector('.camp-departure-note').textContent = t(profile.pendingRun ? '先结算上次出征' : '下一站：钟下墓城');
+    shell.querySelector('.camp-departure-note').textContent = profile.pendingRun ? t('先结算上次出征') : t('下一站：{name}', { name: t(expeditionMeta(profile.campaign.selectedExpedition).title) });
     shell.querySelectorAll('[data-camp-label]').forEach(node => { node.textContent = t(node.dataset.campLabel); });
     shell.querySelectorAll('[data-camp-aria]').forEach(node => { node.setAttribute('aria-label', t(node.dataset.campAria)); });
     if (noticeMessage) shell.querySelector('.camp-notice').textContent = typeof noticeMessage === 'function' ? noticeMessage() : t(noticeMessage);
@@ -203,6 +204,8 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
       case 'upgrade': mutate('upgradeCamp', [], '营地强化已完成'); break;
       case 'accept': mutate('acceptQuest', [id], '已接受委托，下次出征开始累计'); break;
       case 'claim': mutate('claimQuest', [id], '报酬已领取'); break;
+      case 'story-claim': mutate('claimStory', [id], '剧情进度已保存'); break;
+      case 'expedition': mutate('selectExpedition', [id], () => t('下一站：{name}', { name: t(expeditionMeta(id).title) })); break;
       case 'unlock': {
         setTab('quests');
         const card = pane.querySelector(`[data-quest="${id}"]`);
@@ -219,7 +222,7 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
         if (!synced.ok) { notify(synced.message, 'error'); return; }
         const profile = snapshot();
         if (profile.pendingRun) { render(); notify('请先结束上次出征。', 'error'); return; }
-        const started = onStart({ weaponId: profile.loadout, difficulty });
+        const started = onStart({ weaponId: profile.loadout, difficulty, expeditionId: profile.campaign.selectedExpedition });
         if (started === false) { render(); notify('未能出征，请检查本地保存或结束上次出征。', 'error'); }
         break;
       }
