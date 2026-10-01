@@ -1,6 +1,6 @@
 # 余烬地牢：钟下墓城
 
-**Emberfall · v0.6.1**
+**Emberfall · v0.6.1 · [MIT](LICENSE)**
 
 单人 3D 动作肉鸽游戏。整备装备与补给，从营地出征，在连续的地下城中清理怪群、选择祝福、探索支路，最终挑战丧钟守卫，再将战利品带回营地。
 
@@ -25,7 +25,7 @@ npm ci
 npm run dev
 ```
 
-浏览器打开 <http://127.0.0.1:4173/>。私有仓库克隆需要具有仓库访问权限的 GitHub 账号。
+浏览器打开 <http://127.0.0.1:4173/>。GitHub 仓库公开，无需账号权限即可浏览、克隆和 Fork。
 
 预览构建版：
 
@@ -119,7 +119,13 @@ npm run build
 
 采用 Gitflow：`main` 提供当前可游玩版本，`develop` 用于集成，功能在独立分支开发。本项目要求提交推送时，默认包含测试、README 更新、功能集成、主分支同步与远端核验；指定分支或限制合并时遵循当次要求。完整约定见 [AGENTS.md](AGENTS.md)。
 
-## 文档与素材来源
+## 开源许可与素材来源
+
+本项目自有内容采用 [MIT 许可证](LICENSE)，允许使用、修改、分发和商用，需保留版权与许可声明。第三方代码和素材遵循其各自许可证，相关原文随素材保留；项目 MIT 许可不替代这些原有许可。
+
+`package.json` 的 `private: true` 用于防止误发布 npm 包，不代表 GitHub 仓库私有。
+
+## 项目文档
 
 - [完整玩法与项目说明](docs/PROJECT.md)
 - [当前验收记录](docs/ACCEPTANCE.md)
@@ -127,4 +133,4 @@ npm run build
 - [模型说明](docs/models.md)与[角色动画](docs/animation-v3.md)
 - [第三方素材来源](docs/asset-research-v2.md)、[主视觉与声音](docs/art-assets.md)、[软件依赖](docs/DEPENDENCIES.md)
 
-角色及部分场景素材来自 KayKit，部分 PBR 贴图来自 Poly Haven，对应素材使用 CC0；Three.js 使用 MIT 许可。具体出处与许可文件随素材保留。主视觉由图像生成工具生成，声音由项目脚本合成。第三方素材的许可仅适用于对应素材，不代表整个项目采用同一许可。
+角色及部分场景素材来自 KayKit，部分 PBR 贴图来自 Poly Haven，对应素材使用 CC0；Three.js 使用 MIT 许可。具体出处与许可文件随素材保留。主视觉由图像生成工具生成，声音由项目脚本合成。
