@@ -1,0 +1,319 @@
+{
+  "status": "passed",
+  "phase": "整备 → 六区通关 → 领奖结算 → 再次出征：完成",
+  "locale": "en",
+  "demo": false,
+  "checks": [
+    {
+      "name": "全新独立营地存档",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "营地职业切换 lightning",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "营地职业切换 water",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "营地职业切换 fire",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "查看锁定装备不改存档且不能装备",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "真实预算购买并携带补给",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "双语切换保留整备和委托",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "正式出征加载真实属性并消耗一份补给",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "暂停阻止模拟推进",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "战场装备同步模型和技能",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "键盘事件经游戏帧产生实际位移",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "选卡动画内暂停恢复仍锁定旧卡",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 1 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 2 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "清场领奖后解除移动锁",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "战利品高级装备与真实护甲同步",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 3 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 4 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 5 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 6 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 7 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 8 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "第 9 次祝福只领取一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "真实六区与最终 Boss 通关",
+      "passed": true,
+      "details": {
+        "seed": 913,
+        "difficulty": "normal",
+        "status": "won",
+        "seconds": 157.09587777775752,
+        "kills": 293,
+        "bossKills": 1,
+        "gold": 1193,
+        "hp": 120,
+        "choices": 9
+      }
+    },
+    {
+      "name": "结算与最深关卡纪录保存一次",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "领取委托一次并移除领取按钮",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "营地强化真实扣费",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "再次出征带新装备补给且没有旧祝福",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "再次收队回营并完成第二次结算",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "rooms": [
+    {
+      "index": 0,
+      "name": "灰烬前庭",
+      "time": 0.11809999998807917
+    },
+    {
+      "index": 1,
+      "name": "无声回廊",
+      "time": 22.329211111099813
+    },
+    {
+      "index": 2,
+      "name": "遗忘圣所",
+      "time": 41.52921111109898
+    },
+    {
+      "index": 3,
+      "name": "熔火工坊",
+      "time": 65.07921111109773
+    },
+    {
+      "index": 4,
+      "name": "敲钟长阶",
+      "time": 100.23476666663667
+    },
+    {
+      "index": 5,
+      "name": "钟下祭坛",
+      "time": 133.84587777773902
+    }
+  ],
+  "storageKeys": {
+    "profile": "emberfall.profile.v4.qa.flow.b1a732e1-eec9-49a4-8f1a-1a394c99da06",
+    "settings": "emberfall.settings.v1.qa.flow.b1a732e1-eec9-49a4-8f1a-1a394c99da06",
+    "records": "emberfall.records.v1.qa.flow.b1a732e1-eec9-49a4-8f1a-1a394c99da06",
+    "locale": "emberfall.locale.v1.qa.flow.b1a732e1-eec9-49a4-8f1a-1a394c99da06"
+  },
+  "limitations": "Fixed 30 Hz input driver with real DOM handlers, event consumption, rendering and persistence. No combat attributes or enemies are modified; this is not a real-time performance or human difficulty test.",
+  "expedition": {
+    "seed": 913,
+    "difficulty": "normal",
+    "status": "won",
+    "seconds": 157.09587777775752,
+    "kills": 293,
+    "bossKills": 1,
+    "gold": 1193,
+    "hp": 120,
+    "choices": 9
+  },
+  "elapsedSeconds": 17.428900000035764,
+  "profile": {
+    "version": 4,
+    "gold": 1293,
+    "essence": 5,
+    "loadout": "fire-greatsword",
+    "unlockedWeapons": [
+      "fire-sword",
+      "lightning-spear",
+      "water-staff",
+      "fire-greatsword",
+      "water-scepter",
+      "lightning-halberd"
+    ],
+    "items": {
+      "damage-tonic": 0,
+      "ward-charm": 0
+    },
+    "selectedSupply": null,
+    "campLevel": 1,
+    "activeQuest": null,
+    "quests": {
+      "ash-hunt": {
+        "status": "claimed",
+        "progress": 60
+      },
+      "gravebreaker": {
+        "status": "available",
+        "progress": 0
+      },
+      "side-search": {
+        "status": "available",
+        "progress": 0
+      },
+      "bell-breaker": {
+        "status": "available",
+        "progress": 0
+      }
+    },
+    "stats": {
+      "runs": 2,
+      "wins": 1,
+      "deaths": 0,
+      "retreats": 1,
+      "totalKills": 293,
+      "eliteKills": 5,
+      "sideRelics": 0,
+      "bossKills": 1,
+      "goldEarned": 1273,
+      "bestKills": 293,
+      "bestRoom": 6,
+      "fastestVictory": 157
+    },
+    "processedRuns": {
+      "f67a2cce-59e3-4efe-87f5-17204af072bc": {
+        "outcome": "won",
+        "reward": {
+          "gold": 1273,
+          "essence": 4,
+          "unlockedWeapons": [
+            "fire-greatsword",
+            "water-scepter",
+            "lightning-halberd"
+          ],
+          "ratio": 1,
+          "questProgress": {
+            "id": "ash-hunt",
+            "progress": 60,
+            "target": 60,
+            "completed": true
+          },
+          "storyUnlocked": [
+            "grave:gate",
+            "grave:forge-sigil",
+            "grave:boss"
+          ]
+        }
+      },
+      "a3f00331-5f3d-4bd9-8094-a2212ca3bdb4": {
+        "outcome": "retreated",
+        "reward": {
+          "gold": 0,
+          "essence": 0,
+          "unlockedWeapons": [],
+          "ratio": 0.25,
+          "questProgress": null,
+          "storyUnlocked": []
+        }
+      }
+    },
+    "pendingRun": null,
+    "campaign": {
+      "evidence": [
+        "grave:gate",
+        "grave:forge-sigil",
+        "grave:boss"
+      ],
+      "claimed": [],
+      "selectedExpedition": "grave",
+      "clears": {
+        "grave": 1,
+        "aqueduct": 0
+      }
+    },
+    "activeRun": null
+  }
+}

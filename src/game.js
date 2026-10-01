@@ -3,7 +3,7 @@
  * Coordinates are metres on an X/Z plane; facing 0 points towards +Z.
  */
 
-import { WORLD, ZONES, containsPoint, constrainMove, canTravel, unlockedSurfaces, navigationTarget, zoneAt } from './world.js';
+import { WORLD, AQUEDUCT_WORLD, ZONES, containsPoint, constrainMove, canTravel, unlockedSurfaces, navigationTarget, zoneAt } from './world.js';
 import { EQUIPMENT, STARTER_WEAPON_IDS, DEFAULT_WEAPON_ID, equipmentById } from './content.js';
 import { t } from './i18n.js';
 
@@ -67,12 +67,21 @@ function normalizeLoadout({ runId = null, weaponId = DEFAULT_WEAPON_ID, unlocked
 }
 
 export class Game {
-  constructor({ seed = Date.now(), difficulty = 'normal', ...loadout } = {}) {
+  constructor({ seed = Date.now(), difficulty = 'normal', expeditionId = 'grave', ...loadout } = {}) {
     this.seed = normalizeSeed(seed);
+    this._setExpedition(expeditionId);
     this.difficulty = ['story', 'normal', 'hard'].includes(difficulty) ? difficulty : 'normal';
     this._loadout = normalizeLoadout(loadout);
     this.startingWeaponId = this._loadout.weaponId;
     this._initialize();
+  }
+
+  _setExpedition(id) {
+    this.expeditionId = id === 'aqueduct' ? 'aqueduct' : 'grave';
+    this.world = this.expeditionId === 'aqueduct' ? AQUEDUCT_WORLD : WORLD;
+    this.rooms = this.world.zones;
+    this.bossName = this.expeditionId === 'aqueduct' ? '幽潮守望者' : '丧钟守卫';
+    this.expedition = { id: this.expeditionId, bossName: this.bossName };
   }
 
   _initialize() {
@@ -96,20 +105,24 @@ export class Game {
     this.damageDealt = 0;
     this.damageTaken = 0;
     this.roomIndex = 0;
-    this.roomName = ROOMS[0].name;
-    this.roomSubtitle = ROOMS[0].subtitle;
-    this.roomTheme = ROOMS[0].theme;
+    this.roomName = this.rooms[0].name;
+    this.roomSubtitle = this.rooms[0].subtitle;
+    this.roomTheme = this.rooms[0].theme;
     this.roomCleared = false;
     this.rewardReady = false;
     this.roomRewardTaken = false;
     this.visitedZoneIds = new Set();
     this.clearedZoneIds = new Set();
     this.completedPoiIds = new Set();
-    this.interestPoints = WORLD.interestPoints.map(point => ({ ...point, reward: { ...point.reward }, completed: false, available: point.zoneIndex === 0 }));
-    this._allowedSurfaces = unlockedSurfaces(0);
+    this.bossWard = 0;
+    this.interactionChannel = null;
+    this.hazards = [];
+    this._hazardClock = 6;
+    this.interestPoints = this.world.interestPoints.map(point => ({ ...point, reward: { ...point.reward }, completed: false, available: point.zoneIndex === 0 }));
+    this._allowedSurfaces = unlockedSurfaces(0, false, this.world);
     this._waypointCache = null;
     this.waveIndex = 0;
-    this.waveCount = ROOMS[0].waves.length;
+    this.waveCount = this.rooms[0].waves.length;
     this.roomKills = 0;
     this.roomEnemyCount = 0;
     this.choices = [];
@@ -128,11 +141,11 @@ export class Game {
     this.areas = [];
     this._combo = 0;
     this._lastAttackTime = -Infinity;
-    this.exit = { ...ZONES[0].exit, radius: 3.2 };
+    this.exit = { ...this.rooms[0].exit, radius: 3.2 };
     this.chest = null;
     const story = this.difficulty === 'story';
     this.player = {
-      ...WORLD.spawn, radius: 0.48, facing: Math.PI,
+      ...this.world.spawn, radius: 0.48, facing: Math.PI,
       hp: story ? 150 : 120, maxHp: story ? 150 : 120,
       level: 1, xp: 0, xpNext: 100,
       damage: 26, speed: 5.0,
@@ -162,8 +175,9 @@ export class Game {
     return this;
   }
 
-  reset({ seed = this.seed, difficulty = this.difficulty, weaponId = this.startingWeaponId, unlockedWeapons = this._loadout.inventory, bonuses, campBonuses, supply = this._loadout.supply, runId = this.runId } = {}) {
+  reset({ seed = this.seed, difficulty = this.difficulty, weaponId = this.startingWeaponId, unlockedWeapons = this._loadout.inventory, bonuses, campBonuses, supply = this._loadout.supply, runId = this.runId, expeditionId = this.expeditionId } = {}) {
     this.seed = normalizeSeed(seed);
+    this._setExpedition(expeditionId);
     this.difficulty = ['story', 'normal', 'hard'].includes(difficulty) ? difficulty : 'normal';
     this._loadout = normalizeLoadout({ runId, weaponId, unlockedWeapons, bonuses: bonuses ?? campBonuses ?? this._loadout.bonuses, supply });
     this.startingWeaponId = this._loadout.weaponId;
@@ -173,9 +187,9 @@ export class Game {
   get weapon() { return equipmentById(this.weaponId); }
   get runSummary() {
     const won = this.status === 'won';
-    return { runId: this.runId, outcome: won ? 'won' : this.status === 'dead' ? 'dead' : 'abandoned', won,
+    return { runId: this.runId, expeditionId: this.expeditionId, outcome: won ? 'won' : this.status === 'dead' ? 'dead' : 'abandoned', won,
       kills: this.kills, eliteKills: this.eliteKills, bossKills: this.bossKills, elementKills: { ...this.elementKills },
-      clearedZones: [...this.clearedZoneIds], poiIds: [...this.completedPoiIds], sideRelics: this.completedPoiIds.size,
+      clearedZones: [...this.clearedZoneIds], poiIds: [...this.completedPoiIds], sideRelics: this.interestPoints.filter(point => point.completed && ['relic', 'supply'].includes(point.kind)).length,
       gold: this.gold, goldEarned: this.gold, inventory: [...this.inventory], weaponId: this.weapon.id,
       room: this.roomIndex + 1, time: this.time, duration: this.time, bestCombo: this.bestCombo };
   }
@@ -232,27 +246,27 @@ export class Game {
     return true;
   }
 
-  get progress() { return (this.roomIndex + (this.roomCleared ? 1 : 0)) / ROOMS.length; }
-  get roomLabel() { return `${this.roomIndex + 1} / ${ROOMS.length}`; }
+  get progress() { return (this.roomIndex + (this.roomCleared ? 1 : 0)) / this.rooms.length; }
+  get roomLabel() { return `${this.roomIndex + 1} / ${this.rooms.length}`; }
   get roomProgress() { return { kills: this.roomKills, total: this.roomEnemyCount, wave: this.waveIndex + 1, waves: this.waveCount }; }
-  get currentZoneId() { return zoneAt(this.player.x, this.player.z)?.id ?? null; }
+  get currentZoneId() { return zoneAt(this.player.x, this.player.z, this.world)?.id ?? null; }
   get nextWaypoint() {
-    const zone = ZONES[this.roomIndex];
-    if (this.status === 'won') return { ...zone.center, kind: 'victory', label: '钟下祭坛' };
+    const zone = this.rooms[this.roomIndex];
+    if (this.status === 'won') return { ...zone.center, kind: 'victory', label: zone.name };
     if (!this.roomCleared) return { ...zone.center, kind: 'fight', label: zone.name };
     if (!this.roomRewardTaken) return { ...(this.chest ?? zone.center), kind: 'reward', label: '领取祝福' };
-    const next = ZONES[this.roomIndex + 1];
+    const next = this.rooms[this.roomIndex + 1];
     if (!next) return { ...zone.center, kind: 'victory', label: zone.name };
     if (!this._waypointCache || this.time - this._waypointCache.time > 0.4) {
-      this._waypointCache = { time: this.time, ...navigationTarget(this.player, next.entry, this.player.radius, this._allowedSurfaces) };
+      this._waypointCache = { time: this.time, ...navigationTarget(this.player, next.entry, this.player.radius, this._allowedSurfaces, this.world.navPoints) };
     }
     return { x: this._waypointCache.x, z: this._waypointCache.z, kind: 'travel', label: next.name };
   }
   get objective() {
-    if (this.status === 'won') return t('钟下祭坛已清除');
+    if (this.status === 'won') return t('{zone}已清除', { zone: t(this.rooms.at(-1).name) });
     if (!this.roomCleared) return t('清除守卫 · {count} 名', { count: this.enemies.length });
     if (!this.roomRewardTaken) return t('按 E 领取祝福');
-    return t('沿墓道前往{zone}', { zone: t(ZONES[this.roomIndex + 1]?.name ?? '祭坛') });
+    return t('沿墓道前往{zone}', { zone: t(this.rooms[this.roomIndex + 1]?.name ?? '祭坛') });
   }
 
   drainEvents() {
@@ -327,6 +341,9 @@ export class Game {
     if (input.attack && p.attackCd <= 0) this._attack();
     if (pressed.skill && p.skillCd <= 0) this._castSkill();
     if (pressed.interact) this.interact();
+    if (this.status !== 'playing') return;
+    this._updateInteraction(dt, !!input.interact);
+    this._updateHazards(dt);
     if (this.status !== 'playing') return;
 
     this._updateAreas(dt);
@@ -546,7 +563,11 @@ export class Game {
   _hurtPlayer(amount, source, attacker = null) {
     const p = this.player;
     if (this.status !== 'playing' || p.invulnerable > 0 || p.hp <= 0) return false;
-    const incoming = Math.max(1, amount * (1 - this.combatStats.armor));
+    const incoming = Math.max(1, amount * (1 - this.combatStats.armor) * (attacker?.type === 'boss' ? 1 - this.bossWard : 1));
+    if (this.interactionChannel) {
+      this.interactionChannel = null;
+      this._emit('channelcancel', { reason: 'hit' });
+    }
     const absorbed = Math.min(p.shield, incoming);
     p.shield = Math.max(0, p.shield - absorbed);
     p.wardShield = Math.min(p.wardShield, p.shield);
@@ -576,7 +597,7 @@ export class Game {
   }
 
   _enterRoom(index) {
-    const room = ROOMS[index];
+    const room = this.rooms[index];
     this.roomIndex = index;
     this.roomName = room.name;
     this.roomSubtitle = room.subtitle;
@@ -585,7 +606,7 @@ export class Game {
     this.rewardReady = false;
     this.roomRewardTaken = false;
     this.visitedZoneIds.add(room.id);
-    this._allowedSurfaces = unlockedSurfaces(index);
+    this._allowedSurfaces = unlockedSurfaces(index, false, this.world);
     this._refreshInterestPoints();
     this._waypointCache = null;
     this.exit = { ...room.exit, radius: 3.2 };
@@ -598,6 +619,9 @@ export class Game {
     this.enemies = [];
     this.projectiles = [];
     this.telegraphs = [];
+    this.hazards = [];
+    this._hazardClock = 6;
+    this.interactionChannel = null;
     this.chest = null;
     this.player.invulnerable = Math.max(this.player.invulnerable, 1.2);
     this.player.attackCd = 0;
@@ -606,15 +630,15 @@ export class Game {
   }
 
   _checkWorldProgress() {
-    if (!this.roomRewardTaken || this.roomIndex >= ZONES.length - 1) return;
-    const next = ZONES[this.roomIndex + 1];
+    if (!this.roomRewardTaken || this.roomIndex >= this.rooms.length - 1) return;
+    const next = this.rooms[this.roomIndex + 1];
     if (containsPoint(next.bounds, this.player.x, this.player.z, this.player.radius)) this._enterRoom(this.roomIndex + 1);
   }
 
   _spawnWave() {
-    const count = ROOMS[this.roomIndex].waves[this.waveIndex];
-    if (this.roomIndex === 5) {
-      const center = ZONES[this.roomIndex].center;
+    const count = this.rooms[this.roomIndex].waves[this.waveIndex];
+    if (this.roomIndex === this.rooms.length - 1) {
+      const center = this.rooms[this.roomIndex].center;
       this._spawnEnemy('boss', center.x, center.z - 3, true);
       this._spawnPack(count - 1);
       this._emit('wave', { wave: 1, waves: 1, amount: count });
@@ -642,9 +666,9 @@ export class Game {
   }
 
   _spawnPoint(anchor = null) {
-    const bounds = ZONES[this.roomIndex].bounds;
+    const bounds = this.rooms[this.roomIndex].bounds;
     const minX = bounds.minX + 2, maxX = bounds.maxX - 2, minZ = bounds.minZ + 2, maxZ = bounds.maxZ - 2;
-    let best = { ...ZONES[this.roomIndex].center }, bestScore = -Infinity;
+    let best = { ...this.rooms[this.roomIndex].center }, bestScore = -Infinity;
     for (let attempt = 0; attempt < 24; attempt++) {
       const origin = anchor ?? this.player;
       const angle = this.random() * TAU;
@@ -665,7 +689,7 @@ export class Game {
     const difficultyHp = this.difficulty === 'hard' ? 1.2 : this.difficulty === 'story' ? 0.8 : 1;
     const difficultyDamage = this.difficulty === 'hard' ? 1.3 : this.difficulty === 'story' ? 0.7 : 1;
     const eliteScale = elite && type !== 'boss' ? 1.8 : 1;
-    const hp = Math.round(base.hp * scale * difficultyHp * eliteScale);
+    const hp = Math.round((type === 'boss' && this.expeditionId === 'aqueduct' ? 2600 : base.hp) * scale * difficultyHp * eliteScale);
     const enemy = {
       id: this._nextId++, type, x, z, hp, maxHp: hp,
       facing: Math.atan2(this.player.x - x, this.player.z - z),
@@ -702,7 +726,7 @@ export class Game {
         enemy.phase = 2;
         enemy.speed *= 1.3;
         this.roomEnemyCount += this._spawnPack(10, 9);
-        this._emit('bossphase', { id: enemy.id, phase: 2, x: enemy.x, z: enemy.z, name: '丧钟守卫 · 狂焰' });
+        this._emit('bossphase', { id: enemy.id, phase: 2, x: enemy.x, z: enemy.z, name: this.expeditionId === 'aqueduct' ? '幽潮守望者 · 涨潮' : '丧钟守卫 · 狂焰' });
       }
 
       if (enemy.attack) {
@@ -729,7 +753,7 @@ export class Game {
       if (shouldMove) {
         enemy.navTime -= dt;
         if (!enemy.navTarget || enemy.navTime <= 0 || distance(enemy, enemy.navTarget) < 0.3) {
-          enemy.navTarget = { ...navigationTarget(enemy, p, enemy.radius, this._allowedSurfaces) };
+          enemy.navTarget = { ...navigationTarget(enemy, p, enemy.radius, this._allowedSurfaces, this.world.navPoints) };
           enemy.navTime = 0.4;
         }
         const target = direction < 0 ? p : enemy.navTarget;
@@ -773,6 +797,19 @@ export class Game {
     } else if (enemy.type === 'brute') {
       attack = { kind: 'slam', x: enemy.x, z: enemy.z, radius: 2.85 };
       this._addTelegraph(enemy, { type: 'circle', x: enemy.x, z: enemy.z, radius: 2.85, angle: 0, length: 0, width: 0 }, duration);
+    } else if (this.expeditionId === 'aqueduct') {
+      const pattern = enemy.attackCount % 3;
+      if (pattern === 1) {
+        attack = { kind: 'tide-ring', x: enemy.x, z: enemy.z, radius: enemy.phase === 2 ? 9 : 8, innerRadius: 3 };
+        this._addTelegraph(enemy, { type: 'ring', ...attack }, duration + .3);
+        enemy.windup = duration + .3;
+      } else if (pattern === 2) {
+        attack = { kind: 'tide-surge', x: p.x, z: p.z, radius: 2.4, points: [{ x: p.x, z: p.z }, { x: p.x + Math.cos(angle) * 4, z: p.z - Math.sin(angle) * 4 }] };
+        for (const point of attack.points) this._addTelegraph(enemy, { type: 'circle', ...point, radius: attack.radius, element: 'water' }, duration);
+      } else {
+        attack = { kind: 'boss-fan', x: enemy.x, z: enemy.z, angle };
+        for (let i = -2; i <= 2; i++) this._addTelegraph(enemy, { type: 'line', x: enemy.x, z: enemy.z, angle: angle + i * .22, length: 12, width: .45, radius: .25, element: 'water' }, duration);
+      }
     } else {
       const pattern = enemy.attackCount % 3;
       if (pattern === 1) {
@@ -825,6 +862,15 @@ export class Game {
       const count = enemy.phase === 2 ? 16 : 12;
       for (let i = 0; i < count; i++) this._spawnBolt(enemy, attack.angle + TAU * i / count, 5.6);
       this._emit('enemyAttack', { id: enemy.id, x: enemy.x, z: enemy.z, radius: 4, kind: 'boss-ring' });
+    } else if (attack.kind === 'tide-ring') {
+      const d = distance(p, attack);
+      if (d + p.radius * .5 >= attack.innerRadius && d - p.radius * .5 <= attack.radius && this._lineOfSight(attack, p)) this._hurtPlayer(enemy.damage, 'tide', enemy);
+      this._emit('enemyAttack', { id: enemy.id, ...attack, element: 'water' });
+    } else if (attack.kind === 'tide-surge') {
+      for (const point of attack.points) {
+        if (distance(p, point) <= attack.radius + p.radius * .5 && this._lineOfSight(point, p)) this._hurtPlayer(enemy.damage, 'tide', enemy);
+        this._emit('enemyAttack', { id: enemy.id, ...point, radius: attack.radius, kind: attack.kind, element: 'water' });
+      }
     }
   }
 
@@ -832,10 +878,10 @@ export class Game {
     const dx = Math.sin(angle);
     const dz = Math.cos(angle);
     this.projectiles.push({
-      id: this._nextId++, ownerId: enemy.id, type: enemy.type === 'boss' ? 'fire' : 'bolt',
+      id: this._nextId++, ownerId: enemy.id, type: enemy.type === 'boss' ? this.expeditionId === 'aqueduct' ? 'water' : 'fire' : 'bolt',
       x: enemy.x + dx * (enemy.radius + 0.2), z: enemy.z + dz * (enemy.radius + 0.2),
       vx: dx * speed, vz: dz * speed, radius: enemy.type === 'boss' ? 0.25 : 0.19,
-      damage: enemy.damage, life: 4.5, facing: angle,
+      damage: enemy.damage * (enemy.type === 'boss' ? 1 - this.bossWard : 1), life: 4.5, facing: angle,
     });
   }
 
@@ -906,6 +952,7 @@ export class Game {
     }
     this.choices = pool.slice(0, 3).map(({ id, name, description, icon }) => ({ id, name, description, icon }));
     this.choiceReason = reason;
+    this.interactionChannel = null;
     this.status = 'upgrade';
     this._emit('choices', { reason, choices: this.choices });
   }
@@ -921,7 +968,7 @@ export class Game {
     if (this.choiceReason === 'room') {
       this.rewardReady = false;
       this.roomRewardTaken = true;
-      this._allowedSurfaces = unlockedSurfaces(this.roomIndex, true);
+      this._allowedSurfaces = unlockedSurfaces(this.roomIndex, true, this.world);
       this._refreshInterestPoints();
       this._waypointCache = null;
       if (this.chest) this.chest.opened = true;
@@ -959,16 +1006,18 @@ export class Game {
     if (this._roomEnding) return;
     this._roomEnding = true;
     this.roomCleared = true;
-    this.clearedZoneIds.add(ZONES[this.roomIndex].id);
+    this.clearedZoneIds.add(this.rooms[this.roomIndex].id);
     this.projectiles = [];
     this.telegraphs = [];
+    this.hazards = [];
     this._updateDrops(0, true);
     const p = this.player;
     const heal = Math.min(p.maxHp - p.hp, p.maxHp * 0.24);
     p.hp += heal;
-    this._emit('clear', { index: this.roomIndex, zoneId: ZONES[this.roomIndex].id, name: this.roomName, x: this.exit.x, z: this.exit.z });
+    this._emit('clear', { index: this.roomIndex, zoneId: this.rooms[this.roomIndex].id, name: this.roomName, x: this.exit.x, z: this.exit.z });
+    this._refreshInterestPoints();
     if (heal > 0) this._emit('heal', { x: p.x, z: p.z, amount: Math.round(heal), source: 'room' });
-    if (this.roomIndex === ROOMS.length - 1) {
+    if (this.roomIndex === this.rooms.length - 1) {
       this.status = 'won';
       this._pendingLevels = 0;
       this.choices = [];
@@ -976,7 +1025,7 @@ export class Game {
       this._emit('win', { x: p.x, z: p.z, kills: this.kills, duration: this.time, gold: this.gold });
     } else {
       this.rewardReady = true;
-      const zone = ZONES[this.roomIndex];
+      const zone = this.rooms[this.roomIndex];
       this.chest = { x: zone.center.x, z: zone.center.z - 2, opened: false };
     }
   }
@@ -984,7 +1033,13 @@ export class Game {
   interact() {
     if (this.status !== 'playing') return false;
     const target = this.nearestInteraction;
-    if (target && target.kind !== 'reward') return this._completeInterestPoint(target.id);
+    if (target && target.kind !== 'reward') {
+      if (['story', 'mechanism'].includes(target.kind)) {
+        this.interactionChannel ??= { id: target.id, elapsed: 0, duration: 2.4 };
+        return true;
+      }
+      return this._completeInterestPoint(target.id);
+    }
     if (!this.roomCleared) return false;
     if (this._pendingLevels > 0) { this._showPendingLevel(); return true; }
     // The reward remains reachable anywhere. Afterwards the player follows the
@@ -995,7 +1050,46 @@ export class Game {
 
   _refreshInterestPoints() {
     for (const point of this.interestPoints) point.available = !point.completed &&
-      (point.zoneIndex < this.roomIndex || (point.zoneIndex === this.roomIndex && (!point.requiresReward || this.roomRewardTaken)));
+      (point.zoneIndex < this.roomIndex || (point.zoneIndex === this.roomIndex && (!point.requiresReward || this.roomRewardTaken) && (!point.requiresClear || this.roomCleared)));
+  }
+
+  _updateInteraction(dt, held) {
+    const channel = this.interactionChannel;
+    if (!channel) return;
+    const point = this.interestPoints.find(item => item.id === channel.id);
+    if (!held || !point?.available || distance(this.player, point) > point.radius || !this._lineOfSight(this.player, point)) {
+      this.interactionChannel = null;
+      return;
+    }
+    channel.elapsed += dt;
+    if (channel.elapsed >= channel.duration) {
+      this.interactionChannel = null;
+      this._completeInterestPoint(point.id);
+    }
+  }
+
+  _updateHazards(dt) {
+    if (this.expeditionId !== 'aqueduct') return;
+    if (!this.roomCleared && this.roomIndex < this.rooms.length - 1) {
+      this._hazardClock -= dt;
+      if (this._hazardClock <= 0) {
+        this._hazardClock = 7;
+        const hazard = { id: this._nextId++, x: this.player.x, z: this.player.z, radius: 2.6, remaining: 1.3 };
+        this.hazards.push(hazard);
+        this.telegraphs.push({ ...hazard, enemyId: null, hazardId: hazard.id, type: 'circle', element: 'water', duration: 1.3 });
+      }
+    }
+    for (const hazard of this.hazards) {
+      hazard.remaining -= dt;
+      const mark = this.telegraphs.find(item => item.hazardId === hazard.id);
+      if (mark) mark.remaining = hazard.remaining;
+      if (hazard.remaining <= 0) {
+        if (distance(this.player, hazard) <= hazard.radius + this.player.radius * .5 && this._lineOfSight(hazard, this.player)) this._hurtPlayer(12, 'water-pressure');
+        this._emit('enemyAttack', { ...hazard, kind: 'tide-surge', element: 'water' });
+        this.telegraphs = this.telegraphs.filter(item => item.hazardId !== hazard.id);
+      }
+    }
+    this.hazards = this.hazards.filter(hazard => hazard.remaining > 0);
   }
 
   _completeInterestPoint(id) {
@@ -1006,6 +1100,7 @@ export class Game {
     const reward = { ...point.reward }, p = this.player;
     this.gold += reward.gold ?? 0;
     p.skillDamage += reward.skillDamage ?? 0;
+    if (reward.bossWard) this.bossWard = Math.max(this.bossWard, reward.bossWard);
     if (reward.potions) { const before = p.potions; p.potions = Math.min(p.maxPotions, p.potions + reward.potions); reward.potions = p.potions - before; }
     if (reward.heal) { const before = p.hp; p.hp = Math.min(p.maxHp, p.hp + reward.heal); reward.heal = p.hp - before; }
     this._emit('poi', { id: point.id, name: point.name, kind: point.kind, x: point.x, z: point.z, reward });

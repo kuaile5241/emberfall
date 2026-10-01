@@ -11,6 +11,8 @@ const files = [
   'tests/normal-run-v3.test.js', 'tests/profile-switch-fix.test.js',
   'tests/reward-input.test.js', 'tests/weapon-switch-animation.test.js',
   'tests/gear-appearance.test.js', 'tests/inventory-v6.test.js',
+  'tests/campaign-profile.test.js', 'tests/campaign-ui.test.js', 'tests/campaign-flow.test.js',
+  'tests/campaign-combat.test.js', 'tests/campaign-render.test.js',
 ];
 const started = Date.now();
 let log = '';
@@ -34,7 +36,7 @@ const report = {
   status: code === 0 ? 'passed' : 'failed', exitCode: code, ...totals,
   startedAt: new Date(started).toISOString(), elapsedSeconds: (Date.now() - started) / 1000,
   scope: files,
-  browser: { status: 'not_run_by_this_command', url: 'http://127.0.0.1:4173/?qa=1&flow=1&seed=913', englishUrl: 'http://127.0.0.1:4173/?qa=1&flow=1&seed=913&lang=en', note: 'Open against the current build to run the real browser/UI integration and read window.__emberfallFlow.' },
+  browser: { status: 'not_run_by_this_command', url: 'http://127.0.0.1:4173/?qa=1&flow=1&seed=913', englishUrl: 'http://127.0.0.1:4173/?qa=1&flow=1&seed=913&lang=en', campaignUrl: 'http://127.0.0.1:4173/?qa=1&campaign=1&seed=913', campaignEnglishUrl: 'http://127.0.0.1:4173/?qa=1&campaign=1&seed=913&lang=en', note: 'Open against the current build to run the real browser/UI integration and read window.__emberfallFlow.' },
 };
 await writeFile(path.join(output, 'logic-report.json'), JSON.stringify(report, null, 2) + '\n');
 console.log(`\n流程回归 ${report.status}: ${totals.tests} tests, ${totals.failures} failures. 报告: ${output}`);

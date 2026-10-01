@@ -1,0 +1,16 @@
+{
+  "runtime": {
+    "qa": "undefined",
+    "flow": "undefined",
+    "campaign": "undefined"
+  },
+  "dom": {
+    "campVisible": true,
+    "entry": [
+      "/assets/index-Cimk0qL8.js"
+    ],
+    "hasChapterPicker": true
+  },
+  "console": [],
+  "actions": "Read-only load; no settlement, class switch, supply purchase or expedition start"
+}

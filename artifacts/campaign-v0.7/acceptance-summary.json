@@ -1,0 +1,227 @@
+{
+  "version": "0.7.0",
+  "date": "2026-10-01",
+  "scope": "Two handcrafted expeditions, seven story nodes, keyboard mechanisms and existing camp flow",
+  "nodeTests": {
+    "tests": 200,
+    "passed": 200,
+    "failures": 0,
+    "skipped": 0
+  },
+  "flowSubset": {
+    "tests": 129,
+    "passed": 129,
+    "failures": 0,
+    "skipped": 0
+  },
+  "build": {
+    "status": "passed",
+    "entry": "index-Cimk0qL8.js",
+    "campaignDriver": "qa-campaign-runner-BL98iq4b.js",
+    "legacyDriver": "qa-flow-runner-D10Xc1q1.js",
+    "warning": "Main chunk exceeds 500 kB"
+  },
+  "browsers": {
+    "browser-zh": {
+      "checks": 61,
+      "status": "passed",
+      "allChecksPassed": true,
+      "storageKeysIsolated": true,
+      "normalSavePreserved": true,
+      "storyNodesClaimed": 7,
+      "expeditions": [
+        {
+          "id": "grave",
+          "seed": 913,
+          "rooms": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "choices": 10,
+          "channelFrames": 0,
+          "keyboardChannels": [
+            {
+              "id": "forge-sigil",
+              "elapsed": 2.4042999999999637
+            }
+          ],
+          "warningTypes": [
+            "cone",
+            "circle"
+          ],
+          "channelInterruptions": 1,
+          "status": "won",
+          "kills": 293,
+          "time": 174.69322222223983,
+          "hp": 120,
+          "pois": [
+            "burial-relic",
+            "forge-cache",
+            "forge-sigil"
+          ],
+          "bossWard": 0
+        },
+        {
+          "id": "aqueduct",
+          "seed": 913,
+          "rooms": [
+            0,
+            1,
+            2
+          ],
+          "choices": 4,
+          "channelFrames": 0,
+          "keyboardChannels": [
+            {
+              "id": "sluice-wheel",
+              "elapsed": 2.416800000000073
+            }
+          ],
+          "warningTypes": [
+            "pressure",
+            "cone",
+            "circle",
+            "ring"
+          ],
+          "channelInterruptions": 1,
+          "status": "won",
+          "kills": 116,
+          "time": 73.49728888888534,
+          "hp": 120,
+          "pois": [
+            "sluice-wheel"
+          ],
+          "bossWard": 0.2
+        }
+      ]
+    },
+    "browser-en": {
+      "checks": 61,
+      "status": "passed",
+      "allChecksPassed": true,
+      "storageKeysIsolated": true,
+      "normalSavePreserved": true,
+      "storyNodesClaimed": 7,
+      "expeditions": [
+        {
+          "id": "grave",
+          "seed": 913,
+          "rooms": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "choices": 10,
+          "channelFrames": 0,
+          "keyboardChannels": [
+            {
+              "id": "forge-sigil",
+              "elapsed": 2.407200000000273
+            }
+          ],
+          "warningTypes": [
+            "cone",
+            "circle"
+          ],
+          "channelInterruptions": 1,
+          "status": "won",
+          "kills": 293,
+          "time": 174.70167777779582,
+          "hp": 120,
+          "pois": [
+            "burial-relic",
+            "forge-cache",
+            "forge-sigil"
+          ],
+          "bossWard": 0
+        },
+        {
+          "id": "aqueduct",
+          "seed": 913,
+          "rooms": [
+            0,
+            1,
+            2
+          ],
+          "choices": 4,
+          "channelFrames": 0,
+          "keyboardChannels": [
+            {
+              "id": "sluice-wheel",
+              "elapsed": 2.4043999999880583
+            }
+          ],
+          "warningTypes": [
+            "pressure",
+            "cone",
+            "circle",
+            "ring"
+          ],
+          "channelInterruptions": 1,
+          "status": "won",
+          "kills": 116,
+          "time": 73.47668888887334,
+          "hp": 120,
+          "pois": [
+            "sluice-wheel"
+          ],
+          "bossWard": 0.2
+        }
+      ]
+    },
+    "legacy-browser-zh": {
+      "checks": 30,
+      "status": "passed",
+      "allChecksPassed": true,
+      "storageKeysIsolated": true
+    },
+    "legacy-browser-en": {
+      "checks": 29,
+      "status": "passed",
+      "allChecksPassed": true,
+      "storageKeysIsolated": true
+    }
+  },
+  "sourceSha256": {
+    "src/actors.js": "e1198c83b70b2a72c583cb7d3026005e9661fc41167c5989418927df57d467fe",
+    "src/audio.js": "1e19fe4b973afc377d683c44179f9d308fee80ed272751bc4f02da8ea76f16a4",
+    "src/blessing-cards.js": "d3b5b2e08a7be66b7285c5e97e77d72164b2125da3ff75cdf5352a7436d7dee2",
+    "src/camp-inventory.js": "66b04a8af9219d0a6aceba03c2384e0955134031c531ee41e443fe113c58c3ed",
+    "src/camp-preview.js": "2f699d57241ff7ee071c63453bd1d78f037a6c4bc65c5a276c43cde9255275e1",
+    "src/camp-ui.js": "cabdab7082b0936a499efa6b8660e3a25fa9cd84705ca8a3153ef381002aab65",
+    "src/campaign-ui.js": "85f9a28f79f63325eb5b3675b04e22ee79fe3cc67f3ea5191bbacf3034a64139",
+    "src/campaign.js": "6d00a4b0fe133ea5ab940ac77cfb2da68b1c270fba5112f2a1c2de749ec77f7a",
+    "src/content.js": "50ee5842a70f50a85ac012c9603b6b4760bf847769b914d1b19e58129f239556",
+    "src/element-effects.js": "40944e762a92d7235f89608a0419b07f77eee2c483e53af187952ce7e00a5f53",
+    "src/environment.js": "2fa9ffab594cf8a08e5ea6711b17258860f88785423cd56ba386adbb27157773",
+    "src/game.js": "e4e5d0c5943c14fdcd99b5e267d92aca32f5f38b6a45b1200c287f0cd12a124f",
+    "src/gear-appearance.js": "527ecb4a0aa7d7fa1222fb88582758cb7478258d0cf6e60a22435f5324fcfdbf",
+    "src/i18n.js": "044c83f6db2bf7fc2e34c97046d2bf49634afd47515ec233e9dcd194198e615d",
+    "src/icons.js": "beb7b671b2578ab6d47939291b69533fff2499475189029f6aa3ea7f0e601854",
+    "src/locales/camp-en.js": "2a0d9524aa61fbdcbdd3cb207dcd409b0d40b6a129615ad9ee014b49d5ef63af",
+    "src/locales/camp-v6-en.js": "4cdbf6b31455c8697649794bb4423fa7f6e8bad21a3e43b24ff0c610d526ba6d",
+    "src/locales/campaign-en.js": "a42cac617228bdda762f6fe1ae986b504efd8e15f7c62f7443e3d19090c77c3a",
+    "src/locales/game-en.js": "4bf997e2e91f83ed4838af2e2e501a6d3080d92ff3632d3a00bdba4c47092d6f",
+    "src/locales/inventory-en.js": "a0c8bdc6439f6b0d840ec0972c4bcbbe9697159f799c5da2822f3606126a2acd",
+    "src/locales/ui-en.js": "4d6f9af339c589ba800f0fe4a7ef39c70708cf1ecaf133f53c540bacec68bb6c",
+    "src/main.js": "6b8609cd3c1052015007371d38e84dd6b84a42b181fd2856e3b86ce21c8bc538",
+    "src/profile.js": "d5cc016f767ddb6ed8c008de1972b6034f2b67df3db49ede0c134f2320489507",
+    "src/qa-campaign-runner.js": "40b51d175424ab8e44de809350705a3483e825dddd8f3bceddbdc7711f855157",
+    "src/qa-flow-runner.js": "0098aefc5540fb1676e9911a5e1a4bb76c5ec397bbb24876cb36c83102d7038e",
+    "src/view.js": "8769efbf129e6b2880a2e2813c83c1323459d8d6e25f185d2b582f008a927334",
+    "src/world.js": "72c6df715829b0d86e7c6263e8ef1f6c45629a70a46a2270c98a7c6ed6a8736b"
+  },
+  "notVerified": [
+    "Human difficulty and engagement",
+    "Long-session performance and cross-device support",
+    "Commercial-release acceptance"
+  ],
+  "deployment": "No public game site deployed"
+}

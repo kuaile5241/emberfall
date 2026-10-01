@@ -1,0 +1,72 @@
+.campaign-overview { display: flex; align-items: center; width: 100%; gap: 12px; border: 1px solid #a994683b; border-radius: 13px !important; padding: 14px 16px; margin: 0 0 12px; text-align: left; color: #e8dbc5; background: linear-gradient(115deg,#302c27e8,#222226e0); }
+.campaign-overview:hover { border-color: #c7a66b9c; background: linear-gradient(115deg,#393129,#272529); }
+.campaign-overview.is-ready { border-color: #caab7794; }
+.campaign-overview-seal { flex: 0 0 32px; width: 32px; color: #c9a97c; }
+.campaign-overview-copy { flex: 1; min-width: 0; }
+.campaign-overview-copy>small { display: block; font-size: 9px; letter-spacing: 1px; color: #d0ad79; }
+.campaign-overview-copy>small>span { color: #a6a1a1; }
+.campaign-overview-copy>strong { display: block; margin: 5px 0; font: 17px 'Songti SC',Georgia,serif; font-weight: 500; color: #eadfc9; }
+.campaign-overview-copy>span { display: block; color: #a7a3a0; font-size: 10px; line-height: 1.6; }
+.campaign-overview-progress { flex: 0 0 auto; text-align: right; padding-left: 8px; }
+.campaign-overview-progress>b { display: block; color: #debf87; font: 17px Georgia,serif; }
+.campaign-overview-progress>b>i { font-size: 11px; font-style: normal; color: #99949a; }
+.campaign-overview-progress>small { display: block; font-size: 8px; color: #aaa2a0; margin: 4px 0; }
+.campaign-overview-progress>.camp-icon { width: 16px; height: 16px; color: #c7a975; }
+.campaign-expeditions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin-bottom: 13px; }
+.campaign-destination { position: relative; isolation: isolate; display: flex; flex-direction: column; overflow: hidden; text-align: left; border: 1px solid #8c83704d; border-radius: 14px !important; padding: 14px 16px 12px; min-height: 184px; background: #252427; color: #e4d7bb; }
+.campaign-destination::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: .32; background: linear-gradient(150deg,#201b15dd,#1b1a1ec9),url('/assets/art/key-art.png') 65% 45% / cover; }
+.campaign-destination-aqueduct::before { background: radial-gradient(ellipse at 85% 90%,#68729066,transparent 68%),repeating-linear-gradient(175deg,transparent 0 18px,#7b839017 20px 21px),linear-gradient(155deg,#15171f,#2d2931); opacity: 1; }
+.campaign-destination.is-selected { border-color: #d3ae76; box-shadow: inset 0 0 0 1px #c5a67535; }
+.campaign-destination:hover:not(:disabled) { border-color: #d3ae76; }
+.campaign-destination.is-locked { opacity: .66; }
+.campaign-destination-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.campaign-destination-top>small { color: #c4aa7d; font-size: 9px; letter-spacing: 1px; }
+.campaign-destination-top>span { display: flex; align-items: center; gap: 4px; color: #b9afb2; font-size: 8px; }
+.campaign-destination-top .camp-icon { width: 11px; height: 11px; }
+.campaign-destination>strong { display: block; font: 23px 'Songti SC',Georgia,serif; font-weight: 500; letter-spacing: 2px; margin: 16px 0 7px; color: #ede0c6; }
+.campaign-destination-subtitle { display: block; color: #b9ac99; font-size: 10px; line-height: 1.5; }
+.campaign-destination-route { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 15px; font-size: 8px; line-height: 1.5; color: #a09a9c; }
+.campaign-destination-route>i { font-style: normal; color: #82797b; }
+.campaign-destination-bottom { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: auto; padding-top: 8px; border-top: 1px solid #b2a48324; color: #c1af91; font-size: 8px; line-height: 1.5; }
+.campaign-journal { margin-bottom: 26px; }
+.campaign-journal-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.campaign-journal-heading>div>span { color: #bca17c; font-size: 9px; letter-spacing: 1px; }
+.campaign-journal-heading h3 { font: 25px 'Songti SC',Georgia,serif; font-weight: 500; margin: 4px 0 0; color: #e8dac3; letter-spacing: 2px; }
+.campaign-journal-heading>strong { color: #c6ab7c; font: 17px Georgia,serif; }
+.campaign-journal-help { font-size: 10px; line-height: 1.8; color: #a49f9e; margin: 10px 0 20px; }
+.campaign-story-chapter { margin: 0 0 18px; }
+.campaign-story-chapter>h4 { display: flex; gap: 12px; align-items: center; margin: 0 0 10px; color: #d9c9ad; font-size: 12px; font-weight: 500; }
+.campaign-story-chapter>h4>span { color: #aa9b87; font-size: 9px; font-weight: 400; padding-right: 12px; border-right: 1px solid #a492773d; }
+.campaign-story-list { display: grid; gap: 9px; }
+.campaign-story-node { position: relative; border: 1px solid #a99b802f; border-radius: 12px; background: #242326dd; padding: 15px 16px 12px 49px; }
+.campaign-story-node.is-completed { border-color: #c6a76b96; background: linear-gradient(110deg,#393026c4,#242326ee); }
+.campaign-story-node.is-claimed { border-color: #9987673d; }
+.campaign-story-node.is-locked { background: #1e1e22b0; color: #aaa; }
+.campaign-story-step { position: absolute; top: 16px; left: 15px; color: #c4a671; font: 17px Georgia,serif; }
+.campaign-story-step>.camp-icon { width: 20px; height: 20px; }
+.campaign-story-node.is-locked .campaign-story-step { color: #797378; }
+.campaign-story-heading { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+.campaign-story-heading>h5 { margin: 0; font: 16px 'Songti SC',Georgia,serif; font-weight: 500; color: #e3d5bd; }
+.campaign-story-heading>span { flex-shrink: 0; color: #aea6a1; font-size: 8px; }
+.campaign-story-node>p { color: #aca5a3; font-size: 10px; line-height: 1.7; margin: 7px 0; }
+.campaign-story-node .campaign-story-lock { display: flex; align-items: flex-start; gap: 5px; color: #a9987d; font-size: 9px; }
+.campaign-story-lock .camp-icon { width: 12px; height: 12px; flex-shrink: 0; margin-top: 2px; }
+.campaign-story-entry { margin: 8px 0 11px; }
+.campaign-story-entry>summary { cursor: pointer; width: fit-content; font-size: 9px; color: #bea580; }
+.campaign-story-entry>div { border-left: 1px solid #a38c674a; margin: 9px 0 0 3px; padding-left: 11px; }
+.campaign-story-entry small { font-size: 9px; color: #d0b28a; }
+.campaign-story-entry p { font-size: 10px; color: #bcb4ac; line-height: 1.85; margin: 5px 0; }
+.campaign-story-bottom { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 9px; border-top: 1px solid #a7977524; min-height: 24px; }
+.campaign-story-evidence { color: #958d90; font-size: 8px; }
+.campaign-story-reward { display: flex; align-items: center; gap: 4px; color: #c5ae85; font-size: 10px; }
+.campaign-story-reward>.camp-icon { width: 12px; height: 12px; }
+.campaign-story-reward>i { margin-inline: 2px; color: #7d7272; font-style: normal; }
+.campaign-story-claim { margin-left: auto; border: 1px solid #c7a46b8c; background: #5b48302f; border-radius: 6px !important; padding: 7px 10px; color: #e1c998; font-size: 9px !important; }
+.campaign-story-claim:hover:not(:disabled) { background: #69503465; border-color: #d2b17c; }
+.campaign-story-claim:disabled { opacity: .45; }
+.campaign-story-collected { display: flex; align-items: center; gap: 4px; margin-left: auto; color: #a69a85; font-size: 8px; }
+.campaign-story-collected>.camp-icon { width: 12px; height: 12px; }
+.camp-shell:lang(en) .campaign-destination>strong { font-size: 20px; letter-spacing: 0; }
+.camp-shell:lang(en) .campaign-overview-copy>strong,.camp-shell:lang(en) .campaign-story-heading>h5 { letter-spacing: 0; line-height: 1.35; }
+@media (max-width: 950px) { .campaign-destination { padding-inline: 12px; min-height: 194px; }.campaign-destination>strong { font-size: 21px; letter-spacing: 1px; }.campaign-overview { padding-inline: 12px; gap: 9px; }.campaign-overview-copy>strong { font-size: 16px; } }
+@media (max-width: 450px) { .campaign-expeditions { gap: 8px; }.campaign-destination { padding: 12px 10px 10px; }.campaign-destination>strong { font-size: 20px; letter-spacing: 0; }.campaign-destination-top { align-items: flex-start; flex-wrap: wrap; }.campaign-destination-bottom { flex-wrap: wrap; }.camp-shell:lang(en) .campaign-destination>strong { font-size: 18px; }.campaign-overview-progress>small { display: none; }.campaign-overview-seal { display: none; }.campaign-story-node { padding-left: 41px; padding-right: 12px; }.campaign-story-step { left: 12px; }.campaign-story-heading { align-items: flex-start; }.campaign-story-heading>h5 { font-size: 15px; } }

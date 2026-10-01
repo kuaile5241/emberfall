@@ -1,0 +1,50 @@
+{
+  "capturedAt": "2026-10-01T08:58:00.315Z",
+  "entry": "/assets/index-Cimk0qL8.js",
+  "console": {
+    "campaignZh": {
+      "since": "2026-10-01T08:56:21.509Z",
+      "current": [],
+      "earlierDebugging": [
+        {
+          "level": "error",
+          "message": "Campaign browser acceptance failed: Error: Timed out: keyboard E channel completes\n    at p (http://127.0.0.1:4173/assets/qa-campaign-runner-IU2zORmz.js:1:3588)\n    at async h (http://127.0.0.1:4173/assets/qa-campaign-runner-IU2zORmz.js:1:5549)\n    at async f (http://127.0.0.1:4173/assets/qa-campaign-runner-IU2zORmz.js:1:7314)",
+          "timestamp": "2026-10-01T08:44:51.806Z",
+          "url": "http://127.0.0.1:4173/assets/qa-campaign-runner-IU2zORmz.js"
+        },
+        {
+          "level": "error",
+          "message": "Campaign browser acceptance failed: Error: grave wins without modifying simulation state\n    at c (http://127.0.0.1:4173/assets/qa-campaign-runner-D4-cPqB2.js:1:3387)\n    at h (http://127.0.0.1:4173/assets/qa-campaign-runner-D4-cPqB2.js:1:6351)\n    at async f (http://127.0.0.1:4173/assets/qa-campaign-runner-D4-cPqB2.js:1:7485)",
+          "timestamp": "2026-10-01T08:50:16.773Z",
+          "url": "http://127.0.0.1:4173/assets/qa-campaign-runner-D4-cPqB2.js"
+        }
+      ]
+    },
+    "campaignEn": {
+      "since": "2026-10-01T08:57:08.340Z",
+      "current": [],
+      "earlierDebugging": [
+        {
+          "level": "error",
+          "message": "Campaign browser acceptance failed: Error: grave keyboard hold completes forge-sigil\n    at c (http://127.0.0.1:4173/assets/qa-campaign-runner-H0eT-cK4.js:1:3387)\n    at h (http://127.0.0.1:4173/assets/qa-campaign-runner-H0eT-cK4.js:1:5851)\n    at async f (http://127.0.0.1:4173/assets/qa-campaign-runner-H0eT-cK4.js:1:7485)",
+          "timestamp": "2026-10-01T08:51:57.170Z",
+          "url": "http://127.0.0.1:4173/assets/qa-campaign-runner-H0eT-cK4.js"
+        }
+      ]
+    },
+    "legacyZh": [],
+    "legacyEn": []
+  },
+  "layout": {
+    "campaignZh": {
+      "height": 720,
+      "horizontalOverflow": false,
+      "width": 1280
+    },
+    "campaignEn": {
+      "height": 720,
+      "horizontalOverflow": false,
+      "width": 1280
+    }
+  }
+}
