@@ -1,0 +1,383 @@
+[
+  {
+    "kind": "Knight",
+    "source": "public/assets/vendor/kaykit/Knight.glb",
+    "count_scope": "Shipped glTF POSITION accessor and index counts, including normal/color attribute seam splits",
+    "animation_count": 76,
+    "meshes": [
+      {
+        "name": "Knight_Helmet",
+        "original": {
+          "vertices": 504,
+          "triangles": 480
+        },
+        "rounded": {
+          "vertices": 5924,
+          "triangles": 9176
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Knight_Cape",
+        "original": {
+          "vertices": 56,
+          "triangles": 84
+        },
+        "rounded": {
+          "vertices": 201,
+          "triangles": 332
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Knight_ArmLeft",
+        "original": {
+          "vertices": 486,
+          "triangles": 594
+        },
+        "rounded": {
+          "vertices": 3855,
+          "triangles": 6320
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Knight_ArmRight",
+        "original": {
+          "vertices": 486,
+          "triangles": 594
+        },
+        "rounded": {
+          "vertices": 3845,
+          "triangles": 6320
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Knight_Body",
+        "original": {
+          "vertices": 1141,
+          "triangles": 1052
+        },
+        "rounded": {
+          "vertices": 3575,
+          "triangles": 4826
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Knight_Clasp_Gem",
+        "original": null,
+        "rounded": {
+          "vertices": 271,
+          "triangles": 440
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Knight_Clasp_Rim",
+        "original": null,
+        "rounded": {
+          "vertices": 271,
+          "triangles": 440
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Knight_Head",
+        "original": {
+          "vertices": 727,
+          "triangles": 956
+        },
+        "rounded": {
+          "vertices": 5293,
+          "triangles": 8888
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Knight_LegLeft",
+        "original": {
+          "vertices": 438,
+          "triangles": 476
+        },
+        "rounded": {
+          "vertices": 4181,
+          "triangles": 6904
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Knight_LegRight",
+        "original": {
+          "vertices": 438,
+          "triangles": 476
+        },
+        "rounded": {
+          "vertices": 4135,
+          "triangles": 6904
+        },
+        "generated_geometry": false
+      }
+    ]
+  },
+  {
+    "kind": "Rogue_Hooded",
+    "source": "public/assets/vendor/kaykit/Rogue_Hooded.glb",
+    "count_scope": "Shipped glTF POSITION accessor and index counts, including normal/color attribute seam splits",
+    "animation_count": 76,
+    "meshes": [
+      {
+        "name": "Rogue_Cape",
+        "original": {
+          "vertices": 56,
+          "triangles": 84
+        },
+        "rounded": {
+          "vertices": 201,
+          "triangles": 332
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Rogue_ArmLeft",
+        "original": {
+          "vertices": 440,
+          "triangles": 580
+        },
+        "rounded": {
+          "vertices": 3308,
+          "triangles": 5852
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Rogue_ArmRight",
+        "original": {
+          "vertices": 440,
+          "triangles": 580
+        },
+        "rounded": {
+          "vertices": 3308,
+          "triangles": 5852
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Rogue_Body",
+        "original": {
+          "vertices": 1124,
+          "triangles": 1172
+        },
+        "rounded": {
+          "vertices": 3562,
+          "triangles": 5354
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Rogue_Clasp_Gem",
+        "original": null,
+        "rounded": {
+          "vertices": 271,
+          "triangles": 440
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Rogue_Clasp_Rim",
+        "original": null,
+        "rounded": {
+          "vertices": 271,
+          "triangles": 440
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Rogue_Head_Hooded",
+        "original": {
+          "vertices": 592,
+          "triangles": 773
+        },
+        "rounded": {
+          "vertices": 5990,
+          "triangles": 10246
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Rogue_LegLeft",
+        "original": {
+          "vertices": 300,
+          "triangles": 408
+        },
+        "rounded": {
+          "vertices": 2239,
+          "triangles": 3952
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Rogue_LegRight",
+        "original": {
+          "vertices": 300,
+          "triangles": 408
+        },
+        "rounded": {
+          "vertices": 2234,
+          "triangles": 3952
+        },
+        "generated_geometry": false
+      }
+    ]
+  },
+  {
+    "kind": "Mage",
+    "source": "public/assets/models-v3/Mage.glb",
+    "count_scope": "Shipped glTF POSITION accessor and index counts, including normal/color attribute seam splits",
+    "animation_count": 76,
+    "meshes": [
+      {
+        "name": "Mage_Cape",
+        "original": {
+          "vertices": 56,
+          "triangles": 84
+        },
+        "rounded": {
+          "vertices": 201,
+          "triangles": 324
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Mage_ArmLeft",
+        "original": {
+          "vertices": 330,
+          "triangles": 468
+        },
+        "rounded": {
+          "vertices": 1961,
+          "triangles": 3492
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Mage_ArmRight",
+        "original": {
+          "vertices": 330,
+          "triangles": 468
+        },
+        "rounded": {
+          "vertices": 1972,
+          "triangles": 3492
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Mage_Body",
+        "original": {
+          "vertices": 1275,
+          "triangles": 1230
+        },
+        "rounded": {
+          "vertices": 4490,
+          "triangles": 6554
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Mage_Clasp_Gem",
+        "original": null,
+        "rounded": {
+          "vertices": 271,
+          "triangles": 440
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Mage_Clasp_Rim",
+        "original": null,
+        "rounded": {
+          "vertices": 271,
+          "triangles": 440
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Mage_Hat",
+        "original": {
+          "vertices": 402,
+          "triangles": 396
+        },
+        "rounded": {
+          "vertices": 695,
+          "triangles": 1200
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Mage_Hat_Band",
+        "original": null,
+        "rounded": {
+          "vertices": 484,
+          "triangles": 764
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Mage_Hat_Clasp",
+        "original": null,
+        "rounded": {
+          "vertices": 225,
+          "triangles": 384
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Mage_Hat_Crown",
+        "original": null,
+        "rounded": {
+          "vertices": 962,
+          "triangles": 1920
+        },
+        "generated_geometry": true
+      },
+      {
+        "name": "Mage_Head",
+        "original": {
+          "vertices": 761,
+          "triangles": 1027
+        },
+        "rounded": {
+          "vertices": 7394,
+          "triangles": 13014
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Mage_LegLeft",
+        "original": {
+          "vertices": 326,
+          "triangles": 418
+        },
+        "rounded": {
+          "vertices": 2412,
+          "triangles": 4224
+        },
+        "generated_geometry": false
+      },
+      {
+        "name": "Mage_LegRight",
+        "original": {
+          "vertices": 326,
+          "triangles": 418
+        },
+        "rounded": {
+          "vertices": 2416,
+          "triangles": 4224
+        },
+        "generated_geometry": false
+      }
+    ]
+  }
+]

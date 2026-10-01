@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { Game } from '../src/game.js';
 import { blessingMarkup, markBlessingSelected } from '../src/blessing-cards.js';
+import { t, getLocale, setLocale, initLocale } from '../src/i18n.js';
 
 // Exercise the shipped input/overlay code, rather than a copy of its state machine.
 // Rendering, audio, persistence and browser scheduling are the only substituted edges.
@@ -18,7 +19,7 @@ const uiLogic = [
   sourceBetween('function clearInput()', '\nfunction syncAudio()'),
   sourceBetween('function showOverlay(', '\nfunction updateRecordLabel()'),
   sourceBetween('function openPause(', '\nfunction closePopup()'),
-  sourceBetween('function showUpgrade()', '\nfunction showResult()'),
+  sourceBetween('let pendingBlessingIndex = null;', '\nfunction showResult()'),
   sourceBetween('function consumeEvents()', '\nfunction flashSkill('),
   sourceBetween('function action(', '\nui.world.tabIndex'),
   sourceBetween("addEventListener('keydown',", "\naddEventListener('keyup',"),
@@ -65,7 +66,9 @@ class StubElement {
   focus() {}
 }
 
-function fixture({ reducedMotion = false } = {}) {
+function fixture({ reducedMotion = false, locale = 'zh-CN' } = {}) {
+  initLocale();
+  setLocale(locale);
   const game = new Game({ seed: 917 }).start();
   game.enemies = [];
   game.player.invulnerable = 9999;
@@ -80,7 +83,7 @@ function fixture({ reducedMotion = false } = {}) {
   let timerId = 0, timerNow = 0, frameNow = 0;
   const noop = () => {};
   const context = vm.createContext({
-    game, ready: true, overlay: null, blessingSelectionPending: false,
+    game, ready: true, overlay: null, blessingSelectionPending: false, pauseMessage: '', qaManualDrive: false,
     held: new Set(), pulses: { dash: false, skill: false, potion: false, interact: false },
     pointer: { active: false, attack: false, buttonAttack: false }, queuedAttack: false,
     document: { hidden: false }, Element: StubElement,
@@ -89,7 +92,7 @@ function fixture({ reducedMotion = false } = {}) {
     view: { render: noop, effect: noop }, audio: { play: noop }, campPreview: null,
     previousFrame: 0, hudClock: 0, checkpointClock: 0, impactTime: 0,
     flash: 0, killBannerTimer: 0, lastRoom: -1,
-    blessingMarkup, markBlessingSelected,
+    blessingMarkup, markBlessingSelected, t, getLocale, setLocale,
     syncAudio: noop, updateHud: noop, checkpointExpedition: noop,
     floatText: noop, flashSkill: noop, showToast: noop,
     showResult: () => assert.fail('fixture unexpectedly reached a run result'),
@@ -151,9 +154,10 @@ function assertKeyboardMoves(harness) {
     'the actual keydown → frame → Game input path must move after the last reward');
 }
 
+for (const locale of ['zh-CN', 'en']) {
 for (const reducedMotion of [false, true]) {
-  test(`a single clicked blessing releases keyboard movement and Escape (reduced motion: ${reducedMotion})`, () => {
-    const harness = fixture({ reducedMotion });
+  test(`a single clicked blessing releases keyboard movement and Escape (${locale}, reduced motion: ${reducedMotion})`, () => {
+    const harness = fixture({ reducedMotion, locale });
     harness.offerLevels();
     harness.clickChoice(0);
     harness.advance(reducedMotion ? 0 : 200);
@@ -168,8 +172,8 @@ for (const reducedMotion of [false, true]) {
   });
 }
 
-test('two queued levels accept their own keyboard choice and release movement after the final card', () => {
-  const harness = fixture();
+test(`two queued levels accept their own keyboard choice and release movement after the final card (${locale})`, () => {
+  const harness = fixture({ locale });
   harness.offerLevels(2);
   harness.key('Digit1');
   harness.advance(200);
@@ -183,8 +187,8 @@ test('two queued levels accept their own keyboard choice and release movement af
   assertKeyboardMoves(harness);
 });
 
-test('E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable', () => {
-  const harness = fixture();
+test(`E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable (${locale})`, () => {
+  const harness = fixture({ locale });
   harness.game._finishRoom();
   const lockedSurfaceCount = harness.game._allowedSurfaces.length;
   harness.key('KeyE');
@@ -200,8 +204,8 @@ test('E claims a cleared-room blessing, unlocks its passage and leaves keyboard 
   assertKeyboardMoves(harness);
 });
 
-test('repeated clicks and number keys during the 200ms flourish grant exactly one blessing', () => {
-  const harness = fixture();
+test(`repeated clicks and number keys during the 200ms flourish grant exactly one blessing (${locale})`, () => {
+  const harness = fixture({ locale });
   harness.offerLevels();
   harness.clickChoice(0);
   harness.clickChoice(0);
@@ -218,8 +222,8 @@ test('repeated clicks and number keys during the 200ms flourish grant exactly on
   assertKeyboardMoves(harness);
 });
 
-test('clicking pause during the blessing flourish preserves the pause until the player resumes', () => {
-  const harness = fixture();
+test(`clicking pause during the blessing flourish preserves the pause until the player resumes (${locale})`, () => {
+  const harness = fixture({ locale });
   harness.offerLevels();
   harness.clickChoice(0);
   harness.clickPause();
@@ -235,3 +239,75 @@ test('clicking pause during the blessing flourish preserves the pause until the 
   assert.equal(harness.context.overlay, null);
   assertKeyboardMoves(harness);
 });
+
+for (const reducedMotion of [false, true]) {
+  test(`resuming during a blessing selection cannot spend an old card on the next queued level (${locale}, reduced motion: ${reducedMotion})`, () => {
+    const harness = fixture({ locale, reducedMotion });
+    harness.offerLevels(2);
+    const firstChoiceId = harness.game.choices[0].id;
+    harness.clickChoice(0);
+    harness.clickPause();
+    harness.key('Escape');
+    assert.equal(harness.context.overlay, 'upgrade');
+    assert.equal(harness.context.blessingSelectionPending, true,
+      'pause → resume must not release the in-flight selection guard');
+    assert.ok(harness.context.ui['overlay-content'].children.every(button => button.disabled),
+      'the restored old cards stay visibly disabled');
+    assert.equal(harness.context.ui['overlay-content'].children[0].attributes.get('aria-pressed'), 'true',
+      'the original selected card keeps its selection flourish after resuming');
+    harness.clickChoice(1);
+    harness.key('Digit3');
+    harness.advance(reducedMotion ? 0 : 200);
+    assert.equal(boonCount(harness.game), 1,
+      'the old card click can only grant the first selected blessing');
+    assert.equal(harness.game.boons[0].id, firstChoiceId);
+    assert.equal(harness.game.status, 'upgrade');
+    assert.equal(harness.context.overlay, 'upgrade');
+    assert.equal(harness.context.blessingSelectionPending, false);
+    assert.ok(harness.context.ui['overlay-content'].children.every(button => !button.disabled),
+      'the genuine next choice set is now selectable');
+    const secondChoiceId = harness.game.choices[1].id;
+    harness.clickChoice(1);
+    harness.advance(reducedMotion ? 0 : 200);
+    assert.equal(boonCount(harness.game), 2);
+    assert.ok(harness.game.boons.some(boon => boon.id === secondChoiceId));
+    assert.equal(harness.game.status, 'playing');
+    assertKeyboardMoves(harness);
+  });
+}
+
+test(`redrawing an open blessing in the other language preserves its choices and releases movement (${locale})`, () => {
+  const harness = fixture({ locale });
+  harness.offerLevels();
+  const choices = JSON.stringify(harness.game.choices);
+  setLocale(locale === 'en' ? 'zh-CN' : 'en');
+  harness.context.showUpgrade(true);
+  assert.ok(harness.context.ui['overlay-content'].innerHTML.includes(t('选择祝福')));
+  assert.equal(JSON.stringify(harness.game.choices), choices);
+  assert.equal(boonCount(harness.game), 0);
+  harness.clickChoice(2);
+  harness.advance(200);
+  assert.equal(harness.game.boons[0].id, JSON.parse(choices)[2].id);
+  assertKeyboardMoves(harness);
+});
+
+test(`a language redraw during the selection flourish cannot grant a second reward or trap movement (${locale})`, () => {
+  const harness = fixture({ locale });
+  harness.offerLevels();
+  const selectedId = harness.game.choices[0].id;
+  harness.clickChoice(0);
+  assert.equal(harness.context.ui['language-switch'].disabled, true);
+  harness.advance(75);
+  setLocale(locale === 'en' ? 'zh-CN' : 'en');
+  harness.context.showUpgrade(true);
+  assert.equal(harness.context.blessingSelectionPending, true);
+  harness.clickChoice(1);
+  harness.key('Digit3');
+  harness.advance(125);
+  assert.equal(boonCount(harness.game), 1);
+  assert.equal(harness.game.boons[0].id, selectedId);
+  assert.equal(harness.context.blessingSelectionPending, false);
+  assert.equal(harness.context.ui['language-switch'].disabled, false);
+  assertKeyboardMoves(harness);
+});
+}

@@ -1,0 +1,71 @@
+{
+  "verifiedAt": "2026-10-01T07:21:54.232889+00:00",
+  "version": "0.6.1",
+  "build": "index-DWwNI3jY.js",
+  "allNodeTests": {
+    "tests": 157,
+    "passed": 157,
+    "failed": 0
+  },
+  "flowTests": {
+    "status": "passed",
+    "tests": 86,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "zh": {
+      "status": "passed",
+      "checks": 30,
+      "expedition": {
+        "bossKills": 1,
+        "choices": 10,
+        "difficulty": "normal",
+        "gold": 1050,
+        "hp": 110.77559999999998,
+        "kills": 293,
+        "seconds": 150.13346666665788,
+        "seed": 913,
+        "status": "won"
+      },
+      "elapsedSeconds": 53.287899999976155,
+      "runs": 2,
+      "wins": 1,
+      "bestRoom": 6,
+      "consoleErrorsWarnings": 0
+    },
+    "en": {
+      "status": "passed",
+      "checks": 30,
+      "expedition": {
+        "bossKills": 1,
+        "choices": 10,
+        "difficulty": "normal",
+        "gold": 1091,
+        "hp": 168,
+        "kills": 293,
+        "seconds": 161.9896222222052,
+        "seed": 913,
+        "status": "won"
+      },
+      "elapsedSeconds": 27.36119999998808,
+      "runs": 2,
+      "wins": 1,
+      "bestRoom": 6,
+      "consoleErrorsWarnings": 0
+    }
+  },
+  "saveIsolation": {
+    "ordinaryKeys": [
+      "emberfall.profile.v4",
+      "emberfall.records.v1",
+      "emberfall.settings.v1"
+    ],
+    "unchanged": true,
+    "ordinaryQaHook": "undefined",
+    "ordinaryFlowHook": "undefined"
+  },
+  "limitations": "Fixed 30 Hz input driver with real DOM handlers, event consumption, rendering and persistence. No combat attributes or enemies are modified; this is not a real-time performance or human difficulty test.",
+  "gitAtVerification": "Local changes only; no commit or push this turn."
+}

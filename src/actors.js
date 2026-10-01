@@ -1,10 +1,11 @@
 import * as THREE from 'three';
 import { clone as cloneSkeleton } from 'three/addons/utils/SkeletonUtils.js';
+import { applyEquipmentAppearance, disposeEquipmentAppearance } from './gear-appearance.js';
 
 export const ACTOR_ASSETS = Object.freeze({
-  Knight: '/assets/vendor/kaykit/Knight.glb',
-  Rogue_Hooded: '/assets/vendor/kaykit/Rogue_Hooded.glb',
-  Mage: '/assets/models-v3/Mage.glb',
+  Knight: '/assets/models-v6/Knight.glb',
+  Rogue_Hooded: '/assets/models-v6/Rogue_Hooded.glb',
+  Mage: '/assets/models-v6/Mage.glb',
   Skeleton_Warrior: '/assets/vendor/kaykit/Skeleton_Warrior.glb',
   Skeleton_Mage: '/assets/vendor/kaykit/Skeleton_Mage.glb',
   Skeleton_Blade: '/assets/vendor/kaykit/Skeleton_Blade.glb',
@@ -149,7 +150,7 @@ export class ActorSystem {
     model.traverse(child => {
       if (child.isMesh) child.visible = child.name.startsWith(prefix);
     });
-    this._materials(model, u, new THREE.Color(isPlayer ? 0xc6c1b9 : 0xb2afa7));
+    this._materials(model, u, isPlayer ? null : new THREE.Color(0xb2afa7));
     if (isPlayer) {
       if (element === 'water') this._attach(root, this.models.Water_Staff ? 'Water_Staff' : 'Skeleton_Staff', 'r', weapon?.id?.includes('scepter') ? .87 : 1);
       else if (element === 'lightning') this._attach(root, this.models.Lightning_Spear ? 'Lightning_Spear' : 'Skeleton_Staff', 'r', weapon?.id?.includes('halberd') ? 1.14 : 1);
@@ -158,6 +159,7 @@ export class ActorSystem {
         const shield = model.getObjectByName('Badge_Shield');
         if (shield) shield.visible = !weapon?.id?.includes('greatsword');
       }
+      applyEquipmentAppearance(root, weapon);
     } else {
       this._attach(root, entity.type === 'ranged' ? 'Skeleton_Staff' : ['brute', 'boss'].includes(entity.type) ? 'Skeleton_Axe' : 'Skeleton_Blade');
       if (['brute', 'boss'].includes(entity.type)) this._attach(root, 'Skeleton_Shield_Large_A', 'l');
@@ -222,7 +224,14 @@ export class ActorSystem {
 
   event(event) {
     const id = event.target === 'player' || ['attack', 'dash', 'skill', 'death', 'heal', 'equip', 'buff', 'shield'].includes(event.type) ? 'player' : event.id;
-    const root = this.actors.get(id);
+    let root = this.actors.get(id);
+    if (id === 'player' && ['equip', 'attack', 'skill'].includes(event.type) && this.game?.player && this.game.weapon) {
+      // Events arrive before the next render. Replace the rig now so an immediate
+      // attack/cast is delivered to the new weapon instead of a discarded actor.
+      const weapon = this.game.weapon;
+      if (event.type !== 'equip' && event.weaponId && event.weaponId !== weapon.id) return;
+      root = this.ensure(this.game.player, true, weapon);
+    }
     if (!root) {
       if (['attack', 'dash', 'skill', 'windup', 'kill', 'death'].includes(event.type)) {
         this.pendingEvents.push({ event, queuedAt: this.time });
@@ -410,6 +419,7 @@ export class ActorSystem {
   }
 
   _dispose(root) {
+    disposeEquipmentAppearance(root);
     const u = root.userData;
     u.mixer.stopAllAction(); u.mixer.uncacheRoot(u.model);
     const skeletons = new Set();

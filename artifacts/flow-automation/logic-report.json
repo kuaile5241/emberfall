@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "exitCode": 0,
+  "tests": 86,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "startedAt": "2026-10-01T07:19:05.014Z",
+  "elapsedSeconds": 2.561,
+  "scope": [
+    "tests/camp-expedition-flow.test.js",
+    "tests/expedition-flow-matrix.test.js",
+    "tests/normal-run-v3.test.js",
+    "tests/profile-switch-fix.test.js",
+    "tests/reward-input.test.js",
+    "tests/weapon-switch-animation.test.js",
+    "tests/gear-appearance.test.js",
+    "tests/inventory-v6.test.js"
+  ],
+  "browser": {
+    "status": "not_run_by_this_command",
+    "url": "http://127.0.0.1:4173/?qa=1&flow=1&seed=913",
+    "englishUrl": "http://127.0.0.1:4173/?qa=1&flow=1&seed=913&lang=en",
+    "note": "Open against the current build to run the real browser/UI integration and read window.__emberfallFlow."
+  }
+}

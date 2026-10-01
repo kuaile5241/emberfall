@@ -149,3 +149,55 @@
 .camp-pending { margin: 0 0 20px; padding: 14px 16px; background: #78532d20; border: 1px solid #b7834e70; }.camp-pending strong { display: block; font-size: 13px; font-weight: 500; color: #e2c496; }.camp-pending p { font-size: 10px; line-height: 1.7; color: #b4b79c; margin: 7px 0 11px; }.camp-pending .camp-claim { font-size: 10px !important; padding: 7px 13px; }
 @media (max-width: 1050px) { .camp-wallet { min-width: 118px; }.camp-essence { margin-left: 1px; padding-left: 9px; }.camp-wallet strong { font-size: 18px; } }
 @media (max-width: 620px) { .camp-wallet { min-width: 0; }.camp-essence { padding-left: 7px; }.camp-essence b { font-size: 14px; }.camp-essence .camp-icon { width: 13px; }.camp-wallet>.camp-icon { width: 16px; }.camp-camp-level { margin-top: 13px; } }
+
+/* English labels need word spacing rather than the wide tracking used by Chinese. */
+.camp-shell:lang(en) .camp-brand strong,
+.camp-shell:lang(en) .camp-brand small,
+.camp-shell:lang(en) .camp-nav button,
+.camp-shell:lang(en) .camp-character .camp-class,
+.camp-shell:lang(en) .camp-character h2,
+.camp-shell:lang(en) .camp-pane-title,
+.camp-shell:lang(en) .camp-map-label,
+.camp-shell:lang(en) .camp-map h3,
+.camp-shell:lang(en) .camp-section-heading h4,
+.camp-shell:lang(en) .camp-buy,
+.camp-shell:lang(en) .camp-equip,
+.camp-shell:lang(en) .camp-claim,
+.camp-shell:lang(en) .camp-start { letter-spacing: .04em; }
+.camp-shell:lang(en) .camp-nav { gap: clamp(10px, 1.6vw, 25px); }
+.camp-shell:lang(en) .camp-nav button { white-space: nowrap; }
+.camp-shell:lang(en) .camp-character h2 { font-size: clamp(24px, 2.4vw, 34px); line-height: 1.2; }
+.camp-shell:lang(en) .camp-map h3 { font-size: clamp(25px, 2.5vw, 32px); }
+.camp-shell:lang(en) .camp-weapon-top>div { min-width: 0; }
+.camp-shell:lang(en) .camp-weapon h4 { font-size: 15px; line-height: 1.2; }
+.camp-shell:lang(en) .camp-weapon-art { width: 57px; height: 57px; flex-basis: 57px; }
+.camp-shell:lang(en) .camp-weapon { display: flex; flex-direction: column; }
+.camp-shell:lang(en) .camp-weapon>p { flex: 1; }
+.camp-shell:lang(en) .camp-buy,
+.camp-shell:lang(en) .camp-equip,
+.camp-shell:lang(en) .camp-claim { line-height: 1.35; }
+.camp-shell:lang(en) .camp-camp-level { flex-wrap: wrap; line-height: 1.5; }
+.camp-shell:lang(en) .camp-camp-level>span { margin-left: 0; flex-basis: 100%; }
+.camp-shell:lang(en) .camp-start { gap: 15px; }
+.camp-shell:lang(en) .camp-section-heading { gap: 12px; }
+.camp-shell:lang(en) .camp-section-heading .camp-text-action { flex-shrink: 0; }
+.camp-shell:lang(en) .camp-upgrade { grid-template-columns: 29px minmax(0, 1fr) auto; }
+.camp-shell:lang(en) .camp-upgrade .camp-buy { max-width: 130px; }
+.camp-shell:lang(en) .camp-quest-bottom { flex-wrap: wrap; }
+@media (max-width: 1050px) {
+  .camp-shell:lang(en) .camp-brand { gap: 7px; }
+  .camp-shell:lang(en) .camp-nav button { gap: 5px; font-size: 11px; }
+}
+@media (max-width: 800px) {
+  .camp-shell:lang(en) .camp-brand { width: 70%; }
+  .camp-shell:lang(en) .camp-nav { gap: 12px; }
+  .camp-shell:lang(en) .camp-nav button { font-size: 12px; }
+  .camp-shell:lang(en) .camp-character h2 { font-size: 24px; }
+  .camp-shell:lang(en) .camp-weapon-art { width: 43px; height: 43px; flex-basis: 43px; }
+}
+@media (max-width: 620px) {
+  .camp-shell:lang(en) .camp-character h2 { font-size: 22px; }
+  .camp-shell:lang(en) .camp-start { font-size: 12px !important; padding-inline: 14px; gap: 10px; }
+  .camp-shell:lang(en) .camp-footer-right>span { display: none; }
+  .camp-shell:lang(en) .camp-supply { padding-inline: 10px; }
+}

@@ -5,6 +5,7 @@
 
 import { WORLD, ZONES, containsPoint, constrainMove, canTravel, unlockedSurfaces, navigationTarget, zoneAt } from './world.js';
 import { EQUIPMENT, STARTER_WEAPON_IDS, DEFAULT_WEAPON_ID, equipmentById } from './content.js';
+import { t } from './i18n.js';
 
 const TAU = Math.PI * 2;
 const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
@@ -176,7 +177,7 @@ export class Game {
       kills: this.kills, eliteKills: this.eliteKills, bossKills: this.bossKills, elementKills: { ...this.elementKills },
       clearedZones: [...this.clearedZoneIds], poiIds: [...this.completedPoiIds], sideRelics: this.completedPoiIds.size,
       gold: this.gold, goldEarned: this.gold, inventory: [...this.inventory], weaponId: this.weapon.id,
-      time: this.time, duration: this.time, bestCombo: this.bestCombo };
+      room: this.roomIndex + 1, time: this.time, duration: this.time, bestCombo: this.bestCombo };
   }
 
   get nearestInteraction() {
@@ -248,10 +249,10 @@ export class Game {
     return { x: this._waypointCache.x, z: this._waypointCache.z, kind: 'travel', label: next.name };
   }
   get objective() {
-    if (this.status === 'won') return '钟下祭坛已清除';
-    if (!this.roomCleared) return `清除守卫 · ${this.enemies.length} 名`;
-    if (!this.roomRewardTaken) return '按 E 领取祝福';
-    return `沿墓道前往${ZONES[this.roomIndex + 1]?.name ?? '祭坛'}`;
+    if (this.status === 'won') return t('钟下祭坛已清除');
+    if (!this.roomCleared) return t('清除守卫 · {count} 名', { count: this.enemies.length });
+    if (!this.roomRewardTaken) return t('按 E 领取祝福');
+    return t('沿墓道前往{zone}', { zone: t(ZONES[this.roomIndex + 1]?.name ?? '祭坛') });
   }
 
   drainEvents() {

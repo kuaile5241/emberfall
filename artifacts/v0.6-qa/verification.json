@@ -1,0 +1,29 @@
+{
+  "version": "0.6.0",
+  "bundle": "index-Cv5ctnPk.js",
+  "tests": 99,
+  "modelChecks": 100,
+  "actorChecks": 22,
+  "qaStorageOnly": true,
+  "responsive": [
+    {
+      "footerBottom": 640,
+      "height": 640,
+      "overflow": false,
+      "width": 900
+    },
+    {
+      "footerBottom": 844,
+      "height": 844,
+      "overflow": false,
+      "width": 390
+    }
+  ],
+  "final": {
+    "height": 720,
+    "noticeText": "",
+    "paneFits": true,
+    "width": 1280
+  },
+  "logs": []
+}

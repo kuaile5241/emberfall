@@ -297,3 +297,24 @@ h2 { font-family: 'Songti SC', serif; font-size: 22px; font-weight: 400; letter-
 .overlay section::-webkit-scrollbar { width: 5px; }
 .overlay section::-webkit-scrollbar-track { background: #111717; }
 .overlay section::-webkit-scrollbar-thumb { background: #695c3d; border-radius: 3px; }
+
+/* The same language control remains available in camp, combat and dialogs. */
+.language-switch { position: fixed; z-index: 80; top: 21px; right: 25px; display: flex; align-items: center; justify-content: center; gap: 9px; min-width: 78px; height: 32px; padding: 5px 10px; border-radius: 4px; background: #101c1fef; box-shadow: inset 0 1px #e3d4a218, 0 2px 10px #0004; font-size: 11px; letter-spacing: .6px; }
+.language-switch span { opacity: .5; }
+.language-switch .active { opacity: 1; color: #f6d897; }
+.language-switch i { font-style: normal; opacity: .3; }
+.language-switch:disabled { cursor: wait; }
+.top-right { right: 119px; }
+#menu .camp-header { padding-right: 115px; }
+:lang(en) .primary, :lang(en) .secondary, :lang(en) .skill-name, :lang(en) #bossbar strong { letter-spacing: .4px; }
+:lang(en) .help-grid > div { line-height: 1.45; }
+:lang(en) .weapon-skill { flex-wrap: wrap; gap: 4px; }
+:lang(en) .build-summary #weapon { font-size: 11px; }
+:lang(en) .skill-name { white-space: normal; width: 240px; }
+:lang(en) .build-footnote { line-height: 1.5; }
+:lang(en) .kill-flourish { letter-spacing: 2px; }
+@media (max-width: 800px) {
+  .language-switch { right: 14px; top: 14px; min-width: 70px; }
+  .top-right { right: 97px; top: 14px; }
+  #menu .camp-header { padding-right: 90px; }
+}
