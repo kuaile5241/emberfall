@@ -2,7 +2,7 @@ import { t, getLocale, setLocale, initLocale, onLocaleChange } from './i18n.js';
 import { Game, ROOMS } from './game.js';
 import { DungeonView } from './view.js';
 import { GameAudio } from './audio.js';
-import { WORLD } from './world.js';
+import { STORY_NODES, expeditionMeta, storyEvidenceFromRun } from './campaign.js';
 import { EQUIPMENT, ELEMENTS, STARTER_WEAPON_IDS, DEFAULT_WEAPON_ID } from './content.js';
 import { skillIcon, utilityIcon, boonIcon } from './icons.js';
 import { ProfileStore, QUESTS } from './profile.js';
@@ -16,6 +16,7 @@ import './camp-v6.css';
 import './blessing-cards.css';
 import './battle-v4.css';
 import './theme-dark.css';
+import './campaign.css';
 
 const $ = id => document.getElementById(id);
 const ui = Object.fromEntries(['world', 'loading', 'load-progress', 'menu', 'battle-impact', 'multikill', 'expedition-tracker',
@@ -26,8 +27,9 @@ const ui = Object.fromEntries(['world', 'loading', 'load-progress', 'menu', 'bat
 const query = new URLSearchParams(location.search);
 const QA_MODE = query.get('qa') === '1';
 const QA_FLOW_MODE = QA_MODE && query.get('flow') === '1';
+const QA_CAMPAIGN_MODE = QA_MODE && query.get('campaign') === '1';
 // Each automated page gets fresh test-only keys; ordinary saves are never reset.
-const qaSuffix = QA_FLOW_MODE ? `.qa.flow.${crypto.randomUUID()}` : QA_MODE ? '.qa' : '';
+const qaSuffix = QA_FLOW_MODE || QA_CAMPAIGN_MODE ? `.qa.flow.${crypto.randomUUID()}` : QA_MODE ? '.qa' : '';
 initLocale({ storage: localStorage, key: 'emberfall.locale.v1' + qaSuffix });
 const SETTINGS_KEY = 'emberfall.settings.v1' + qaSuffix;
 const RECORD_KEY = 'emberfall.records.v1' + qaSuffix;
@@ -66,6 +68,7 @@ const PROFILE_KEY = 'emberfall.profile.v4' + qaSuffix;
 const profileStore = new ProfileStore({ storage: localStorage, key: PROFILE_KEY, legacyRecords: records });
 let campUI = null, campPreview = null;
 let runId = null, runQuest = null, lastSettlement = null, checkpointClock = 0, checkpointWarning = false;
+let runStoryEvidence = [], runStoryClaimed = [];
 let blessingSelectionPending = false, impactTime = 0, killBannerTimer = 0;
 const audio = new GameAudio(settings);
 let game = null;
@@ -191,14 +194,16 @@ export function startGame(options = {}) {
     const selected = profileStore.selectWeapon(options.weaponId); if (!selected.ok) return false;
   }
   const nextRunId = globalThis.crypto?.randomUUID?.() || `run-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-  const prepared = profileStore.prepareRun(nextRunId);
+  const prepared = profileStore.prepareRun(nextRunId, { expeditionId: options.expeditionId ?? profileStore.profile.campaign.selectedExpedition });
   if (!prepared.ok) { renderCamp(); return false; }
   runId = nextRunId; lastSettlement = null; checkpointClock = 0; checkpointWarning = false;
   selectedWeaponId = prepared.run.weaponId;
   const camp = profileStore.profile;
+  runStoryEvidence = [...camp.campaign.evidence];
+  runStoryClaimed = [...camp.campaign.claimed];
   const quest = QUESTS.find(item => item.id === camp.activeQuest);
   runQuest = quest ? { ...quest, baseProgress: camp.quests[quest.id].progress } : null;
-  const flowSeed = QA_FLOW_MODE && /^\d{1,10}$/.test(query.get('seed') || '') ? Number(query.get('seed')) >>> 0 : QA_FLOW_MODE ? 913 : null;
+  const flowSeed = (QA_FLOW_MODE || QA_CAMPAIGN_MODE) && /^\d{1,10}$/.test(query.get('seed') || '') ? Number(query.get('seed')) >>> 0 : QA_FLOW_MODE || QA_CAMPAIGN_MODE ? 913 : null;
   const seed = options.seed ?? flowSeed ?? (globalThis.crypto?.getRandomValues ? crypto.getRandomValues(new Uint32Array(1))[0] : Date.now());
   clearInput();
   hideOverlay();
@@ -213,6 +218,7 @@ export function startGame(options = {}) {
   resultViewData = null;
   ui.multikill.classList.remove('visible'); ui.multikill.replaceChildren(); clearTimeout(killBannerTimer);
   game = new Game({ ...prepared.run, seed, difficulty }).start();
+  view.setWorld(game.world);
   displayedWeaponId = null;
   displayedBuffs = '';
   ui.buffs.replaceChildren();
@@ -406,9 +412,10 @@ function renderResult() {
   if (!game || !resultViewData) return;
   const { won, settlement, saved } = resultViewData;
   showOverlay('result', `<h3>${won ? t('凯旋') : t('火种未熄')}</h3>
-    <p class="sub">${won ? t('丧钟守卫已被击败') : escape(t(game.roomName))}</p>
+    <p class="sub">${won ? escape(t('{boss}已被击败', { boss: t(game.bossName) })) : escape(t(game.roomName))}</p>
     <div class="stats"><div><strong>${clock(game.time)}</strong><small>${t('耗时')}</small></div><div><strong>${game.kills}</strong><small>${t('击杀')}</small></div><div><strong>${game.player.level}</strong><small>${t('等级')}</small></div><div><strong>${game.gold}</strong><small>${t('金币')}</small></div></div>
     <p class="settlement-reward">${t('带回')} <strong>${settlement?.reward?.gold ?? 0}</strong> ${t('金币')} · <strong>${settlement?.reward?.essence ?? 0}</strong> ${t('余烬精华')}${settlement?.reward?.unlockedWeapons?.length ? ` · ${t('发现 {count} 件装备', { count: settlement.reward.unlockedWeapons.length })}` : ''}</p>
+    ${settlement?.reward?.storyUnlocked?.length ? `<p class="result-story">${escape(t('发现 {count} 条剧情线索', { count: settlement.reward.storyUnlocked.length }))}</p>` : ''}
     <p class="sub">${t(difficultyLabel[game.difficulty])} · ${t('{count} 项祝福 · {damage} 伤害', { count: game.boons.reduce((total, boon) => total + boon.stacks, 0), damage: Math.round(game.damageDealt) })}</p>
     <div class="actions"><button id="play-again" class="primary">${t('再来一局')}</button><button id="result-menu" class="secondary">${t('返回营地')}</button></div>
     <p class="sub" style="font-size:10px;margin-top:25px">${saved ? t('战利品与委托进度已保存') : t('保存未成功，请保持页面打开')}</p>`);
@@ -440,7 +447,8 @@ function consumeEvents() {
   for (const event of events) {
     view.effect(event);
     switch (event.type) {
-      case 'room': checkpointExpedition(); if (event.index === 5) audio.play('boss', { gain: .5 }); break;
+      case 'room': checkpointExpedition(); if (event.index === game.rooms.length - 1) audio.play('boss', { gain: .5 }); break;
+      case 'clear': checkpointExpedition(); break;
       case 'attack': audio.play('slash', { gain: .3, element: event.element }); flashSkill('attack-button'); break;
       case 'dash': audio.play('dash', { gain: .34 }); flashSkill('dash-button'); break;
       case 'skill':
@@ -456,6 +464,7 @@ function consumeEvents() {
         killBannerTimer = setTimeout(() => ui.multikill.classList.remove('visible'), 2400);
         break;
       case 'poi': showToast(t('{name} · 已取得', { name: t(event.name) }), 2500); audio.play('heal',{gain:.44}); checkpointExpedition(); break;
+      case 'channelcancel': showToast('受击打断，重新靠近并按住 E', 2200); break;
       case 'hit':
         audio.play('hit', { gain: event.target === 'player' ? .42 : .24 });
         floatText(event, event.target === 'player' ? 'damage' : '', `${event.amount}`);
@@ -484,7 +493,8 @@ function drawMinimap() {
   const context = ui.minimap.getContext('2d');
   if (!context || !game) return;
   const width = ui.minimap.width, height = ui.minimap.height;
-  const bounds = WORLD.bounds;
+  const world = game.world;
+  const bounds = world.bounds;
   const spanX = bounds.maxX - bounds.minX;
   const spanZ = bounds.maxZ - bounds.minZ;
   const scale = Math.min((width - 18) / spanX, (height - 18) / spanZ);
@@ -497,9 +507,9 @@ function drawMinimap() {
   context.clearRect(0, 0, width, height);
   // Every rectangle uses the same world transform: halls remain connected and
   // the marker follows the player's global position, including side alcoves.
-  for (const area of WORLD.walkable) {
+  for (const area of world.walkable) {
     const zoneIndex = area.zoneIndex ?? area.from;
-    const zone = WORLD.zones[zoneIndex];
+    const zone = world.zones[zoneIndex];
     const known = zone && visited.has(zone.id);
     const done = zone && cleared.has(zone.id);
     context.fillStyle = done ? '#718d7e49' : known ? '#afa07836' : '#61716b1c';
@@ -507,15 +517,15 @@ function drawMinimap() {
   }
   context.strokeStyle = '#a3b8a45c'; context.lineWidth = .7;
   context.beginPath();
-  for (const edge of WORLD.boundaries) { context.moveTo(x(edge.x1), y(edge.z1)); context.lineTo(x(edge.x2), y(edge.z2)); }
+  for (const edge of world.boundaries) { context.moveTo(x(edge.x1), y(edge.z1)); context.lineTo(x(edge.x2), y(edge.z2)); }
   context.stroke();
-  const current = WORLD.zones.find(zone => zone.id === game.currentZoneId);
+  const current = world.zones.find(zone => zone.id === game.currentZoneId);
   if (current) {
     const r = current.bounds;
     context.strokeStyle = '#d7bd8870'; context.lineWidth = .9;
     context.strokeRect(x(r.minX) + 1, y(r.minZ) + 1, (r.maxX - r.minX) * scale - 2, (r.maxZ - r.minZ) * scale - 2);
   }
-  for (const zone of WORLD.zones) {
+  for (const zone of world.zones) {
     if (!cleared.has(zone.id)) continue;
     const cx = x(zone.center.x), cy = y(zone.center.z);
     context.strokeStyle = '#bdd0ac88'; context.lineWidth = 1;
@@ -596,13 +606,21 @@ function updateHud() {
   const interaction = game.nearestInteraction;
   const rewardAvailable = game.status === 'playing' && (interaction || game.rewardReady);
   ui['interaction-hint'].classList.toggle('hidden', !rewardAvailable);
-  if (rewardAvailable) ui['interaction-hint'].innerHTML = `<kbd>E</kbd>${escape(t(interaction?.label || t('领取祝福')))}`;
+  if (rewardAvailable) {
+    const channel = game.interactionChannel;
+    const isMechanism = ['story', 'mechanism'].includes(interaction?.kind);
+    ui['interaction-hint'].innerHTML = `<kbd>E</kbd>${escape(isMechanism ? t('持续按住 E · {name} · {progress}%', { name: t(interaction.label), progress: Math.floor((channel?.elapsed ?? 0) / (channel?.duration ?? 2.4) * 100) }) : t(interaction?.label || '领取祝福'))}`;
+  }
   const optional = (game.interestPoints || []).filter(point => point.available && !point.completed);
-  ui['expedition-tracker'].innerHTML = `<span>${escape(t(game.roomName))}</span><strong>${game.roomCleared ? t('区域已肃清') : t('第 {wave} / {total} 波 · {enemies} 敌人', { wave: game.waveIndex + 1, total: game.waveCount, enemies: game.enemies.length })}</strong>${runQuest ? `<small class="tracked-quest">${escape(t(runQuest.name))} · ${Math.min(runQuest.target,runQuest.baseProgress+(game.runSummary?.[runQuest.metric]||0))}/${runQuest.target}</small>` : ''}${optional.length ? `<small>◇ ${escape(t(optional[0].name))} · ${t('支线 {distance}m', { distance: Math.round(Math.hypot(game.player.x-optional[0].x,game.player.z-optional[0].z)) })}</small>` : ''}`;
+  const evidence = new Set([...runStoryEvidence, ...storyEvidenceFromRun(game.expeditionId, game.runSummary, game.status)]);
+  const node = STORY_NODES.find(item => item.expeditionId === game.expeditionId && item.evidence.some(id => !evidence.has(id)));
+  const chapterComplete = STORY_NODES.filter(item => item.expeditionId === game.expeditionId).every(item => runStoryClaimed.includes(item.id));
+  const story = node ? `${t('主线')} · ${t(node.title)}<br><span>${escape(t(node.brief))}</span>` : t(chapterComplete ? '本章主线已完成' : '剧情物证已齐，回营领取奖励');
+  ui['expedition-tracker'].innerHTML = `<span>${escape(t(expeditionMeta(game.expeditionId).title))} · ${escape(t(game.roomName))}</span><strong>${game.roomCleared ? t('区域已肃清') : t('第 {wave} / {total} 波 · {enemies} 敌人', { wave: game.waveIndex + 1, total: game.waveCount, enemies: game.enemies.length })}</strong><small class="tracked-story">${story}</small>${runQuest ? `<small class="tracked-quest">${escape(t(runQuest.name))} · ${Math.min(runQuest.target,runQuest.baseProgress+(game.runSummary?.[runQuest.metric]||0))}/${runQuest.target}</small>` : ''}${optional.length ? `<small>◇ ${escape(t(optional[0].name))} · ${t('支线 {distance}m', { distance: Math.round(Math.hypot(game.player.x-optional[0].x,game.player.z-optional[0].z)) })}</small>` : ''}`;
   const boss = game.enemies.find(enemy => enemy.type === 'boss');
   ui.bossbar.classList.toggle('hidden', !boss);
   if (boss) {
-    ui.bossbar.querySelector('strong').textContent = boss.phase === 2 ? t('丧钟守卫 · 狂焰') : t('丧钟守卫');
+    ui.bossbar.querySelector('strong').textContent = boss.phase === 2 ? t(game.expeditionId === 'aqueduct' ? '幽潮守望者 · 涨潮' : '丧钟守卫 · 狂焰') : t(game.bossName);
     ui.bossbar.querySelector('i').style.width = `${Math.max(0, boss.hp / boss.maxHp * 100)}%`;
     ui.bossbar.title = `${Math.ceil(boss.hp)} / ${boss.maxHp}`;
   }
@@ -782,6 +800,7 @@ function frame(now, qaInput = null) {
         aimZ: aim ? aim.z - game.player.z : 0,
         attack: held.has('KeyJ') || pointer.attack || pointer.buttonAttack || queuedAttack,
         ...pulses,
+        interact: held.has('KeyE') || pulses.interact,
       };
       game.update(dt, input);
       queuedAttack = false;
@@ -825,7 +844,7 @@ async function initialize() {
           return true;
         },
         state: () => game ? { ready, status: game.status, overlay, seed: game.seed, difficulty: game.difficulty,
-          room: game.roomIndex, roomName: game.roomName, cleared: game.roomCleared, rewardReady: game.rewardReady,
+          expeditionId: game.expeditionId, worldId: game.world.id, roomCount: game.rooms.length, room: game.roomIndex, roomName: game.roomName, cleared: game.roomCleared, rewardReady: game.rewardReady,
           currentZoneId: game.currentZoneId, visitedZones: [...game.visitedZoneIds], waypoint: game.nextWaypoint,
           hp: game.player.hp, maxHp: game.player.maxHp, level: game.player.level, potions: game.player.potions,
           x: game.player.x, z: game.player.z, kills: game.kills, time: game.time, enemies: game.enemies.length,
@@ -843,6 +862,11 @@ async function initialize() {
         locale: query.get('lang') === 'en' ? 'en' : 'zh-CN', demo: query.get('demo') === '1',
       });
       if (query.get('autostart') !== '0') window.__emberfallStartFlow();
+    }
+    if (QA_CAMPAIGN_MODE) {
+      const { runCampaignBrowserFlow } = await import('./qa-campaign-runner.js');
+      window.__emberfallStartCampaignFlow = () => runCampaignBrowserFlow(window.__emberfall, { locale: query.get('lang') === 'en' ? 'en' : 'zh-CN' });
+      if (query.get('autostart') !== '0') window.__emberfallStartCampaignFlow();
     }
   } catch (error) {
     console.error('Emberfall failed to initialize:', error);

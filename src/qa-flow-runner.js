@@ -120,7 +120,7 @@ export async function runBrowserFlow(api, { locale = 'zh-CN', demo = false } = {
       const input = {};
       const p = game.player, stats = game.combatStats;
       let target = game.roomCleared ? game.nextWaypoint : null;
-      if (game.roomCleared && game.rewardReady) input.interact = !held.interact;
+      if (game.roomCleared && game.rewardReady) input.interact = !!game.interactionChannel || !held.interact;
       else {
         const enemy = game.enemies.reduce((near, e) => !near || distance(e, p) < distance(near, p) ? e : near, null);
         if (enemy) {

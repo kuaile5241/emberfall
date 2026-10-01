@@ -39,6 +39,8 @@ export const INTEREST_POINTS = Object.freeze([
     description: '取回遗物：本局技能基础伤害 +10，金币 +60。', reward: Object.freeze({ gold: 60, skillDamage: 10 }) }),
   Object.freeze({ id: 'forge-cache', name: '工坊补给箱', kind: 'supply', x: 72, z: -31, radius: 2.4, zoneIndex: 2, requiresReward: true,
     description: '打开补给箱：药水 +2，恢复 60 生命，金币 +50。', reward: Object.freeze({ gold: 50, potions: 2, heal: 60 }) }),
+  Object.freeze({ id: 'forge-sigil', name: '铸钟铭印', kind: 'story', x: 100, z: -45, radius: 2.8, zoneIndex: 3, requiresClear: true,
+    description: '取下铭印，查明钟声的源头。技能伤害 +8，金币 +30。', reward: Object.freeze({ gold: 30, skillDamage: 8 }) }),
 ]);
 const walkable = [
   ...ZONES.map((z, zoneIndex) => ({ id: z.id, kind: 'zone', zoneIndex, ...z.bounds })),
@@ -93,9 +95,42 @@ function edgesFor(rectangles) {
 }
 
 export const WORLD = Object.freeze({
+  id: 'grave',
   bounds: { minX: -23, maxX: 125, minZ: -114, maxZ: 19 },
   zones: ZONES, corridors, alcoves, interestPoints: INTEREST_POINTS, walkable, boundaries: edgesFor(walkable),
   spawn: { ...ZONES[0].entry },
+  navPoints: [...ZONES.map(z => z.center), ...corridors.flatMap(c => c.path), ...alcoves.flatMap(a => [a.center, ...a.path])],
+});
+
+/** Geometry, collision and navigation are built from the same route definition. */
+export function createWorld({ id, zones, corridors: routes, alcoves: sidePlaces = [], interestPoints = [], bounds }) {
+  const surfaces = [
+    ...zones.map((z, zoneIndex) => ({ id: z.id, kind: 'zone', zoneIndex, ...z.bounds })),
+    ...routes.flatMap(c => c.rects),
+    ...sidePlaces.flatMap(a => [
+      { id: a.id, kind: 'alcove', zoneIndex: a.zoneIndex, ...a.bounds },
+      ...passage(`${a.id}-path`, a.zoneIndex, a.zoneIndex, a.path.map(p => [p.x, p.z]), 5).rects.map(r => ({ ...r, kind: 'alcove', zoneIndex: a.zoneIndex })),
+    ]),
+  ];
+  return Object.freeze({ id, bounds, zones, corridors: routes, alcoves: sidePlaces, interestPoints,
+    walkable: surfaces, boundaries: edgesFor(surfaces), spawn: { ...zones[0].entry },
+    navPoints: [...zones.map(z => z.center), ...routes.flatMap(c => c.path), ...sidePlaces.flatMap(a => [a.center, ...a.path])],
+  });
+}
+
+const aqueductZones = [
+  zone('cistern', '雨落蓄池', '墓城排水渠的入口。', 'water', [16, 20], { minX: -17, maxX: 17, minZ: -17, maxZ: 13 }, { x: 0, z: 10 }, { x: -16, z: -6 }),
+  zone('sluice', '断桥闸室', '开启闸轮，让受困的水流重新流动。', 'water', [24, 26], { minX: -59, maxX: -29, minZ: -49, maxZ: -15 }, { x: -30, z: -22 }, { x: -44, z: -48 }),
+  zone('drowned-throne', '沉钟穹室', '第二口钟，埋在水道最深处。', 'water', [20], { minX: -65, maxX: -23, minZ: -93, maxZ: -63 }, { x: -44, z: -64 }, { x: -44, z: -88 }),
+];
+export const AQUEDUCT_WORLD = createWorld({ id: 'aqueduct', zones: aqueductZones,
+  corridors: [
+    passage('cistern-sluice', 0, 1, [[-16, -6], [-23, -6], [-23, -22], [-30, -22]], 7),
+    passage('sluice-depths', 1, 2, [[-44, -48], [-44, -64]], 8),
+  ],
+  bounds: { minX: -72, maxX: 24, minZ: -100, maxZ: 20 },
+  interestPoints: [Object.freeze({ id: 'sluice-wheel', name: '水道闸轮', kind: 'mechanism', x: -44, z: -32, radius: 3, zoneIndex: 1, requiresClear: true,
+    description: '开启闸轮，削弱幽潮守望者。本局 Boss 伤害降低 20%。', reward: Object.freeze({ gold: 40, bossWard: .2 }) })],
 });
 
 export function isWalkable(x, z, radius = 0, rectangles = walkable) {
@@ -134,11 +169,11 @@ export function canTravel(fromX, fromZ, toX, toZ, radius = 0, rectangles = walka
   return true;
 }
 
-export function zoneAt(x, z) { return ZONES.find(zone => containsPoint(zone.bounds, x, z)) ?? null; }
+export function zoneAt(x, z, world = WORLD) { return world.zones.find(zone => containsPoint(zone.bounds, x, z)) ?? null; }
 
 /** Exact same union, limited to visited areas and the newly opened passage. */
-export function unlockedSurfaces(index, rewardTaken = false) {
-  return walkable.filter(r => r.kind === 'corridor'
+export function unlockedSurfaces(index, rewardTaken = false, world = WORLD) {
+  return world.walkable.filter(r => r.kind === 'corridor'
     ? r.from < index || (r.from === index && rewardTaken)
     : r.zoneIndex <= index);
 }
@@ -152,13 +187,13 @@ const navPoints = [
 ].filter((point, i, all) => all.findIndex(p => p.x === point.x && p.z === point.z) === i);
 const navCache = new WeakMap();
 
-export function navigationTarget(from, target, radius = 0.48, rectangles = walkable) {
+export function navigationTarget(from, target, radius = 0.48, rectangles = walkable, nodes = navPoints) {
   if (canTravel(from.x, from.z, target.x, target.z, radius, rectangles)) return target;
   let graphs = navCache.get(rectangles);
   if (!graphs) { graphs = new Map(); navCache.set(rectangles, graphs); }
   const key = Math.ceil(radius * 10) / 10;
   if (!graphs.has(key)) {
-    const points = navPoints.filter(p => isWalkable(p.x, p.z, key, rectangles));
+    const points = nodes.filter(p => isWalkable(p.x, p.z, key, rectangles));
     const edges = points.map(() => []);
     for (let i = 0; i < points.length; i++) for (let j = i + 1; j < points.length; j++) {
       if (canTravel(points[i].x, points[i].z, points[j].x, points[j].z, key, rectangles)) {
@@ -171,7 +206,9 @@ export function navigationTarget(from, target, radius = 0.48, rectangles = walka
   const { points, edges } = graphs.get(key);
   const distance = points.map(() => Infinity), first = [], visited = new Set();
   for (let i = 0; i < points.length; i++) {
-    if (canTravel(from.x, from.z, points[i].x, points[i].z, key, rectangles)) {
+    // Cache internal edges conservatively, but use the actor's real radius at
+    // endpoints: a legal position in the rounding margin must still connect.
+    if (canTravel(from.x, from.z, points[i].x, points[i].z, radius, rectangles)) {
       distance[i] = Math.hypot(points[i].x - from.x, points[i].z - from.z); first[i] = points[i];
     }
   }
@@ -186,7 +223,7 @@ export function navigationTarget(from, target, radius = 0.48, rectangles = walka
   }
   let best = Infinity, result = from;
   for (let i = 0; i < points.length; i++) {
-    if (!Number.isFinite(distance[i]) || !canTravel(points[i].x, points[i].z, target.x, target.z, key, rectangles)) continue;
+    if (!Number.isFinite(distance[i]) || !canTravel(points[i].x, points[i].z, target.x, target.z, radius, rectangles)) continue;
     const cost = distance[i] + Math.hypot(points[i].x - target.x, points[i].z - target.z);
     if (cost < best) { best = cost; result = first[i]; }
   }
