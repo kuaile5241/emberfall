@@ -1,4 +1,4 @@
-# 余烬地牢：钟下墓城 · v0.4
+# 余烬地牢：钟下墓城 · v0.6.1
 
 这是一个可从头打到结局的单人 3D 动作肉鸽章节，包含连续探索、战斗、成长、六区推进与最终 Boss。它是小体量独立游戏的可玩初版，尚未达到商业 ARPG 的内容量、动画精度或装备系统规模。
 
@@ -7,6 +7,12 @@ v0.4 在三元素战斗与六区连续地下城上加入可保存的营地：选
 游戏使用 Three.js 与独立 JavaScript 战斗引擎，本地浏览器运行，无需账号或在线服务。建议电脑键鼠游玩。角色素材沿用 KayKit 的卡通比例，石材 PBR 贴图来自 Poly Haven；第三方 CC0 素材不属于项目原创模型，也不是写实人物。
 
 **版本记录：** v0.1 建立首个可玩章节；v0.2 加入连续地图并替换角色和环境素材；v0.3 加入三元素、六武器与分层动画；v0.4 加入营地循环、支路奖励和怪群战斗。v0.3 的 33 项战斗/流程测试、22 项真实 GLB 动作检查及浏览器验收保留为历史证据。本轮测试范围见本文后段，最终构建与浏览器验收以 [ACCEPTANCE.md](ACCEPTANCE.md) 为准。
+
+v0.5.0 新增简体中文 / English：右上角“中 / EN”即时切换，偏好独立存储，切换保留当前出征、难度、装备和营地数据。双语实现与验证见 [i18n.md](i18n.md)。
+
+v0.6.0 将三职业玩家模型改为圆润几何、温润材质和职业胸扣，营地与战场使用相同骨架及动作。营地改为侧栏、角色灯台与整备区；军械加入筛选、详情和实际出征属性对比，行囊增加携带槽、库存格和永久强化路线。说明及当前验收见 [v0.6-changes.md](v0.6-changes.md)，素材与原创教程见 [cute-art-guide-v6.md](cute-art-guide-v6.md)。
+
+v0.6.1 修复待结算时职业/装备切换被禁用、职业快捷键退回基础武器、跨页存档过期与同帧切换丢失动作；界面改为炭黑、深灰和暖金，高级军械增加骨骼绑定的护甲与头饰。当前验证见 [v0.6.1-fixes.md](v0.6.1-fixes.md)。
 
 ## 开始试玩
 
@@ -142,7 +148,9 @@ npm run build
 | `src/view.js`、`src/element-effects.js` | 渲染、镜头与元素特效；`src/actors.js` 负责分层动作混合 |
 | `src/main.js`、`src/style.css` | 输入、战斗 HUD、装备界面、暂停、结算与营地接线 |
 | `src/profile.js` | 营地数据、购买、强化、委托、幂等结算与恢复摘要 |
-| `src/camp-ui.js`、`src/camp.css`、`src/camp-preview.js` | 营地四页、库存整备与实时角色预览 |
+| `src/camp-ui.js`、`src/camp-v6.css`、`src/camp-preview.js` | 营地四页、三栏整备布局与实时角色灯台 |
+| `src/camp-inventory.js`、`src/inventory-v6.css` | 军械筛选、实际属性对比、库存与携带槽 |
+| `public/assets/models-v6/`、`blender/emberfall-v6-*.blend` | 三职业圆润角色、几何报告与可编辑源文件 |
 | `src/blessing-cards.js`、`src/blessing-cards.css` | 三选一祝福卡与选中反馈 |
 | `src/battle-v4.css` | 本版战斗反馈与委托提示样式 |
 | `src/icons.js` | 自绘技能、武器、功能和祝福 SVG 图标 |

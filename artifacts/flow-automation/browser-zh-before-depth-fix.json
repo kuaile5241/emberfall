@@ -1,0 +1,305 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "全新独立营地存档",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "营地职业切换 lightning",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "营地职业切换 water",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "营地职业切换 fire",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "查看锁定装备不改存档且不能装备",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "真实预算购买并携带补给",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "双语切换保留整备和委托",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "正式出征加载真实属性并消耗一份补给",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "暂停阻止模拟推进",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "战场装备同步模型和技能",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "真实键盘帧能移动",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "选卡动画内暂停恢复仍锁定旧卡",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 1 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 2 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "清场领奖后解除移动锁",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "战利品高级装备与真实护甲同步",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 3 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 4 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 5 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 6 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 7 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 8 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 9 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "第 10 次祝福只领取一次",
+      "passed": true
+    },
+    {
+      "details": {
+        "bossKills": 1,
+        "choices": 10,
+        "difficulty": "normal",
+        "gold": 1096,
+        "hp": 120,
+        "kills": 293,
+        "seconds": 149.2436333333897,
+        "seed": 913,
+        "status": "won"
+      },
+      "name": "真实六区与最终 Boss 通关",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "结算弹窗与账本完成一次",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "领取委托一次并移除领取按钮",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "营地强化真实扣费",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "再次出征带新装备补给且没有旧祝福",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "再次收队回营并完成第二次结算",
+      "passed": true
+    }
+  ],
+  "demo": true,
+  "elapsedSeconds": 48.83880000001192,
+  "expedition": {
+    "bossKills": 1,
+    "choices": 10,
+    "difficulty": "normal",
+    "gold": 1096,
+    "hp": 120,
+    "kills": 293,
+    "seconds": 149.2436333333897,
+    "seed": 913,
+    "status": "won"
+  },
+  "limitations": "Fixed 30 Hz input driver with real DOM handlers, event consumption, rendering and persistence. No combat attributes or enemies are modified; this is not a real-time performance or human difficulty test.",
+  "locale": "zh-CN",
+  "phase": "整备 → 六区通关 → 领奖结算 → 再次出征：完成",
+  "profile": {
+    "activeQuest": null,
+    "activeRun": null,
+    "campLevel": 1,
+    "essence": 5,
+    "gold": 1196,
+    "items": {
+      "damage-tonic": 0,
+      "ward-charm": 0
+    },
+    "loadout": "fire-greatsword",
+    "pendingRun": null,
+    "processedRuns": {
+      "68398ce2-1b16-41c9-971c-23c88c2eeaa5": {
+        "outcome": "won",
+        "reward": {
+          "essence": 4,
+          "gold": 1176,
+          "questProgress": {
+            "completed": true,
+            "id": "ash-hunt",
+            "progress": 60,
+            "target": 60
+          },
+          "ratio": 1,
+          "unlockedWeapons": [
+            "fire-greatsword",
+            "water-scepter",
+            "lightning-halberd"
+          ]
+        }
+      },
+      "f655f2f5-685a-46a4-b16f-55d3be91c836": {
+        "outcome": "retreated",
+        "reward": {
+          "essence": 0,
+          "gold": 0,
+          "questProgress": null,
+          "ratio": 0.25,
+          "unlockedWeapons": []
+        }
+      }
+    },
+    "quests": {
+      "ash-hunt": {
+        "progress": 60,
+        "status": "claimed"
+      },
+      "bell-breaker": {
+        "progress": 0,
+        "status": "available"
+      },
+      "gravebreaker": {
+        "progress": 0,
+        "status": "available"
+      },
+      "side-search": {
+        "progress": 0,
+        "status": "available"
+      }
+    },
+    "selectedSupply": null,
+    "stats": {
+      "bestKills": 293,
+      "bestRoom": 0,
+      "bossKills": 1,
+      "deaths": 0,
+      "eliteKills": 5,
+      "fastestVictory": 149,
+      "goldEarned": 1176,
+      "retreats": 1,
+      "runs": 2,
+      "sideRelics": 0,
+      "totalKills": 293,
+      "wins": 1
+    },
+    "unlockedWeapons": [
+      "fire-sword",
+      "lightning-spear",
+      "water-staff",
+      "fire-greatsword",
+      "water-scepter",
+      "lightning-halberd"
+    ],
+    "version": 4
+  },
+  "rooms": [
+    {
+      "index": 0,
+      "name": "灰烬前庭",
+      "time": 0.11029999997615232
+    },
+    {
+      "index": 1,
+      "name": "无声回廊",
+      "time": 22.454744444426503
+    },
+    {
+      "index": 2,
+      "name": "遗忘圣所",
+      "time": 43.43252222220757
+    },
+    {
+      "index": 3,
+      "name": "熔火工坊",
+      "time": 63.77696666665519
+    },
+    {
+      "index": 4,
+      "name": "敲钟长阶",
+      "time": 93.88807777779012
+    },
+    {
+      "index": 5,
+      "name": "钟下祭坛",
+      "time": 123.9991888889252
+    }
+  ],
+  "status": "passed",
+  "storageKeys": {
+    "locale": "emberfall.locale.v1.qa.flow.515d8fc6-dd99-48d1-9f3d-3f7e55c4fdda",
+    "profile": "emberfall.profile.v4.qa.flow.515d8fc6-dd99-48d1-9f3d-3f7e55c4fdda",
+    "records": "emberfall.records.v1.qa.flow.515d8fc6-dd99-48d1-9f3d-3f7e55c4fdda",
+    "settings": "emberfall.settings.v1.qa.flow.515d8fc6-dd99-48d1-9f3d-3f7e55c4fdda"
+  }
+}

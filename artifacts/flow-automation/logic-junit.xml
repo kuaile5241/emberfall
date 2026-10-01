@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="a real camp-to-six-zone victory settles and claims once, then starts a clean equipped expedition" time="1.035989" classname="test"/>
+	<!-- 171 game seconds, 293 kills, 1165 earned gold, 6 levels, 9 blessings, 11 checkpoints, 144 remaining HP -->
+	<!-- won settlement 1245 gold / 4 essence; quest reward 100 gold / 1 essence; next run fire-greatsword + ward-charm with no previous blessings -->
+	<testcase name="fire-sword seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition" time="0.740070" classname="test"/>
+	<!-- 160 game seconds, room 6/6, 293 kills, 1097 gold, 117 HP -->
+	<testcase name="fire-sword seed 41: camp, six-zone victory, one settlement/quest reward, and fresh next expedition" time="0.535832" classname="test"/>
+	<!-- 158 game seconds, room 6/6, 293 kills, 1090 gold, 120 HP -->
+	<testcase name="lightning-spear seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition" time="0.241528" classname="test"/>
+	<!-- 159 game seconds, room 6/6, 293 kills, 1139 gold, 172 HP -->
+	<testcase name="lightning-spear seed 1701: camp, six-zone victory, one settlement/quest reward, and fresh next expedition" time="0.183115" classname="test"/>
+	<!-- 138 game seconds, room 6/6, 293 kills, 1160 gold, 120 HP -->
+	<testcase name="water-staff seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition" time="0.252524" classname="test"/>
+	<!-- 157 game seconds, room 6/6, 293 kills, 1090 gold, 120 HP -->
+	<testcase name="water-staff seed 604: camp, six-zone victory, one settlement/quest reward, and fresh next expedition" time="0.239201" classname="test"/>
+	<!-- 151 game seconds, room 6/6, 293 kills, 1171 gold, 120 HP -->
+	<testcase name="natural death after the first area settles 60% once and permits a fresh expedition" time="0.026132" classname="test"/>
+	<!-- 41 game seconds, room 2/6, 30 kills, 110 gold, 0 HP -->
+	<testcase name="voluntary retreat after two real areas settles 25% and retains loot and next preparation" time="0.031692" classname="test"/>
+	<!-- 46 game seconds, room 3/6, 68 kills, 236 gold, 120 HP -->
+	<testcase name="cross-page conflict and read failure preserve the run, external bytes and spending until safe sync" time="0.011163" classname="test"/>
+	<!-- 5 game seconds, room 1/6, 0 kills, 0 gold, 120 HP; conflict/read failure performed zero writes and safe recovery settled once -->
+	<testcase name="all six equipped weapons describe their distinct clothing, without renderer or state writes" time="1.291751" classname="test"/>
+	<testcase name="fire-greatsword: real rounded rig has visible shoulders, bracers and bone-mounted headwear" time="0.021156" classname="test"/>
+	<testcase name="fire-greatsword: armor positions are bounded and do not obstruct the face or weapon hand" time="0.021022" classname="test"/>
+	<testcase name="fire-greatsword: equipped armor follows the actual animated arm without moving independently" time="0.016735" classname="test"/>
+	<testcase name="lightning-halberd: real rounded rig has visible shoulders, bracers and bone-mounted headwear" time="0.012791" classname="test"/>
+	<testcase name="lightning-halberd: armor positions are bounded and do not obstruct the face or weapon hand" time="0.016286" classname="test"/>
+	<testcase name="lightning-halberd: equipped armor follows the actual animated arm without moving independently" time="0.015059" classname="test"/>
+	<testcase name="water-scepter: real rounded rig has visible shoulders, bracers and bone-mounted headwear" time="0.013791" classname="test"/>
+	<testcase name="water-scepter: armor positions are bounded and do not obstruct the face or weapon hand" time="0.004013" classname="test"/>
+	<testcase name="water-scepter: equipped armor follows the actual animated arm without moving independently" time="0.021563" classname="test"/>
+	<testcase name="returning to starter attire disposes each local resource once and leaves shipped GLB resources intact" time="0.016936" classname="test"/>
+	<testcase name="two actors have independent gear and repeated six-weapon switches leave no previous outfit behind" time="0.042916" classname="test"/>
+	<testcase name="three starters retain their original rounded attire without extra armor" time="0.011911" classname="test"/>
+	<testcase name="lightning-spear: charcoal hood and cloth preserve every skin, leather and black vertex color" time="0.035938" classname="test"/>
+	<testcase name="lightning-halberd: charcoal hood and cloth preserve every skin, leather and black vertex color" time="0.017071" classname="test"/>
+	<testcase name="basic and upgraded rogue clothes have the same charcoal palette" time="0.015139" classname="test"/>
+	<testcase name="removing rogue clothing releases only its private copies and restores original shared geometry" time="0.003722" classname="test"/>
+	<testcase name="weapon filtering keeps the inspected selection inside its element without changing a loadout" time="0.001165" classname="test"/>
+	<testcase name="inventory comparisons match actual starting combat stats with camp growth and a packed tonic" time="0.001228" classname="test"/>
+	<testcase name="an unavailable stale supply does not grant a damage bonus in displayed expedition stats" time="0.000929" classname="test"/>
+	<testcase name="locked weapons can be inspected but offer their real unlock contract instead of an equip action" time="0.007242" classname="test"/>
+	<testcase name="empty, packed, insufficient-gold and full-stock supply views reflect real profile data" time="0.000532" classname="test"/>
+	<testcase name="pending runs allow next-loadout equipment and packing while blocking purchases and upgrades" time="0.000483" classname="test"/>
+	<testcase name="class shortcuts preserve equipped gear and choose an owned advanced weapon without unlocking anything" time="0.000136" classname="test"/>
+	<testcase name="camp upgrades show cumulative saved bonuses, the real next cost, and no purchase at max level" time="0.000422" classname="test"/>
+	<testcase name="rendering inventory never writes or consumes saved supplies" time="0.000589" classname="test"/>
+	<testcase name="all inventory panels and disabled states render in English without untranslated Chinese" time="0.012536" classname="test"/>
+	<testcase name="normal attributes complete six zones with fire-sword, using only that element" time="0.773394" classname="test"/>
+	<!-- 146s, 293 kills, 6 levels, best combo 70, 144 HP remaining -->
+	<testcase name="normal attributes complete six zones with lightning-spear, using only that element" time="0.322132" classname="test"/>
+	<!-- 159s, 293 kills, 6 levels, best combo 50, 154 HP remaining -->
+	<testcase name="normal attributes complete six zones with water-staff, using only that element" time="0.608965" classname="test"/>
+	<!-- 200s, 293 kills, 6 levels, best combo 47, 144 HP remaining -->
+	<testcase name="three professions can be prepared while an old run is pending without changing its ledger or consumed supply" time="0.003030" classname="test"/>
+	<testcase name="settling the old run preserves newly selected equipment and the next supply" time="0.000641" classname="test"/>
+	<testcase name="pending preparation still rejects locked weapons and exhausted supplies" time="0.000240" classname="test"/>
+	<testcase name="pending preparation does not open purchase, upgrade, quest, reward, or new-run gates" time="0.000216" classname="test"/>
+	<testcase name="camp synchronization reads another page without writing, then switching uses the current save" time="0.000342" classname="test"/>
+	<testcase name="same-run synchronization allows checkpoints while preserving preparation changed by another page" time="0.001991" classname="test"/>
+	<testcase name="active synchronization cannot adopt a settled, replacement, or deleted run" time="0.002178" classname="test"/>
+	<testcase name="active synchronization retains memory and original bytes on read or validation failure" time="0.000871" classname="test"/>
+	<testcase name="camp synchronization preserves malformed saves and blocked mutations rather than resetting" time="0.001711" classname="test"/>
+	<testcase name="failed pending preparation persistence never changes the previous choice or old run" time="0.000804" classname="test"/>
+	<testcase name="a single clicked blessing releases keyboard movement and Escape (zh-CN, reduced motion: false)" time="0.006923" classname="test"/>
+	<testcase name="a single clicked blessing releases keyboard movement and Escape (zh-CN, reduced motion: true)" time="0.000865" classname="test"/>
+	<testcase name="two queued levels accept their own keyboard choice and release movement after the final card (zh-CN)" time="0.001165" classname="test"/>
+	<testcase name="E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable (zh-CN)" time="0.001093" classname="test"/>
+	<testcase name="repeated clicks and number keys during the 200ms flourish grant exactly one blessing (zh-CN)" time="0.000773" classname="test"/>
+	<testcase name="clicking pause during the blessing flourish preserves the pause until the player resumes (zh-CN)" time="0.000706" classname="test"/>
+	<testcase name="resuming during a blessing selection cannot spend an old card on the next queued level (zh-CN, reduced motion: false)" time="0.000965" classname="test"/>
+	<testcase name="resuming during a blessing selection cannot spend an old card on the next queued level (zh-CN, reduced motion: true)" time="0.011494" classname="test"/>
+	<testcase name="redrawing an open blessing in the other language preserves its choices and releases movement (zh-CN)" time="0.001624" classname="test"/>
+	<testcase name="a language redraw during the selection flourish cannot grant a second reward or trap movement (zh-CN)" time="0.000928" classname="test"/>
+	<testcase name="a single clicked blessing releases keyboard movement and Escape (en, reduced motion: false)" time="0.000672" classname="test"/>
+	<testcase name="a single clicked blessing releases keyboard movement and Escape (en, reduced motion: true)" time="0.015402" classname="test"/>
+	<testcase name="two queued levels accept their own keyboard choice and release movement after the final card (en)" time="0.000689" classname="test"/>
+	<testcase name="E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable (en)" time="0.000644" classname="test"/>
+	<testcase name="repeated clicks and number keys during the 200ms flourish grant exactly one blessing (en)" time="0.000544" classname="test"/>
+	<testcase name="clicking pause during the blessing flourish preserves the pause until the player resumes (en)" time="0.000588" classname="test"/>
+	<testcase name="resuming during a blessing selection cannot spend an old card on the next queued level (en, reduced motion: false)" time="0.029537" classname="test"/>
+	<testcase name="resuming during a blessing selection cannot spend an old card on the next queued level (en, reduced motion: true)" time="0.001336" classname="test"/>
+	<testcase name="redrawing an open blessing in the other language preserves its choices and releases movement (en)" time="0.000655" classname="test"/>
+	<testcase name="a language redraw during the selection flourish cannot grant a second reward or trap movement (en)" time="0.003269" classname="test"/>
+	<testcase name="fire: immediate attack after a profession switch reaches the new authored rig" time="1.753698" classname="test"/>
+	<testcase name="fire: immediate skill after a profession switch reaches the new authored rig" time="0.014303" classname="test"/>
+	<testcase name="lightning: immediate attack after a profession switch reaches the new authored rig" time="0.008289" classname="test"/>
+	<testcase name="lightning: immediate skill after a profession switch reaches the new authored rig" time="0.013346" classname="test"/>
+	<testcase name="water: immediate attack after a profession switch reaches the new authored rig" time="0.007779" classname="test"/>
+	<testcase name="water: immediate skill after a profession switch reaches the new authored rig" time="0.005475" classname="test"/>
+	<testcase name="fire-greatsword: same-profession upgraded equipment retains its immediate attack" time="0.009161" classname="test"/>
+	<testcase name="fire-greatsword: same-profession upgraded equipment retains its immediate skill" time="0.006985" classname="test"/>
+	<testcase name="lightning-halberd: same-profession upgraded equipment retains its immediate attack" time="0.007631" classname="test"/>
+	<testcase name="lightning-halberd: same-profession upgraded equipment retains its immediate skill" time="0.006018" classname="test"/>
+	<testcase name="water-scepter: same-profession upgraded equipment retains its immediate attack" time="0.009450" classname="test"/>
+	<testcase name="water-scepter: same-profession upgraded equipment retains its immediate skill" time="0.006149" classname="test"/>
+	<testcase name="a combat event without a separately delivered equip event still uses the actual weapon" time="0.006969" classname="test"/>
+	<testcase name="continuous switches deliver each attack once and keep only the latest player actor" time="0.023519" classname="test"/>
+	<testcase name="obsolete weapon commands are not replayed on a different profession" time="0.003688" classname="test"/>
+	<testcase name="clearing or restarting removes old rigs and queued commands before a new run" time="0.007190" classname="test"/>
+	<!-- tests 86 -->
+	<!-- suites 0 -->
+	<!-- pass 86 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 2493.346875 -->
+</testsuites>

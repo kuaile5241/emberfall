@@ -1,4 +1,5 @@
 import { boonIcon } from './icons.js';
+import { t } from './i18n.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 let serial = 0;
@@ -49,21 +50,23 @@ function emblem(choice, category) {
 export function blessingMarkup(game) {
   const roomReward = game.choiceReason === 'room';
   return `<div class="blessing-draw">
-    <header class="blessing-heading"><span class="blessing-kicker">${roomReward ? '清场奖励' : `等级 ${escape(game.player.level)}`}</span><h3>选择祝福</h3><p>三选一 · 本局生效</p></header>
-    <div class="blessing-hand" role="group" aria-label="三选一祝福">${game.choices.map((choice, index) => {
+    <header class="blessing-heading"><span class="blessing-kicker">${escape(roomReward ? t('清场奖励') : t('等级 {level}', { level: game.player.level }))}</span><h3>${t('选择祝福')}</h3><p>${t('三选一 · 本局生效')}</p></header>
+    <div class="blessing-hand" role="group" aria-label="${t('三选一祝福')}">${game.choices.map((choice, index) => {
       const category = categories[choice.id] || 'inscription';
       const stacks = game.boons?.find(boon => boon.id === choice.id)?.stacks || 0;
-      return `<button class="blessing-card" data-choice="${index}" data-blessing="${escape(choice.id)}" data-category="${category}" style="--card-index:${index}" aria-label="${index + 1}，${escape(choice.name)}。${escape(choice.description)}。${stacks ? `已有 ${stacks} 层` : '尚未获得'}">
+      const stackLabel = stacks ? t('已有 {count} 层', { count: stacks }) : t('尚未获得');
+      const label = t('{number}，{name}。{description}。{stacks}', { number: index + 1, name: t(choice.name), description: t(choice.description), stacks: stackLabel });
+      return `<button class="blessing-card" data-choice="${index}" data-blessing="${escape(choice.id)}" data-category="${category}" style="--card-index:${index}" aria-label="${escape(label)}">
         ${cardFrame()}<span class="blessing-grain" aria-hidden="true"></span>
-        <span class="blessing-kind">${labels[category]}</span>${emblem(choice, category)}
-        <span class="blessing-title">${escape(choice.name)}</span>
+        <span class="blessing-kind">${t(labels[category])}</span>${emblem(choice, category)}
+        <span class="blessing-title">${escape(t(choice.name))}</span>
         <span class="blessing-divider" aria-hidden="true"><i></i></span>
-        <span class="blessing-description">${escape(choice.description)}</span>
-        <span class="blessing-stack">${stacks ? `已有 ${stacks} 层 <b>→ ${stacks + 1}</b>` : '首次获得'}</span>
-        <span class="blessing-choose"><kbd>${index + 1}</kbd><span>选择此祝福</span></span>
+        <span class="blessing-description">${escape(t(choice.description))}</span>
+        <span class="blessing-stack">${stacks ? `${escape(stackLabel)} <b>→ ${stacks + 1}</b>` : t('首次获得')}</span>
+        <span class="blessing-choose"><kbd>${index + 1}</kbd><span>${t('选择此祝福')}</span></span>
       </button>`;
     }).join('')}</div>
-    <p class="blessing-help">点击卡牌或按 <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd><span>祝福仅在本局生效</span></p>
+    <p class="blessing-help">${t('点击卡牌或按')} <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd><span>${t('祝福仅在本局生效')}</span></p>
   </div>`;
 }
 

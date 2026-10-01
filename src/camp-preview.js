@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { ActorSystem } from './actors.js';
 import { equipmentById } from './content.js';
 
@@ -11,24 +12,45 @@ export class CampPreview {
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.3;
+    this.renderer.toneMappingExposure = 1.12;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(32, 1, .1, 30);
-    this.camera.position.set(2.8, 2.3, 5.1);
-    this.camera.lookAt(0, 1.1, 0);
-    this.scene.add(new THREE.HemisphereLight(0xd6e5e4, 0x534133, 2.3));
-    const key = new THREE.DirectionalLight(0xffddb1, 4.2);
+    this.camera.position.set(2.55, 2.6, 5.7);
+    this.camera.lookAt(0, 1.18, 0);
+    this.scene.add(new THREE.HemisphereLight(0xe8e3df, 0x403b39, 2.15));
+    const key = new THREE.DirectionalLight(0xffe4bd, 3.5);
     key.position.set(-3, 6, 5); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); key.shadow.normalBias = .03;
     Object.assign(key.shadow.camera, { left: -3, right: 3, top: 4, bottom: -3, near: .1, far: 20 });
     this.scene.add(key);
     this.rim = new THREE.PointLight(0xf87e42, 22, 8, 2); this.rim.position.set(1, 2.8, -1.8); this.scene.add(this.rim);
-    const fill = new THREE.DirectionalLight(0xa4d5f3, 1.9); fill.position.set(3, 4, -4); this.scene.add(fill);
-    this.plinth = new THREE.Mesh(new THREE.CylinderGeometry(1.36, 1.5, .16, 64), new THREE.MeshStandardMaterial({ color: 0x343a39, roughness: .92, metalness: .22 }));
+    const fill = new THREE.DirectionalLight(0xcbd1dc, 1.5); fill.position.set(3, 4, -4); this.scene.add(fill);
+    this.plinth = new THREE.Mesh(new THREE.CylinderGeometry(1.18, 1.25, .17, 64), new THREE.MeshStandardMaterial({ color: 0x504a46, roughness: .91, metalness: .04 }));
     this.plinth.position.y = -.085; this.plinth.receiveShadow = true; this.scene.add(this.plinth);
-    this.trim = new THREE.Mesh(new THREE.TorusGeometry(1.36, .018, 8, 80), new THREE.MeshStandardMaterial({ color: 0xa7874d, metalness: .8, roughness: .4 }));
+    this.trim = new THREE.Mesh(new THREE.TorusGeometry(1.18, .012, 8, 80), new THREE.MeshStandardMaterial({ color: 0xc8ab68, metalness: .55, roughness: .5 }));
     this.trim.rotation.x = Math.PI / 2; this.trim.position.y = .006; this.scene.add(this.trim);
+    this.stage = new THREE.Group(); this.scene.add(this.stage);
+    this.stageResources = [];
+    const stageMesh = (geometry, material, position) => {
+      const object = new THREE.Mesh(geometry, material); object.position.set(...position);
+      object.castShadow = true; object.receiveShadow = true;
+      this.stage.add(object); this.stageResources.push(object); return object;
+    };
+    const stone = () => new THREE.MeshStandardMaterial({ color: 0x484440, roughness: .93 });
+    stageMesh(new THREE.CylinderGeometry(1.27, 1.36, .15, 64), stone(), [0, -.235, 0]);
+    for (const [x, z, size, turn] of [[-1.02,.65,.31,.2],[.93,.69,.23,-.4],[-.84,-.82,.16,.7],[.79,-.82,.18,-.6]]) {
+      const pebble = stageMesh(new RoundedBoxGeometry(size, size * .53, size * .75, 3, .06), stone(), [x, size * .24, z]);
+      pebble.rotation.y = turn;
+    }
+    for (const [x, z] of [[-1.06,.28],[.98,.43]]) {
+      const copper = () => new THREE.MeshStandardMaterial({ color: 0x8d6943, roughness: .44, metalness: .62 });
+      stageMesh(new THREE.CylinderGeometry(.12,.14,.07,16), copper(), [x,.07,z]);
+      stageMesh(new THREE.CylinderGeometry(.035,.045,.2,12), copper(), [x,.19,z]);
+      stageMesh(new RoundedBoxGeometry(.16,.23,.16,3,.035), new THREE.MeshStandardMaterial({ color: 0xf4c470, roughness: .35, emissive: 0xff9a35, emissiveIntensity: 1.1 }), [x,.36,z]);
+      stageMesh(new THREE.ConeGeometry(.15,.07,16), copper(), [x,.51,z]);
+      const glow = new THREE.PointLight(0xffc879, 1.7, 2.1, 2); glow.position.set(x,.44,z); this.stage.add(glow);
+    }
     this.actors = new ActorSystem({ models, clips, parent: this.scene, camera: this.camera });
     this.game = { player: { x: 0, z: 0, facing: .4, hp: 120, maxHp: 120, shield: 0, radius: .48 }, enemies: [], activeBuffs: [], status: 'menu' };
     this.game.weapon = equipmentById('fire-sword');
@@ -51,6 +73,10 @@ export class CampPreview {
     const width = this.canvas.clientWidth, height = this.canvas.clientHeight;
     if (width < 1 || height < 1) return;
     this.camera.aspect = width / height; this.camera.updateProjectionMatrix();
+    // Taller wardrobe layouts still fit hat, boots and the held weapon.
+    const extra = Math.max(0, .72 - this.camera.aspect) * 2.6;
+    this.camera.position.set(2.55 + extra * .35, 2.6, 5.7 + extra);
+    this.camera.lookAt(0, 1.18, 0);
     this.renderer.setSize(width, height, false);
   }
   render(dt) {
@@ -62,6 +88,7 @@ export class CampPreview {
   dispose() {
     this.observer.disconnect(); this.actors.clear();
     for (const object of [this.plinth, this.trim]) { object.geometry.dispose(); object.material.dispose(); }
+    for (const object of this.stageResources) { object.geometry.dispose(); object.material.dispose(); }
     this.canvas.removeEventListener('pointerdown', this.down); this.canvas.removeEventListener('pointermove', this.move);
     this.canvas.removeEventListener('pointerup', this.up); this.canvas.removeEventListener('pointercancel', this.up);
     this.renderer.dispose();

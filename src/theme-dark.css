@@ -1,0 +1,252 @@
+/* Charcoal, weathered silver and restrained brass. Element and stat colors stay semantic. */
+:root {
+  --gold: #d3b784;
+  --muted: #a5a3a0;
+  --line: #b8b0a43d;
+  color: #e5e1d9;
+  background: #101011;
+}
+button { background: #222223eb; }
+button:hover { background: #343332; border-color: #cdb58a; }
+button:focus-visible { outline-color: #e0c795; }
+
+/* Camp backdrop and its persistent frame. */
+.camp-shell, .camp-v6 {
+  --camp-gold: #dcc08f;
+  --camp-line: #b8b0a438;
+  --camp-muted: #aaa7a2;
+  color: #e5e1d9;
+  background: #111113;
+}
+.camp-shell::before, .camp-v6::before { filter: grayscale(.96) brightness(.29); }
+.camp-shell::after, .camp-v6::after {
+  background: radial-gradient(ellipse at 38% 55%, #b99b6f0d, transparent 48%),
+    linear-gradient(90deg, #101011ed, #171617aa 45%, #0e0e10f2),
+    linear-gradient(0deg, #0e0e11d9, transparent 70%);
+}
+.camp-v6 .camp-header { background: #141416e8; border-color: #b8b0a434; }
+.camp-v6 .camp-wallet { background: #2927298a; border-color: #b8b0a438; }
+.camp-v6 .camp-sidebar { border-color: #b8b0a422; }
+.camp-v6 .camp-nav button { color: #a7a39e; }
+.camp-v6 .camp-nav button:hover { background: #3835346b; border-color: #b8b0a443; }
+.camp-v6 .camp-nav button[aria-selected="true"] {
+  color: #efd4a0;
+  background: linear-gradient(140deg, #bfa46525, #46413a45);
+  border-color: #c8ad756a;
+  box-shadow: inset 0 1px #ead39920, 0 4px 14px #0002;
+}
+.camp-v6 .camp-nav-seal { color: #918a805e; }
+.camp-v6 .camp-header-status i { background: #aaa7a235; }
+.camp-v6 .camp-portrait-space {
+  border-color: #bbb3a63d;
+  background: radial-gradient(ellipse at 50% 40%, #bfa57c16, transparent 57%),
+    linear-gradient(160deg, #3634349e, #1c1b1cac 55%, #171718e8);
+  box-shadow: inset 0 1px #f3e1b813, 0 12px 36px #0003;
+}
+.camp-v6 .camp-portrait-space::after { border-color: #bbb3a615; }
+.camp-v6 .camp-portrait-window::before {
+  border-color: #c7b69725;
+  box-shadow: 0 0 0 9px #c7b69705, 0 0 0 10px #c7b69712;
+}
+.camp-v6 .camp-portrait-tag { background: #18171cc9; }
+.camp-v6 .camp-classes button { background: #242223ed; border-color: #b8b0a43d; }
+.camp-v6 .camp-classes button:hover { background: #373434eb; }
+.camp-v6 .camp-classes button[aria-pressed="true"] { border-color: var(--camp-element); }
+.camp-v6 .camp-portrait-kit button { background: #1d1b1c8c; border-color: #b8b0a435; color: #c4beb4; }
+.camp-v6 .camp-ready-tag { color: #c1b9ad; background: #48413a45; border-color: #b8b0a438; }
+.camp-v6 .camp-expedition { background: #1c1b1c; border-color: #c5ac7460; box-shadow: inset 0 0 0 5px #17161933, 0 9px 21px #0004; }
+.camp-v6 .camp-expedition::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/art/key-art.png') 72% 37% / cover;
+  filter: grayscale(.92) brightness(.65);
+  pointer-events: none;
+}
+.camp-v6 .camp-expedition-shade {
+  background: linear-gradient(90deg, #171516f2, #24212296 50%, #1513141c),
+    linear-gradient(0deg, #121112ed, transparent 62%);
+}
+.camp-v6 .camp-route-v6::before { background: linear-gradient(90deg, #d6b578b0, #b8b0a444); }
+.camp-v6 .camp-route-v6 > span { color: #a59e94; }
+.camp-v6 .camp-route-v6 i { border-color: #b8b0a470; background: #272429; }
+.camp-v6 .camp-route-v6 .is-start { color: #e8cc8b; }
+.camp-v6 .camp-route-v6 .is-start i { background: #e8bb79; }
+.camp-v6 .camp-ready-item { border-color: #b8b0a436; background: linear-gradient(135deg, #37343496, #26222370); }
+.camp-v6 .camp-contract-preview, .camp-v6 .camp-contract-empty {
+  border-color: #b8b0a431;
+  background: #33303065;
+}
+.camp-v6 .camp-contract-rail { background: #b8b0a421; }
+.camp-v6 .camp-growth-strip { background: #3732324d; border-color: #b8b0a42c; }
+.camp-v6 .camp-growth-track i { background: #b8b0a426; }
+.camp-v6 .camp-growth-track i.active { background: #d6bd79; }
+.camp-v6 .camp-quest { border-color: #b8b0a43b; background: #2d292a85; }
+.camp-v6 .camp-quest.is-complete { background: #4d423746; border-color: #c4b67877; }
+.camp-v6 .camp-quest-seal { background: linear-gradient(150deg, #857249, #423b37); }
+.camp-v6 .camp-progress-rail { background: #403b3e; }
+.camp-v6 .camp-progress-rail i { background: linear-gradient(90deg, #8b8070, #d2bc8f); }
+.camp-v6 .camp-claim, .camp-v6 .camp-buy, .camp-v6 .camp-equip { background: linear-gradient(110deg, #80634245, #39323375); }
+.camp-v6 .camp-claim:hover, .camp-v6 .camp-buy:hover, .camp-v6 .camp-equip:hover { background: #66543d85; }
+.camp-v6 .camp-footer { background: linear-gradient(0deg, #141314fa, #221f20ed); border-color: #b8b0a431; }
+.camp-v6 .camp-start { color: #251e18; }
+.camp-v6 .camp-footer-right select { background: #302c2dc7; border-color: #b8b0a43d; }
+.camp-v6 .camp-footer-right select option { background: #282526; }
+.camp-v6 .camp-notice { background: #262223f5; }
+.camp-v6 .camp-pending { background: #51433248; border-color: #bda37455; }
+.camp-v6 .camp-pending button { background: #3e352d; }
+.camp-v6 .camp-pane { scrollbar-color: #89796166 transparent; }
+
+/* Supporting copy is stone gray; element titles and gear accents keep their colors. */
+.camp-v6 :is(.camp-brand small, .camp-header-status, .camp-wallet small,
+  .camp-eyebrow, .camp-portrait-heading, .camp-character .camp-loadout-link,
+  .camp-ready-item small, .camp-ready-item em, .camp-contract-empty small,
+  .camp-contract-preview small, .camp-growth-strip small, .camp-growth-track b,
+  .camp-career, .camp-departure-note, .camp-footer-left, .camp-footer-left button,
+  .camp-footer-right, .camp-pane-sub, .camp-empty, .camp-quest p,
+  .camp-quest-progress, .camp-quest-status, .camp-contract-preview > span) { color: #aaa49d; }
+.camp-v6 .camp-portrait-hint { color: #aca49a99; }
+.camp-v6 :is(.camp-expedition-copy p, .camp-expedition-tags, .camp-contract-empty strong,
+  .camp-section-heading h4, .camp-contract-preview strong, .camp-growth-strip strong,
+  .camp-career b, .camp-portrait-kit button, .camp-pending small) { color: #ccc5b8; }
+.camp-v6 :is(.camp-growth-symbol > .camp-icon, .camp-growth-strip > .camp-icon,
+  .camp-contract-empty > .camp-icon:last-child,
+  .camp-contract-preview > span > .camp-icon, .camp-ready-icon > .camp-icon) { color: #afa18a; }
+
+/* Armory and packed supplies. No changes to inventory geometry or stat deltas. */
+.camp-shell .inv-view { --inv-line: #b8b0a42b; --inv-gold: #dfc28b; --inv-muted: #aaa39c; --inv-accent: #cfb784; color: #e1dcd3; }
+.camp-shell .inv-count { color: #c5beb2; background: #3a343528; }
+.camp-shell .inv-filters { background: #1b191ac7; border-color: #b8b0a42b; }
+.camp-shell .inv-filter { color: #aaa39c; }
+.camp-shell .inv-filter[aria-pressed="true"] { color: #ede2c2; border-color: #c1b98e50; background: linear-gradient(120deg, #75644840, #5943323b); }
+.camp-shell .inv-filter:hover { color: #ece7d0; background: #b8a08623; }
+.camp-shell .inv-weapon-tile, .camp-shell .inv-supply-tile {
+  color: #e0d9cd;
+  border-color: #b8b0a438;
+  background: radial-gradient(ellipse at 50% 28%, #76624d2e, #262324bc 74%);
+  box-shadow: 0 5px 12px #0003, inset 0 1px #f0e6d50a;
+}
+.camp-shell .inv-weapon-tile:hover, .camp-shell .inv-supply-tile:hover {
+  border-color: #d4c4a183;
+  background: radial-gradient(ellipse at 50% 28%, #a2855e32, #302b2cbc 74%);
+}
+.camp-shell .inv-weapon-tile.is-selected, .camp-shell .inv-supply-tile.is-selected {
+  border-color: #dec486b0;
+  background: radial-gradient(ellipse at 50% 24%, #c59c5930, #322b2ac9 75%);
+}
+.camp-shell .inv-tile-status { color: #e2c692; }
+.camp-shell .inv-tile-status:has(.camp-icon) { background: #232027f0; border-color: #b8b0a448; }
+.camp-shell .inv-detail { border-color: #b8b0a450; background: linear-gradient(145deg, #4039378c, #1d1b1ce0 90%); }
+.camp-shell .inv-primary, .camp-shell .inv-secondary, .camp-shell .inv-upgrade-button {
+  background: linear-gradient(120deg, #90734855, #4a3d3738);
+}
+.camp-shell .inv-primary:hover, .camp-shell .inv-upgrade-button:hover { background: linear-gradient(120deg, #b38d595a, #6c514a55); }
+.camp-shell .inv-primary.is-equipped { color: #d8c9aa; border-color: #c4aa765c; background: #7b654132; }
+.camp-shell .inv-secondary { color: #c8bfb4; border-color: #b8b0a43b; background: #42373248; }
+.camp-shell .inv-secondary:hover { background: #735a453b; border-color: #c2b09180; }
+.camp-shell .inv-packed-slot { border-color: #b8b0a455; background: linear-gradient(90deg, #725b4625, #30292670); }
+.camp-shell .inv-packed-slot.is-packed { border-color: #d2bc786f; background: linear-gradient(90deg, #9477412b, #473c3465); }
+.camp-shell .inv-packed-art { background: #2622238f; color: #aba298; }
+.camp-shell .inv-remove { color: #cdbd9e; border-color: #b8b0a450; background: #4c3f3745; }
+.camp-shell .inv-stock { background: #282425d9; }
+.camp-shell .inv-supply-effect { color: #d4c8ac; background: #85693e27; border-color: #bda37435; }
+.camp-shell .inv-upgrade { border-color: #d6bf7650; background: linear-gradient(120deg, #7f644225, #46392f65); }
+.camp-shell .inv-upgrade-track li { color: #a39a8d; }
+.camp-shell .inv-upgrade-track li::before { background: #a0928040; }
+.camp-shell .inv-upgrade-track li > span { background: #2d2928; border-color: #b8b0a455; }
+.camp-shell .inv-upgrade-track li.is-complete { color: #d0c1a4; }
+.camp-shell .inv-upgrade-track li.is-complete > span { background: #7861434d; border-color: #b8a8787d; }
+.camp-shell .inv-upgrade-track li.is-next { color: #dfc791; }
+.camp-shell .inv-upgrade-track li.is-next > span { border-color: #c8a967; background: #725c374d; }
+.camp-shell .inv-upgrade-bottom { border-color: #b8b0a42b; }
+.camp-shell .inv-stat-row { border-color: #b8b0a424; }
+.camp-shell .inv-stat-arrow { color: #8c8580; }
+.camp-shell .inv-stat-before { color: #aaa29a; }
+.camp-shell :is(.inv-eyebrow, .inv-weapon-tile small, .inv-supply-tile small,
+  .inv-weapon-tile.is-locked strong, .inv-collection-note, .inv-description,
+  .inv-detail-status, .inv-skill small, .inv-skill p, .inv-stats-heading small,
+  .inv-stat-row dt, .inv-stat-row strong small, .inv-stat-note,
+  .inv-detail-actions > small, .inv-packed-slot small, .inv-packed-slot .inv-eyebrow b,
+  .inv-slot-empty, .inv-section-title > span, .inv-empty-state,
+  .inv-supply-price, .inv-upgrade-bottom p, .inv-max-level) { color: #ada59c; }
+.camp-shell :is(.inv-stats-heading, .inv-section-title h4, .inv-packed-slot strong,
+  .inv-upgrade-bottom p.inv-next-bonus) { color: #d0c7b9; }
+
+/* Combat menus, settings, rewards and the quiet parts of the HUD. */
+#loading { background: #151415; }
+.loading-ring { border-color: #70675d; border-top-color: #e3bb7a; border-bottom-color: #e3bb7a; box-shadow: inset 0 0 0 5px #151415, inset 0 0 0 6px #62574b; }
+.language-switch { background: #262223f2; }
+.utility-button { background: #252223c9; }
+.map-surround { background: radial-gradient(ellipse, #191718bb 34%, #19171800 72%); }
+#toast, #interaction-hint { background: #1b1819d9; border-color: #b8b0a43d; }
+.overlay, .overlay[data-panel="build"] { background: #0e0d0eed; }
+.overlay section { background: radial-gradient(ellipse at 50% 0, #56413621, transparent 70%), #1b191ad9; scrollbar-color: #85705a #232122; }
+.overlay section::-webkit-scrollbar-track { background: #232122; }
+.overlay section::-webkit-scrollbar-thumb { background: #85705a; }
+.overlay :is(.sub, .stats small, .help-grid, .settings, .boon-list, .boon-list small) { color: #bab1a6; }
+.overlay .secondary { background: #302b28; }
+.overlay .secondary:hover { background: #443c36; }
+.settings select { color: #e0d8cb; background: #2d2928; border-color: #b8b0a456; }
+.settings select option { background: #2d2928; }
+.switch { background: #292526; border-color: #aba19668; }
+.switch::after { background: #a5998d; }
+.setting-toggle input:checked + .switch { background: #7b613547; }
+.choice { background: linear-gradient(145deg, #38332fe6, #221d1ef2); }
+.choice:hover { background: linear-gradient(145deg, #4a4139, #2e2827); }
+.choice p { color: #c6baac; }
+.build-stats, .build-boons, .weapon-numbers, .boon-list > div { border-color: #b8b0a42b; }
+.weapon-card { background: linear-gradient(145deg, #322c29ed, #252122ed); border-color: #b8b0a448; }
+.weapon-card.equipped { background: linear-gradient(135deg, rgba(var(--element-rgb), .11), #2a2523 65%); }
+.weapon-card.locked { background: #272324c4; border-color: #b8b0a42b; }
+.equip-button { color: #ded4c5; background: #63504432; border-color: #b8b0a459; }
+.locked-label { color: #aaa098; border-color: #b8b0a425; }
+:is(.weapon-class, .weapon-numbers, .weapon-skill span, .weapon-description,
+  .build-footnote, .build-stats small, .close-build kbd, .build-boons) { color: #aca29a; }
+.weapon-numbers b { color: #ddd0bc; }
+.build-summary strong { color: #b0a69a; }
+.build-summary button { background: #2c2826c9; }
+.build-summary #weapon-cycle, .build-summary #weapon-cycle:hover { background: none; }
+.skill kbd { background: linear-gradient(#393430e6, #201c1deb); }
+.skill-name { background: #2b2523ee; }
+.skill-name small { color: #c9beb1; }
+.cooldown { background: conic-gradient(from 0deg, #17121bdf var(--cooldown-angle), transparent var(--cooldown-angle)); }
+.level-seal { background: linear-gradient(145deg, #857553, #52483e 45%, #292425 55%, #806548); }
+.level-seal::before { background: #2b2523; }
+.health::before, .health::after { background: linear-gradient(#d0b381, #615345); border-color: #3b3531; }
+.xp { background: #3a322b; }
+.xp i { background: linear-gradient(90deg, #836e4c, #d2ba83); }
+.buff-medallion { background: conic-gradient(var(--element-accent) var(--buff-angle), #403931 var(--buff-angle)); }
+.buff-medallion .boon-icon { background: #2a2523; }
+.buff-time { background: #2e2927ef; }
+.buff-tooltip { background: #332e2aee; color: #dfd4c5; border-color: #b8b0a466; }
+#expedition-tracker small { color: #c5b394; }
+
+/* Blessing cards retain their illustrations and elemental blue highlights. */
+.blessing-card {
+  background: radial-gradient(ellipse at 50% 32%, #5d443331, transparent 65%),
+    linear-gradient(165deg, #332b26, #1e1a1b 70%, #2b2321);
+}
+.blessing-card[data-category="body"] {
+  --card-color: #c9b99e;
+  --card-dark: #65513f;
+  background: radial-gradient(ellipse at 50% 31%, #80603c27, transparent 65%),
+    linear-gradient(165deg, #372f28, #1f1b1b 72%, #302925);
+}
+.blessing-card[data-category="element"] {
+  background: radial-gradient(ellipse at 50% 31%, #52627c2b, transparent 65%),
+    linear-gradient(165deg, #2a2434, #181420 72%, #2a2334);
+}
+.blessing-card:hover, .blessing-card:focus-visible { background-color: transparent; }
+.blessing-grain { background: repeating-linear-gradient(0deg, transparent, transparent 4px, #e0d7b411 4px, #e0d7b411 5px), repeating-linear-gradient(123deg, transparent, transparent 10px, #b6a38a09 10px, #b6a38a09 11px); }
+.blessing-heading p, .blessing-stack, .blessing-help { color: #b1a59a; }
+.blessing-description { color: #d0c4b8; }
+.blessing-help > span { color: #9b9087; }
+.blessing-card:hover .blessing-choose kbd, .blessing-card:focus-visible .blessing-choose kbd { color: #211c1a; }
+
+/* The existing narrow-screen sticky navigation needs an opaque neutral surface. */
+@media (max-width: 760px) {
+  .camp-v6 .camp-sidebar { background: #242122f5; }
+}
+@media (max-width: 450px) {
+  .camp-v6 .camp-wallet { background: none; }
+}

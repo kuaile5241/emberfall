@@ -144,6 +144,25 @@ export class ProfileStore {
     this._profile = result.profile; this._raw = raw; this._blocked = null;
     return this.loadResult = { ok: true, profile: this.snapshot(), persisted: true, repaired: result.repaired };
   }
+  /** Read only: an active game can refresh its own ledger, never adopt another run. */
+  sync({ runId = null } = {}) {
+    if (runId == null) return this.load();
+    if (!safeRunId(runId)) return fail('invalid_run_id', '出征编号无效。');
+    let raw;
+    try {
+      if (!this.storage || typeof this.storage.getItem !== 'function' || typeof this.storage.setItem !== 'function') throw new Error('storage unavailable');
+      raw = this.storage.getItem(this.key);
+    } catch { return fail('storage_unavailable', '无法读取营地存档；出征与消费暂不可用。'); }
+    const changedRun = () => fail('run_changed', '当前出征记录已在其他页面结束或改变，请返回营地重新读取。');
+    if (raw == null) return changedRun();
+    let parsed;
+    try { parsed = JSON.parse(raw); } catch { return fail('invalid_json', '营地存档无法解析，原数据已保留，未自动重置。'); }
+    const result = validateProfile(parsed);
+    if (!result.ok) return result;
+    if (result.profile.pendingRun?.runId !== runId) return changedRun();
+    this._profile = result.profile; this._raw = raw; this._blocked = null;
+    return this.loadResult = { ok: true, profile: this.snapshot(), persisted: true, repaired: result.repaired };
+  }
   _commit(draft, extra = {}) {
     if (this._blocked) return fail(this._blocked, this.loadResult?.message || '存档状态异常，请重新读取后再操作。');
     const serialized = JSON.stringify(draft);
@@ -166,13 +185,13 @@ export class ProfileStore {
     return this._change(profile => {
       if (!profile.unlockedWeapons.includes(id)) return fail('weapon_locked', '这件武器尚未解锁。');
       profile.loadout = id;
-    });
+    }, true);
   }
   selectSupply(id) {
     return this._change(profile => {
       if (id != null && (!supplyById(id) || profile.items[id] < 1)) return fail('supply_unavailable', '没有可携带的这件补给。');
       profile.selectedSupply = id ?? null;
-    });
+    }, true);
   }
   buyItem(id, quantity = 1) {
     return this._change(profile => {
