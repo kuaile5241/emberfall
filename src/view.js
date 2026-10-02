@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { ActorSystem, ACTOR_ASSETS } from './actors.js';
 import { ElementEffects, ELEMENT_COLORS } from './element-effects.js';
+import { SkillEffects } from './skill-effects.js';
 import { equipmentById } from './content.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
@@ -56,7 +57,7 @@ export class DungeonView {
   const rim=new THREE.DirectionalLight(0x679eb1,1.3);rim.position.set(4,12,-20);this.scene.add(rim);
   this.playerLight=new THREE.PointLight(0xffb567,7,7,2);this.scene.add(this.playerLight);
   this.composer=new EffectComposer(this.renderer);this.composer.addPass(new RenderPass(this.scene,this.camera));this.bloom=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.3,.5,1.15);this.composer.addPass(this.bloom);this.composer.addPass(new OutputPass());
-  this.environment=new RuinWorld(this.scene);this.elementFX=new ElementEffects(this.scene,this.camera);this.dynamic=new THREE.Group();this.fx=new THREE.Group();this.warningGroup=new THREE.Group();this.pickups=new Map();this.warnings=new Map();this.bolts=new Map();this.interests=new Map();this.scene.add(this.dynamic,this.fx,this.warningGroup);
+  this.environment=new RuinWorld(this.scene);this.elementFX=new ElementEffects(this.scene,this.camera);this.skillFX=new SkillEffects(this.scene,this.elementFX);this.dynamic=new THREE.Group();this.fx=new THREE.Group();this.warningGroup=new THREE.Group();this.pickups=new Map();this.warnings=new Map();this.bolts=new Map();this.interests=new Map();this.scene.add(this.dynamic,this.fx,this.warningGroup);
   this.ray=new THREE.Raycaster();this.ground=new THREE.Plane(new THREE.Vector3(0,1,0),0);this.aim=new THREE.Vector3();this.createDust();this.resize();
  }
  async load(onProgress=()=>{}) {
@@ -65,7 +66,7 @@ export class DungeonView {
   this.actorSystem=new ActorSystem({models:this.models,clips:this.clips,parent:this.dynamic,camera:this.camera});this.actors=this.actorSystem.actors;this.setRoom(0);
  }
  createDust(){const R=random(17),p=[];for(let i=0;i<180;i++)p.push((R()-.5)*50,R()*7,(R()-.5)*50);const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));this.dust=new THREE.Points(g,new THREE.PointsMaterial({color:0xb2b2a1,size:.025,transparent:true,opacity:.35,depthWrite:false}));this.scene.add(this.dust);}
- setRoom(index){this.roomIndex=index;this.snapCamera=true;this.actorSystem?.clear();this.elementFX.clear();for(const map of[this.pickups,this.warnings,this.bolts,this.interests]){for(const o of map.values()){o.removeFromParent();o.traverse(disposeGenerated);}map.clear();}}
+ setRoom(index){this.roomIndex=index;this.snapCamera=true;this.actorSystem?.clear();this.elementFX.clear();this.skillFX?.clear();for(const map of[this.pickups,this.warnings,this.bolts,this.interests]){for(const o of map.values()){o.removeFromParent();o.traverse(disposeGenerated);}map.clear();}}
  setWorld(world=WORLD){
   const changed=this.environment.world!==world;
   this.environment.setWorld(world);this.setRoom(-1);
@@ -76,7 +77,7 @@ export class DungeonView {
  effect(event){
   const tidal=event.kind?.startsWith('tide-');
   const visual={...event,x:event.x??this.lastPlayer?.x??0,z:event.z??this.lastPlayer?.z??0,element:tidal?'water':event.element??this.lastElement??'fire'};
-  this.actorSystem?.event(visual);this.elementFX.event(visual);
+  this.actorSystem?.event(visual);if(!(event.type==='skill'&&event.form))this.elementFX.event(visual);this.skillFX.event(visual);
   if(event.type==='enemyAttack'&&tidal){
    const radius=event.radius||3;
    if(event.kind==='tide-ring'){
@@ -129,13 +130,14 @@ export class DungeonView {
    u.ring?.material.color.setHex(0x81bef5);
   }
   this.elementFX.update(game,dt);
+  this.skillFX.update(game,dt);
   this.environment.update(game,dt);this.playerLight.position.set(game.player.x,2.6,game.player.z);this.dust.position.set(game.player.x,0,game.player.z);
   const desired=new THREE.Vector3(game.player.x,0,game.player.z);if(this.snapCamera){this.target.copy(desired);this.snapCamera=false;}else this.target.lerp(desired,1-Math.exp(-dt*5));this.camera.position.copy(this.target).add(this.offset).add(this.elementFX.cameraOffset());this.camera.lookAt(this.target);const zoom=1+(this.settings.shake?this.elementFX.punch:0);if(this.camera.zoom!==zoom){this.camera.zoom=zoom;this.camera.updateProjectionMatrix();}this.sun.position.copy(this.target).add(new THREE.Vector3(-15,26,10));this.sun.target.position.copy(this.target);this.sun.target.updateMatrixWorld();
   if(this.quality!=='low'&&this.settings.bloom)this.composer.render();else this.renderer.render(this.scene,this.camera);
  }
  screenPoint(x,z,y=1.5){const p=new THREE.Vector3(x,y,z).project(this.camera);return{x:(p.x*.5+.5)*innerWidth,y:(-.5*p.y+.5)*innerHeight};}
  aimAt(clientX,clientY){this.ray.setFromCamera(new THREE.Vector2(clientX/innerWidth*2-1,1-clientY/innerHeight*2),this.camera);this.ray.ray.intersectPlane(this.ground,this.aim);return{x:this.aim.x,z:this.aim.z};}
- configure(options={}){const quality=['low','medium','high'].includes(options.quality)?options.quality:this.quality;this.settings={...this.settings,...options,quality,effects:clamp(Number(options.effects??this.settings.effects)||1,.5,1.5)};this.quality=quality;this.elementFX.configure(this.settings);const ratio=quality==='high'?1.5:quality==='medium'?1.2:1;this.renderer.setPixelRatio(Math.min(devicePixelRatio,ratio));this.composer.setPixelRatio(this.renderer.getPixelRatio());this.renderer.shadowMap.enabled=quality!=='low';const size=quality==='high'?2048:1024;if(this.sun.shadow.mapSize.x!==size){this.sun.shadow.mapSize.set(size,size);this.sun.shadow.map?.dispose();this.sun.shadow.map=null;}this.bloom.strength=.38*this.settings.effects;this.resize();}
+ configure(options={}){const quality=['low','medium','high'].includes(options.quality)?options.quality:this.quality;this.settings={...this.settings,...options,quality,effects:clamp(Number(options.effects??this.settings.effects)||1,.5,1.5)};this.quality=quality;this.elementFX.configure(this.settings);this.skillFX.configure(this.settings);const ratio=quality==='high'?1.5:quality==='medium'?1.2:1;this.renderer.setPixelRatio(Math.min(devicePixelRatio,ratio));this.composer.setPixelRatio(this.renderer.getPixelRatio());this.renderer.shadowMap.enabled=quality!=='low';const size=quality==='high'?2048:1024;if(this.sun.shadow.mapSize.x!==size){this.sun.shadow.mapSize.set(size,size);this.sun.shadow.map?.dispose();this.sun.shadow.map=null;}this.bloom.strength=.38*this.settings.effects;this.resize();}
  setQuality(quality){this.configure({quality});}
  resize(){const aspect=innerWidth/innerHeight,h=aspect<1.3?24:21;this.camera.left=-h*aspect/2;this.camera.right=h*aspect/2;this.camera.top=h/2;this.camera.bottom=-h/2;this.camera.updateProjectionMatrix();this.renderer.setSize(innerWidth,innerHeight);this.composer.setSize(innerWidth,innerHeight);this.elementFX.resize(innerHeight,h);}
 }

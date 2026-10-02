@@ -13,6 +13,8 @@ const files = [
   'tests/gear-appearance.test.js', 'tests/inventory-v6.test.js',
   'tests/campaign-profile.test.js', 'tests/campaign-ui.test.js', 'tests/campaign-flow.test.js',
   'tests/campaign-combat.test.js', 'tests/campaign-render.test.js',
+  'tests/build-profile.test.js', 'tests/build-ui.test.js', 'tests/build-flow.test.js',
+  'tests/build-combat.test.js', 'tests/build-effects.test.js',
 ];
 const started = Date.now();
 let log = '';

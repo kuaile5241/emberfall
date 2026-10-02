@@ -6,6 +6,7 @@
 import { WORLD, AQUEDUCT_WORLD, ZONES, containsPoint, constrainMove, canTravel, unlockedSurfaces, navigationTarget, zoneAt } from './world.js';
 import { EQUIPMENT, STARTER_WEAPON_IDS, DEFAULT_WEAPON_ID, equipmentById } from './content.js';
 import { t } from './i18n.js';
+import { normalizeBuildLoadout, resolveBuild, skillFormFor } from './builds.js';
 
 const TAU = Math.PI * 2;
 const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
@@ -55,7 +56,7 @@ function rngFromSeed(seed) {
   };
 }
 
-function normalizeLoadout({ runId = null, weaponId = DEFAULT_WEAPON_ID, unlockedWeapons = [], bonuses, campBonuses, supply = null }) {
+function normalizeLoadout({ runId = null, weaponId = DEFAULT_WEAPON_ID, unlockedWeapons = [], bonuses, campBonuses, supply = null, buildLoadout }) {
   const inventory = [...new Set([...STARTER_WEAPON_IDS, ...(Array.isArray(unlockedWeapons) ? unlockedWeapons.filter(id => equipmentById(id)) : [])])];
   const source = bonuses ?? campBonuses ?? {};
   const limits = { maxHp: 60, skillDamage: 40, damage: 12, armor: 0.15 };
@@ -63,7 +64,7 @@ function normalizeLoadout({ runId = null, weaponId = DEFAULT_WEAPON_ID, unlocked
   safeBonuses.damageMultiplier = Number.isFinite(source?.damageMultiplier) ? Math.max(1, Math.min(1.15, source.damageMultiplier)) : 1;
   const supplies = { tonic: 'damage-tonic', ward: 'ward-charm', 'damage-tonic': 'damage-tonic', 'ward-charm': 'ward-charm' };
   const supplyId = typeof supply === 'object' && supply !== null ? supply.id : supply;
-  return { runId: typeof runId === 'string' ? runId.slice(0, 128) : null, inventory, weaponId: inventory.includes(weaponId) ? weaponId : DEFAULT_WEAPON_ID, bonuses: safeBonuses, supply: Object.hasOwn(supplies, supplyId) ? supplies[supplyId] : null };
+  return { runId: typeof runId === 'string' ? runId.slice(0, 128) : null, inventory, weaponId: inventory.includes(weaponId) ? weaponId : DEFAULT_WEAPON_ID, bonuses: safeBonuses, supply: Object.hasOwn(supplies, supplyId) ? supplies[supplyId] : null, buildLoadout: normalizeBuildLoadout(buildLoadout) };
 }
 
 export class Game {
@@ -89,6 +90,7 @@ export class Game {
     this._nextId = 1;
     this._events = [];
     this._held = {};
+    this._aimDistance = null;
     this._pendingLevels = 0;
     this._levelRevealAt = 0;
     this._waveTimer = 0;
@@ -136,6 +138,8 @@ export class Game {
     this.runId = this._loadout.runId;
     this.supply = this._loadout.supply;
     this.weaponId = this.startingWeaponId;
+    this.buildLoadout = normalizeBuildLoadout(this._loadout.buildLoadout);
+    this.skillEffects = [];
     this.skillCooldowns = { fire: 0, lightning: 0, water: 0 };
     this.activeBuffs = [];
     this.areas = [];
@@ -175,16 +179,17 @@ export class Game {
     return this;
   }
 
-  reset({ seed = this.seed, difficulty = this.difficulty, weaponId = this.startingWeaponId, unlockedWeapons = this._loadout.inventory, bonuses, campBonuses, supply = this._loadout.supply, runId = this.runId, expeditionId = this.expeditionId } = {}) {
+  reset({ seed = this.seed, difficulty = this.difficulty, weaponId = this.startingWeaponId, unlockedWeapons = this._loadout.inventory, bonuses, campBonuses, supply = this._loadout.supply, runId = this.runId, expeditionId = this.expeditionId, buildLoadout = this._loadout.buildLoadout } = {}) {
     this.seed = normalizeSeed(seed);
     this._setExpedition(expeditionId);
     this.difficulty = ['story', 'normal', 'hard'].includes(difficulty) ? difficulty : 'normal';
-    this._loadout = normalizeLoadout({ runId, weaponId, unlockedWeapons, bonuses: bonuses ?? campBonuses ?? this._loadout.bonuses, supply });
+    this._loadout = normalizeLoadout({ runId, weaponId, unlockedWeapons, bonuses: bonuses ?? campBonuses ?? this._loadout.bonuses, supply, buildLoadout });
     this.startingWeaponId = this._loadout.weaponId;
     return this.start();
   }
 
   get weapon() { return equipmentById(this.weaponId); }
+  get activeSkill() { return skillFormFor(this.weapon, this.buildLoadout); }
   get runSummary() {
     const won = this.status === 'won';
     return { runId: this.runId, expeditionId: this.expeditionId, outcome: won ? 'won' : this.status === 'dead' ? 'dead' : 'abandoned', won,
@@ -208,6 +213,7 @@ export class Game {
     const weapon = equipmentById(id);
     if (!weapon) return null;
     const p = this.player, w = weapon.stats;
+    const build = resolveBuild(this.buildLoadout, weapon.element);
     const fury = this.activeBuffs.find(b => b.id === 'flame-fury')?.power ?? 0;
     const haste = this.activeBuffs.find(b => b.id === 'storm-haste')?.power ?? 0;
     const loadoutDamage = this._loadout.bonuses.damageMultiplier * (this.supply === 'damage-tonic' ? 1.12 : 1);
@@ -215,8 +221,8 @@ export class Game {
     return {
       damage: p.damage * w.damage * (1 + fury) * loadoutDamage, attackInterval, attackDuration: attackInterval,
       attackRange: p.attackRange + w.attackRange, attackArc: Math.min(TAU, p.attackArc * w.attackArc),
-      skillDamage: p.skillDamage * w.skillDamage * (1 + fury) * loadoutDamage, skillRadius: p.skillRadius + w.skillRadius,
-      skillCooldown: Math.max(2, p.skillCooldown * w.skillCooldown),
+      skillDamage: p.skillDamage * w.skillDamage * (1 + fury) * loadoutDamage * build.damageMultiplier, skillRadius: (p.skillRadius + w.skillRadius) * build.radiusMultiplier,
+      skillCooldown: Math.max(2, p.skillCooldown * w.skillCooldown * build.skillCooldownMultiplier),
       speed: p.speed, armor: p.armor, critChance: p.critChance,
     };
   }
@@ -311,6 +317,7 @@ export class Game {
     if (moveLength > 1) { mx /= moveLength; mz /= moveLength; }
     const ax = Number.isFinite(input.aimX) ? input.aimX : 0;
     const az = Number.isFinite(input.aimZ) ? input.aimZ : 0;
+    this._aimDistance = Math.hypot(ax, az) > .001 ? Math.hypot(ax, az) : null;
     if (Math.hypot(ax, az) > 0.001) p.facing = Math.atan2(ax, az);
     else if (moveLength > 0.001) p.facing = Math.atan2(mx, mz);
     p.moving = moveLength > 0.05 || p.dashTime > 0;
@@ -347,6 +354,7 @@ export class Game {
     if (this.status !== 'playing') return;
 
     this._updateAreas(dt);
+    this._updateSkillEffects(dt);
     this._updateEnemies(dt);
     if (this.status !== 'playing') return;
     this._updateProjectiles(dt);
@@ -371,7 +379,8 @@ export class Game {
       const angle = Math.atan2(enemy.x - p.x, enemy.z - p.z);
       if (d <= stats.attackRange + enemy.radius && (d < 0.9 || Math.abs(angleDelta(angle, p.facing)) <= stats.attackArc / 2) && canTravel(p.x, p.z, enemy.x, enemy.z, 0.05, this._allowedSurfaces)) {
         const critical = this.random() < stats.critChance;
-        this._damageEnemy(enemy, stats.damage * (critical ? 2 : 1) * (combo === 2 ? 1.15 : 1), 'attack', critical);
+        const chilledMultiplier = enemy.slowRemaining > 0 || enemy.frozenRemaining > 0 ? resolveBuild(this.buildLoadout, weapon.element).vsChilledMultiplier : 1;
+        this._damageEnemy(enemy, stats.damage * (critical ? 2 : 1) * (combo === 2 ? 1.15 : 1) * chilledMultiplier, 'attack', critical);
         const knock = enemy.type === 'boss' ? 0.06 : enemy.type === 'brute' ? 0.14 : 0.34;
         Object.assign(enemy, constrainMove(enemy.x, enemy.z, enemy.x + Math.sin(angle) * knock, enemy.z + Math.cos(angle) * knock, enemy.radius, this._allowedSurfaces));
       }
@@ -380,13 +389,15 @@ export class Game {
 
   _castSkill() {
     if (this.status !== 'playing' || this.player.skillCd > 0) return false;
+    if (this.activeSkill.kind !== 'legacy') return this._castShapedSkill();
     const p = this.player, stats = this.combatStats, weapon = this.weapon, config = weapon.skill;
+    const snapshot = this._skillSnapshot(stats, weapon);
     const targets = [], chain = [], hitIds = new Set(), killsBefore = this.kills;
     p.skillCd = stats.skillCooldown;
     for (const enemy of [...this.enemies]) {
       if (enemy.hp > 0 && distance(p, enemy) <= stats.skillRadius + enemy.radius && this._lineOfSight(p, enemy)) {
         targets.push({ id: enemy.id, x: enemy.x, z: enemy.z, elite: enemy.elite }); hitIds.add(enemy.id);
-        this._damageEnemy(enemy, stats.skillDamage, 'skill', false, weapon.element);
+        this._damageSkillEnemy(enemy, stats.skillDamage, snapshot, 'skill');
         this._stunEnemy(enemy, config.stun);
         this._knockEnemy(enemy, p, config.knockback);
         if (weapon.element === 'water') this._slowEnemy(enemy, config.slow, config.slowDuration);
@@ -394,7 +405,7 @@ export class Game {
     }
     if (weapon.element === 'lightning') {
       let origins = targets.length ? [...targets] : [p];
-      for (let i = 0; i < config.chainCount; i++) {
+      for (let i = 0; i < Math.max(0, config.chainCount + snapshot.chainBonus); i++) {
         let best = null;
         for (const origin of origins) for (const enemy of this.enemies) {
           const d = distance(origin, enemy);
@@ -403,10 +414,16 @@ export class Game {
         if (!best) break;
         const point = { id: best.enemy.id, x: best.enemy.x, z: best.enemy.z, elite: best.enemy.elite };
         chain.push({ from: { x: best.origin.x, z: best.origin.z }, to: point }); targets.push(point); hitIds.add(point.id);
-        this._damageEnemy(best.enemy, stats.skillDamage * config.chainScale, 'chain', false, weapon.element);
+        this._damageSkillEnemy(best.enemy, stats.skillDamage * config.chainScale, snapshot, 'chain');
         this._stunEnemy(best.enemy, config.stun);
         this._knockEnemy(best.enemy, best.origin, config.knockback);
         origins = [point];
+      }
+      const tail = chain.at(-1)?.to;
+      if (tail && snapshot.overload > 0) {
+        const effect = { origin: tail, snapshot, element: weapon.element };
+        this._shapeCircle(effect, tail, 2.3, snapshot.overload, 'overload');
+        this._emit('skillshape', { form: 'lightning-chain', phase: 'overload', element: 'lightning', ...tail, radius: 2.3 });
       }
       this._applyBuff({ id: 'storm-haste', name: '疾电', element: 'lightning', duration: config.buffDuration, power: config.haste });
     } else if (weapon.element === 'fire') {
@@ -418,7 +435,7 @@ export class Game {
       this._applyBuff({ id: 'tide-shield', name: '潮汐护盾', element: 'water', duration: config.buffDuration, power: shield });
     }
     this.areas.push({ id: this._nextId++, element: weapon.element, weaponId: weapon.id, variant: weapon.variant, x: p.x, z: p.z,
-      radius: stats.skillRadius, duration: config.duration, remaining: config.duration, interval: config.interval ?? Infinity,
+      radius: stats.skillRadius, duration: config.duration, remaining: config.duration, interval: config.interval ?? Infinity, snapshot, chillTick: .5,
       tickRemaining: config.interval ?? Infinity, damage: config.dotScale ? stats.skillDamage * config.dotScale * config.interval : stats.skillDamage * (config.pulseScale ?? 0),
       slow: config.slow ?? 0, slowDuration: config.slowDuration ?? 0 });
     this._emit('skill', { x: p.x, z: p.z, radius: stats.skillRadius, amount: stats.skillDamage, duration: config.duration, element: weapon.element, weaponId: weapon.id, variant: weapon.variant, targets, chain,
@@ -426,6 +443,189 @@ export class Game {
     // Each visible wave clears bolts only on its own side of a wall.
     this.projectiles = this.projectiles.filter(bolt => distance(p, bolt) > stats.skillRadius || !this._lineOfSight(p, bolt));
     return true;
+  }
+
+  _skillSnapshot(stats = this.combatStats, weapon = this.weapon) {
+    return { ...resolveBuild(this.buildLoadout, weapon.element), element: weapon.element, weaponId: weapon.id, form: this.activeSkill.id,
+      damage: stats.skillDamage, radius: stats.skillRadius, refunded: 0 };
+  }
+
+  _damageSkillEnemy(enemy, amount, snapshot, source = 'skill') {
+    if (enemy.hp <= 0) return;
+    const multiplier = enemy.slowRemaining > 0 || enemy.frozenRemaining > 0 ? snapshot.vsChilledMultiplier : 1;
+    this._damageEnemy(enemy, amount * multiplier, source, false, snapshot.element);
+    if (enemy.hp <= 0 && snapshot.feedback > 0) {
+      const refund = Math.min(snapshot.feedback, 1 - snapshot.refunded, this.skillCooldowns[snapshot.element]);
+      this.skillCooldowns[snapshot.element] = Math.max(0, this.skillCooldowns[snapshot.element] - refund);
+      snapshot.refunded += refund;
+    }
+  }
+
+  _chillEnemy(enemy, snapshot) {
+    if (enemy.hp <= 0 || enemy.freezeCooldown > 0) return;
+    enemy.chillRemaining = 2;
+    enemy.chillStacks = Math.min(3, (enemy.chillStacks || 0) + 1 + (snapshot.form === 'water-blizzard' ? snapshot.chillBonus : 0));
+    this._slowEnemy(enemy, .45, 1.2);
+    if (enemy.chillStacks < 3) return;
+    enemy.chillStacks = 0;
+    enemy.frozenRemaining = enemy.type === 'boss' ? .12 : .85;
+    enemy.freezeCooldown = enemy.type === 'boss' ? 4 : 3;
+    enemy.freezeSnapshot = snapshot;
+    this._stunEnemy(enemy, enemy.frozenRemaining);
+    this._emit('freeze', { id: enemy.id, x: enemy.x, z: enemy.z, element: 'water', duration: enemy.frozenRemaining });
+  }
+
+  _forwardPoint(range, facing = this.player.facing, origin = this.player) {
+    const dx = Math.sin(facing), dz = Math.cos(facing);
+    let point = { x: origin.x, z: origin.z };
+    for (let step = .25; step <= range + 1e-6; step += .25) {
+      const candidate = { x: origin.x + dx * step, z: origin.z + dz * step };
+      if (!this._lineOfSight(origin, candidate)) break;
+      point = candidate;
+    }
+    return point;
+  }
+
+  _castShapedSkill() {
+    const p = this.player, skill = this.activeSkill, stats = this.combatStats;
+    const snapshot = this._skillSnapshot(stats), id = this._nextId++;
+    p.skillCd = stats.skillCooldown;
+    const origin = { x: p.x, z: p.z }, facing = p.facing;
+    const targetDistance = ['fire-meteor', 'water-blizzard'].includes(skill.id) && this._aimDistance !== null
+      ? Math.max(.5, Math.min(6.5, this._aimDistance)) : 6.5;
+    const target = this._forwardPoint(targetDistance);
+    const effect = { id, form: skill.id, element: this.weapon.element, snapshot, origin, facing,
+      x: target.x, z: target.z, age: 0, remaining: 1, duration: 1, radius: 2, hitIds: new Set() };
+    if (skill.id === 'fire-pillars') {
+      const count = 4 + snapshot.pillarBonus;
+      effect.points = Array.from({ length: count }, (_, index) => ({ ...this._forwardPoint(1.75 + index * 1.65), delay: .28 + index * .18, fired: false }));
+      effect.radius = 1.35 * snapshot.radiusMultiplier;
+      effect.remaining = effect.duration = .65 + count * .18;
+    } else if (skill.id === 'fire-meteor') {
+      effect.delay = .8; effect.radius = 2.65 * snapshot.radiusMultiplier;
+      effect.remaining = effect.duration = 3.4 + snapshot.durationBonus;
+      effect.tick = .5;
+    } else if (skill.id === 'water-blizzard') {
+      effect.radius = 3.2 * snapshot.radiusMultiplier + snapshot.radiusBonus;
+      effect.remaining = effect.duration = 4 + snapshot.durationBonus;
+      effect.tick = .15;
+    } else if (skill.id === 'water-torrent') {
+      const end = this._forwardPoint(12);
+      effect.x = p.x; effect.z = p.z; effect.length = distance(origin, end);
+      effect.width = 4 * snapshot.radiusMultiplier;
+      effect.speed = 10; effect.remaining = effect.duration = effect.length / effect.speed + .1;
+    } else if (skill.id === 'lightning-chain') {
+      const candidates = this.enemies.filter(enemy => {
+        const d = distance(p, enemy), a = Math.atan2(enemy.x - p.x, enemy.z - p.z);
+        return enemy.hp > 0 && d <= 10 && Math.abs(angleDelta(a, facing)) < .75 && this._lineOfSight(p, enemy);
+      }).sort((a, b) => distance(p, a) - distance(p, b));
+      effect.nextId = candidates[0]?.id ?? null;
+      effect.jumps = Math.max(1, 5 + snapshot.chainBonus); effect.tick = .05;
+      effect.x = p.x; effect.z = p.z; effect.remaining = effect.duration = effect.jumps * .12 + .15;
+    } else if (skill.id === 'lightning-lances') {
+      effect.lines = [-.2, 0, .2].map(offset => ({ from: origin, to: this._forwardPoint(11, facing + offset) }));
+      effect.delay = .18; effect.remaining = effect.duration = .45;
+    }
+    this.skillEffects.push(effect);
+    this._emit('skill', { ...origin, facing, element: effect.element, weaponId: this.weapon.id, variant: this.weapon.variant,
+      form: skill.id, duration: effect.duration, radius: effect.radius, amount: snapshot.damage, targets: [], chain: [] });
+    this._emit('skillshape', this._shapeEvent(effect, 'cast'));
+    return true;
+  }
+
+  _shapeEvent(effect, phase, extra = {}) {
+    return { id: effect.id, form: effect.form, phase, element: effect.element, x: effect.x, z: effect.z,
+      origin: { ...effect.origin }, facing: effect.facing, radius: effect.radius, width: effect.width,
+      length: effect.length, points: effect.points?.map(point => ({ ...point })), lines: effect.lines,
+      duration: effect.duration, ...extra };
+  }
+
+  _shapeCircle(effect, center, radius, scale, source = 'skill', chill = false) {
+    for (const enemy of [...this.enemies]) {
+      if (enemy.hp <= 0 || distance(center, enemy) > radius + enemy.radius || !this._lineOfSight(center, enemy) || !this._lineOfSight(effect.origin, center)) continue;
+      if (chill) this._chillEnemy(enemy, effect.snapshot);
+      this._damageSkillEnemy(enemy, effect.snapshot.damage * scale, effect.snapshot, source);
+      if (effect.element === 'fire' && enemy.hp > 0) enemy.burnRemaining = .6;
+    }
+  }
+
+  _segmentHit(enemy, from, to, width) {
+    const dx = to.x - from.x, dz = to.z - from.z, length2 = dx * dx + dz * dz;
+    if (length2 <= .001) return false;
+    const t = ((enemy.x - from.x) * dx + (enemy.z - from.z) * dz) / length2;
+    if (t < 0 || t > 1) return false;
+    return Math.hypot(enemy.x - from.x - dx * t, enemy.z - from.z - dz * t) <= width + enemy.radius && this._lineOfSight(from, enemy);
+  }
+
+  _updateSkillEffects(dt) {
+    for (const effect of this.skillEffects) {
+      const priorAge = effect.age;
+      effect.age += dt; effect.remaining -= dt;
+      if (effect.form === 'fire-pillars') {
+        for (const point of effect.points) {
+          if (!point.fired && effect.age >= point.delay) {
+            point.fired = true;
+            this._shapeCircle(effect, point, effect.radius, .7);
+            this._emit('skillshape', this._shapeEvent(effect, 'pillar', { x: point.x, z: point.z }));
+          }
+          if (effect.snapshot.aftershock && point.fired && !point.echo && effect.age >= point.delay + .32) {
+            point.echo = true; this._shapeCircle(effect, point, effect.radius, .7 * effect.snapshot.aftershock, 'aftershock');
+            this._emit('skillshape', this._shapeEvent(effect, 'pillar-echo', { x: point.x, z: point.z }));
+          }
+        }
+      } else if (effect.form === 'fire-meteor') {
+        if (!effect.impacted && effect.age >= effect.delay) {
+          effect.impacted = true; this._shapeCircle(effect, effect, effect.radius, 1.65);
+          this._emit('skillshape', this._shapeEvent(effect, 'impact'));
+        }
+        if (effect.impacted && effect.snapshot.aftershock && !effect.echo && effect.age >= effect.delay + .32) {
+          effect.echo = true; this._shapeCircle(effect, effect, effect.radius, 1.65 * effect.snapshot.aftershock, 'aftershock');
+          this._emit('skillshape', this._shapeEvent(effect, 'impact-echo'));
+        }
+        if (effect.impacted) {
+          effect.tick -= dt;
+          if (effect.tick <= 0) { effect.tick += .5; this._shapeCircle(effect, effect, effect.radius, .12, 'burn'); }
+        }
+      } else if (effect.form === 'water-blizzard') {
+        effect.tick -= dt;
+        if (effect.tick <= 0) {
+          effect.tick += .45;
+          this._shapeCircle(effect, effect, effect.radius, .22, 'blizzard', true);
+          // Fixed fall positions make the storm legible without per-enemy circles.
+          const turn = effect.age * 2.4, offsets = [-1, 0, 1].map((offset, index) => ({ x: effect.x + Math.sin(turn + index * 2.1) * effect.radius * .7, z: effect.z + Math.cos(turn + index * 2.1) * effect.radius * .7 }));
+          this._emit('skillshape', this._shapeEvent(effect, 'snow', { points: offsets }));
+        }
+      } else if (effect.form === 'water-torrent') {
+        const from = { x: effect.origin.x + Math.sin(effect.facing) * Math.min(effect.length, priorAge * effect.speed), z: effect.origin.z + Math.cos(effect.facing) * Math.min(effect.length, priorAge * effect.speed) };
+        const to = { x: effect.origin.x + Math.sin(effect.facing) * Math.min(effect.length, effect.age * effect.speed), z: effect.origin.z + Math.cos(effect.facing) * Math.min(effect.length, effect.age * effect.speed) };
+        effect.x = to.x; effect.z = to.z;
+        for (const enemy of [...this.enemies]) if (!effect.hitIds.has(enemy.id) && this._segmentHit(enemy, from, to, effect.width / 2)) {
+          effect.hitIds.add(enemy.id); this._chillEnemy(enemy, effect.snapshot);
+          this._damageSkillEnemy(enemy, effect.snapshot.damage * 1.35, effect.snapshot, 'torrent');
+          this._knockEnemy(enemy, effect.origin, 1.5);
+        }
+      } else if (effect.form === 'lightning-chain') {
+        effect.tick -= dt;
+        if (effect.tick <= 0 && effect.nextId !== null && effect.jumps > 0) {
+          effect.tick += .12;
+          const enemy = this.enemies.find(item => item.id === effect.nextId && item.hp > 0), from = { x: effect.x, z: effect.z };
+          if (!enemy || !this._lineOfSight(from, enemy)) { effect.nextId = null; continue; }
+          effect.x = enemy.x; effect.z = enemy.z; effect.hitIds.add(enemy.id); effect.jumps--;
+          this._damageSkillEnemy(enemy, effect.snapshot.damage * 1.05, effect.snapshot, 'chain'); this._stunEnemy(enemy, .45);
+          this._emit('skillshape', this._shapeEvent(effect, 'jump', { from, to: { x: effect.x, z: effect.z } }));
+          const next = this.enemies.filter(item => item.hp > 0 && !effect.hitIds.has(item.id) && distance(effect, item) <= 4.6 && this._lineOfSight(effect, item)).sort((a, b) => distance(effect, a) - distance(effect, b))[0];
+          effect.nextId = effect.jumps > 0 ? next?.id ?? null : null;
+          if (effect.nextId === null && effect.snapshot.overload > 0) { this._shapeCircle(effect, effect, 2.3, effect.snapshot.overload, 'overload'); this._emit('skillshape', this._shapeEvent(effect, 'overload', { radius: 2.3 })); }
+        }
+      } else if (effect.form === 'lightning-lances' && !effect.fired && effect.age >= effect.delay) {
+        effect.fired = true;
+        for (const enemy of [...this.enemies]) if (effect.lines.some(line => this._segmentHit(enemy, line.from, line.to, .5))) {
+          effect.hitIds.add(enemy.id); this._damageSkillEnemy(enemy, effect.snapshot.damage * 1.4, effect.snapshot, 'lance'); this._stunEnemy(enemy, .35);
+        }
+        this._emit('skillshape', this._shapeEvent(effect, 'lances'));
+      }
+    }
+    this.skillEffects = this.skillEffects.filter(effect => effect.remaining > 0);
   }
 
   _lineOfSight(a, b) { return canTravel(a.x, a.z, b.x, b.z, 0.05, this._allowedSurfaces); }
@@ -486,7 +686,8 @@ export class Game {
       while (area.tickRemaining <= 1e-7) {
         area.tickRemaining += area.interval;
         for (const enemy of targets) {
-          this._damageEnemy(enemy, area.damage, area.element === 'fire' ? 'burn' : 'area', false, area.element);
+          if (area.snapshot) this._damageSkillEnemy(enemy, area.damage, area.snapshot, area.element === 'fire' ? 'burn' : 'area');
+          else this._damageEnemy(enemy, area.damage, area.element === 'fire' ? 'burn' : 'area', false, area.element);
           if (area.element === 'lightning') this._stunEnemy(enemy, 0.25);
         }
         this._emit('areapulse', { id: area.id, element: area.element, variant: area.variant, x: area.x, z: area.z, radius: area.radius });
@@ -540,6 +741,13 @@ export class Game {
     const p = this.player;
     if (p.lifeOnKill > 0) p.hp = Math.min(p.maxHp, p.hp + p.lifeOnKill);
     this.enemies = this.enemies.filter(item => item !== enemy);
+    // A frozen enemy can shatter once. Shatter victims cannot start another
+    // explosion, even if those victims were also frozen in the same storm.
+    const frozen = enemy.freezeSnapshot;
+    if (source !== 'shatter' && enemy.frozenRemaining > 0 && frozen?.shatter > 0) {
+      this._emit('skillshape', { form: 'water-blizzard', phase: 'shatter', element: 'water', x: enemy.x, z: enemy.z, radius: 2.25 });
+      for (const nearby of [...this.enemies]) if (distance(enemy, nearby) <= 2.25 + nearby.radius && this._lineOfSight(enemy, nearby)) this._damageSkillEnemy(nearby, frozen.damage * frozen.shatter, frozen, 'shatter');
+    }
     // Let the last impact, lingering field and multikill read before opening
     // a modal. This is simulation time, so pausing does not consume the delay.
     if (this.enemies.length === 0) this._levelRevealAt = this.time + 0.85;
@@ -586,6 +794,7 @@ export class Game {
       this.status = 'dead';
       this.activeBuffs = [];
       this.areas = [];
+      this.skillEffects = [];
       p.shield = 0;
       p.wardShield = 0;
       this.skillCooldowns = { fire: 0, lightning: 0, water: 0 };
@@ -619,6 +828,7 @@ export class Game {
     this.enemies = [];
     this.projectiles = [];
     this.telegraphs = [];
+    this.skillEffects = [];
     this.hazards = [];
     this._hazardClock = 6;
     this.interactionChannel = null;
@@ -701,7 +911,7 @@ export class Game {
       attackCd: 0.7 + this.random() * 1.0, attackCount: 0, attack: null,
       phase: 1, summoned: false, dead: false,
       navTime: 0, navTarget: null,
-      slowRemaining: 0, slowFactor: 1, burnRemaining: 0,
+      slowRemaining: 0, slowFactor: 1, burnRemaining: 0, chillRemaining: 0, chillStacks: 0, frozenRemaining: 0, freezeCooldown: 0, freezeSnapshot: null,
     };
     this.enemies.push(enemy);
     this._emit('spawn', { id: enemy.id, enemyType: type, x, z, elite });
@@ -718,6 +928,10 @@ export class Game {
       enemy.stun = Math.max(0, enemy.stun - dt);
       enemy.slowRemaining = Math.max(0, enemy.slowRemaining - dt);
       enemy.burnRemaining = Math.max(0, enemy.burnRemaining - dt);
+      enemy.frozenRemaining = Math.max(0, (enemy.frozenRemaining || 0) - dt);
+      enemy.freezeCooldown = Math.max(0, (enemy.freezeCooldown || 0) - dt);
+      enemy.chillRemaining = Math.max(0, (enemy.chillRemaining || 0) - dt);
+      if (enemy.chillRemaining <= 0) enemy.chillStacks = 0;
       if (enemy.slowRemaining <= 0) enemy.slowFactor = 1;
       if (enemy.spawnTime > 0 || enemy.stun > 0) continue;
 

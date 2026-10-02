@@ -1,0 +1,68 @@
+/* An engraved workbench: geometry, equipment and deliberate talent branches. */
+.build-glyph { width: 52px; height: 52px; fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; color: #dbc294; flex-shrink: 0; }
+.build-glyph-ring { opacity: .28; stroke-width: .8; }
+.build-glyph[data-element="fire"] { color: #e5ad79; }
+.build-glyph[data-element="water"] { color: #a6cadc; }
+.build-glyph[data-element="lightning"] { color: #c4b7e7; }
+.camp-build-link { position: relative; width: 100%; text-align: left; padding: 0; border-color: #b8b0a43b; background: #2824268a; margin-bottom: 19px; }
+.camp-build-link .loadout-summary { border: 0; background: none; padding-right: 40px; margin: 0; }
+.camp-build-link-arrow { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #bda47c; }
+.camp-build-link-arrow .camp-icon { width: 18px; }
+.loadout-summary { display: flex; align-items: flex-start; gap: 16px; padding: 18px; margin: 0 0 14px; border: 1px solid #b8b0a444; border-radius: 12px; background: linear-gradient(120deg,#39313280,#201d21a8); }
+.loadout-skill-art { display: flex; padding: 6px; border: 1px solid #b8b0a428; border-radius: 50%; background: #171519a8; }
+.loadout-summary small { display: block; color: #aaa49d; font-size: 10px; letter-spacing: 1px; margin-bottom: 4px; }
+.loadout-summary strong { display: block; color: #eadac0; font: 21px Georgia,'Noto Serif SC',serif; }
+.loadout-summary p { font-size: 11px; line-height: 1.7; color: #bdb5aa; margin: 7px 0; }
+.loadout-summary-gear { display: flex; gap: 10px; color: #c3ae8b; font-size: 10px; }
+.loadout-summary-gear i { color: #6d645f; font-style: normal; }
+.loadout-summary em { display: block; font-size: 10px; color: #d3ab83; font-style: normal; margin-top: 9px; }
+.build-save-note, .build-talent-note { color: #a8a19a; font-size: 10px; line-height: 1.8; margin: 10px 0 20px; }
+.build-point-count { display: grid; text-align: right; font-size: 9px; gap: 5px; color: #b8aea0; }
+.build-point-count b { color: #ead0a2; font: 24px Georgia,serif; }
+.build-point-count i { font-style: normal; font-size: 13px; color: #8e8377; }
+.build-element-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 20px 0; border: 1px solid #b8b0a433; border-radius: 9px; overflow: hidden; background: #181619d9; }
+.build-element-tabs button { border: 0; border-right: 1px solid #b8b0a423; border-radius: 0; padding: 12px 6px; color: #bfb6aa; background: none; }
+.build-element-tabs button:last-child { border-right: 0; }
+.build-element-tabs button span { display: block; font-size: 9px; color: #978d85; margin-top: 4px; }
+.build-element-tabs button[aria-pressed="true"] { color: #eed5a4; background: linear-gradient(150deg,#8166484f,#4b403638); box-shadow: inset 0 -2px #bea172; }
+.build-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 27px 0 13px; }
+.build-section-heading h4 { font: 17px Georgia,'Noto Serif SC',serif; color: #ded1bb; margin: 0; }
+.build-section-heading > span { color: #9f9488; font-size: 9px; }
+.build-section-heading button { font-size: 10px; padding: 5px 12px; }
+.build-gear-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.build-gear-card { display: flex; flex-direction: column; padding: 15px; border: 1px solid #b8b0a438; border-radius: 12px; background: radial-gradient(ellipse at 15% 0,#7e695226,transparent 80%),#252125a8; }
+.build-gear-card.is-equipped { border-color: #c7ac778d; box-shadow: inset 0 0 0 1px #ba9c5620; }
+.build-gear-top { display: flex; align-items: center; gap: 10px; }
+.build-gear-top > span { flex: 1; min-width: 0; }
+.build-gear-top small { display: block; color: #a69a8b; font-size: 9px; margin-bottom: 5px; }
+.build-gear-top strong { font-size: 14px; color: #e4d9c3; font-weight: 500; }
+.build-gear-top > .camp-icon { width: 15px; color: #d7ba7d; }
+.build-gear-card p { color: #b4a89e; font-size: 10px; line-height: 1.8; flex: 1; margin: 12px 0; }
+.build-gear-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 10px; border-top: 1px solid #b8b0a423; }
+.build-gear-actions span { font-size: 10px; color: #a39889; display: flex; gap: 5px; align-items: center; }
+.build-gear-actions .camp-icon { width: 15px; color: #d2b57f; }
+.build-gear-actions button { font-size: 10px; padding: 6px 13px; color: #d6c7a9; border-color: #b8b0a44a; }
+.build-gear-actions button[aria-pressed="true"] { background: #7662473d; border-color: #c3a86a78; }
+.talent-tree { position: relative; }
+.talent-root { width: 65%; margin: 0 auto 25px; }
+.talent-root::after { content: ''; display: block; width: 1px; height: 14px; background: #ab967052; position: absolute; left: 50%; }
+.talent-branches { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; position: relative; }
+.talent-branches::before { content: ''; position: absolute; top: -12px; left: 25%; right: 25%; height: 12px; border: solid #ab967052; border-width: 1px 1px 0; pointer-events: none; }
+.talent-node { width: 100%; text-align: left; display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 5px 9px; padding: 14px; border-radius: 11px; background: #242126a1; border-color: #b8b0a434; }
+.talent-node-seal { width: 30px; height: 30px; border: 1px solid #b8b0a44b; border-radius: 50%; display: flex; align-items: center; justify-content: center; grid-row: 1 / 3; color: #bfa674; }
+.talent-node-seal .camp-icon { width: 16px; }
+.talent-node strong { font-weight: 500; font-size: 13px; color: #ded1b8; }
+.talent-node p { grid-column: 1 / -1; margin: 3px 0 5px; font-size: 10px; line-height: 1.8; color: #b1a79d; }
+.talent-node small { grid-column: 1 / -1; font-size: 9px; color: #9c8f7e; }
+.talent-node.is-selected { border-color: #cfb6858f; background: linear-gradient(135deg,#8264423f,#332c308c); }
+.talent-node.is-selected .talent-node-seal { background: #b99a5d33; border-color: #cead72; }
+.build-armor-grid { grid-template-columns: repeat(3,minmax(0,1fr)); padding-bottom: 20px; }
+.build-armor-grid .build-gear-top { flex-direction: column; align-items: flex-start; }
+.build-armor-grid .build-gear-top > .camp-icon { position: absolute; right: 10px; top: 10px; }
+.build-armor-grid .build-gear-card { position: relative; padding: 12px; }
+.battle-talents { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.battle-talents span { padding: 5px 11px; border-radius: 20px; border: 1px solid #ac967343; color: #d4bc93; background: #3d302537; font-size: 11px; }
+.camp-portrait-kit .build-glyph { width: 38px; height: 38px; }
+.skill-art .build-glyph { width: 100%; height: 100%; padding: 14px; box-sizing: border-box; border-radius: 50%; background: radial-gradient(circle,#524155 0,#242132 56%,#17141c 65%,#a58b65 68%,#36303e 72%,transparent 73%); filter: drop-shadow(0 2px 3px #0009); }
+@media (max-height: 800px) and (min-width: 1000px) { .camp-v6 .camp-nav { gap: 7px; } .camp-v6 .camp-nav button { min-height: 65px; padding: 8px 4px; } }
+@media (max-width: 700px) { .build-gear-grid, .build-armor-grid { grid-template-columns: 1fr; } .build-armor-grid .build-gear-top { flex-direction: row; } .talent-root { width: 85%; } .talent-node { padding: 10px; } .loadout-summary { gap: 10px; padding: 12px; } .loadout-summary strong { font-size: 18px; } .build-section-heading > span { max-width: 50%; text-align: right; } }

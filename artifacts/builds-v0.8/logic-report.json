@@ -1,0 +1,32 @@
+{
+  "version": "0.8.0",
+  "status": "passed",
+  "fullTests": 253,
+  "flowTests": 182,
+  "failures": 0,
+  "normalInputMatrix": {
+    "skillForms": 6,
+    "maps": 2,
+    "victories": 12,
+    "baseHp": 120,
+    "baseAttack": 26,
+    "baseSpeed": 5,
+    "note": "Input-only drivers; base stats, enemy coordinates and progression were not edited. In-run earned blessings can raise actual stats."
+  },
+  "sourceHashes": {
+    "src/builds.js": "e4f3f46b8b315242a062215e01ff31e7ef5aaf966378113ac3e322305bf32725",
+    "src/profile.js": "8645bee74e8b24316e98987f51f7d0050641c11301e2a99f1a2f72e3f2eb7e80",
+    "src/game.js": "cab8414a3bffecc16fe6d92fe1f163c23db7cfaad09ca7f4ff2726af1f001e6d",
+    "src/main.js": "396a0ecd62781e5f2cf8bcc1774e3422ba7a9b9503732b7ff14cbe30d3dd16f6",
+    "src/camp-ui.js": "966e5985ed058507226e853e5d171344f8793fca37a2f44e022a155eb6823e31",
+    "src/build-ui.js": "6bcb73538836d655bd8084cd121ddf018d87f568df087b43f48392817ce2caf2",
+    "src/build-icons.js": "c7e7567635fb95a6b3d7148ddd4601bd1aa5143acb08dea03e0b1c0c3065b2e8",
+    "src/skill-effects.js": "9376224d6b6e69ff6eeb4c4dcfcd44d06b11c9379ebba45891bbcffc5f616069",
+    "src/equipment-appearance.js": "ed883712441d2be850f82ad12aab1e500470fbb49102b8c546839eb2c372aa4d",
+    "src/builds.css": "ddbbf4b14134a420d90dc589c06abb452758737a156429d46645349ea314d394",
+    "src/locales/builds-en.js": "cfeb835e1e22993dbdc2a1b98711a6934c1c4d94a68f0d2046071bc275d7ed66",
+    "src/qa-builds-runner.js": "8b1570208eb792f4913be925e658a2a41d14fc30da6ab5f0aa879b44bf3e6929",
+    "src/camp-inventory.js": "1d3084af36a8e7bf5367ecb2c53b013233015f703d972ab39cb2f7eb00c15efc"
+  },
+  "buildWarning": "Main bundle remains larger than 500 kB; this is not a device performance acceptance."
+}

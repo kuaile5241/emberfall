@@ -4,9 +4,10 @@ import uiEnglish from './locales/ui-en.js';
 import campV6English from './locales/camp-v6-en.js';
 import inventoryEnglish from './locales/inventory-en.js';
 import campaignEnglish from './locales/campaign-en.js';
+import buildsEnglish from './locales/builds-en.js';
 
 export const SUPPORTED_LOCALES = Object.freeze(['zh-CN', 'en']);
-const english = Object.freeze({ ...gameEnglish, ...campEnglish, ...uiEnglish, ...campV6English, ...inventoryEnglish, ...campaignEnglish });
+const english = Object.freeze({ ...gameEnglish, ...campEnglish, ...uiEnglish, ...campV6English, ...inventoryEnglish, ...campaignEnglish, ...buildsEnglish });
 const listeners = new Set();
 let locale = 'zh-CN';
 let storage = null;

@@ -1,0 +1,23 @@
+
+> emberfall-beneath-the-bell@0.8.0 build
+> vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 65 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               4.90 kB │ gzip:   1.75 kB
+dist/assets/index-DqNkRLca.css              115.10 kB │ gzip:  26.72 kB
+dist/assets/campaign-bot-BShcBlPg.js          2.36 kB │ gzip:   1.25 kB
+dist/assets/qa-campaign-runner-n6hy4ljY.js    6.28 kB │ gzip:   2.72 kB
+dist/assets/qa-flow-runner-CYdHsU9w.js        8.83 kB │ gzip:   4.17 kB
+dist/assets/qa-builds-runner-CC-iYoVz.js     13.79 kB │ gzip:   5.13 kB
+dist/assets/index-CYjlQhOh.js               974.57 kB │ gzip: 276.28 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 402ms
