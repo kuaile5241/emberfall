@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { ActorSystem } from './actors.js';
 import { equipmentById } from './content.js';
+import { normalizeBuildLoadout } from './builds.js';
 
 /** Reuses the real game rigs and weapons in the camp's wardrobe portrait. */
 export class CampPreview {
@@ -63,9 +64,10 @@ export class CampPreview {
     this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(canvas);
     this.resize();
   }
-  select(id) {
+  select(id, buildLoadout) {
     const weapon = equipmentById(id); if (!weapon) return;
     this.game.weapon = weapon;
+    this.game.buildLoadout = normalizeBuildLoadout(buildLoadout);
     this.rim.color.set(weapon.element === 'fire' ? 0xff803a : weapon.element === 'water' ? 0x47c2e3 : 0x9ed8ff);
     this.actors.update(this.game, 0);
   }

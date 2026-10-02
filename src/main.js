@@ -1,4 +1,7 @@
 import { t, getLocale, setLocale, initLocale, onLocaleChange } from './i18n.js';
+import { skillFormFor, talentById } from './builds.js';
+import { renderBuildSummary } from './build-ui.js';
+import { buildSkillIcon } from './build-icons.js';
 import { Game, ROOMS } from './game.js';
 import { DungeonView } from './view.js';
 import { GameAudio } from './audio.js';
@@ -17,6 +20,7 @@ import './blessing-cards.css';
 import './battle-v4.css';
 import './theme-dark.css';
 import './campaign.css';
+import './builds.css';
 
 const $ = id => document.getElementById(id);
 const ui = Object.fromEntries(['world', 'loading', 'load-progress', 'menu', 'battle-impact', 'multikill', 'expedition-tracker',
@@ -28,8 +32,9 @@ const query = new URLSearchParams(location.search);
 const QA_MODE = query.get('qa') === '1';
 const QA_FLOW_MODE = QA_MODE && query.get('flow') === '1';
 const QA_CAMPAIGN_MODE = QA_MODE && query.get('campaign') === '1';
+const QA_BUILDS_MODE = QA_MODE && query.get('builds') === '1';
 // Each automated page gets fresh test-only keys; ordinary saves are never reset.
-const qaSuffix = QA_FLOW_MODE || QA_CAMPAIGN_MODE ? `.qa.flow.${crypto.randomUUID()}` : QA_MODE ? '.qa' : '';
+const qaSuffix = QA_FLOW_MODE || QA_CAMPAIGN_MODE || QA_BUILDS_MODE ? `.qa.flow.${crypto.randomUUID()}` : QA_MODE ? '.qa' : '';
 initLocale({ storage: localStorage, key: 'emberfall.locale.v1' + qaSuffix });
 const SETTINGS_KEY = 'emberfall.settings.v1' + qaSuffix;
 const RECORD_KEY = 'emberfall.records.v1' + qaSuffix;
@@ -175,10 +180,10 @@ function renderCamp() {
     campUI = createCampUI({ root: ui.menu, profileStore,
       onStart: startGame, onHelp: () => openHelp(),
       onChange: () => { selectedWeaponId = profileStore.profile.loadout; },
-      onRender: ({ portraitCanvas, weaponId }) => {
+      onRender: ({ portraitCanvas, weaponId, buildLoadout }) => {
         if (!view || !portraitCanvas) return;
         if (!campPreview || campPreview.canvas !== portraitCanvas) { campPreview?.dispose(); campPreview = new CampPreview(portraitCanvas, view); }
-        campPreview.select(weaponId); campPreview.resize();
+        campPreview.select(weaponId, buildLoadout); campPreview.resize();
       },
     });
   }
@@ -203,7 +208,7 @@ export function startGame(options = {}) {
   runStoryClaimed = [...camp.campaign.claimed];
   const quest = QUESTS.find(item => item.id === camp.activeQuest);
   runQuest = quest ? { ...quest, baseProgress: camp.quests[quest.id].progress } : null;
-  const flowSeed = (QA_FLOW_MODE || QA_CAMPAIGN_MODE) && /^\d{1,10}$/.test(query.get('seed') || '') ? Number(query.get('seed')) >>> 0 : QA_FLOW_MODE || QA_CAMPAIGN_MODE ? 913 : null;
+  const flowSeed = (QA_FLOW_MODE || QA_CAMPAIGN_MODE || QA_BUILDS_MODE) && /^\d{1,10}$/.test(query.get('seed') || '') ? Number(query.get('seed')) >>> 0 : QA_FLOW_MODE || QA_CAMPAIGN_MODE || QA_BUILDS_MODE ? 913 : null;
   const seed = options.seed ?? flowSeed ?? (globalThis.crypto?.getRandomValues ? crypto.getRandomValues(new Uint32Array(1))[0] : Date.now());
   clearInput();
   hideOverlay();
@@ -242,6 +247,7 @@ function showMenu() {
   clearInput();
   blessingSelectionPending = false;
   ui['language-switch'].disabled = false;
+  view?.skillFX?.clear();
   game = null;
   lastRoom = -1;
   hideOverlay();
@@ -305,7 +311,7 @@ function closePopup() {
 function openHelp(returnTo = null) {
   popupReturn = returnTo;
   showOverlay('help', `<h3>${t('操作')}</h3>
-    <div class="help-grid"><div><kbd>W A S D</kbd>${t('移动')}</div><div><kbd>${t('鼠标')}</kbd>${t('瞄准')}</div><div><kbd>${t('左键 / J')}</kbd>${t('按住连续攻击')}</div><div><kbd>SPACE</kbd>${t('闪避，短暂无敌')}</div><div><kbd>${t('右键 / K')}</kbd>${t('当前武器范围技能')}</div><div><kbd>Q</kbd>${t('治疗药水')}</div><div><kbd>E</kbd>${t('清场后领取奖励')}</div><div><kbd>1 / 2 / 3</kbd>${t('选择祝福')}</div><div><kbd>B</kbd>${t('装备与构筑')}</div><div><kbd>TAB</kbd>${t('切换元素武器')}</div><div><kbd>ESC</kbd>${t('暂停 / 返回')}</div></div>
+    <div class="help-grid"><div><kbd>W A S D</kbd>${t('移动')}</div><div><kbd>${t('鼠标')}</kbd>${t('瞄准')}</div><div><kbd>${t('左键 / J')}</kbd>${t('按住连续攻击')}</div><div><kbd>SPACE</kbd>${t('闪避，短暂无敌')}</div><div><kbd>${t('右键 / K')}</kbd>${t('瞄准施放当前技能')}</div><div><kbd>Q</kbd>${t('治疗药水')}</div><div><kbd>E</kbd>${t('清场后领取奖励')}</div><div><kbd>1 / 2 / 3</kbd>${t('选择祝福')}</div><div><kbd>B</kbd>${t('装备与构筑')}</div><div><kbd>TAB</kbd>${t('切换元素武器')}</div><div><kbd>ESC</kbd>${t('暂停 / 返回')}</div></div>
     <p class="sub">${t('躲开红色攻击预警。范围群杀会返还冷却；清场领奖后沿金色标记前进。')}<br>${t('装备自动拾取，按 B 更换；Tab 优先使用已拥有的高级装备。')}<br>${t('地图青色菱形是支线目标，靠近按 E 互动。击败最终 Boss 及随从即可通关。')}</p>
     <button id="close-popup" class="primary">${t('返回')}</button>`);
   $('close-popup').addEventListener('click', closePopup);
@@ -320,16 +326,17 @@ function openBuild(returnTo = null) {
     : `<p class="sub">${t('尚未获得祝福')}</p>`;
   const cards = [...EQUIPMENT].sort((a, b) => a.tier - b.tier).map(item => {
     const owned = game.inventory.includes(item.id), equipped = item.id === game.weapon.id;
-    const preview = game.statsForWeapon(item.id);
+    const preview = game.statsForWeapon(item.id), form = skillFormFor(item, game.buildLoadout);
     return `<article class="weapon-card ${equipped ? 'equipped' : ''} ${owned ? '' : 'locked'}" data-element="${item.element}" data-weapon-card="${item.id}">
       <div class="weapon-card-top"><span class="weapon-art">${skillIcon('attack', item)}</span><div><span class="weapon-tier">${t(ELEMENTS[item.element].name)} · ${item.tier === 1 ? t('初始武器') : t('进阶武器')}</span><h4>${escape(t(item.name))}</h4><span class="weapon-class">${escape(t(item.className))}</span></div></div>
       <div class="weapon-numbers"><span><b>${Math.round(preview.damage)}</b> ${t('攻击')}</span><span><b>${preview.attackInterval.toFixed(2)}</b> ${t('秒 / 次')}</span><span><b>${preview.attackRange.toFixed(1)}</b> ${t('米')}</span></div>
-      <p class="weapon-skill"><strong>${escape(t(item.skillName))}</strong><span>${t('{damage} 爆发 · {cooldown} 秒冷却', { damage: Math.round(preview.skillDamage), cooldown: preview.skillCooldown.toFixed(1) })}</span></p>
-      <p class="weapon-description">${escape(t(item.skillDescription))}</p>
+      <p class="weapon-skill"><strong>${escape(t(form.name))}</strong><span>${form.kind === 'legacy' ? t('{damage} 爆发 · {cooldown} 秒冷却', { damage: Math.round(preview.skillDamage), cooldown: preview.skillCooldown.toFixed(1) }) : t('{cooldown} 秒冷却', { cooldown: preview.skillCooldown.toFixed(1) })}</span></p>
+      <p class="weapon-description">${escape(t(form.description))}</p>
       ${equipped ? `<span class="equip-state">${t('已装备')}</span>` : owned ? `<button class="equip-button" data-equip="${item.id}">${t('装备')}</button>` : `<span class="equip-state locked-label">${t('探索获得')}</span>`}
     </article>`;
   }).join('');
   showOverlay('build', `<div class="build-heading"><div><h3>${t('装备与构筑')}</h3><p class="sub">${escape(t(game.weapon.className))} · ${t('Tab 切换元素，优先使用高级装备')}</p></div><button id="close-popup" class="close-build" aria-label="${t('关闭装备面板')}">${t('返回')} <kbd>B / ESC</kbd></button></div>
+    ${renderBuildSummary(game.weapon, game.buildLoadout, { battle: true })}<p class="build-save-note">${t('护甲、遗物与天赋在营地调整，下次出征生效。')}</p><div class="battle-talents">${game.buildLoadout.talents.map(id => `<span title="${escape(t(talentById(id).description))}">${escape(t(talentById(id).name))}</span>`).join('')}</div>
     <div class="build-stats"><div><strong>${Math.round(stats.damage)}</strong><small>${t('攻击')}</small></div><div><strong>${Math.round(stats.critChance * 100)}%</strong><small>${t('暴击')}</small></div><div><strong>${Math.round(stats.armor * 100)}%</strong><small>${t('减伤')}</small></div><div><strong>${stats.speed.toFixed(1)}</strong><small>${t('移动速度')}</small></div><div><strong>${Math.ceil(game.player.shield || 0)}</strong><small>${t('护盾')}</small></div></div>
     <div class="weapon-inventory">${cards}</div>
     <div class="build-footnote">${t('属性已计入本局祝福与当前增益 · 高级装备来自清场奖励和精英掉落')}</div>
@@ -452,8 +459,14 @@ function consumeEvents() {
       case 'attack': audio.play('slash', { gain: .3, element: event.element }); flashSkill('attack-button'); break;
       case 'dash': audio.play('dash', { gain: .34 }); flashSkill('dash-button'); break;
       case 'skill':
-        audio.play('skill', { gain: .58, element: event.element }); flashSkill('burst-button');
-        impactTime = .22; ui['battle-impact'].dataset.element = event.element;
+        audio.play(event.form ? 'slash' : 'skill', { gain: event.form ? .2 : .58, element: event.element }); flashSkill('burst-button');
+        if (!event.form) { impactTime = .22; ui['battle-impact'].dataset.element = event.element; }
+        break;
+      case 'skillshape':
+        if (['pillar', 'impact', 'lances', 'overload', 'shatter'].includes(event.phase)) {
+          audio.play('skill', { gain: event.phase === 'pillar' ? .32 : .52, element: event.element });
+          impactTime = event.phase === 'impact' ? .25 : .12; ui['battle-impact'].dataset.element = event.element;
+        } else if (['snow', 'jump'].includes(event.phase)) audio.play('skill', { gain: .13, rate: event.phase === 'jump' ? 1.15 : .8, element: event.element });
         break;
       case 'multikill':
         clearTimeout(killBannerTimer);
@@ -560,10 +573,11 @@ function drawMinimap() {
 
 function updateSkillArt() {
   const weapon = game.weapon;
-  if (displayedWeaponId === weapon.id) return;
-  displayedWeaponId = weapon.id;
+  const form = game.activeSkill, signature = `${weapon.id}:${form.id}`;
+  if (displayedWeaponId === signature) return;
+  displayedWeaponId = signature;
   ui.hud.dataset.element = weapon.element;
-  for (const node of document.querySelectorAll('[data-skill-art]')) node.innerHTML = skillIcon(node.dataset.skillArt, weapon);
+  for (const node of document.querySelectorAll('[data-skill-art]')) node.innerHTML = node.dataset.skillArt === 'burst' && form.kind !== 'legacy' ? buildSkillIcon(form.id, weapon.element) : skillIcon(node.dataset.skillArt, weapon);
   ui['weapon-cycle'].title = t('Tab 切换元素（优先高级装备）');
   ui['weapon-cycle'].setAttribute('aria-label', t('{name}，Tab 切换元素武器', { name: t(weapon.name) }));
   ui['weapon-cycle'].querySelectorAll('[data-element]').forEach(node => node.classList.toggle('selected', node.dataset.element === weapon.element));
@@ -627,13 +641,13 @@ function updateHud() {
   const tooltips = {
     'attack-button': t('左键 / J · 按住连击\n{damage} 伤害 · {interval} 秒 / 次', { damage: Math.round(stats.damage), interval: stats.attackInterval.toFixed(2) }),
     'dash-button': t('SPACE · 短暂无敌\n冷却 {seconds} 秒', { seconds: p.dashCooldown.toFixed(1) }),
-    'burst-button': t('右键 / K · {damage} 爆发伤害\n{description}', { damage: Math.round(stats.skillDamage), description: t(game.weapon.skillDescription) }),
+    'burst-button': game.activeSkill.kind === 'legacy' ? t('右键 / K · {damage} 爆发伤害\n{description}', { damage: Math.round(stats.skillDamage), description: t(game.activeSkill.description) }) : t('右键 / K · {seconds} 秒冷却\n{description}', { seconds: stats.skillCooldown.toFixed(1), description: t(game.activeSkill.description) }),
     'heal-button': t('Q · 恢复生命\n剩余 {count} 瓶', { count: p.potions }),
   };
   for (const [id, remaining, max, name] of [
     ['attack-button', p.attackCd, stats.attackInterval, attackNames[game.weapon.type] || t('攻击')],
     ['dash-button', p.dashCd, p.dashCooldown, t('闪避')],
-    ['burst-button', p.skillCd, stats.skillCooldown, game.weapon.skillName],
+    ['burst-button', p.skillCd, stats.skillCooldown, game.activeSkill.name],
     ['heal-button', p.potionCd, .8, t('药水')],
   ]) {
     const cooling = remaining > .04;
@@ -850,6 +864,7 @@ async function initialize() {
           x: game.player.x, z: game.player.z, kills: game.kills, time: game.time, enemies: game.enemies.length,
           wave: game.waveIndex + 1, choices: game.choices.map(choice => choice.id), boons: game.boons.map(boon => boon.id),
           weapon: { id: game.weapon.id, name: game.weapon.name, element: game.weapon.element, tier: game.weapon.tier },
+          buildLoadout: game.buildLoadout, activeSkill: game.activeSkill,
           inventory: [...game.inventory], combatStats: { ...game.combatStats }, shield: game.player.shield,
           buffs: game.activeBuffs.map(buff => ({ ...buff })), areas: game.areas.map(area => ({ ...area })),
           profile: profileStore.snapshot(), runSummary: game.runSummary, settings: { ...settings }, audioVoices: audio.voices.length } : { ready, status: 'menu', overlay, selectedWeaponId, profile: profileStore.snapshot(), settings: { ...settings } },
@@ -862,6 +877,11 @@ async function initialize() {
         locale: query.get('lang') === 'en' ? 'en' : 'zh-CN', demo: query.get('demo') === '1',
       });
       if (query.get('autostart') !== '0') window.__emberfallStartFlow();
+    }
+    if (QA_BUILDS_MODE) {
+      const { runBuildBrowserFlow } = await import('./qa-builds-runner.js');
+      window.__emberfallStartBuildFlow = () => runBuildBrowserFlow(window.__emberfall, { locale: query.get('lang') === 'en' ? 'en' : 'zh-CN' });
+      if (query.get('autostart') !== '0') window.__emberfallStartBuildFlow();
     }
     if (QA_CAMPAIGN_MODE) {
       const { runCampaignBrowserFlow } = await import('./qa-campaign-runner.js');

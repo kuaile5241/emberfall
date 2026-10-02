@@ -1,5 +1,6 @@
 import { STARTER_WEAPON_IDS, DEFAULT_WEAPON_ID, equipmentById } from './content.js';
 import { chapterById, campaignNodeState, expeditionUnlocked, normalizeCampaign, storyNodeById, validEvidence, summaryEvidenceIds, storyEvidenceFromRun } from './campaign.js';
+import { buildGearById, talentById, talentBudget, normalizeBuild, normalizeBuildLoadout } from './builds.js';
 
 export const PROFILE_VERSION = 4;
 export const DEFAULT_PROFILE_KEY = 'emberfall.profile.v4';
@@ -32,6 +33,24 @@ const supplyById = id => SUPPLIES.find(item => item.id === id);
 const campBonuses = level => clone(CAMP_LEVELS.find(item => item.level === level)?.bonuses || { maxHp: 0, damageMultiplier: 1 });
 const statKeys = ['runs', 'wins', 'deaths', 'retreats', 'totalKills', 'eliteKills', 'sideRelics', 'bossKills', 'goldEarned', 'bestKills', 'bestRoom', 'fastestVictory'];
 
+function validBuildRecord(value, withInventory = false) {
+  if (value === undefined) return true;
+  if (!object(value)) return false;
+  for (const [field, slot] of [['armorId', 'armor'], ['relicId', 'relic']]) if (value[field] != null && buildGearById(value[field])?.slot !== slot) return false;
+  if (value.talents !== undefined && (!Array.isArray(value.talents) || value.talents.some(id => typeof id !== 'string' || !talentById(id)))) return false;
+  const talents = new Set(value.talents || []);
+  for (const id of talents) {
+    const node = talentById(id);
+    if ((node.requires || []).some(required => !talents.has(required)) || (node.exclusiveWith || []).some(other => talents.has(other))) return false;
+  }
+  if (withInventory) {
+    if (value.ownedGear !== undefined && (!Array.isArray(value.ownedGear) || value.ownedGear.some(id => typeof id !== 'string' || !buildGearById(id)))) return false;
+    const owned = normalizeBuild({ ownedGear: value.ownedGear }).ownedGear;
+    if ([value.armorId, value.relicId].some(id => id != null && !owned.includes(id))) return false;
+  }
+  return true;
+}
+
 export function createDefaultProfile(legacyRecords = {}) {
   const stats = Object.fromEntries(statKeys.map(key => [key, 0]));
   for (const key of ['runs', 'wins', 'bestKills', 'bestRoom', 'fastestVictory']) stats[key] = int(legacyRecords?.[key]);
@@ -40,7 +59,7 @@ export function createDefaultProfile(legacyRecords = {}) {
     unlockedWeapons: [...STARTER_WEAPON_IDS], items: Object.fromEntries(SUPPLIES.map(item => [item.id, 0])),
     selectedSupply: null, campLevel: 0, activeQuest: null,
     quests: Object.fromEntries(QUESTS.map(quest => [quest.id, { status: 'available', progress: 0 }])),
-    stats, processedRuns: {}, pendingRun: null, campaign: normalizeCampaign() };
+    stats, processedRuns: {}, pendingRun: null, campaign: normalizeCampaign(), build: normalizeBuild() };
 }
 
 function cleanSummary(value = {}, expeditionId = 'grave') {
@@ -82,6 +101,8 @@ export function validateProfile(value) {
   if (!object(value)) return fail('invalid_profile', '营地存档格式损坏，原数据已保留。');
   if (value.version !== PROFILE_VERSION) return fail('unsupported_version', '营地存档版本不兼容，原数据已保留。');
   const profile = createDefaultProfile();
+  if (!validBuildRecord(value.build, true)) return fail('invalid_build', '构筑存档格式损坏，原数据已保留。');
+  profile.build = normalizeBuild(value.build);
   if (value.campaign != null && !object(value.campaign)) return fail('invalid_campaign', '剧情存档格式损坏，原数据已保留。');
   profile.campaign = normalizeCampaign(value.campaign);
   profile.gold = int(value.gold, 0, MONEY_CAP); profile.essence = int(value.essence, 0, MONEY_CAP);
@@ -102,6 +123,7 @@ export function validateProfile(value) {
   }
   for (const key of statKeys) profile.stats[key] = int(value.stats?.[key]);
   profile.stats.wins = Math.min(profile.stats.runs, profile.stats.wins);
+  if (profile.build.talents.length > talentBudget(profile)) return fail('invalid_build', '天赋点数超过当前预算，原数据已保留。');
   if (object(value.processedRuns)) {
     const entries = Object.entries(value.processedRuns);
     if (entries.length > RUN_LIMIT) return fail('ledger_full', '结算记录超过上限，未截断旧账或覆盖存档。');
@@ -114,6 +136,7 @@ export function validateProfile(value) {
     const pending = value.pendingRun, run = pending?.run;
     if (!object(pending) || !safeRunId(pending.runId) || !object(run) || Object.hasOwn(profile.processedRuns, pending.runId)) return fail('invalid_pending_run', '未结算出征记录损坏，原数据已保留。');
     if (run.expeditionId !== undefined && !chapterById(run.expeditionId)) return fail('invalid_pending_run', '未结算出征目的地损坏，原数据已保留。');
+    if (!validBuildRecord(run.buildLoadout) || normalizeBuildLoadout(run.buildLoadout).talents.length > 6) return fail('invalid_pending_run', '未结算出征构筑损坏，原数据已保留。');
     const expeditionId = run.expeditionId || 'grave';
     const unlockedWeapons = weaponIds([...STARTER_WEAPON_IDS, ...(Array.isArray(run.unlockedWeapons) ? run.unlockedWeapons : [])]);
     const selected = supplyById(run.supply?.id);
@@ -121,7 +144,8 @@ export function validateProfile(value) {
     profile.pendingRun = { runId: pending.runId, campLevel: runLevel,
       questId: questById(pending.questId) ? pending.questId : null,
       run: { runId: pending.runId, expeditionId, weaponId: unlockedWeapons.includes(run.weaponId) ? run.weaponId : DEFAULT_WEAPON_ID,
-        unlockedWeapons, campBonuses: campBonuses(runLevel), supply: selected ? { id: selected.id, ...clone(selected.effect) } : null },
+        unlockedWeapons, campBonuses: campBonuses(runLevel), supply: selected ? { id: selected.id, ...clone(selected.effect) } : null,
+        buildLoadout: normalizeBuildLoadout(run.buildLoadout) },
       summary: cleanSummary(pending.summary, expeditionId) };
   }
   return { ok: true, profile, repaired: JSON.stringify(profile) !== JSON.stringify(value) };
@@ -195,6 +219,54 @@ export class ProfileStore {
     return this._change(profile => {
       if (!profile.unlockedWeapons.includes(id)) return fail('weapon_locked', '这件武器尚未解锁。');
       profile.loadout = id;
+    }, true);
+  }
+  equipBuildGear(slot, id) {
+    return this._change(profile => {
+      if (!['armor', 'relic'].includes(slot)) return fail('invalid_build_slot', '构筑装备栏位不存在。');
+      if (id != null && buildGearById(id)?.slot !== slot) return fail('invalid_build_gear', '这件装备不属于所选栏位。');
+      if (id != null && !profile.build.ownedGear.includes(id)) return fail('build_gear_locked', '这件构筑装备尚未获得。');
+      profile.build[`${slot}Id`] = id ?? null;
+    }, true);
+  }
+  buyBuildGear(id) {
+    return this._change(profile => {
+      const item = buildGearById(id);
+      if (!item) return fail('invalid_build_gear', '构筑装备不存在。');
+      if (profile.build.ownedGear.includes(id)) return { duplicate: true, spent: { gold: 0, essence: 0 }, gear: id };
+      if (profile.gold < item.price.gold || profile.essence < item.price.essence) return fail('insufficient_resources', '购买装备所需金币或精华不足。');
+      profile.gold -= item.price.gold; profile.essence -= item.price.essence;
+      profile.build.ownedGear.push(id);
+      return { duplicate: false, spent: clone(item.price), gear: id };
+    }, true);
+  }
+  toggleTalent(id) {
+    return this._change(profile => {
+      const node = talentById(id);
+      if (!node) return fail('invalid_talent', '天赋不存在。');
+      const selected = profile.build.talents;
+      if (selected.includes(id)) {
+        let kept = selected.filter(current => current !== id), changed = true;
+        while (changed) {
+          const next = kept.filter(current => (talentById(current).requires || []).every(required => kept.includes(required)));
+          changed = next.length !== kept.length; kept = next;
+        }
+        const removed = selected.filter(current => !kept.includes(current));
+        profile.build.talents = kept;
+        return { talent: id, selected: false, removed };
+      }
+      if ((node.requires || []).some(required => !selected.includes(required))) return fail('talent_prerequisite', '请先选择这个天赋的前置节点。');
+      if ((node.exclusiveWith || []).some(other => selected.includes(other))) return fail('talent_exclusive', '同一系的两个进阶分支只能选择一个，请先移除另一个。');
+      if (selected.length + node.cost > talentBudget(profile)) return fail('talent_budget', '天赋点数不足；前三次通关各增加 1 点，最多 6 点。');
+      selected.push(id);
+      profile.build.talents = normalizeBuildLoadout(profile.build).talents;
+      return { talent: id, selected: true };
+    }, true);
+  }
+  resetTalents() {
+    return this._change(profile => {
+      const removed = [...profile.build.talents]; profile.build.talents = [];
+      return { removed };
     }, true);
   }
   selectSupply(id) {
@@ -274,7 +346,7 @@ export class ProfileStore {
       const selected = supplyById(profile.selectedSupply);
       if (selected && profile.items[selected.id] < 1) return fail('supply_unavailable', '所选补给已经用尽。');
       if (selected) profile.items[selected.id]--;
-      const run = { runId, expeditionId, weaponId: profile.loadout, unlockedWeapons: [...profile.unlockedWeapons], campBonuses: campBonuses(profile.campLevel), supply: selected ? { id: selected.id, ...clone(selected.effect) } : null };
+      const run = { runId, expeditionId, weaponId: profile.loadout, unlockedWeapons: [...profile.unlockedWeapons], campBonuses: campBonuses(profile.campLevel), supply: selected ? { id: selected.id, ...clone(selected.effect) } : null, buildLoadout: normalizeBuildLoadout(profile.build) };
       profile.pendingRun = { runId, run, campLevel: profile.campLevel, questId: profile.activeQuest, summary: cleanSummary({ weaponId: profile.loadout }, expeditionId) };
       if (selected && profile.items[selected.id] === 0) profile.selectedSupply = null;
       return { run: clone(run), reused: false };

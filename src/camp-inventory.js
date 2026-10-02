@@ -4,6 +4,8 @@ import { Game } from './game.js';
 import { skillIcon, campIcon, boonIcon } from './icons.js';
 import { t } from './i18n.js';
 import { equipmentAppearanceName } from './gear-appearance.js';
+import { normalizeBuildLoadout, skillFormFor } from './builds.js';
+import { buildSkillIcon } from './build-icons.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 const text = (key, params) => escape(t(key, params));
@@ -43,8 +45,9 @@ export function weaponComparison(profile, weaponId) {
   if (!weapon) return null;
   const currentWeapon = equippedWeapon(profile);
   const campBonuses = CAMP_LEVELS.find(level => level.level === profile.campLevel)?.bonuses;
-  const game = new Game({ seed: 1, weaponId: currentWeapon.id, unlockedWeapons: [currentWeapon.id], campBonuses, supply: packedSupply(profile)?.id || null });
-  return { currentWeapon, selectedWeapon: weapon, current: game.statsForWeapon(currentWeapon.id), selected: game.statsForWeapon(weapon.id) };
+  const buildLoadout = normalizeBuildLoadout(profile.build);
+  const game = new Game({ seed: 1, weaponId: currentWeapon.id, unlockedWeapons: [currentWeapon.id], campBonuses, supply: packedSupply(profile)?.id || null, buildLoadout });
+  return { currentWeapon, selectedWeapon: weapon, currentSkill: skillFormFor(currentWeapon, buildLoadout), selectedSkill: skillFormFor(weapon, buildLoadout), current: game.statsForWeapon(currentWeapon.id), selected: game.statsForWeapon(weapon.id) };
 }
 
 export function supplyArt(item) {
@@ -61,19 +64,21 @@ const statDefinitions = [
 ];
 
 function comparisonMarkup(comparison) {
+  const shaped = comparison.currentSkill.kind !== 'legacy' || comparison.selectedSkill.kind !== 'legacy';
   return `<div class="inv-stats-heading"><span>${text('出征属性')}</span><small>${text('当前 → 所选')}</small></div>
-    <dl class="inv-stats">${statDefinitions.map(stat => {
+    <dl class="inv-stats">${statDefinitions.filter(stat => stat.key !== 'skillRadius' || !shaped).map(stat => {
       const before = comparison.current[stat.key], after = comparison.selected[stat.key], delta = after - before;
       const changed = Math.abs(delta) > .00001;
       const better = stat.lower ? delta < 0 : delta > 0;
       const unit = stat.unit ? `<small>${text(stat.unit)}</small>` : '';
-      return `<div class="inv-stat-row"><dt>${text(stat.label)}</dt><dd><span class="inv-stat-before">${decimal(before)}</span><span class="inv-stat-arrow" aria-hidden="true">→</span><strong class="${changed ? better ? 'is-better' : 'is-lower' : ''}">${decimal(after)}${unit}</strong></dd></div>`;
-    }).join('')}</dl><p class="inv-stat-note">${text('已计入营地与携带补给；不含战场祝福及临时效果。')}</p>`;
+      return `<div class="inv-stat-row"><dt>${text(shaped && stat.key === 'skillDamage' ? '基准技能伤害' : stat.label)}</dt><dd><span class="inv-stat-before">${decimal(before)}</span><span class="inv-stat-arrow" aria-hidden="true">→</span><strong class="${changed ? better ? 'is-better' : 'is-lower' : ''}">${decimal(after)}${unit}</strong></dd></div>`;
+    }).join('')}</dl><p class="inv-stat-note">${text('已计入营地、补给、护甲与天赋；不含战场祝福及临时效果。')}</p>`;
 }
 
 export function renderArmory(profile, state = {}) {
   const { selectedWeaponId, elementFilter, weapons } = normalizeArmorySelection(profile, state);
   const selected = equipmentById(selectedWeaponId), unlocked = ownedWeapons(profile);
+  const form = skillFormFor(selected, profile.build);
   const isUnlocked = unlocked.some(item => item.id === selected.id), equipped = profile.loadout === selected.id;
   const quest = QUESTS.find(item => item.reward.weaponId === selected.id);
   const action = equipped
@@ -96,8 +101,8 @@ export function renderArmory(profile, state = {}) {
         <div class="inv-detail-heading"><span class="inv-detail-art">${skillIcon('attack', selected)}</span><div><span class="inv-element-label">${text(selected.className)}</span><h4>${text(selected.name)}</h4><span class="inv-detail-status">${campIcon(equipped ? 'check' : isUnlocked ? 'armory' : 'lock')}${text(equipped ? '已备战' : isUnlocked ? '已收藏' : '尚未解锁')}</span></div></div>
         <div class="inv-detail-actions inv-equip-action">${action}${!isUnlocked && quest ? `<small>${text('完成「{name}」可解锁', { name: t(quest.name) })}</small>` : ''}</div>
         <p class="inv-outfit-label">${campIcon('armory')}<span>${text('穿着效果')} · ${text(equipmentAppearanceName(selected))}</span></p>
-        <p class="inv-description">${text(selected.description)}</p>
-        <div class="inv-skill"><span>${skillIcon('burst', selected)}</span><div><small>${text('专属技能')}</small><strong>${text(selected.skillName)}</strong><p>${text(selected.skillDescription)}</p></div></div>
+        ${form.kind === 'legacy' ? `<p class="inv-description">${text(selected.description)}</p>` : ''}
+        <div class="inv-skill" data-armory-form="${form.id}"><span>${form.kind === 'legacy' ? skillIcon('burst', selected) : buildSkillIcon(form.id, selected.element)}</span><div><small>${text('专属技能')}</small><strong>${text(form.name)}</strong><p>${text(form.description)}</p></div></div>
         ${comparisonMarkup(weaponComparison(profile, selected.id))}
       </article>
     </div>

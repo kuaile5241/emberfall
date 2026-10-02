@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createDefaultProfile, ProfileStore } from '../src/profile.js';
 import { EQUIPMENT } from '../src/content.js';
 import { Game } from '../src/game.js';
+import { BUILD_GEAR, SKILL_FORMS, normalizeBuildLoadout } from '../src/builds.js';
 import { initLocale, setLocale } from '../src/i18n.js';
 import { normalizeArmorySelection, normalizeBagSelection, weaponComparison, renderArmory, renderBag, weaponForClass } from '../src/camp-inventory.js';
 
@@ -163,4 +164,68 @@ test('all inventory panels and disabled states render in English without untrans
     assert.equal(/\p{Script=Han}/u.test(html), false);
   }
   assert.match(renderBag(profile), /Storage limit reached/);
+});
+
+test('armory compares the selected and current weapons using real element-specific armor and talent damage', () => {
+  const profile = createDefaultProfile();
+  profile.build.ownedGear.push('ash-mantle'); profile.build.armorId = 'ash-mantle';
+  profile.build.relicId = 'fire-pillars'; profile.build.talents = ['fire-kindling', 'fire-pressure'];
+  const original = JSON.stringify(profile), buildLoadout = normalizeBuildLoadout(profile.build);
+  const neutral = new Game({ seed: 1 });
+  for (const weapon of EQUIPMENT) {
+    const compare = weaponComparison(profile, weapon.id);
+    const actual = new Game({ seed: 2, weaponId: weapon.id, unlockedWeapons: [weapon.id], buildLoadout });
+    assert.deepEqual(compare.selected, actual.combatStats, weapon.id);
+    assert.equal(compare.currentSkill.id, 'fire-pillars');
+    assert.equal(compare.selectedSkill.id, weapon.element === 'fire' ? 'fire-pillars' : weapon.variant);
+    assert.equal(compare.selected.damage, neutral.statsForWeapon(weapon.id).damage, 'skill-only fire gear must not inflate basic attacks');
+    const expectedMultiplier = weapon.element === 'fire' ? 1.12 * 1.12 : 1;
+    assert.ok(Math.abs(compare.selected.skillDamage - neutral.statsForWeapon(weapon.id).skillDamage * expectedMultiplier) < 1e-8);
+  }
+  assert.equal(JSON.stringify(profile), original, 'comparison must not rewrite ownership or spend points');
+});
+
+test('armory cooldown comparisons account for both the current and inspected elements instead of the wielded class alone', () => {
+  const profile = createDefaultProfile(); profile.loadout = 'lightning-spear';
+  profile.build.ownedGear.push('storm-vest'); profile.build.armorId = 'storm-vest';
+  profile.build.relicId = 'water-blizzard'; profile.build.talents = ['water-permafrost', 'water-whiteout', 'lightning-conduction'];
+  const neutral = new Game({ seed: 1, weaponId: profile.loadout, unlockedWeapons: [profile.loadout] });
+  for (const weapon of EQUIPMENT) {
+    const compare = weaponComparison(profile, weapon.id), multiplier = weapon.element === 'lightning' ? .92 : weapon.element === 'water' ? 1.2 : 1;
+    assert.ok(Math.abs(compare.current.skillCooldown - neutral.combatStats.skillCooldown * .92) < 1e-8);
+    assert.ok(Math.abs(compare.selected.skillCooldown - neutral.statsForWeapon(weapon.id).skillCooldown * multiplier) < 1e-8);
+  }
+});
+
+test('new armory forms display their own geometry description and base damage without claiming a circular skill radius', () => {
+  const profile = createDefaultProfile(); profile.build.ownedGear = BUILD_GEAR.map(item => item.id);
+  for (const form of SKILL_FORMS) {
+    const weapon = EQUIPMENT.find(item => item.starter && item.element === form.element);
+    profile.loadout = weapon.id; profile.build.relicId = form.id;
+    const html = renderArmory(profile, { selectedWeaponId: weapon.id });
+    assert.ok(html.includes(`data-armory-form="${form.id}"`)); assert.ok(html.includes(`data-glyph="${form.id}"`));
+    assert.ok(html.includes(form.name)); assert.ok(html.includes(form.description));
+    assert.ok(html.includes('基准技能伤害')); assert.ok(html.includes('技能冷却'));
+    assert.equal(html.includes('技能半径'), false); assert.equal(html.includes(weapon.skillDescription), false);
+    assert.ok(html.includes('已计入营地、补给、护甲与天赋'));
+  }
+  profile.build.relicId = null;
+  const native = renderArmory(profile);
+  assert.ok(native.includes('技能半径')); assert.ok(native.includes(EQUIPMENT.find(item => item.id === profile.loadout).skillDescription));
+});
+
+test('English armory form previews follow relic element matching and retain legacy radius only when both comparison skills are native', () => {
+  setLocale('en');
+  const profile = createDefaultProfile(); profile.build.relicId = 'water-blizzard';
+  const matched = renderArmory(profile, { selectedWeaponId: 'water-staff' });
+  assert.ok(matched.includes('data-armory-form="water-blizzard"')); assert.ok(matched.includes('Whiteout Blizzard'));
+  assert.ok(matched.includes('Base skill damage')); assert.equal(matched.includes('Skill radius'), false);
+  assert.equal(/\p{Script=Han}/u.test(matched), false);
+  const mismatched = renderArmory(profile, { selectedWeaponId: 'lightning-spear' });
+  assert.ok(mismatched.includes('data-armory-form="chain-nova"')); assert.ok(mismatched.includes('Skill radius'));
+  assert.equal(mismatched.includes('Whiteout Blizzard'), false); assert.equal(/\p{Script=Han}/u.test(mismatched), false);
+  profile.loadout = 'water-staff';
+  const nativeInspectedWithShapedCurrent = renderArmory(profile, { selectedWeaponId: 'fire-sword' });
+  assert.ok(nativeInspectedWithShapedCurrent.includes('data-armory-form="ember-burst"'));
+  assert.equal(nativeInspectedWithShapedCurrent.includes('Skill radius'), false, 'a mixed comparison must not give the shaped current skill a false radius');
 });
