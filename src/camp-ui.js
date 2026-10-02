@@ -1,3 +1,6 @@
+import { skillFormFor, normalizeBuildLoadout } from './builds.js';
+import { renderBuildSummary, renderBuildWorkshop } from './build-ui.js';
+import { buildSkillIcon } from './build-icons.js';
 import { EQUIPMENT, ELEMENTS, DEFAULT_WEAPON_ID } from './content.js';
 import { SUPPLIES, CAMP_LEVELS, QUESTS } from './profile.js';
 import { skillIcon, campIcon, boonIcon } from './icons.js';
@@ -10,7 +13,7 @@ const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': 
 const text = (key, params) => escape(t(key, params));
 const number = value => Math.max(0, Number(value) || 0);
 const weaponById = id => EQUIPMENT.find(weapon => weapon.id === id) || EQUIPMENT.find(weapon => weapon.id === DEFAULT_WEAPON_ID);
-const tabs = [{ id: 'camp', label: '营地', icon: 'camp' }, { id: 'armory', label: '军械', icon: 'armory' }, { id: 'bag', label: '行囊', icon: 'bag' }, { id: 'quests', label: '委托', icon: 'quest' }];
+const tabs = [{ id: 'camp', label: '营地', icon: 'camp' }, { id: 'armory', label: '军械', icon: 'armory' }, { id: 'bag', label: '行囊', icon: 'bag' }, { id: 'builds', label: '构筑', icon: 'flame' }, { id: 'quests', label: '委托', icon: 'quest' }];
 
 function supplyArt(item) {
   return item?.id === 'damage-tonic' ? skillIcon('heal') : `<span class="camp-ward-amulet">${boonIcon('shield')}</span>`;
@@ -25,6 +28,7 @@ function supplyArt(item) {
 export function createCampUI({ root, profileStore, onStart = () => false, onHelp = () => {}, onChange = () => {}, onRender = () => {} }) {
   if (!root || !profileStore) throw new Error('createCampUI requires root and profileStore');
   let tab = 'camp', difficulty = 'normal', noticeTimer = 0, destroyed = false, noticeMessage = '';
+  let buildElement = null;
   let inventoryState = { selectedWeaponId: null, elementFilter: 'all', selectedItemId: null };
   const shell = document.createElement('div');
   shell.className = 'camp-shell camp-v6';
@@ -44,7 +48,7 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
     </section>
     <section id="camp-panel" class="camp-pane" role="tabpanel" aria-labelledby="camp-tab-camp"></section>
   </div>
-  <footer class="camp-footer"><div class="camp-footer-left"><button data-action="help">${campIcon('help')}<span data-camp-label="操作"></span></button><span>v0.7.0</span></div><div class="camp-footer-center"><span class="camp-departure-note"></span><button class="camp-start" data-action="start"><span data-camp-label="出征"></span>${campIcon('arrow')}</button></div><div class="camp-footer-right"><span data-camp-label="难度"></span><select id="camp-difficulty" data-camp-aria="出征难度"><option value="story" data-camp-label="轻松"></option><option value="normal" selected data-camp-label="标准"></option><option value="hard" data-camp-label="困难"></option></select></div></footer>
+  <footer class="camp-footer"><div class="camp-footer-left"><button data-action="help">${campIcon('help')}<span data-camp-label="操作"></span></button><span>v0.8.0</span></div><div class="camp-footer-center"><span class="camp-departure-note"></span><button class="camp-start" data-action="start"><span data-camp-label="出征"></span>${campIcon('arrow')}</button></div><div class="camp-footer-right"><span data-camp-label="难度"></span><select id="camp-difficulty" data-camp-aria="出征难度"><option value="story" data-camp-label="轻松"></option><option value="normal" selected data-camp-label="标准"></option><option value="hard" data-camp-label="困难"></option></select></div></footer>
   <div class="camp-notice" role="status" aria-live="polite"></div>`;
   root.replaceChildren(shell);
   const portraitCanvas = shell.querySelector('#camp-portrait');
@@ -89,6 +93,7 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
     return `<div class="camp-section-title"><div><span class="camp-eyebrow">${text('整备台')}</span><h3>${text('营地')}</h3></div><span class="camp-ready-tag">${campIcon(profile.pendingRun ? 'camp' : 'check')}${text(profile.pendingRun ? '等待结算' : '整备就绪')}</span></div>
       ${renderExpeditionPicker(profile)}${renderCampaignOverview(profile)}
       <div class="camp-overview-loadout"><button data-nav="armory" class="camp-ready-item"><span class="camp-ready-icon">${skillIcon('attack',weapon)}</span><span><small>${text('出征武器')}</small><strong>${text(weapon.name)}</strong><em>${text(weapon.className)}</em></span>${campIcon('arrow')}</button><button data-nav="bag" class="camp-ready-item"><span class="camp-ready-icon">${selectedSupply?supplyArt(selectedSupply):campIcon('bag')}</span><span><small>${text('携带补给')}</small><strong>${selectedSupply?text(selectedSupply.name):text('未携带补给')}</strong><em>${selectedSupply?text('出征消耗一份'):text('可携带一件补给')}</em></span>${campIcon('arrow')}</button></div>
+      <button class="camp-build-link" data-nav="builds">${renderBuildSummary(weapon, profile.build)}<span class="camp-build-link-arrow">${campIcon('arrow')}</span></button>
       <div class="camp-section-heading"><h4>${text('当前委托')}</h4><button class="camp-text-action" data-nav="quests">${text('查看委托')}${campIcon('arrow')}</button></div>${questCards}
       <button class="camp-growth-strip" data-nav="bag"><span class="camp-growth-symbol">${campIcon('camp')}</span><span><strong>${text('营地强化')}</strong><small>${currentLevel?text('生命 +{hp} · 伤害 +{damage}%',{hp:currentLevel.bonuses.maxHp,damage:Math.round((currentLevel.bonuses.damageMultiplier-1)*100)}):text('建立你的永久加成')}</small></span><span class="camp-growth-track">${CAMP_LEVELS.map(level=>`<i class="${level.level<=profile.campLevel?'active':''}"></i>`).join('')}<b>${profile.campLevel}/${CAMP_LEVELS.length}</b></span>${campIcon('arrow')}</button>
       <div class="camp-career"><span><b>${profile.stats.runs}</b>${text('累计出征')}</span><span><b>${profile.stats.wins}</b>${text('通关次数')}</span><span><b>${profile.unlockedWeapons.length}/${EQUIPMENT.length}</b>${text('军械收藏')}</span></div>`;
@@ -112,6 +117,8 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
     const focused = document.activeElement;
     const focusAction = shell.contains(focused) ? focused?.dataset?.action : null;
     const focusId = focused?.dataset?.id;
+    const focusSlot = focused?.dataset?.slot;
+    const focusGear = focused?.closest('[data-build-gear]')?.dataset.buildGear;
     const profile = snapshot(), weapon = weaponById(profile.loadout);
     shell.style.setProperty('--camp-element', ELEMENTS[weapon.element].color);
     shell.dataset.tab = tab;
@@ -131,10 +138,11 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
       return `<button data-action="class" data-id="${item.element}" aria-label="${text('选择{className}，{name}', { className: t(item.className), name: t(item.name) })}" title="${text(item.className)}" aria-pressed="${item.element === weapon.element}">${skillIcon('attack', item)}</button>`;
     }).join('');
     const packed = SUPPLIES.find(item => item.id === profile.selectedSupply);
-    shell.querySelector('.camp-portrait-kit').innerHTML = `<button data-nav="armory" title="${text(weapon.skillName)}">${skillIcon('burst', weapon)}<span>${text(weapon.skillName)}</span></button><button data-nav="bag" title="${text(packed?.name || '携带补给')}">${packed ? supplyArt(packed) : campIcon('bag')}<span>${text(packed?.name || '携带补给')}</span></button>`;
+    const activeSkill = skillFormFor(weapon, profile.build);
+    shell.querySelector('.camp-portrait-kit').innerHTML = `<button data-nav="builds" title="${text(activeSkill.name)}">${activeSkill.kind === 'legacy' ? skillIcon('burst', weapon) : buildSkillIcon(activeSkill.id, weapon.element)}<span>${text(activeSkill.name)}</span></button><button data-nav="bag" title="${text(packed?.name || '携带补给')}">${packed ? supplyArt(packed) : campIcon('bag')}<span>${text(packed?.name || '携带补给')}</span></button>`;
     shell.querySelector('.camp-character').innerHTML = `<span class="camp-class">${text(weapon.className)}</span><h2>${text(weapon.name)}</h2><button class="camp-loadout-link" data-nav="armory">${text('更换武器')}${campIcon('arrow')}</button>`;
     pane.setAttribute('aria-labelledby', `camp-tab-${tab}`);
-    const renderPane = { camp: campMarkup, armory: armoryMarkup, bag: bagMarkup, quests: questsMarkup }[tab];
+    const renderPane = { camp: campMarkup, armory: armoryMarkup, bag: bagMarkup, builds: profile => renderBuildWorkshop(profile, buildElement || weapon.element), quests: questsMarkup }[tab];
     const oldScroll = pane.scrollTop;
     pane.innerHTML = pendingMarkup(profile) + renderPane(profile);
     pane.scrollTop = oldScroll;
@@ -143,9 +151,11 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
     start.innerHTML = `<span>${text(profile.pendingRun ? '结束上次出征' : '出征')}</span>${campIcon(profile.pendingRun ? 'camp' : 'arrow')}`;
     shell.querySelector('#camp-difficulty').disabled = Boolean(profile.pendingRun);
     if (focusAction && !shell.contains(document.activeElement)) {
-      [...shell.querySelectorAll('button[data-action]')].find(button => button.dataset.action === focusAction && button.dataset.id === focusId && !button.disabled)?.focus({ preventScroll: true });
+      [...shell.querySelectorAll('button[data-action]')].find(button => button.dataset.action === focusAction && !button.disabled && (focusGear
+        ? button.dataset.slot === focusSlot && button.closest('[data-build-gear]')?.dataset.buildGear === focusGear
+        : button.dataset.id === focusId))?.focus({ preventScroll: true });
     }
-    const context = { portraitCanvas, weaponId: weapon.id, tab };
+    const context = { portraitCanvas, weaponId: weapon.id, buildLoadout: normalizeBuildLoadout(profile.build), tab };
     onRender(context);
     return context;
   }
@@ -194,6 +204,11 @@ export function createCampUI({ root, profileStore, onStart = () => false, onHelp
     const id = button.dataset.id;
     switch (button.dataset.action) {
       case 'help': onHelp(); break;
+      case 'build-filter': buildElement = id; render(); break;
+      case 'build-equip': mutate('equipBuildGear', [button.dataset.slot, id || null], '构筑装备已保存'); break;
+      case 'build-buy': mutate('buyBuildGear', [id], '构筑装备已收藏'); break;
+      case 'build-talent': mutate('toggleTalent', [id], '天赋选择已保存'); break;
+      case 'build-reset': mutate('resetTalents', [], '天赋已重置'); break;
       case 'inspect-weapon': inventoryState.selectedWeaponId = id; render(); break;
       case 'filter-element': inventoryState.elementFilter = id; render(); break;
       case 'inspect-supply': inventoryState.selectedItemId = id; render(); break;

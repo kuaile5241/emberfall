@@ -1,0 +1,917 @@
+{
+  "status": "passed",
+  "phase": "accepted",
+  "locale": "en",
+  "capture": false,
+  "checks": [
+    {
+      "name": "the real UI uses the requested language",
+      "passed": true
+    },
+    {
+      "name": "new save has the actual initial budget",
+      "passed": true
+    },
+    {
+      "name": "three starter relics are owned and unequipped",
+      "passed": true
+    },
+    {
+      "name": "glacier-robes is bought from the real wallet",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard equipment and talents are committed",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard mutually exclusive branch is disabled",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard workshop reports the real selected shape",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard camp model wears the selected armor",
+      "passed": true
+    },
+    {
+      "name": "armor purchase leaves the real remaining budget",
+      "passed": true
+    },
+    {
+      "name": "unaffordable relic is disabled and cannot deduct currency",
+      "passed": true
+    },
+    {
+      "name": "taking off the relic restores the original skill",
+      "passed": true
+    },
+    {
+      "name": "taking off a relic keeps keyboard focus on that relic, not the armor slot",
+      "passed": true
+    },
+    {
+      "name": "a wrong-element relic falls back to the weapon skill",
+      "passed": true
+    },
+    {
+      "name": "removing a prerequisite removes its selected child",
+      "passed": true
+    },
+    {
+      "name": "a bought supply uses the remaining wallet",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard starts through prepareRun with normal stats",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard run snapshot matches camp choices",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard battle model and snapshot wear the same gear",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 1 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 2 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 3 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 4 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 5 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 6 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 7 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 8 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard blessing 9 commits once",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard executes its own damage and visible shape",
+      "passed": true,
+      "details": {
+        "casts": 42,
+        "phases": [
+          "cast",
+          "snow",
+          "shatter"
+        ],
+        "sources": [
+          "blizzard",
+          "attack",
+          "shatter"
+        ],
+        "fields": 2
+      }
+    },
+    {
+      "name": "blizzard really accumulates chill and freezes enemies",
+      "passed": true
+    },
+    {
+      "name": "blizzard build completes all six grave zones and boss",
+      "passed": true
+    },
+    {
+      "name": "the narrative mechanism is actually investigated",
+      "passed": true
+    },
+    {
+      "name": "full victory settles once before returning",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard returning clears owned skill geometry",
+      "passed": true
+    },
+    {
+      "name": "watch grants one earned story reward",
+      "passed": true
+    },
+    {
+      "name": "names grants one earned story reward",
+      "passed": true
+    },
+    {
+      "name": "forge grants one earned story reward",
+      "passed": true
+    },
+    {
+      "name": "bell grants one earned story reward",
+      "passed": true
+    },
+    {
+      "name": "real main-story rewards unlock the second map",
+      "passed": true
+    },
+    {
+      "name": "one actual victory raises the talent budget",
+      "passed": true
+    },
+    {
+      "name": "ash-mantle is bought from the real wallet",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars equipment and talents are committed",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars mutually exclusive branch is disabled",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars workshop reports the real selected shape",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars camp model wears the selected armor",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars starts through prepareRun with normal stats",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars run snapshot matches camp choices",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars battle model and snapshot wear the same gear",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars executes its own damage and visible shape",
+      "passed": true,
+      "details": {
+        "casts": 2,
+        "phases": [
+          "cast",
+          "pillar",
+          "pillar-echo"
+        ],
+        "sources": [
+          "attack",
+          "skill",
+          "aftershock"
+        ],
+        "fields": 1
+      }
+    },
+    {
+      "name": "fire-pillars encounter stays playable before retreat",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars pause blocks simulation",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars normal retreat settles its run",
+      "passed": true
+    },
+    {
+      "name": "fire-pillars returning clears owned skill geometry",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor is bought from the real wallet",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor equipment and talents are committed",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor mutually exclusive branch is disabled",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor workshop reports the real selected shape",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor camp model wears the selected armor",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor starts through prepareRun with normal stats",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor run snapshot matches camp choices",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor battle model and snapshot wear the same gear",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor executes its own damage and visible shape",
+      "passed": true,
+      "details": {
+        "casts": 1,
+        "phases": [
+          "cast",
+          "impact",
+          "impact-echo"
+        ],
+        "sources": [
+          "attack",
+          "skill"
+        ],
+        "fields": 1
+      }
+    },
+    {
+      "name": "fire-meteor encounter stays playable before retreat",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor pause blocks simulation",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor normal retreat settles its run",
+      "passed": true
+    },
+    {
+      "name": "fire-meteor returning clears owned skill geometry",
+      "passed": true
+    },
+    {
+      "name": "water-torrent is bought from the real wallet",
+      "passed": true
+    },
+    {
+      "name": "water-torrent equipment and talents are committed",
+      "passed": true
+    },
+    {
+      "name": "water-torrent mutually exclusive branch is disabled",
+      "passed": true
+    },
+    {
+      "name": "water-torrent workshop reports the real selected shape",
+      "passed": true
+    },
+    {
+      "name": "water-torrent camp model wears the selected armor",
+      "passed": true
+    },
+    {
+      "name": "water-torrent starts through prepareRun with normal stats",
+      "passed": true
+    },
+    {
+      "name": "water-torrent run snapshot matches camp choices",
+      "passed": true
+    },
+    {
+      "name": "water-torrent battle model and snapshot wear the same gear",
+      "passed": true
+    },
+    {
+      "name": "water-torrent executes its own damage and visible shape",
+      "passed": true,
+      "details": {
+        "casts": 1,
+        "phases": [
+          "cast"
+        ],
+        "sources": [
+          "attack",
+          "torrent"
+        ],
+        "fields": 1
+      }
+    },
+    {
+      "name": "water-torrent encounter stays playable before retreat",
+      "passed": true
+    },
+    {
+      "name": "water-torrent pause blocks simulation",
+      "passed": true
+    },
+    {
+      "name": "water-torrent normal retreat settles its run",
+      "passed": true
+    },
+    {
+      "name": "water-torrent returning clears owned skill geometry",
+      "passed": true
+    },
+    {
+      "name": "storm-vest is bought from the real wallet",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain equipment and talents are committed",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain mutually exclusive branch is disabled",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain workshop reports the real selected shape",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain camp model wears the selected armor",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain starts through prepareRun with normal stats",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain run snapshot matches camp choices",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain battle model and snapshot wear the same gear",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain executes its own damage and visible shape",
+      "passed": true,
+      "details": {
+        "casts": 1,
+        "phases": [
+          "cast",
+          "jump",
+          "overload"
+        ],
+        "sources": [
+          "chain"
+        ],
+        "fields": 1
+      }
+    },
+    {
+      "name": "lightning-chain encounter stays playable before retreat",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain pause blocks simulation",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain normal retreat settles its run",
+      "passed": true
+    },
+    {
+      "name": "lightning-chain returning clears owned skill geometry",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances is bought from the real wallet",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances equipment and talents are committed",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances mutually exclusive branch is disabled",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances workshop reports the real selected shape",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances camp model wears the selected armor",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances starts through prepareRun with normal stats",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances run snapshot matches camp choices",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances battle model and snapshot wear the same gear",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances executes its own damage and visible shape",
+      "passed": true,
+      "details": {
+        "casts": 1,
+        "phases": [
+          "cast",
+          "lances"
+        ],
+        "sources": [
+          "lance"
+        ],
+        "fields": 1
+      }
+    },
+    {
+      "name": "lightning-lances encounter stays playable before retreat",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances pause blocks simulation",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances normal retreat settles its run",
+      "passed": true
+    },
+    {
+      "name": "lightning-lances returning clears owned skill geometry",
+      "passed": true
+    },
+    {
+      "name": "all six real shapes were exercised",
+      "passed": true
+    },
+    {
+      "name": "the three extra shapes were bought with earned currency",
+      "passed": true
+    },
+    {
+      "name": "one victory and five retreats are recorded exactly once",
+      "passed": true
+    },
+    {
+      "name": "reloading preserves purchases, talents and run ledger",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard equipment and talents are committed",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard mutually exclusive branch is disabled",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard workshop reports the real selected shape",
+      "passed": true
+    },
+    {
+      "name": "water-blizzard camp model wears the selected armor",
+      "passed": true
+    },
+    {
+      "name": "ordinary player save and preferences are unchanged",
+      "passed": true
+    }
+  ],
+  "encounters": [
+    {
+      "form": "water-blizzard",
+      "expeditionId": "grave",
+      "full": true,
+      "seed": 913,
+      "casts": 42,
+      "freezes": 52,
+      "phases": [
+        "cast",
+        "snow",
+        "shatter"
+      ],
+      "forms": [
+        "water-blizzard"
+      ],
+      "sources": [
+        "blizzard",
+        "attack",
+        "shatter"
+      ],
+      "choices": 9,
+      "peakFields": 2,
+      "peakTemporaryEffects": 9,
+      "rooms": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "won",
+      "seconds": 192.89444444447142,
+      "kills": 293,
+      "hp": 120,
+      "bossKills": 1,
+      "damageDealt": 31864.999999999956,
+      "damageTaken": 129.7
+    },
+    {
+      "form": "fire-pillars",
+      "expeditionId": "aqueduct",
+      "full": false,
+      "seed": 913,
+      "casts": 2,
+      "freezes": 0,
+      "phases": [
+        "cast",
+        "pillar",
+        "pillar-echo"
+      ],
+      "forms": [
+        "fire-pillars"
+      ],
+      "sources": [
+        "attack",
+        "skill",
+        "aftershock"
+      ],
+      "choices": 0,
+      "peakFields": 1,
+      "peakTemporaryEffects": 7,
+      "rooms": [
+        0
+      ],
+      "status": "playing",
+      "seconds": 5.766666666666439,
+      "kills": 15,
+      "hp": 120,
+      "bossKills": 0,
+      "damageDealt": 994.02800384,
+      "damageTaken": 0
+    },
+    {
+      "form": "fire-meteor",
+      "expeditionId": "aqueduct",
+      "full": false,
+      "seed": 913,
+      "casts": 1,
+      "freezes": 0,
+      "phases": [
+        "cast",
+        "impact",
+        "impact-echo"
+      ],
+      "forms": [
+        "fire-meteor"
+      ],
+      "sources": [
+        "attack",
+        "skill"
+      ],
+      "choices": 0,
+      "peakFields": 1,
+      "peakTemporaryEffects": 0,
+      "rooms": [
+        0
+      ],
+      "status": "playing",
+      "seconds": 1.1333333333332924,
+      "kills": 4,
+      "hp": 120,
+      "bossKills": 0,
+      "damageDealt": 261,
+      "damageTaken": 0
+    },
+    {
+      "form": "water-torrent",
+      "expeditionId": "aqueduct",
+      "full": false,
+      "seed": 913,
+      "casts": 1,
+      "freezes": 0,
+      "phases": [
+        "cast"
+      ],
+      "forms": [
+        "water-torrent"
+      ],
+      "sources": [
+        "attack",
+        "torrent"
+      ],
+      "choices": 0,
+      "peakFields": 1,
+      "peakTemporaryEffects": 0,
+      "rooms": [
+        0
+      ],
+      "status": "playing",
+      "seconds": 0.6666666666666422,
+      "kills": 1,
+      "hp": 120,
+      "bossKills": 0,
+      "damageDealt": 42,
+      "damageTaken": 0
+    },
+    {
+      "form": "lightning-chain",
+      "expeditionId": "aqueduct",
+      "full": false,
+      "seed": 913,
+      "casts": 1,
+      "freezes": 0,
+      "phases": [
+        "cast",
+        "jump",
+        "overload"
+      ],
+      "forms": [
+        "lightning-chain"
+      ],
+      "sources": [
+        "chain"
+      ],
+      "choices": 0,
+      "peakFields": 1,
+      "peakTemporaryEffects": 0,
+      "rooms": [
+        0
+      ],
+      "status": "playing",
+      "seconds": 0.5333333333333138,
+      "kills": 4,
+      "hp": 120,
+      "bossKills": 0,
+      "damageDealt": 293.58,
+      "damageTaken": 0
+    },
+    {
+      "form": "lightning-lances",
+      "expeditionId": "aqueduct",
+      "full": false,
+      "seed": 913,
+      "casts": 1,
+      "freezes": 0,
+      "phases": [
+        "cast",
+        "lances"
+      ],
+      "forms": [
+        "lightning-lances"
+      ],
+      "sources": [
+        "lance"
+      ],
+      "choices": 0,
+      "peakFields": 1,
+      "peakTemporaryEffects": 0,
+      "rooms": [
+        0
+      ],
+      "status": "playing",
+      "seconds": 0.19999999999999266,
+      "kills": 4,
+      "hp": 120,
+      "bossKills": 0,
+      "damageDealt": 261,
+      "damageTaken": 0
+    }
+  ],
+  "storageKeys": {
+    "profile": "emberfall.profile.v4.qa.flow.3149fadc-a63e-4b72-9faa-cc576213caf0",
+    "settings": "emberfall.settings.v1.qa.flow.3149fadc-a63e-4b72-9faa-cc576213caf0",
+    "records": "emberfall.records.v1.qa.flow.3149fadc-a63e-4b72-9faa-cc576213caf0",
+    "locale": "emberfall.locale.v1.qa.flow.3149fadc-a63e-4b72-9faa-cc576213caf0"
+  },
+  "startedAt": "2026-10-02T08:16:02.311Z",
+  "limitations": "Actual UI handlers, frame/event/render pipeline and persistence. Input-only 30 Hz driver knows visible enemies and warnings; no game attributes or currency are changed. This is not a human balance or device-performance test.",
+  "normalSavePreserved": true,
+  "profile": {
+    "version": 4,
+    "gold": 1263,
+    "essence": 8,
+    "loadout": "water-scepter",
+    "unlockedWeapons": [
+      "fire-sword",
+      "lightning-spear",
+      "water-staff",
+      "water-scepter",
+      "lightning-halberd",
+      "fire-greatsword"
+    ],
+    "items": {
+      "damage-tonic": 0,
+      "ward-charm": 0
+    },
+    "selectedSupply": null,
+    "campLevel": 0,
+    "activeQuest": null,
+    "quests": {
+      "ash-hunt": {
+        "status": "available",
+        "progress": 0
+      },
+      "gravebreaker": {
+        "status": "available",
+        "progress": 0
+      },
+      "side-search": {
+        "status": "available",
+        "progress": 0
+      },
+      "bell-breaker": {
+        "status": "available",
+        "progress": 0
+      }
+    },
+    "stats": {
+      "runs": 6,
+      "wins": 1,
+      "deaths": 0,
+      "retreats": 5,
+      "totalKills": 321,
+      "eliteKills": 5,
+      "sideRelics": 2,
+      "bossKills": 1,
+      "goldEarned": 1323,
+      "bestKills": 293,
+      "bestRoom": 6,
+      "fastestVictory": 192
+    },
+    "processedRuns": {
+      "f326d485-e5bd-4272-a356-1aee395c0d12": {
+        "outcome": "won",
+        "reward": {
+          "gold": 1309,
+          "essence": 4,
+          "unlockedWeapons": [
+            "water-scepter",
+            "lightning-halberd",
+            "fire-greatsword"
+          ],
+          "ratio": 1,
+          "questProgress": null,
+          "storyUnlocked": [
+            "grave:gate",
+            "grave:burial-relic",
+            "grave:forge-sigil",
+            "grave:boss"
+          ]
+        }
+      },
+      "2e181b45-8d05-4fb7-a0ac-c2b54a00fbf1": {
+        "outcome": "retreated",
+        "reward": {
+          "gold": 11,
+          "essence": 0,
+          "unlockedWeapons": [],
+          "ratio": 0.25,
+          "questProgress": null,
+          "storyUnlocked": []
+        }
+      },
+      "c4a37a22-2625-4f52-85c3-f00e53d8bdd8": {
+        "outcome": "retreated",
+        "reward": {
+          "gold": 3,
+          "essence": 0,
+          "unlockedWeapons": [],
+          "ratio": 0.25,
+          "questProgress": null,
+          "storyUnlocked": []
+        }
+      },
+      "83bf2f52-3370-4c0f-8287-bcad44f30b7f": {
+        "outcome": "retreated",
+        "reward": {
+          "gold": 0,
+          "essence": 0,
+          "unlockedWeapons": [],
+          "ratio": 0.25,
+          "questProgress": null,
+          "storyUnlocked": []
+        }
+      },
+      "4c2f07cc-d613-4372-b251-a34e00bdc7fd": {
+        "outcome": "retreated",
+        "reward": {
+          "gold": 0,
+          "essence": 0,
+          "unlockedWeapons": [],
+          "ratio": 0.25,
+          "questProgress": null,
+          "storyUnlocked": []
+        }
+      },
+      "53f6fb04-7575-4223-96cb-5cd2fc326d65": {
+        "outcome": "retreated",
+        "reward": {
+          "gold": 0,
+          "essence": 0,
+          "unlockedWeapons": [],
+          "ratio": 0.25,
+          "questProgress": null,
+          "storyUnlocked": []
+        }
+      }
+    },
+    "pendingRun": null,
+    "campaign": {
+      "evidence": [
+        "grave:gate",
+        "grave:burial-relic",
+        "grave:forge-sigil",
+        "grave:boss"
+      ],
+      "claimed": [
+        "watch",
+        "names",
+        "forge",
+        "bell"
+      ],
+      "selectedExpedition": "aqueduct",
+      "clears": {
+        "grave": 1,
+        "aqueduct": 0
+      }
+    },
+    "build": {
+      "armorId": "glacier-robes",
+      "relicId": "water-blizzard",
+      "ownedGear": [
+        "fire-pillars",
+        "water-blizzard",
+        "lightning-chain",
+        "glacier-robes",
+        "ash-mantle",
+        "fire-meteor",
+        "water-torrent",
+        "storm-vest",
+        "lightning-lances"
+      ],
+      "talents": [
+        "water-permafrost",
+        "water-shatter"
+      ]
+    },
+    "activeRun": null
+  },
+  "finishedAt": "2026-10-02T08:16:32.976Z"
+}

@@ -1,12 +1,12 @@
 {
   "status": "passed",
   "exitCode": 0,
-  "tests": 129,
+  "tests": 182,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
-  "startedAt": "2026-10-01T08:56:58.022Z",
-  "elapsedSeconds": 1.566,
+  "startedAt": "2026-10-02T08:15:52.968Z",
+  "elapsedSeconds": 2.89,
   "scope": [
     "tests/camp-expedition-flow.test.js",
     "tests/expedition-flow-matrix.test.js",
@@ -20,7 +20,12 @@
     "tests/campaign-ui.test.js",
     "tests/campaign-flow.test.js",
     "tests/campaign-combat.test.js",
-    "tests/campaign-render.test.js"
+    "tests/campaign-render.test.js",
+    "tests/build-profile.test.js",
+    "tests/build-ui.test.js",
+    "tests/build-flow.test.js",
+    "tests/build-combat.test.js",
+    "tests/build-effects.test.js"
   ],
   "browser": {
     "status": "not_run_by_this_command",

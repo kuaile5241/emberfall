@@ -1,0 +1,32 @@
+{
+  "version": "0.8.0",
+  "status": "passed",
+  "locale": "en",
+  "checkedAt": "2026-10-02T08:19:12.176Z",
+  "checks": [
+    {
+      "name": "Armory shows equipped Blizzard Prism form",
+      "passed": true
+    },
+    {
+      "name": "Whiteout talent changes displayed cooldown from 6.05 to 7.26 seconds",
+      "passed": true
+    },
+    {
+      "name": "New shape displays base skill damage without circular radius",
+      "passed": true
+    },
+    {
+      "name": "Wrong-element preview falls back to legacy weapon skill",
+      "passed": true
+    },
+    {
+      "name": "English armory has no untranslated Chinese text",
+      "passed": true
+    }
+  ],
+  "before": "Tidecaller\nDeep Tide Scepter\nEquipped\nEquipped\n\nOutfit · Deep Tide Vestments\n\nSIGNATURE SKILL\nWhiteout Blizzard\n\nSummon a sustained blizzard at the aimed location. Repeated hits stack chill and freeze regular enemies.\n\nExpedition stats\nEquipped → Selected\nAttack damage\n26.52\n→\n26.52\nAttack interval\n0.48\n→\n0.48s\nAttack range\n3.6\n→\n3.6m\nBase skill damage\n124.8\n→\n124.8\nSkill cooldown\n6.05\n→\n6.05s\n\nIncludes camp bonuses, supplies, armor, and talents. Excludes dungeon blessings and temporary effects.",
+  "after": "Tidecaller\nDeep Tide Scepter\nEquipped\nEquipped\n\nOutfit · Deep Tide Vestments\n\nSIGNATURE SKILL\nWhiteout Blizzard\n\nSummon a sustained blizzard at the aimed location. Repeated hits stack chill and freeze regular enemies.\n\nExpedition stats\nEquipped → Selected\nAttack damage\n26.52\n→\n26.52\nAttack interval\n0.48\n→\n0.48s\nAttack range\n3.6\n→\n3.6m\nBase skill damage\n124.8\n→\n124.8\nSkill cooldown\n7.26\n→\n7.26s\n\nIncludes camp bonuses, supplies, armor, and talents. Excludes dungeon blessings and temporary effects.",
+  "mixedForm": "chain-nova",
+  "mixedPreview": "Storm Ranger\nLightning Spear\nCollected\nEquip\n\nOutfit · Storm Scout Garb\n\nSwift thrusts and chain lightning that catches scattered enemies.\n\nSIGNATURE SKILL\nChain Nova\n\nShock nearby enemies and chain to up to 5 distant targets. Gain 30% attack speed for 4s.\n\nExpedition stats\nEquipped → Selected\nAttack damage\n26.52\n→\n22.36\nAttack interval\n0.48\n→\n0.37s\nAttack range\n3.6\n→\n3.5m\nBase skill damage\n124.8\n→\n104\nSkill cooldown\n7.26\n→\n4.93s\n\nIncludes camp bonuses, supplies, armor, and talents. Excludes dungeon blessings and temporary effects."
+}

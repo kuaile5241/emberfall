@@ -1,0 +1,1564 @@
+
+> emberfall-beneath-the-bell@0.8.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: fire-pillars: actual geometry damages forward targets without a player-centred nova
+ok 1 - fire-pillars: actual geometry damages forward targets without a player-centred nova
+  ---
+  duration_ms: 8.476708
+  type: 'test'
+  ...
+# Subtest: fire-meteor: actual geometry damages forward targets without a player-centred nova
+ok 2 - fire-meteor: actual geometry damages forward targets without a player-centred nova
+  ---
+  duration_ms: 1.431792
+  type: 'test'
+  ...
+# Subtest: water-blizzard: actual geometry damages forward targets without a player-centred nova
+ok 3 - water-blizzard: actual geometry damages forward targets without a player-centred nova
+  ---
+  duration_ms: 1.447083
+  type: 'test'
+  ...
+# Subtest: water-torrent: actual geometry damages forward targets without a player-centred nova
+ok 4 - water-torrent: actual geometry damages forward targets without a player-centred nova
+  ---
+  duration_ms: 6.147542
+  type: 'test'
+  ...
+# Subtest: lightning-chain: actual geometry damages forward targets without a player-centred nova
+ok 5 - lightning-chain: actual geometry damages forward targets without a player-centred nova
+  ---
+  duration_ms: 1.071583
+  type: 'test'
+  ...
+# Subtest: lightning-lances: actual geometry damages forward targets without a player-centred nova
+ok 6 - lightning-lances: actual geometry damages forward targets without a player-centred nova
+  ---
+  duration_ms: 3.360708
+  type: 'test'
+  ...
+# Subtest: fire pillars warn first, erupt in order, and pressure adds real pillars with larger radius
+ok 7 - fire pillars warn first, erupt in order, and pressure adds real pillars with larger radius
+  ---
+  duration_ms: 1.128375
+  type: 'test'
+  ...
+# Subtest: meteor has a delayed impact, aftershock and persistent burning using a cast-time snapshot
+ok 8 - meteor has a delayed impact, aftershock and persistent burning using a cast-time snapshot
+  ---
+  duration_ms: 0.834
+  type: 'test'
+  ...
+# Subtest: blizzard repeatedly chills and freezes with cooldown; Boss cannot be permanently frozen
+ok 9 - blizzard repeatedly chills and freezes with cooldown; Boss cannot be permanently frozen
+  ---
+  duration_ms: 1.077708
+  type: 'test'
+  ...
+# Subtest: frozen deaths shatter once without recursively exploding adjacent frozen victims
+ok 10 - frozen deaths shatter once without recursively exploding adjacent frozen victims
+  ---
+  duration_ms: 0.82075
+  type: 'test'
+  ...
+# Subtest: the moving torrent sweeps distinct targets once and never hits through a wall
+ok 11 - the moving torrent sweeps distinct targets once and never hits through a wall
+  ---
+  duration_ms: 1.332667
+  type: 'test'
+  ...
+# Subtest: chain visits each target once, respects a wall and applies the final overload
+ok 12 - chain visits each target once, respects a wall and applies the final overload
+  ---
+  duration_ms: 2.460333
+  type: 'test'
+  ...
+# Subtest: lances penetrate a line of enemies once even when a target intersects multiple rays
+ok 13 - lances penetrate a line of enemies once even when a target intersects multiple rays
+  ---
+  duration_ms: 0.78075
+  type: 'test'
+  ...
+# Subtest: feedback has its own one-second cast budget and weapon switches cannot clear elemental cooldown
+ok 14 - feedback has its own one-second cast budget and weapon switches cannot clear elemental cooldown
+  ---
+  duration_ms: 2.622292
+  type: 'test'
+  ...
+# Subtest: ice armor uses actual slowed/frozen state for skill and attack damage, only for water
+ok 15 - ice armor uses actual slowed/frozen state for skill and attack damage, only for water
+  ---
+  duration_ms: 2.311083
+  type: 'test'
+  ...
+# Subtest: legacy defaults, neutral save inputs and reset preserve the original weapon skills
+ok 16 - legacy defaults, neutral save inputs and reset preserve the original weapon skills
+  ---
+  duration_ms: 2.155083
+  type: 'test'
+  ...
+# Subtest: mouse aim chooses a real near impact point and distant/wall targets clamp to reachable ground
+ok 17 - mouse aim chooses a real near impact point and distant/wall targets clamp to reachable ground
+  ---
+  duration_ms: 2.05625
+  type: 'test'
+  ...
+# Subtest: six skill forms build different actual structures instead of six recoloured radial discs
+ok 18 - six skill forms build different actual structures instead of six recoloured radial discs
+  ---
+  duration_ms: 828.581833
+  type: 'test'
+  ...
+# Subtest: snow quantity follows quality and effects intensity, with bounded temporary resources
+ok 19 - snow quantity follows quality and effects intensity, with bounded temporary resources
+  ---
+  duration_ms: 33.537334
+  type: 'test'
+  ...
+# Subtest: skill fields follow simulation positions and dispose every private resource once on expiry or quality change
+ok 20 - skill fields follow simulation positions and dispose every private resource once on expiry or quality change
+  ---
+  duration_ms: 35.83725
+  type: 'test'
+  ...
+# Subtest: independent armor and relic refresh a real rig even when the wielded weapon is unchanged
+ok 21 - independent armor and relic refresh a real rig even when the wielded weapon is unchanged
+  ---
+  duration_ms: 18.739417
+  type: 'test'
+  ...
+# Subtest: fire-pillars + fire-meteor: equipped/talented normal input victories across both chapters, earned purchases and reload
+ok 22 - fire-pillars + fire-meteor: equipped/talented normal input victories across both chapters, earned purchases and reload
+  ---
+  duration_ms: 1376.367041
+  type: 'test'
+  ...
+# fire-pillars/grave: won, 221s, room 6 / 6, 293 kills, 120 HP, boss 1; 44 casts; peak effects 1, areas 0, projectiles 17
+# fire-pillars/aqueduct: won, 85s, room 3 / 3, 116 kills, 120 HP, boss 1; 17 casts; peak effects 1, areas 0, projectiles 8
+# fire-meteor/grave: won, 198s, room 6 / 6, 293 kills, 120 HP, boss 1; 34 casts; peak effects 2, areas 0, projectiles 18
+# fire-meteor/aqueduct: won, 82s, room 3 / 3, 116 kills, 144 HP, boss 1; 15 casts; peak effects 1, areas 0, projectiles 5
+# Subtest: water-blizzard + water-torrent: equipped/talented normal input victories across both chapters, earned purchases and reload
+ok 23 - water-blizzard + water-torrent: equipped/talented normal input victories across both chapters, earned purchases and reload
+  ---
+  duration_ms: 1374.075708
+  type: 'test'
+  ...
+# water-blizzard/grave: won, 188s, room 6 / 6, 293 kills, 124 HP, boss 1; 38 casts; peak effects 2, areas 0, projectiles 21
+# water-blizzard/aqueduct: won, 78s, room 3 / 3, 116 kills, 144 HP, boss 1; 13 casts; peak effects 2, areas 0, projectiles 6
+# water-torrent/grave: won, 210s, room 6 / 6, 293 kills, 144 HP, boss 1; 33 casts; peak effects 1, areas 0, projectiles 17
+# water-torrent/aqueduct: won, 97s, room 3 / 3, 116 kills, 144 HP, boss 1; 14 casts; peak effects 1, areas 0, projectiles 6
+# Subtest: lightning-chain + lightning-lances: equipped/talented normal input victories across both chapters, earned purchases and reload
+ok 24 - lightning-chain + lightning-lances: equipped/talented normal input victories across both chapters, earned purchases and reload
+  ---
+  duration_ms: 661.041416
+  type: 'test'
+  ...
+# lightning-chain/grave: won, 193s, room 6 / 6, 293 kills, 120 HP, boss 1; 41 casts; peak effects 1, areas 0, projectiles 16
+# lightning-chain/aqueduct: won, 80s, room 3 / 3, 116 kills, 144 HP, boss 1; 20 casts; peak effects 1, areas 0, projectiles 5
+# lightning-lances/grave: won, 184s, room 6 / 6, 293 kills, 119 HP, boss 1; 53 casts; peak effects 1, areas 0, projectiles 16
+# lightning-lances/aqueduct: won, 82s, room 3 / 3, 116 kills, 120 HP, boss 1; 18 casts; peak effects 1, areas 0, projectiles 10
+# Subtest: six build relics produce six distinct form kinds and provide truthful owned starters
+ok 25 - six build relics produce six distinct form kinds and provide truthful owned starters
+  ---
+  duration_ms: 1.044875
+  type: 'test'
+  ...
+# Subtest: a V4 save without build migrates in memory with no equipped gear or automatic storage write
+ok 26 - a V4 save without build migrates in memory with no equipped gear or automatic storage write
+  ---
+  duration_ms: 1.071916
+  type: 'test'
+  ...
+# Subtest: old pending runs remain neutral even if the camp now equips a starter and spends talents
+ok 27 - old pending runs remain neutral even if the camp now equips a starter and spends talents
+  ---
+  duration_ms: 1.448375
+  type: 'test'
+  ...
+# Subtest: malformed build envelopes and impossible talent combinations preserve raw saves and reject writes
+ok 28 - malformed build envelopes and impossible talent combinations preserve raw saves and reject writes
+  ---
+  duration_ms: 0.687125
+  type: 'test'
+  ...
+# Subtest: malformed pending build snapshot cannot be overwritten by a camp adjustment
+ok 29 - malformed pending build snapshot cannot be overwritten by a camp adjustment
+  ---
+  duration_ms: 0.891416
+  type: 'test'
+  ...
+# Subtest: gear purchases charge real currency once and survive reload without a second charge
+ok 30 - gear purchases charge real currency once and survive reload without a second charge
+  ---
+  duration_ms: 0.239458
+  type: 'test'
+  ...
+# Subtest: failed purchase or equipment save leaves currency, ownership, and slots unchanged for a clean retry
+ok 31 - failed purchase or equipment save leaves currency, ownership, and slots unchanged for a clean retry
+  ---
+  duration_ms: 0.321875
+  type: 'test'
+  ...
+# Subtest: only owned gear in the matching armor or relic slot can be equipped; emptying a slot is allowed
+ok 32 - only owned gear in the matching armor or relic slot can be equipped; emptying a slot is allowed
+  ---
+  duration_ms: 0.633042
+  type: 'test'
+  ...
+# Subtest: talent prerequisites, mutual exclusions and point limits reject rather than silently alter a build
+ok 33 - talent prerequisites, mutual exclusions and point limits reject rather than silently alter a build
+  ---
+  duration_ms: 0.501292
+  type: 'test'
+  ...
+# Subtest: free talent reset is atomic, preserves money, and does not mutate an active run
+ok 34 - free talent reset is atomic, preserves money, and does not mutate an active run
+  ---
+  duration_ms: 0.547958
+  type: 'test'
+  ...
+# Subtest: three real settled wins add three points while death, retreat and duplicate settlement add none
+ok 35 - three real settled wins add three points while death, retreat and duplicate settlement add none
+  ---
+  duration_ms: 1.370916
+  type: 'test'
+  ...
+# Subtest: camp adjustments and purchase during pending run affect only the next immutable run snapshot
+ok 36 - camp adjustments and purchase during pending run affect only the next immutable run snapshot
+  ---
+  duration_ms: 0.366458
+  type: 'test'
+  ...
+# Subtest: stale pages cannot duplicate purchases, equip changes, or talent spending; sync retains active snapshot
+ok 37 - stale pages cannot duplicate purchases, equip changes, or talent spending; sync retains active snapshot
+  ---
+  duration_ms: 0.55475
+  type: 'test'
+  ...
+# Subtest: a mismatched relic preserves the equipped weapon skill and never converts unrelated elements
+ok 38 - a mismatched relic preserves the equipped weapon skill and never converts unrelated elements
+  ---
+  duration_ms: 0.13925
+  type: 'test'
+  ...
+# Subtest: build effects remain fully neutral by default and only modify their matching element
+ok 39 - build effects remain fully neutral by default and only modify their matching element
+  ---
+  duration_ms: 0.17
+  type: 'test'
+  ...
+# Subtest: each armor purchase is priced at 70 gold and item descriptions correspond to immutable metadata
+ok 40 - each armor purchase is priced at 70 gold and item descriptions correspond to immutable metadata
+  ---
+  duration_ms: 0.279375
+  type: 'test'
+  ...
+# Subtest: a fresh build workshop previews the real default weapon skill and keeps starter relics unequipped
+ok 41 - a fresh build workshop previews the real default weapon skill and keeps starter relics unequipped
+  ---
+  duration_ms: 1.534
+  type: 'test'
+  ...
+# Subtest: every matching relic previews its actual skill form and distinct icon; mismatches preserve weapon skills
+ok 42 - every matching relic previews its actual skill form and distinct icon; mismatches preserve weapon skills
+  ---
+  duration_ms: 0.338833
+  type: 'test'
+  ...
+# Subtest: equipment cards show ownership, real purchase prices, insufficient funds, and the remove action
+ok 43 - equipment cards show ownership, real purchase prices, insufficient funds, and the remove action
+  ---
+  duration_ms: 0.535583
+  type: 'test'
+  ...
+# Subtest: talent buttons explain prerequisites, disable the other branch, and always permit selected-node removal
+ok 44 - talent buttons explain prerequisites, disable the other branch, and always permit selected-node removal
+  ---
+  duration_ms: 1.417959
+  type: 'test'
+  ...
+# Subtest: the workshop uses total budget including spent points and never displays more than six
+ok 45 - the workshop uses total budget including spent points and never displays more than six
+  ---
+  duration_ms: 1.008083
+  type: 'test'
+  ...
+# Subtest: a pending expedition keeps its own summary while the workshop clearly previews next-run equipment
+ok 46 - a pending expedition keeps its own summary while the workshop clearly previews next-run equipment
+  ---
+  duration_ms: 0.867542
+  type: 'test'
+  ...
+# Subtest: all build metadata and profile errors translate precisely through the merged locale dictionary
+ok 47 - all build metadata and profile errors translate precisely through the merged locale dictionary
+  ---
+  duration_ms: 1.008417
+  type: 'test'
+  ...
+# Subtest: English workshops have no Chinese text across gear, talent, ownership, and mismatch states
+ok 48 - English workshops have no Chinese text across gear, talent, ownership, and mismatch states
+  ---
+  duration_ms: 0.655417
+  type: 'test'
+  ...
+# Subtest: switching locale changes display names and action text without altering build IDs or selected state
+ok 49 - switching locale changes display names and action text without altering build IDs or selected state
+  ---
+  duration_ms: 0.288542
+  type: 'test'
+  ...
+# Subtest: a real camp-to-six-zone victory settles and claims once, then starts a clean equipped expedition
+ok 50 - a real camp-to-six-zone victory settles and claims once, then starts a clean equipped expedition
+  ---
+  duration_ms: 602.13775
+  type: 'test'
+  ...
+# 173 game seconds, 293 kills, 1170 earned gold, 6 levels, 9 blessings, 11 checkpoints, 120 remaining HP
+# won settlement 1250 gold / 4 essence; quest reward 100 gold / 1 essence; next run fire-greatsword + ward-charm with no previous blessings
+# Subtest: navigation escapes a legal corner inside the cached-radius rounding margin
+ok 51 - navigation escapes a legal corner inside the cached-radius rounding margin
+  ---
+  duration_ms: 17.414209
+  type: 'test'
+  ...
+# Subtest: a remote or uncleared mechanism cannot be operated
+ok 52 - a remote or uncleared mechanism cannot be operated
+  ---
+  duration_ms: 5.36925
+  type: 'test'
+  ...
+# Subtest: tapping E or walking out of range cancels unfinished operation
+ok 53 - tapping E or walking out of range cancels unfinished operation
+  ---
+  duration_ms: 3.71525
+  type: 'test'
+  ...
+# Subtest: a real projectile hit interrupts operation and held E cannot silently resume it
+ok 54 - a real projectile hit interrupts operation and held E cannot silently resume it
+  ---
+  duration_ms: 2.413125
+  type: 'test'
+  ...
+# Subtest: a modal suspension does not consume the mechanism hold duration
+ok 55 - a modal suspension does not consume the mechanism hold duration
+  ---
+  duration_ms: 2.796417
+  type: 'test'
+  ...
+# Subtest: grave: completing a held mechanism gives its actual bonus exactly once
+ok 56 - grave: completing a held mechanism gives its actual bonus exactly once
+  ---
+  duration_ms: 7.444791
+  type: 'test'
+  ...
+# Subtest: aqueduct: completing a held mechanism gives its actual bonus exactly once
+ok 57 - aqueduct: completing a held mechanism gives its actual bonus exactly once
+  ---
+  duration_ms: 1.591875
+  type: 'test'
+  ...
+# Subtest: tidal ring leaves its centre and distant exterior safe while the annulus deals real damage
+ok 58 - tidal ring leaves its centre and distant exterior safe while the annulus deals real damage
+  ---
+  duration_ms: 23.85775
+  type: 'test'
+  ...
+# Subtest: a timed dash avoids the tidal ring strike
+ok 59 - a timed dash avoids the tidal ring strike
+  ---
+  duration_ms: 1.254625
+  type: 'test'
+  ...
+# Subtest: the actual sluice bonus reduces boss physical damage and does not weaken ordinary enemies
+ok 60 - the actual sluice bonus reduces boss physical damage and does not weaken ordinary enemies
+  ---
+  duration_ms: 2.281459
+  type: 'test'
+  ...
+# Subtest: the sluice reduction applies once to boss projectiles and never to ordinary projectiles
+ok 61 - the sluice reduction applies once to boss projectiles and never to ordinary projectiles
+  ---
+  duration_ms: 16.13625
+  type: 'test'
+  ...
+# Subtest: water pressure warns before damage and leaves enough time for a real movement escape
+ok 62 - water pressure warns before damage and leaves enough time for a real movement escape
+  ---
+  duration_ms: 0.728584
+  type: 'test'
+  ...
+# Subtest: clearing or changing an area removes pending water pressure and does not leave ghost attacks
+ok 63 - clearing or changing an area removes pending water pressure and does not leave ghost attacks
+  ---
+  duration_ms: 28.861333
+  type: 'test'
+  ...
+# Subtest: a blessing that appears during a held mechanism cancels it and permits a fresh hold
+ok 64 - a blessing that appears during a held mechanism cancels it and permits a fresh hold
+  ---
+  duration_ms: 10.119834
+  type: 'test'
+  ...
+# Subtest: fire-sword: input-only story evidence, two maps, both bosses, persisted ending and exactly-once rewards
+ok 65 - fire-sword: input-only story evidence, two maps, both bosses, persisted ending and exactly-once rewards
+  ---
+  duration_ms: 861.749333
+  type: 'test'
+  ...
+# grave: 173s, room 6 / 6, 293 kills, 144 HP
+# aqueduct: 66s, room 3 / 3, 116 kills, 120 HP
+# Subtest: lightning-spear: input-only story evidence, two maps, both bosses, persisted ending and exactly-once rewards
+ok 66 - lightning-spear: input-only story evidence, two maps, both bosses, persisted ending and exactly-once rewards
+  ---
+  duration_ms: 291.606292
+  type: 'test'
+  ...
+# grave: 138s, room 6 / 6, 293 kills, 120 HP
+# aqueduct: 58s, room 3 / 3, 116 kills, 144 HP
+# Subtest: water-staff: input-only story evidence, two maps, both bosses, persisted ending and exactly-once rewards
+ok 67 - water-staff: input-only story evidence, two maps, both bosses, persisted ending and exactly-once rewards
+  ---
+  duration_ms: 922.233584
+  type: 'test'
+  ...
+# grave: 191s, room 6 / 6, 293 kills, 144 HP
+# aqueduct: 78s, room 3 / 3, 116 kills, 120 HP
+# Subtest: the second map uses connected left-turn routes and its own reachable navigation points
+ok 68 - the second map uses connected left-turn routes and its own reachable navigation points
+  ---
+  duration_ms: 0.173666
+  type: 'test'
+  ...
+# Subtest: a pre-campaign V4 save migrates without claiming historical wins or writing on load
+ok 69 - a pre-campaign V4 save migrates without claiming historical wins or writing on load
+  ---
+  duration_ms: 1.876666
+  type: 'test'
+  ...
+# Subtest: one complete run records all exploration; sequential claims need no repeated farming
+ok 70 - one complete run records all exploration; sequential claims need no repeated farming
+  ---
+  duration_ms: 5.665667
+  type: 'test'
+  ...
+# Subtest: death and retreat recover saved exploration but cannot award a boss victory
+ok 71 - death and retreat recover saved exploration but cannot award a boss victory
+  ---
+  duration_ms: 1.885917
+  type: 'test'
+  ...
+# Subtest: checkpoint unions are monotonic and bound to fixed pending expedition identity
+ok 72 - checkpoint unions are monotonic and bound to fixed pending expedition identity
+  ---
+  duration_ms: 1.696459
+  type: 'test'
+  ...
+# Subtest: unavailable expeditions cannot consume a selected supply or create a pending run
+ok 73 - unavailable expeditions cannot consume a selected supply or create a pending run
+  ---
+  duration_ms: 0.2775
+  type: 'test'
+  ...
+# Subtest: settlement and claim failures are atomic; reload cannot duplicate campaign rewards
+ok 74 - settlement and claim failures are atomic; reload cannot duplicate campaign rewards
+  ---
+  duration_ms: 0.53575
+  type: 'test'
+  ...
+# Subtest: a stale tab cannot claim rewards or change the destination over a newer save
+ok 75 - a stale tab cannot claim rewards or change the destination over a newer save
+  ---
+  duration_ms: 0.8225
+  type: 'test'
+  ...
+# Subtest: pending story claims are blocked while choosing the next destination preserves current map
+ok 76 - pending story claims are blocked while choosing the next destination preserves current map
+  ---
+  duration_ms: 0.416291
+  type: 'test'
+  ...
+# Subtest: unknown map evidence and missing boss kill do not advance the story
+ok 77 - unknown map evidence and missing boss kill do not advance the story
+  ---
+  duration_ms: 0.333458
+  type: 'test'
+  ...
+# Subtest: broken campaign envelopes and pending map IDs preserve raw save and block writes
+ok 78 - broken campaign envelopes and pending map IDs preserve raw save and block writes
+  ---
+  duration_ms: 0.600708
+  type: 'test'
+  ...
+# Subtest: repeated chapter switches replace the scene without accumulating lights, gates or disposing shared assets
+ok 79 - repeated chapter switches replace the scene without accumulating lights, gates or disposing shared assets
+  ---
+  duration_ms: 255.344625
+  type: 'test'
+  ...
+# Subtest: restarting the same map resets visible reward and gate state without rebuilding geometry
+ok 80 - restarting the same map resets visible reward and gate state without rebuilding geometry
+  ---
+  duration_ms: 80.781041
+  type: 'test'
+  ...
+# Subtest: story mechanisms have physical markers and turn off their interaction glow after completion
+ok 81 - story mechanisms have physical markers and turn off their interaction glow after completion
+  ---
+  duration_ms: 3.781917
+  type: 'test'
+  ...
+# Subtest: tidal ring warnings retain an empty safe centre and removed hazards release their renderer objects
+ok 82 - tidal ring warnings retain an empty safe centre and removed hazards release their renderer objects
+  ---
+  duration_ms: 1.123709
+  type: 'test'
+  ...
+# Subtest: fresh campaign gives a specific objective and a disabled second chapter
+ok 83 - fresh campaign gives a specific objective and a disabled second chapter
+  ---
+  duration_ms: 1.456792
+  type: 'test'
+  ...
+# Subtest: recorded evidence renders one eligible claim without changing the profile
+ok 84 - recorded evidence renders one eligible claim without changing the profile
+  ---
+  duration_ms: 0.420125
+  type: 'test'
+  ...
+# Subtest: claiming chapter one opens a selectable second chapter and keeps completed stories readable
+ok 85 - claiming chapter one opens a selectable second chapter and keeps completed stories readable
+  ---
+  duration_ms: 0.311416
+  type: 'test'
+  ...
+# Subtest: both chapters, every story, map objective and accessibility label have English text
+ok 86 - both chapters, every story, map objective and accessibility label have English text
+  ---
+  duration_ms: 2.405042
+  type: 'test'
+  ...
+# Subtest: an all-claimed campaign has a complete journal and leaves both maps available
+ok 87 - an all-claimed campaign has a complete journal and leaves both maps available
+  ---
+  duration_ms: 3.373792
+  type: 'test'
+  ...
+# Subtest: three starter classes are owned and selection/reset rejects locked equipment
+ok 88 - three starter classes are owned and selection/reset rejects locked equipment
+  ---
+  duration_ms: 4.749959
+  type: 'test'
+  ...
+# Subtest: derived equipment stats preserve base upgrades, HP and attack cooldown across swaps
+ok 89 - derived equipment stats preserve base upgrades, HP and attack cooldown across swaps
+  ---
+  duration_ms: 0.488042
+  type: 'test'
+  ...
+# Subtest: element cooldowns tick while unequipped and cannot be reset by same-element tier swaps
+ok 90 - element cooldowns tick while unequipped and cannot be reset by same-element tier swaps
+  ---
+  duration_ms: 15.213041
+  type: 'test'
+  ...
+# Subtest: fire damages a group, burns the ground, buffs damage and expires without base stat mutation
+ok 91 - fire damages a group, burns the ground, buffs damage and expires without base stat mutation
+  ---
+  duration_ms: 15.9515
+  type: 'test'
+  ...
+# Subtest: burning kills use normal kill, XP, gold and life-on-kill processing exactly once
+ok 92 - burning kills use normal kill, XP, gold and life-on-kill processing exactly once
+  ---
+  duration_ms: 1.202292
+  type: 'test'
+  ...
+# Subtest: lightning chains to distinct targets outside its first ring and accelerates attacks
+ok 93 - lightning chains to distinct targets outside its first ring and accelerates attacks
+  ---
+  duration_ms: 5.517
+  type: 'test'
+  ...
+# Subtest: water slows enemies and a finite shield absorbs damage without granting invulnerability
+ok 94 - water slows enemies and a finite shield absorbs damage without granting invulnerability
+  ---
+  duration_ms: 1.496125
+  type: 'test'
+  ...
+# Subtest: water slow changes actual enemy travel distance and unspent shield expires
+ok 95 - water slow changes actual enemy travel distance and unspent shield expires
+  ---
+  duration_ms: 3.773417
+  type: 'test'
+  ...
+# Subtest: buff refresh replaces duration and potency; shield refresh never adds pools
+ok 96 - buff refresh replaces duration and potency; shield refresh never adds pools
+  ---
+  duration_ms: 0.688334
+  type: 'test'
+  ...
+# Subtest: each tier-two weapon changes skill behavior and Tab cycles elements using highest owned tier
+ok 97 - each tier-two weapon changes skill behavior and Tab cycles elements using highest owned tier
+  ---
+  duration_ms: 0.614292
+  type: 'test'
+  ...
+# Subtest: tier-two lightning echo and water pulses actually deal their delayed damage
+ok 98 - tier-two lightning echo and water pulses actually deal their delayed damage
+  ---
+  duration_ms: 0.823166
+  type: 'test'
+  ...
+# Subtest: AOE, lingering fields and lightning chains never cross the rock gap at a dogleg
+ok 99 - AOE, lingering fields and lightning chains never cross the rock gap at a dogleg
+  ---
+  duration_ms: 1.920375
+  type: 'test'
+  ...
+# Subtest: first-room reward guarantees an upgrade and elite equipment pickups enter inventory once
+ok 100 - first-room reward guarantees an upgrade and elite equipment pickups enter inventory once
+  ---
+  duration_ms: 2.219834
+  type: 'test'
+  ...
+# Subtest: death and restart clear temporary areas, buffs, shields and cooldowns, then restore starter inventory
+ok 101 - death and restart clear temporary areas, buffs, shields and cooldowns, then restore starter inventory
+  ---
+  duration_ms: 2.550833
+  type: 'test'
+  ...
+# Subtest: encounters contain dense harvestable packs and enforce a finite live-enemy cap
+ok 102 - encounters contain dense harvestable packs and enforce a finite live-enemy cap
+  ---
+  duration_ms: 5.257792
+  type: 'test'
+  ...
+# Subtest: fire-sword harvests a dozen fodder, reports actual hits and refunds a bounded cooldown
+ok 103 - fire-sword harvests a dozen fodder, reports actual hits and refunds a bounded cooldown
+  ---
+  duration_ms: 10.515041
+  type: 'test'
+  ...
+# Subtest: lightning-spear harvests a dozen fodder, reports actual hits and refunds a bounded cooldown
+ok 104 - lightning-spear harvests a dozen fodder, reports actual hits and refunds a bounded cooldown
+  ---
+  duration_ms: 0.525875
+  type: 'test'
+  ...
+# Subtest: water-staff harvests a dozen fodder, reports actual hits and refunds a bounded cooldown
+ok 105 - water-staff harvests a dozen fodder, reports actual hits and refunds a bounded cooldown
+  ---
+  duration_ms: 0.627542
+  type: 'test'
+  ...
+# Subtest: kill streak expires, cannot over-refund, and does not refund another element
+ok 106 - kill streak expires, cannot over-refund, and does not refund another element
+  ---
+  duration_ms: 0.457833
+  type: 'test'
+  ...
+# Subtest: elemental knockback moves survivors, respects rock collision and barely displaces bosses
+ok 107 - elemental knockback moves survivors, respects rock collision and barely displaces bosses
+  ---
+  duration_ms: 0.647042
+  type: 'test'
+  ...
+# Subtest: lingering damage retains its element after swapping weapons and counts rewards once
+ok 108 - lingering damage retains its element after swapping weapons and counts rewards once
+  ---
+  duration_ms: 0.398
+  type: 'test'
+  ...
+# Subtest: both side objectives require real approach, grant rewards once and remain completed when backtracking
+ok 109 - both side objectives require real approach, grant rewards once and remain completed when backtracking
+  ---
+  duration_ms: 954.589834
+  type: 'test'
+  ...
+# Subtest: camp loadouts validate ownership and finite bonuses, survive swaps and reset without compounding
+ok 110 - camp loadouts validate ownership and finite bonuses, survive swaps and reset without compounding
+  ---
+  duration_ms: 1.550875
+  type: 'test'
+  ...
+# Subtest: a camp ward is finite, survives water-shield expiry and is not restored by equipment swaps
+ok 111 - a camp ward is finite, survives water-shield expiry and is not restored by equipment swaps
+  ---
+  duration_ms: 0.982833
+  type: 'test'
+  ...
+# Subtest: run summaries are detached settlement snapshots and death/reset clears run progress
+ok 112 - run summaries are detached settlement snapshots and death/reset clears run progress
+  ---
+  duration_ms: 1.325584
+  type: 'test'
+  ...
+# Subtest: the final AOE kill leaves 0.85 seconds of live feedback before a level card and holds the next wave
+ok 113 - the final AOE kill leaves 0.85 seconds of live feedback before a level card and holds the next wave
+  ---
+  duration_ms: 1.559083
+  type: 'test'
+  ...
+# Subtest: fire-sword seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+ok 114 - fire-sword seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+  ---
+  duration_ms: 571.039791
+  type: 'test'
+  ...
+# 160 game seconds, room 6/6, 293 kills, 1097 gold, 117 HP
+# Subtest: fire-sword seed 41: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+ok 115 - fire-sword seed 41: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+  ---
+  duration_ms: 368.040875
+  type: 'test'
+  ...
+# 158 game seconds, room 6/6, 293 kills, 1090 gold, 120 HP
+# Subtest: lightning-spear seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+ok 116 - lightning-spear seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+  ---
+  duration_ms: 188.045333
+  type: 'test'
+  ...
+# 159 game seconds, room 6/6, 293 kills, 1139 gold, 172 HP
+# Subtest: lightning-spear seed 1701: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+ok 117 - lightning-spear seed 1701: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+  ---
+  duration_ms: 460.6025
+  type: 'test'
+  ...
+# 149 game seconds, room 6/6, 293 kills, 1156 gold, 141 HP
+# Subtest: water-staff seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+ok 118 - water-staff seed 913: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+  ---
+  duration_ms: 428.594583
+  type: 'test'
+  ...
+# 157 game seconds, room 6/6, 293 kills, 1090 gold, 120 HP
+# Subtest: water-staff seed 604: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+ok 119 - water-staff seed 604: camp, six-zone victory, one settlement/quest reward, and fresh next expedition
+  ---
+  duration_ms: 387.166334
+  type: 'test'
+  ...
+# 151 game seconds, room 6/6, 293 kills, 1171 gold, 120 HP
+# Subtest: natural death after the first area settles 60% once and permits a fresh expedition
+ok 120 - natural death after the first area settles 60% once and permits a fresh expedition
+  ---
+  duration_ms: 37.541541
+  type: 'test'
+  ...
+# 41 game seconds, room 2/6, 30 kills, 110 gold, 0 HP
+# Subtest: voluntary retreat after two real areas settles 25% and retains loot and next preparation
+ok 121 - voluntary retreat after two real areas settles 25% and retains loot and next preparation
+  ---
+  duration_ms: 40.514542
+  type: 'test'
+  ...
+# 46 game seconds, room 3/6, 68 kills, 236 gold, 120 HP
+# Subtest: cross-page conflict and read failure preserve the run, external bytes and spending until safe sync
+ok 122 - cross-page conflict and read failure preserve the run, external bytes and spending until safe sync
+  ---
+  duration_ms: 38.664458
+  type: 'test'
+  ...
+# 5 game seconds, room 1/6, 0 kills, 0 gold, 120 HP; conflict/read failure performed zero writes and safe recovery settled once
+# Subtest: same seed yields the same spawns, stats and event stream
+ok 123 - same seed yields the same spawns, stats and event stream
+  ---
+  duration_ms: 31.549333
+  type: 'test'
+  ...
+# Subtest: movement is normalized, stays inside the world boundary, and aim is a direction
+ok 124 - movement is normalized, stays inside the world boundary, and aim is a direction
+  ---
+  duration_ms: 22.471875
+  type: 'test'
+  ...
+# Subtest: melee attacks use a forward arc, hold repeats, and cooldown blocks immediate hits
+ok 125 - melee attacks use a forward arc, hold repeats, and cooldown blocks immediate hits
+  ---
+  duration_ms: 0.647375
+  type: 'test'
+  ...
+# Subtest: dash gives invulnerability, respects cooldown and triggers once while held
+ok 126 - dash gives invulnerability, respects cooldown and triggers once while held
+  ---
+  duration_ms: 3.426917
+  type: 'test'
+  ...
+# Subtest: skill damages nearby enemies, clears bolts, and cannot ignore cooldown
+ok 127 - skill damages nearby enemies, clears bolts, and cannot ignore cooldown
+  ---
+  duration_ms: 1.303625
+  type: 'test'
+  ...
+# Subtest: potions preserve full-health inventory and heal only once per press
+ok 128 - potions preserve full-health inventory and heal only once per press
+  ---
+  duration_ms: 1.338417
+  type: 'test'
+  ...
+# Subtest: telegraphed melee can be dodged before it resolves
+ok 129 - telegraphed melee can be dodged before it resolves
+  ---
+  duration_ms: 0.463208
+  type: 'test'
+  ...
+# Subtest: melee telegraph describes its full damaging sector, including a diagonal landing
+ok 130 - melee telegraph describes its full damaging sector, including a diagonal landing
+  ---
+  duration_ms: 0.389875
+  type: 'test'
+  ...
+# Subtest: XP upgrades wait for the wave to clear, pause simulation, reject invalid choices and resume safely
+ok 131 - XP upgrades wait for the wave to clear, pause simulation, reject invalid choices and resume safely
+  ---
+  duration_ms: 0.717167
+  type: 'test'
+  ...
+# Subtest: all six rooms, waves, reward choices and the final victory are reachable
+ok 132 - all six rooms, waves, reward choices and the final victory are reachable
+  ---
+  duration_ms: 205.904208
+  type: 'test'
+  ...
+# Subtest: the boss enters a second phase and summons a finite reinforcement group
+ok 133 - the boss enters a second phase and summons a finite reinforcement group
+  ---
+  duration_ms: 36.836583
+  type: 'test'
+  ...
+# Subtest: death is terminal until reset, and reset restores the original seeded run
+ok 134 - death is terminal until reset, and reset restores the original seeded run
+  ---
+  duration_ms: 1.20075
+  type: 'test'
+  ...
+# Subtest: all six zones are joined by walkable continuous passages, with two reachable alcoves
+ok 135 - all six zones are joined by walkable continuous passages, with two reachable alcoves
+  ---
+  duration_ms: 0.45975
+  type: 'test'
+  ...
+# Subtest: a long dash cannot tunnel across the gap at a dogleg, and walls permit sliding
+ok 136 - a long dash cannot tunnel across the gap at a dogleg, and walls permit sliding
+  ---
+  duration_ms: 0.113292
+  type: 'test'
+  ...
+# Subtest: closed passage blocks leaving the first encounter and dash respects its seal
+ok 137 - closed passage blocks leaving the first encounter and dash respects its seal
+  ---
+  duration_ms: 1.440792
+  type: 'test'
+  ...
+# Subtest: projectiles stop at rock gaps and pursuing enemies choose a real turn
+ok 138 - projectiles stop at rock gaps and pursuing enemies choose a real turn
+  ---
+  duration_ms: 76.731667
+  type: 'test'
+  ...
+# Subtest: all six equipped weapons describe their distinct clothing, without renderer or state writes
+ok 139 - all six equipped weapons describe their distinct clothing, without renderer or state writes
+  ---
+  duration_ms: 776.771834
+  type: 'test'
+  ...
+# Subtest: fire-greatsword: real rounded rig has visible shoulders, bracers and bone-mounted headwear
+ok 140 - fire-greatsword: real rounded rig has visible shoulders, bracers and bone-mounted headwear
+  ---
+  duration_ms: 14.941166
+  type: 'test'
+  ...
+# Subtest: fire-greatsword: armor positions are bounded and do not obstruct the face or weapon hand
+ok 141 - fire-greatsword: armor positions are bounded and do not obstruct the face or weapon hand
+  ---
+  duration_ms: 24.22925
+  type: 'test'
+  ...
+# Subtest: fire-greatsword: equipped armor follows the actual animated arm without moving independently
+ok 142 - fire-greatsword: equipped armor follows the actual animated arm without moving independently
+  ---
+  duration_ms: 10.82075
+  type: 'test'
+  ...
+# Subtest: lightning-halberd: real rounded rig has visible shoulders, bracers and bone-mounted headwear
+ok 143 - lightning-halberd: real rounded rig has visible shoulders, bracers and bone-mounted headwear
+  ---
+  duration_ms: 12.265208
+  type: 'test'
+  ...
+# Subtest: lightning-halberd: armor positions are bounded and do not obstruct the face or weapon hand
+ok 144 - lightning-halberd: armor positions are bounded and do not obstruct the face or weapon hand
+  ---
+  duration_ms: 11.614375
+  type: 'test'
+  ...
+# Subtest: lightning-halberd: equipped armor follows the actual animated arm without moving independently
+ok 145 - lightning-halberd: equipped armor follows the actual animated arm without moving independently
+  ---
+  duration_ms: 19.530417
+  type: 'test'
+  ...
+# Subtest: water-scepter: real rounded rig has visible shoulders, bracers and bone-mounted headwear
+ok 146 - water-scepter: real rounded rig has visible shoulders, bracers and bone-mounted headwear
+  ---
+  duration_ms: 4.7455
+  type: 'test'
+  ...
+# Subtest: water-scepter: armor positions are bounded and do not obstruct the face or weapon hand
+ok 147 - water-scepter: armor positions are bounded and do not obstruct the face or weapon hand
+  ---
+  duration_ms: 7.866875
+  type: 'test'
+  ...
+# Subtest: water-scepter: equipped armor follows the actual animated arm without moving independently
+ok 148 - water-scepter: equipped armor follows the actual animated arm without moving independently
+  ---
+  duration_ms: 7.026542
+  type: 'test'
+  ...
+# Subtest: returning to starter attire disposes each local resource once and leaves shipped GLB resources intact
+ok 149 - returning to starter attire disposes each local resource once and leaves shipped GLB resources intact
+  ---
+  duration_ms: 4.976792
+  type: 'test'
+  ...
+# Subtest: two actors have independent gear and repeated six-weapon switches leave no previous outfit behind
+ok 150 - two actors have independent gear and repeated six-weapon switches leave no previous outfit behind
+  ---
+  duration_ms: 22.578125
+  type: 'test'
+  ...
+# Subtest: three starters retain their original rounded attire without extra armor
+ok 151 - three starters retain their original rounded attire without extra armor
+  ---
+  duration_ms: 7.985667
+  type: 'test'
+  ...
+# Subtest: lightning-spear: charcoal hood and cloth preserve every skin, leather and black vertex color
+ok 152 - lightning-spear: charcoal hood and cloth preserve every skin, leather and black vertex color
+  ---
+  duration_ms: 14.623834
+  type: 'test'
+  ...
+# Subtest: lightning-halberd: charcoal hood and cloth preserve every skin, leather and black vertex color
+ok 153 - lightning-halberd: charcoal hood and cloth preserve every skin, leather and black vertex color
+  ---
+  duration_ms: 14.129417
+  type: 'test'
+  ...
+# Subtest: basic and upgraded rogue clothes have the same charcoal palette
+ok 154 - basic and upgraded rogue clothes have the same charcoal palette
+  ---
+  duration_ms: 5.626916
+  type: 'test'
+  ...
+# Subtest: removing rogue clothing releases only its private copies and restores original shared geometry
+ok 155 - removing rogue clothing releases only its private copies and restores original shared geometry
+  ---
+  duration_ms: 5.55925
+  type: 'test'
+  ...
+# Subtest: locale starts in Chinese and restores only a supported saved preference
+ok 156 - locale starts in Chinese and restores only a supported saved preference
+  ---
+  duration_ms: 0.8185
+  type: 'test'
+  ...
+# Subtest: language preference persists without touching game records or production data from QA
+ok 157 - language preference persists without touching game records or production data from QA
+  ---
+  duration_ms: 0.525334
+  type: 'test'
+  ...
+# Subtest: invalid locale requests do not change the current language or write storage
+ok 158 - invalid locale requests do not change the current language or write storage
+  ---
+  duration_ms: 0.427333
+  type: 'test'
+  ...
+# Subtest: blocked browser storage does not prevent an in-session language change
+ok 159 - blocked browser storage does not prevent an in-session language change
+  ---
+  duration_ms: 1.43025
+  type: 'test'
+  ...
+# Subtest: subscribers fire once per language transition and unsubscribe cleanly
+ok 160 - subscribers fire once per language transition and unsubscribe cleanly
+  ---
+  duration_ms: 0.165792
+  type: 'test'
+  ...
+# Subtest: translation falls back to its source and interpolates zero values without dropping unknown fields
+ok 161 - translation falls back to its source and interpolates zero values without dropping unknown fields
+  ---
+  duration_ms: 0.12725
+  type: 'test'
+  ...
+# Subtest: all equipment, class, skill, supply and quest descriptions have English display text
+ok 162 - all equipment, class, skill, supply and quest descriptions have English display text
+  ---
+  duration_ms: 0.522417
+  type: 'test'
+  ...
+# Subtest: every blessing renders in either language while retaining its choice index and reward identity
+ok 163 - every blessing renders in either language while retaining its choice index and reward identity
+  ---
+  duration_ms: 15.05025
+  type: 'test'
+  ...
+# Subtest: changing language during a run preserves the current run, inventory and persisted profile
+ok 164 - changing language during a run preserves the current run, inventory and persisted profile
+  ---
+  duration_ms: 1.9935
+  type: 'test'
+  ...
+# Subtest: weapon filtering keeps the inspected selection inside its element without changing a loadout
+ok 165 - weapon filtering keeps the inspected selection inside its element without changing a loadout
+  ---
+  duration_ms: 1.97925
+  type: 'test'
+  ...
+# Subtest: inventory comparisons match actual starting combat stats with camp growth and a packed tonic
+ok 166 - inventory comparisons match actual starting combat stats with camp growth and a packed tonic
+  ---
+  duration_ms: 1.7225
+  type: 'test'
+  ...
+# Subtest: an unavailable stale supply does not grant a damage bonus in displayed expedition stats
+ok 167 - an unavailable stale supply does not grant a damage bonus in displayed expedition stats
+  ---
+  duration_ms: 0.994292
+  type: 'test'
+  ...
+# Subtest: locked weapons can be inspected but offer their real unlock contract instead of an equip action
+ok 168 - locked weapons can be inspected but offer their real unlock contract instead of an equip action
+  ---
+  duration_ms: 1.059208
+  type: 'test'
+  ...
+# Subtest: empty, packed, insufficient-gold and full-stock supply views reflect real profile data
+ok 169 - empty, packed, insufficient-gold and full-stock supply views reflect real profile data
+  ---
+  duration_ms: 0.469834
+  type: 'test'
+  ...
+# Subtest: pending runs allow next-loadout equipment and packing while blocking purchases and upgrades
+ok 170 - pending runs allow next-loadout equipment and packing while blocking purchases and upgrades
+  ---
+  duration_ms: 0.509334
+  type: 'test'
+  ...
+# Subtest: class shortcuts preserve equipped gear and choose an owned advanced weapon without unlocking anything
+ok 171 - class shortcuts preserve equipped gear and choose an owned advanced weapon without unlocking anything
+  ---
+  duration_ms: 0.180917
+  type: 'test'
+  ...
+# Subtest: camp upgrades show cumulative saved bonuses, the real next cost, and no purchase at max level
+ok 172 - camp upgrades show cumulative saved bonuses, the real next cost, and no purchase at max level
+  ---
+  duration_ms: 0.383667
+  type: 'test'
+  ...
+# Subtest: rendering inventory never writes or consumes saved supplies
+ok 173 - rendering inventory never writes or consumes saved supplies
+  ---
+  duration_ms: 0.625583
+  type: 'test'
+  ...
+# Subtest: all inventory panels and disabled states render in English without untranslated Chinese
+ok 174 - all inventory panels and disabled states render in English without untranslated Chinese
+  ---
+  duration_ms: 1.044042
+  type: 'test'
+  ...
+# Subtest: armory compares the selected and current weapons using real element-specific armor and talent damage
+ok 175 - armory compares the selected and current weapons using real element-specific armor and talent damage
+  ---
+  duration_ms: 0.543
+  type: 'test'
+  ...
+# Subtest: armory cooldown comparisons account for both the current and inspected elements instead of the wielded class alone
+ok 176 - armory cooldown comparisons account for both the current and inspected elements instead of the wielded class alone
+  ---
+  duration_ms: 1.076208
+  type: 'test'
+  ...
+# Subtest: new armory forms display their own geometry description and base damage without claiming a circular skill radius
+ok 177 - new armory forms display their own geometry description and base damage without claiming a circular skill radius
+  ---
+  duration_ms: 2.801166
+  type: 'test'
+  ...
+# Subtest: English armory form previews follow relic element matching and retain legacy radius only when both comparison skills are native
+ok 178 - English armory form previews follow relic element matching and retain legacy radius only when both comparison skills are native
+  ---
+  duration_ms: 1.811208
+  type: 'test'
+  ...
+# Subtest: normal attributes complete six zones with fire-sword, using only that element
+ok 179 - normal attributes complete six zones with fire-sword, using only that element
+  ---
+  duration_ms: 427.746959
+  type: 'test'
+  ...
+# 146s, 293 kills, 6 levels, best combo 70, 144 HP remaining
+# Subtest: normal attributes complete six zones with lightning-spear, using only that element
+ok 180 - normal attributes complete six zones with lightning-spear, using only that element
+  ---
+  duration_ms: 226.998166
+  type: 'test'
+  ...
+# 159s, 293 kills, 6 levels, best combo 50, 154 HP remaining
+# Subtest: normal attributes complete six zones with water-staff, using only that element
+ok 181 - normal attributes complete six zones with water-staff, using only that element
+  ---
+  duration_ms: 802.361042
+  type: 'test'
+  ...
+# 200s, 293 kills, 6 levels, best combo 47, 144 HP remaining
+# Subtest: three professions can be prepared while an old run is pending without changing its ledger or consumed supply
+ok 182 - three professions can be prepared while an old run is pending without changing its ledger or consumed supply
+  ---
+  duration_ms: 4.955375
+  type: 'test'
+  ...
+# Subtest: settling the old run preserves newly selected equipment and the next supply
+ok 183 - settling the old run preserves newly selected equipment and the next supply
+  ---
+  duration_ms: 0.895042
+  type: 'test'
+  ...
+# Subtest: pending preparation still rejects locked weapons and exhausted supplies
+ok 184 - pending preparation still rejects locked weapons and exhausted supplies
+  ---
+  duration_ms: 0.404125
+  type: 'test'
+  ...
+# Subtest: pending preparation does not open purchase, upgrade, quest, reward, or new-run gates
+ok 185 - pending preparation does not open purchase, upgrade, quest, reward, or new-run gates
+  ---
+  duration_ms: 0.28925
+  type: 'test'
+  ...
+# Subtest: camp synchronization reads another page without writing, then switching uses the current save
+ok 186 - camp synchronization reads another page without writing, then switching uses the current save
+  ---
+  duration_ms: 0.501542
+  type: 'test'
+  ...
+# Subtest: same-run synchronization allows checkpoints while preserving preparation changed by another page
+ok 187 - same-run synchronization allows checkpoints while preserving preparation changed by another page
+  ---
+  duration_ms: 0.711916
+  type: 'test'
+  ...
+# Subtest: active synchronization cannot adopt a settled, replacement, or deleted run
+ok 188 - active synchronization cannot adopt a settled, replacement, or deleted run
+  ---
+  duration_ms: 2.390583
+  type: 'test'
+  ...
+# Subtest: active synchronization retains memory and original bytes on read or validation failure
+ok 189 - active synchronization retains memory and original bytes on read or validation failure
+  ---
+  duration_ms: 0.9195
+  type: 'test'
+  ...
+# Subtest: camp synchronization preserves malformed saves and blocked mutations rather than resetting
+ok 190 - camp synchronization preserves malformed saves and blocked mutations rather than resetting
+  ---
+  duration_ms: 0.382458
+  type: 'test'
+  ...
+# Subtest: failed pending preparation persistence never changes the previous choice or old run
+ok 191 - failed pending preparation persistence never changes the previous choice or old run
+  ---
+  duration_ms: 0.519833
+  type: 'test'
+  ...
+# Subtest: fresh profile imports only selected legacy records and never writes legacy keys
+ok 192 - fresh profile imports only selected legacy records and never writes legacy keys
+  ---
+  duration_ms: 3.06925
+  type: 'test'
+  ...
+# Subtest: purchases use real budget; invalid counts and insufficient funds do not change inventory
+ok 193 - purchases use real budget; invalid counts and insufficient funds do not change inventory
+  ---
+  duration_ms: 1.886
+  type: 'test'
+  ...
+# Subtest: starting consumes one selected supply atomically and retry does not consume twice
+ok 194 - starting consumes one selected supply atomically and retry does not consume twice
+  ---
+  duration_ms: 2.485
+  type: 'test'
+  ...
+# Subtest: failed prepare preserves supply and creates no pending run
+ok 195 - failed prepare preserves supply and creates no pending run
+  ---
+  duration_ms: 0.689584
+  type: 'test'
+  ...
+# Subtest: winning, dying, and retreating use explicit ratios, essence and bonus
+ok 196 - winning, dying, and retreating use explicit ratios, essence and bonus
+  ---
+  duration_ms: 2.702375
+  type: 'test'
+  ...
+# Subtest: settlement is idempotent across calls and process reloads
+ok 197 - settlement is idempotent across calls and process reloads
+  ---
+  duration_ms: 1.272958
+  type: 'test'
+  ...
+# Subtest: failed settlement does not award, discard pending run, or consume retry
+ok 198 - failed settlement does not award, discard pending run, or consume retry
+  ---
+  duration_ms: 0.841416
+  type: 'test'
+  ...
+# Subtest: checkpoint is monotonic; after reload only recorded income is recovered
+ok 199 - checkpoint is monotonic; after reload only recorded income is recovered
+  ---
+  duration_ms: 1.167417
+  type: 'test'
+  ...
+# Subtest: checkpoint save failure retains previous recoverable summary
+ok 200 - checkpoint save failure retains previous recoverable summary
+  ---
+  duration_ms: 0.714709
+  type: 'test'
+  ...
+# Subtest: quests count only a quest accepted before that run, across multiple runs
+ok 201 - quests count only a quest accepted before that run, across multiple runs
+  ---
+  duration_ms: 1.693917
+  type: 'test'
+  ...
+# Subtest: all four quest metrics can be completed and unlock their actual rewards
+ok 202 - all four quest metrics can be completed and unlock their actual rewards
+  ---
+  duration_ms: 0.705125
+  type: 'test'
+  ...
+# Subtest: quest claim failure keeps reward claimable and cannot double award on retry
+ok 203 - quest claim failure keeps reward claimable and cannot double award on retry
+  ---
+  duration_ms: 0.222459
+  type: 'test'
+  ...
+# Subtest: camp upgrades have three real paid levels and derive exact engine bonuses
+ok 204 - camp upgrades have three real paid levels and derive exact engine bonuses
+  ---
+  duration_ms: 0.289166
+  type: 'test'
+  ...
+# Subtest: only known unlocked weapons and owned supplies can be selected
+ok 205 - only known unlocked weapons and owned supplies can be selected
+  ---
+  duration_ms: 0.086083
+  type: 'test'
+  ...
+# Subtest: earned weapon loot unlocks once after wins, deaths, and retreat
+ok 206 - earned weapon loot unlocks once after wins, deaths, and retreat
+  ---
+  duration_ms: 0.259291
+  type: 'test'
+  ...
+# Subtest: malformed JSON and future versions are preserved and writes are blocked
+ok 207 - malformed JSON and future versions are preserved and writes are blocked
+  ---
+  duration_ms: 0.121583
+  type: 'test'
+  ...
+# Subtest: known-version field validation removes nonfinite values and unsafe gear
+ok 208 - known-version field validation removes nonfinite values and unsafe gear
+  ---
+  duration_ms: 0.314541
+  type: 'test'
+  ...
+# Subtest: malformed ledger/pending run is rejected instead of silently forgetting processed runs
+ok 209 - malformed ledger/pending run is rejected instead of silently forgetting processed runs
+  ---
+  duration_ms: 0.238
+  type: 'test'
+  ...
+# Subtest: storage unavailability and stale instances report failure without pretending persistence
+ok 210 - storage unavailability and stale instances report failure without pretending persistence
+  ---
+  duration_ms: 0.274375
+  type: 'test'
+  ...
+# Subtest: profile snapshots cannot mutate store state or engine tuning
+ok 211 - profile snapshots cannot mutate store state or engine tuning
+  ---
+  duration_ms: 0.075666
+  type: 'test'
+  ...
+# Subtest: grave: one real E keydown held across main frames completes a mechanism once
+ok 212 - grave: one real E keydown held across main frames completes a mechanism once
+  ---
+  duration_ms: 13.795
+  type: 'test'
+  ...
+# Subtest: grave: a real short E press and release clears the channel without awarding it
+ok 213 - grave: a real short E press and release clears the channel without awarding it
+  ---
+  duration_ms: 3.607333
+  type: 'test'
+  ...
+# Subtest: grave: pausing a held operation freezes it and resuming without held E cannot continue it
+ok 214 - grave: pausing a held operation freezes it and resuming without held E cannot continue it
+  ---
+  duration_ms: 8.889959
+  type: 'test'
+  ...
+# Subtest: aqueduct: one real E keydown held across main frames completes a mechanism once
+ok 215 - aqueduct: one real E keydown held across main frames completes a mechanism once
+  ---
+  duration_ms: 6.034667
+  type: 'test'
+  ...
+# Subtest: aqueduct: a real short E press and release clears the channel without awarding it
+ok 216 - aqueduct: a real short E press and release clears the channel without awarding it
+  ---
+  duration_ms: 7.852084
+  type: 'test'
+  ...
+# Subtest: aqueduct: pausing a held operation freezes it and resuming without held E cannot continue it
+ok 217 - aqueduct: pausing a held operation freezes it and resuming without held E cannot continue it
+  ---
+  duration_ms: 5.038625
+  type: 'test'
+  ...
+# Subtest: a single clicked blessing releases keyboard movement and Escape (zh-CN, reduced motion: false)
+ok 218 - a single clicked blessing releases keyboard movement and Escape (zh-CN, reduced motion: false)
+  ---
+  duration_ms: 1.8735
+  type: 'test'
+  ...
+# Subtest: a single clicked blessing releases keyboard movement and Escape (zh-CN, reduced motion: true)
+ok 219 - a single clicked blessing releases keyboard movement and Escape (zh-CN, reduced motion: true)
+  ---
+  duration_ms: 1.517625
+  type: 'test'
+  ...
+# Subtest: two queued levels accept their own keyboard choice and release movement after the final card (zh-CN)
+ok 220 - two queued levels accept their own keyboard choice and release movement after the final card (zh-CN)
+  ---
+  duration_ms: 2.843959
+  type: 'test'
+  ...
+# Subtest: E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable (zh-CN)
+ok 221 - E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable (zh-CN)
+  ---
+  duration_ms: 1.142791
+  type: 'test'
+  ...
+# Subtest: repeated clicks and number keys during the 200ms flourish grant exactly one blessing (zh-CN)
+ok 222 - repeated clicks and number keys during the 200ms flourish grant exactly one blessing (zh-CN)
+  ---
+  duration_ms: 0.643333
+  type: 'test'
+  ...
+# Subtest: clicking pause during the blessing flourish preserves the pause until the player resumes (zh-CN)
+ok 223 - clicking pause during the blessing flourish preserves the pause until the player resumes (zh-CN)
+  ---
+  duration_ms: 0.581042
+  type: 'test'
+  ...
+# Subtest: resuming during a blessing selection cannot spend an old card on the next queued level (zh-CN, reduced motion: false)
+ok 224 - resuming during a blessing selection cannot spend an old card on the next queued level (zh-CN, reduced motion: false)
+  ---
+  duration_ms: 0.979958
+  type: 'test'
+  ...
+# Subtest: resuming during a blessing selection cannot spend an old card on the next queued level (zh-CN, reduced motion: true)
+ok 225 - resuming during a blessing selection cannot spend an old card on the next queued level (zh-CN, reduced motion: true)
+  ---
+  duration_ms: 0.65875
+  type: 'test'
+  ...
+# Subtest: redrawing an open blessing in the other language preserves its choices and releases movement (zh-CN)
+ok 226 - redrawing an open blessing in the other language preserves its choices and releases movement (zh-CN)
+  ---
+  duration_ms: 0.670125
+  type: 'test'
+  ...
+# Subtest: a language redraw during the selection flourish cannot grant a second reward or trap movement (zh-CN)
+ok 227 - a language redraw during the selection flourish cannot grant a second reward or trap movement (zh-CN)
+  ---
+  duration_ms: 0.49075
+  type: 'test'
+  ...
+# Subtest: a single clicked blessing releases keyboard movement and Escape (en, reduced motion: false)
+ok 228 - a single clicked blessing releases keyboard movement and Escape (en, reduced motion: false)
+  ---
+  duration_ms: 0.537792
+  type: 'test'
+  ...
+# Subtest: a single clicked blessing releases keyboard movement and Escape (en, reduced motion: true)
+ok 229 - a single clicked blessing releases keyboard movement and Escape (en, reduced motion: true)
+  ---
+  duration_ms: 0.503917
+  type: 'test'
+  ...
+# Subtest: two queued levels accept their own keyboard choice and release movement after the final card (en)
+ok 230 - two queued levels accept their own keyboard choice and release movement after the final card (en)
+  ---
+  duration_ms: 0.534042
+  type: 'test'
+  ...
+# Subtest: E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable (en)
+ok 231 - E claims a cleared-room blessing, unlocks its passage and leaves keyboard movement usable (en)
+  ---
+  duration_ms: 0.566541
+  type: 'test'
+  ...
+# Subtest: repeated clicks and number keys during the 200ms flourish grant exactly one blessing (en)
+ok 232 - repeated clicks and number keys during the 200ms flourish grant exactly one blessing (en)
+  ---
+  duration_ms: 0.490583
+  type: 'test'
+  ...
+# Subtest: clicking pause during the blessing flourish preserves the pause until the player resumes (en)
+ok 233 - clicking pause during the blessing flourish preserves the pause until the player resumes (en)
+  ---
+  duration_ms: 0.504667
+  type: 'test'
+  ...
+# Subtest: resuming during a blessing selection cannot spend an old card on the next queued level (en, reduced motion: false)
+ok 234 - resuming during a blessing selection cannot spend an old card on the next queued level (en, reduced motion: false)
+  ---
+  duration_ms: 0.676375
+  type: 'test'
+  ...
+# Subtest: resuming during a blessing selection cannot spend an old card on the next queued level (en, reduced motion: true)
+ok 235 - resuming during a blessing selection cannot spend an old card on the next queued level (en, reduced motion: true)
+  ---
+  duration_ms: 0.691917
+  type: 'test'
+  ...
+# Subtest: redrawing an open blessing in the other language preserves its choices and releases movement (en)
+ok 236 - redrawing an open blessing in the other language preserves its choices and releases movement (en)
+  ---
+  duration_ms: 0.538709
+  type: 'test'
+  ...
+# Subtest: a language redraw during the selection flourish cannot grant a second reward or trap movement (en)
+ok 237 - a language redraw during the selection flourish cannot grant a second reward or trap movement (en)
+  ---
+  duration_ms: 1.982792
+  type: 'test'
+  ...
+# Subtest: fire: immediate attack after a profession switch reaches the new authored rig
+ok 238 - fire: immediate attack after a profession switch reaches the new authored rig
+  ---
+  duration_ms: 1587.171541
+  type: 'test'
+  ...
+# Subtest: fire: immediate skill after a profession switch reaches the new authored rig
+ok 239 - fire: immediate skill after a profession switch reaches the new authored rig
+  ---
+  duration_ms: 5.982459
+  type: 'test'
+  ...
+# Subtest: lightning: immediate attack after a profession switch reaches the new authored rig
+ok 240 - lightning: immediate attack after a profession switch reaches the new authored rig
+  ---
+  duration_ms: 40.611834
+  type: 'test'
+  ...
+# Subtest: lightning: immediate skill after a profession switch reaches the new authored rig
+ok 241 - lightning: immediate skill after a profession switch reaches the new authored rig
+  ---
+  duration_ms: 27.167875
+  type: 'test'
+  ...
+# Subtest: water: immediate attack after a profession switch reaches the new authored rig
+ok 242 - water: immediate attack after a profession switch reaches the new authored rig
+  ---
+  duration_ms: 8.061208
+  type: 'test'
+  ...
+# Subtest: water: immediate skill after a profession switch reaches the new authored rig
+ok 243 - water: immediate skill after a profession switch reaches the new authored rig
+  ---
+  duration_ms: 16.688917
+  type: 'test'
+  ...
+# Subtest: fire-greatsword: same-profession upgraded equipment retains its immediate attack
+ok 244 - fire-greatsword: same-profession upgraded equipment retains its immediate attack
+  ---
+  duration_ms: 11.10175
+  type: 'test'
+  ...
+# Subtest: fire-greatsword: same-profession upgraded equipment retains its immediate skill
+ok 245 - fire-greatsword: same-profession upgraded equipment retains its immediate skill
+  ---
+  duration_ms: 16.173667
+  type: 'test'
+  ...
+# Subtest: lightning-halberd: same-profession upgraded equipment retains its immediate attack
+ok 246 - lightning-halberd: same-profession upgraded equipment retains its immediate attack
+  ---
+  duration_ms: 8.409208
+  type: 'test'
+  ...
+# Subtest: lightning-halberd: same-profession upgraded equipment retains its immediate skill
+ok 247 - lightning-halberd: same-profession upgraded equipment retains its immediate skill
+  ---
+  duration_ms: 47.189375
+  type: 'test'
+  ...
+# Subtest: water-scepter: same-profession upgraded equipment retains its immediate attack
+ok 248 - water-scepter: same-profession upgraded equipment retains its immediate attack
+  ---
+  duration_ms: 6.303625
+  type: 'test'
+  ...
+# Subtest: water-scepter: same-profession upgraded equipment retains its immediate skill
+ok 249 - water-scepter: same-profession upgraded equipment retains its immediate skill
+  ---
+  duration_ms: 30.436459
+  type: 'test'
+  ...
+# Subtest: a combat event without a separately delivered equip event still uses the actual weapon
+ok 250 - a combat event without a separately delivered equip event still uses the actual weapon
+  ---
+  duration_ms: 3.726042
+  type: 'test'
+  ...
+# Subtest: continuous switches deliver each attack once and keep only the latest player actor
+ok 251 - continuous switches deliver each attack once and keep only the latest player actor
+  ---
+  duration_ms: 48.066917
+  type: 'test'
+  ...
+# Subtest: obsolete weapon commands are not replayed on a different profession
+ok 252 - obsolete weapon commands are not replayed on a different profession
+  ---
+  duration_ms: 3.659834
+  type: 'test'
+  ...
+# Subtest: clearing or restarting removes old rigs and queued commands before a new run
+ok 253 - clearing or restarting removes old rigs and queued commands before a new run
+  ---
+  duration_ms: 7.037875
+  type: 'test'
+  ...
+1..253
+# tests 253
+# suites 0
+# pass 253
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3496.656708

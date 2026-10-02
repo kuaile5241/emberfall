@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { clone as cloneSkeleton } from 'three/addons/utils/SkeletonUtils.js';
-import { applyEquipmentAppearance, disposeEquipmentAppearance } from './gear-appearance.js';
+import { applyEquipmentAppearance, disposeEquipmentAppearance } from './equipment-appearance.js';
+import { normalizeBuildLoadout } from './builds.js';
 
 export const ACTOR_ASSETS = Object.freeze({
   Knight: '/assets/models-v6/Knight.glb',
@@ -123,12 +124,14 @@ export class ActorSystem {
     u.equipped.push(weapon);
   }
 
-  ensure(entity, isPlayer = false, weapon = null) {
+  ensure(entity, isPlayer = false, weapon = null, buildLoadout = this.game?.buildLoadout) {
     const id = isPlayer ? 'player' : entity.id;
     const kind = this._kind(entity, isPlayer, weapon);
+    const loadout = normalizeBuildLoadout(buildLoadout);
     const equipmentKey = isPlayer ? weapon?.id || 'fire-sword' : entity.type;
+    const appearanceKey = isPlayer ? `${equipmentKey}:${loadout.armorId || ''}:${loadout.relicId || ''}` : equipmentKey;
     let root = this.actors.get(id);
-    if (root && root.userData.kind === kind && root.userData.equipmentKey === equipmentKey) return root;
+    if (root && root.userData.kind === kind && root.userData.appearanceKey === appearanceKey) return root;
     if (root) this._dispose(root);
     const source = this.models[kind];
     if (!source) return null;
@@ -139,7 +142,7 @@ export class ActorSystem {
     model.scale.setScalar(scale);
     const element = weapon?.element || (entity.type === 'ranged' ? 'water' : 'fire');
     const u = root.userData = {
-      kind, id, isPlayer, model, scale, equipmentKey, element, fodder: !!entity.fodder,
+      kind, id, isPlayer, model, scale, equipmentKey, appearanceKey, element, fodder: !!entity.fodder,
       mixer: new THREE.AnimationMixer(model), pairs: new Map(), materials: [], equipped: [], generated: [],
       lastX: entity.x, lastZ: entity.z, velocityX: 0, velocityZ: 0, speed: 0, moveAmount: 0,
       facing: entity.facing || 0, lean: 0, upperWeight: 0, lowerWeight: 0,
@@ -159,7 +162,7 @@ export class ActorSystem {
         const shield = model.getObjectByName('Badge_Shield');
         if (shield) shield.visible = !weapon?.id?.includes('greatsword');
       }
-      applyEquipmentAppearance(root, weapon);
+      applyEquipmentAppearance(root, weapon, loadout);
     } else {
       this._attach(root, entity.type === 'ranged' ? 'Skeleton_Staff' : ['brute', 'boss'].includes(entity.type) ? 'Skeleton_Axe' : 'Skeleton_Blade');
       if (['brute', 'boss'].includes(entity.type)) this._attach(root, 'Skeleton_Shield_Large_A', 'l');
@@ -362,12 +365,13 @@ export class ActorSystem {
     this._locomotion(root, entity, dt, upper, lower);
     u.mixer.update(dt);
     u.hitTime = Math.max(0, u.hitTime - dt);
-    const burn = entity.burnRemaining > 0, slow = entity.slowRemaining > 0;
+    const burn = entity.burnRemaining > 0, slow = entity.slowRemaining > 0, frozen = entity.frozenRemaining > 0;
     for (const { material, baseEmissive, baseIntensity } of u.materials) {
       if (!material.emissive || !baseEmissive) continue;
       material.emissive.copy(baseEmissive); material.emissiveIntensity = baseIntensity;
       if (u.hitTime > 0) { material.emissive.lerp(new THREE.Color(u.isPlayer ? 0xff5a43 : 0xffdf9c), .8); material.emissiveIntensity = .8; }
       else if (burn) { material.emissive.lerp(new THREE.Color(0x9f2c09), .65); material.emissiveIntensity = .35; }
+      else if (frozen) { material.emissive.lerp(new THREE.Color(0x7fbbea), .8); material.emissiveIntensity = .55; }
       else if (slow) { material.emissive.lerp(new THREE.Color(0x146b78), .45); material.emissiveIntensity = .25; }
     }
     if (u.isPlayer) {
