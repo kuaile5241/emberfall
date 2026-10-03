@@ -2,6 +2,10 @@
 
 **Emberfall · v0.8.0 · [MIT](LICENSE)**
 
+**[在线试玩 → game.novai.ink](https://game.novai.ink/)**
+
+浏览器直接游玩，推荐使用电脑键鼠。无需安装 Node.js 或下载项目；下面的启动步骤供本地运行与开发使用。
+
 单人 3D 动作肉鸽游戏。整备装备与补给，从营地出征，在连续的地下城中清理怪群、选择祝福、探索支路，最终挑战丧钟守卫，再将战利品带回营地。
 
 ![构筑工坊](artifacts/builds-v0.8/workshop-zh.png)
